@@ -1,9 +1,10 @@
 ---
-title: "협업일지 — 팀원B(Exp)"
-tags: [협업일지]
+title: 협업일지 — 전재완(Retrieval)
+tags:
+  - 협업일지
 ---
 
-# 협업일지 — 팀원B(Exp)
+# 협업일지 — 전재완(Retrieval)
 
 ```dataviewjs
 // @prerender from="협업일지/팀원B(Exp)" list
