@@ -3,7 +3,7 @@
 배경
 
 - 주피터랩 웹 UI 대신 VS Code에서 직접 VM에 접속해 작업하기 위한 설정
-- VM에는 계정이 두 개 있음: `spai1122`(gcloud 관리자 계정), `jaewan3182`(JupyterHub 개인 작업 계정) — **실제 프로젝트 파일과 venv는 각자 배정받은 개인 계정(예: jaewan3182) 아래에 있음**
+- VM에는 계정이 두 개 있음: `spai1122`(gcloud 계정), `jaewan3182`(JupyterHub 계정) — **실제 프로젝트 파일과 venv는 각자 배정받은 개인 계정(예: jaewan3182) 아래에 있음**
 
 #### 1. 사전 준비
 
