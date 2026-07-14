@@ -1,0 +1,19 @@
+name: Q&A Discord 알림 (비활성 — Obsidian 버튼으로 대체됨)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 새 Q&A 알림
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          python3 .github/scripts/qna_notify.py

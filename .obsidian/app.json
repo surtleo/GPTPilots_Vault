@@ -1,0 +1,7 @@
+{
+  "promptDelete": false,
+  "newFileLocation": "current",
+  "userIgnoreFilters": [
+    "CLAUDE.md"
+  ]
+}

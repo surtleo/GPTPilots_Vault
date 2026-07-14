@@ -1,0 +1,65 @@
+{
+  "command_timeout": 5,
+  "templates_folder": "_templates",
+  "templates_pairs": [
+    [
+      "",
+      ""
+    ]
+  ],
+  "trigger_on_file_creation": true,
+  "auto_jump_to_cursor": true,
+  "enable_system_commands": true,
+  "shell_path": "",
+  "user_scripts_folder": "",
+  "enable_folder_templates": true,
+  "folder_templates": [
+    {
+      "folder": "게시판",
+      "template": "_templates/게시판.md"
+    },
+    {
+      "folder": "전체 공지사항",
+      "template": "_templates/공지사항.md"
+    },
+    {
+      "folder": "협업일지/팀원A(PM)",
+      "template": "_templates/협업일지.md"
+    },
+    {
+      "folder": "협업일지/팀원B(Exp)",
+      "template": "_templates/협업일지.md"
+    },
+    {
+      "folder": "협업일지/팀원C(Model)",
+      "template": "_templates/협업일지.md"
+    },
+    {
+      "folder": "협업일지/팀원D(Data)",
+      "template": "_templates/협업일지.md"
+    }
+  ],
+  "enable_file_templates": false,
+  "file_templates": [
+    {
+      "regex": ".*",
+      "template": ""
+    }
+  ],
+  "syntax_highlighting": true,
+  "syntax_highlighting_mobile": false,
+  "enabled_templates_hotkeys": [
+    "_templates/discord-질문-알림.md",
+    "_templates/discord-답변-알림.md",
+    ""
+  ],
+  "startup_templates": [
+    "_templates/_hooks-setup.md"
+  ],
+  "intellisense_render": 1,
+  "ignore_folders_on_creation": [
+    {
+      "folder": ""
+    }
+  ]
+}

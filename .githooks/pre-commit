@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# git user.name / GitHub ID → 표시 이름 매핑 (팀에 맞게 수정하세요)
+KEYS=("팀원A" "YOUR_GITHUB_ID" "팀원B" "TEAMMATE_B_GITHUB_ID" "팀원C" "TEAMMATE_C_GITHUB_ID" "팀원D" "TEAMMATE_D_GITHUB_ID")
+VALS=("팀원A(PM)" "팀원A(PM)" "팀원B(Exp)" "팀원B(Exp)" "팀원C(Model)" "팀원C(Model)" "팀원D(Data)" "팀원D(Data)")
+
+GIT_USER=$(git config user.name | python3 -c "import sys,unicodedata; sys.stdout.write(unicodedata.normalize('NFC',sys.stdin.read().strip()))")
+AUTHOR="$GIT_USER"
+
+for i in "${!KEYS[@]}"; do
+  if [ "${KEYS[$i]}" = "$GIT_USER" ]; then
+    AUTHOR="${VALS[$i]}"
+    break
+  fi
+done
+
+MATCHED=$(git -c core.quotepath=false diff --cached --name-only --diff-filter=AM | python3 -c "
+import sys, unicodedata, re
+for line in sys.stdin:
+    line = unicodedata.normalize('NFC', line.strip())
+    if re.search(r'(게시판|전체 공지사항)/.*\.md$', line):
+        print(line)
+")
+
+while IFS= read -r FILE; do
+  [ -f "$FILE" ] || continue
+
+  FILE_NFC=$(echo "$FILE" | python3 -c "import sys,unicodedata; sys.stdout.write(unicodedata.normalize('NFC',sys.stdin.read().strip()))")
+
+  # Q&A는 질문 서명 안 함 (답변/댓글만 서명)
+  if echo "$FILE_NFC" | grep -qF "[Q&A]"; then
+    SIGN_BODY=0
+  else
+    SIGN_BODY=1
+  fi
+
+  TMPFILE=$(mktemp)
+  python3 "$(dirname "$0")/wrap_callout.py" "$AUTHOR" "$SIGN_BODY" "$FILE" "$TMPFILE"
+
+  if ! diff -q "$FILE" "$TMPFILE" > /dev/null 2>&1; then
+    mv "$TMPFILE" "$FILE"
+    git add "$FILE"
+  else
+    rm "$TMPFILE"
+  fi
+done <<< "$MATCHED"
+
+# Q&A 파일 추가 또는 칸반 파일 변경 시 → 칸반 동기화
+NEEDS_SYNC=$(git -c core.quotepath=false diff --cached --name-only --diff-filter=AMD | python3 -c "
+import sys, unicodedata, re
+for line in sys.stdin:
+    line = unicodedata.normalize('NFC', line.strip())
+    if re.search(r'게시판/\[Q&A\].*\.md$', line) or re.search(r'Q&A 칸반\.md$', line):
+        print('yes'); break
+")
+if [ "$NEEDS_SYNC" = "yes" ]; then
+  python3 "$(dirname "$0")/sync_kanban.py"
+  git add "Q&A 칸반.md" 2>/dev/null || true
+  git -c core.quotepath=false diff --cached --name-only | python3 -c "
+import sys, unicodedata, re
+for line in sys.stdin:
+    line = unicodedata.normalize('NFC', line.strip())
+    if re.search(r'게시판/\[Q&A\].*\.md$', line):
+        print(line)
+" | while IFS= read -r f; do git add "$f" 2>/dev/null || true; done
+fi
+
+exit 0

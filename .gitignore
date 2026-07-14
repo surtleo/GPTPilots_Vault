@@ -1,0 +1,20 @@
+# Obsidian
+.obsidian/workspace
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.obsidian/plugins/file-shift/data.json
+
+# Trash
+.trash/
+
+# macOS
+.DS_Store
+
+# 개인 설정 (GitHub ID 저장) — 예시 파일만 커밋
+_config/*
+!_config/me.md.example
+
+# Claude Code 지시 파일 (로컬 전용)
+CLAUDE.md
+.claude/
