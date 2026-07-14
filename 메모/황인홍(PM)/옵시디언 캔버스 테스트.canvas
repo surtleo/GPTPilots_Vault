@@ -1,0 +1,10 @@
+{
+	"nodes":[
+		{"id":"93c2b06771295493","type":"group","x":-220,"y":-280,"width":710,"height":160,"label":"그룹을 만듭니다"},
+		{"id":"9f57044071e82146","type":"text","text":"시작입니다","x":-200,"y":-260,"width":250,"height":60},
+		{"id":"dac4d8f615952901","type":"text","text":"이번입니다","x":220,"y":-200,"width":250,"height":60}
+	],
+	"edges":[
+		{"id":"6786fdc78fdda0c1","fromNode":"9f57044071e82146","fromSide":"right","toNode":"dac4d8f615952901","toSide":"left"}
+	]
+}
