@@ -1,0 +1,17 @@
+{
+	"nodes":[
+		{"id":"9ff8c40d9ceb376e","type":"text","text":"top-k 유사도 ","x":-480,"y":-160,"width":250,"height":60},
+		{"id":"d1e25111cb91c2c1","type":"text","text":"Hybrid Search(키워드 검색 추가)","x":-175,"y":-160,"width":250,"height":60},
+		{"id":"471191c6729a2f66","type":"text","text":"Multi-Query","x":440,"y":-160,"width":250,"height":60},
+		{"id":"b0cfe61e4feda8b9","type":"text","text":"MMR","x":125,"y":-160,"width":250,"height":60},
+		{"id":"56532e74de7b3784","x":-175,"y":-560,"width":250,"height":60,"type":"text","text":"Chroma(기본 필터링 X) "},
+		{"id":"1a884636fb8a62a4","type":"text","text":"데이터 5~10개(일부)","x":250,"y":-560,"width":250,"height":60}
+	],
+	"edges":[
+		{"id":"ce5cfe013d2134a9","fromNode":"56532e74de7b3784","fromSide":"bottom","toNode":"9ff8c40d9ceb376e","toSide":"top"},
+		{"id":"f5d2ba5c4cf1aa9a","fromNode":"56532e74de7b3784","fromSide":"bottom","toNode":"d1e25111cb91c2c1","toSide":"top"},
+		{"id":"b91fd24d47808ce8","fromNode":"56532e74de7b3784","fromSide":"bottom","toNode":"b0cfe61e4feda8b9","toSide":"top"},
+		{"id":"0dc1e59450696f68","fromNode":"56532e74de7b3784","fromSide":"bottom","toNode":"471191c6729a2f66","toSide":"top"},
+		{"id":"90494ded4b030404","fromNode":"1a884636fb8a62a4","fromSide":"left","toNode":"56532e74de7b3784","toSide":"right","toEnd":"none"}
+	]
+}
