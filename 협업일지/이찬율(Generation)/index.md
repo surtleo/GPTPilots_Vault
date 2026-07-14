@@ -1,10 +1,10 @@
 ---
-title: 협업일지 — 이찬율(Generation)
+title: 협업일지 — 이찬울(Generation)
 tags:
   - 협업일지
 ---
 
-# 협업일지 — 이찬율(Generation)
+# 협업일지 — 이찬울(Generation)
 
 ```dataviewjs
 // @prerender from="협업일지/팀원D(Data)" list
@@ -16,3 +16,5 @@ dv.table(["파일", "날짜"], pages.map(p => [
   p.file.name.slice(0, 10)
 ]));
 ```
+
+This is a Test hehehe ^^
