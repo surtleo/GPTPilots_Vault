@@ -11,8 +11,9 @@ AUTHOR_MAP = {
     "beomjinkim2000": "김범진(데이터 처리)",
     "전재완": "전재완(Retrieval)",
     "jaewan31313": "전재완(Retrieval)",
-    "이찬율": "이찬율(Generation)",
-    "Lee Chanwool": "이찬율(Generation)",
+    "이찬울": "이찬울(Generation)",
+    "이찬율": "이찬울(Generation)",
+    "Lee Chanwool": "이찬울(Generation)",
     "황인홍": "황인홍(PM)",
     "박종선": "박종선",
 }
