@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # git user.name / GitHub ID → 표시 이름 매핑 (팀에 맞게 수정하세요)
-KEYS=("김범진" "beomjinkim2000" "전재완" "jaewan31313" "이찬율" "Lee Chanwool" "황인홍" "박종선")
-VALS=("김범진(데이터 처리)" "김범진(데이터 처리)" "전재완(Retrieval)" "전재완(Retrieval)" "이찬율(Generation)" "이찬율(Generation)" "황인홍(PM)" "박종선")
+KEYS=("김범진" "beomjinkim2000" "전재완" "jaewan31313" "이찬울" "이찬율" "Lee Chanwool" "황인홍" "박종선")
+VALS=("김범진(데이터 처리)" "김범진(데이터 처리)" "전재완(Retrieval)" "전재완(Retrieval)" "이찬울(Generation)" "이찬울(Generation)" "이찬울(Generation)" "황인홍(PM)" "박종선")
 
 GIT_USER=$(git config user.name | python3 -c "import sys,unicodedata; sys.stdout.write(unicodedata.normalize('NFC',sys.stdin.read().strip()))")
 AUTHOR="$GIT_USER"
