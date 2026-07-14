@@ -43,7 +43,7 @@ for (const line of lines) {
   const m = line.match(/^>\s*\[!note\]\s*(.+)/);
   if (m) {
     if (curAuthor !== null) callouts.push([curAuthor, curLines.join(' ')]);
-    curAuthor = m[1].trim(); curLines = [];
+    curAuthor = m[1].split('·')[0].trim(); curLines = [];
   } else if (curAuthor !== null && line.startsWith('>')) {
     const text = line.slice(1).trim();
     if (text) curLines.push(text);
