@@ -1,10 +1,10 @@
 {
 	"nodes":[
 		{"id":"5050a6b4d31e33e8","type":"group","x":-1500,"y":1140,"width":735,"height":820,"label":"온라인 쿼리 파이프라인"},
+		{"id":"df46c40abeb69e45","type":"group","x":-2060,"y":500,"width":440,"height":1235,"label":"LangSmith"},
 		{"id":"8fd80339eb5b8127","type":"group","x":-240,"y":-100,"width":771,"height":660,"label":"1. 추출"},
-		{"id":"df46c40abeb69e45","type":"group","x":-2060,"y":500,"width":300,"height":1235,"label":"LangSmith"},
 		{"id":"d16ab5180bdb58c8","type":"group","x":-680,"y":760,"width":530,"height":500,"label":"3. 청킹"},
-		{"id":"76ebf73476489f6e","type":"group","x":-880,"y":430,"width":600,"height":260,"label":"2. 전처리"},
+		{"id":"76ebf73476489f6e","type":"group","x":-880,"y":400,"width":600,"height":290,"label":"2. 전처리"},
 		{
 			"id":"62f73d35a8eaf1a3",
 			"type":"text",
@@ -29,24 +29,14 @@
 			"height":100
 		},
 		{
-			"id":"9a8c2072e0e1a07b",
-			"type":"text",
-			"text":"<텍스트 클리닝>\n줄바꿈, 목차, 반복 헤더 제거",
-			"styleAttributes":{},
-			"x":-560,
-			"y":450,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"4b1a6b73b5bedaf3",
 			"type":"text",
-			"text":"<PII 마스킹>\n전화, 이메일 정규식 (임베딩 전)",
+			"text":"<PII 마스킹>\n전화, 이메일 정규식, Presido NER기반 개인정보 탐지 도구 \n(임베딩 전)",
 			"styleAttributes":{},
 			"x":-560,
-			"y":610,
+			"y":540,
 			"width":260,
-			"height":60
+			"height":130
 		},
 		{
 			"id":"4351a88a1788efbc",
@@ -165,7 +155,7 @@
 			"styleAttributes":{},
 			"x":-2040,
 			"y":515,
-			"width":260,
+			"width":400,
 			"height":730
 		},
 		{
@@ -178,7 +168,17 @@
 			"width":260,
 			"height":60
 		},
-		{"id":"e0af893c32a76ce4","type":"text","text":"공통 Markdown + 문서ID,섹션,페이지 메타","x":-60,"y":40,"width":255,"height":60}
+		{"id":"e0af893c32a76ce4","type":"text","text":"공통 Markdown + 문서ID,섹션,페이지 메타","x":-60,"y":40,"width":255,"height":60},
+		{
+			"id":"9a8c2072e0e1a07b",
+			"type":"text",
+			"text":"<텍스트 클리닝>\n줄바꿈, 목차, 반복 헤더 제거",
+			"styleAttributes":{},
+			"x":-560,
+			"y":420,
+			"width":260,
+			"height":60
+		}
 	],
 	"edges":[
 		{"id":"bd82dabac9db02ca","fromNode":"0a97e0001b2e5252","fromSide":"bottom","toNode":"e0af893c32a76ce4","toSide":"top"},
