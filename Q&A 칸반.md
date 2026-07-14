@@ -8,6 +8,7 @@ kanban-plugin: board
 
 - [ ] [[[Q&A]-qna 테스트|qna 테스트]]
   Q. <% tp.file.cursor() %>
+  A. ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ
 
 ## 해결됨
 
