@@ -560,7 +560,8 @@ class FileShiftPlugin extends obsidian.Plugin {
       // For root: no fileItems[""] — root is the .parent of any top-level item
       let folderItem;
       if (parentPath === '/') {
-        const firstKey = Object.keys(explorer.fileItems)[0];
+        // 첫 키가 하위 폴더 항목이면 parent가 루트가 아니라 루트 정렬이 엉뚱한 폴더에 적용된다 → 최상위 항목만 사용
+        const firstKey = Object.keys(explorer.fileItems).find(k => !k.includes('/'));
         if (firstKey) {
           const fi = explorer.fileItems[firstKey];
           if (fi && fi.parent && fi.parent.vChildren && typeof fi.parent.vChildren.setChildren === 'function') {
