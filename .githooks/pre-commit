@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # git user.name / GitHub ID → 표시 이름 매핑 (팀에 맞게 수정하세요)
-KEYS=("팀원A" "YOUR_GITHUB_ID" "팀원B" "TEAMMATE_B_GITHUB_ID" "팀원C" "TEAMMATE_C_GITHUB_ID" "팀원D" "TEAMMATE_D_GITHUB_ID")
-VALS=("팀원A(PM)" "팀원A(PM)" "팀원B(Exp)" "팀원B(Exp)" "팀원C(Model)" "팀원C(Model)" "팀원D(Data)" "팀원D(Data)")
+KEYS=("김범진" "beomjinkim2000" "팀원B" "TEAMMATE_B_GITHUB_ID" "팀원C" "TEAMMATE_C_GITHUB_ID" "팀원D" "TEAMMATE_D_GITHUB_ID")
+VALS=("김범진(PM)" "김범진(PM)" "팀원B(Exp)" "팀원B(Exp)" "팀원C(Model)" "팀원C(Model)" "팀원D(Data)" "팀원D(Data)")
 
 GIT_USER=$(git config user.name | python3 -c "import sys,unicodedata; sys.stdout.write(unicodedata.normalize('NFC',sys.stdin.read().strip()))")
 AUTHOR="$GIT_USER"
@@ -35,7 +35,12 @@ while IFS= read -r FILE; do
   fi
 
   TMPFILE=$(mktemp)
-  python3 "$(dirname "$0")/wrap_callout.py" "$AUTHOR" "$SIGN_BODY" "$FILE" "$TMPFILE"
+  # wrap 실패 시 빈 TMPFILE이 원본을 덮어쓰면 글이 통째로 날아간다 → 실패/빈 출력이면 원본 유지
+  if ! python3 "$(dirname "$0")/wrap_callout.py" "$AUTHOR" "$SIGN_BODY" "$FILE" "$TMPFILE" || [ ! -s "$TMPFILE" ]; then
+    echo "wrap_callout 실패, 원본 유지: $FILE" >&2
+    rm -f "$TMPFILE"
+    continue
+  fi
 
   if ! diff -q "$FILE" "$TMPFILE" > /dev/null 2>&1; then
     mv "$TMPFILE" "$FILE"

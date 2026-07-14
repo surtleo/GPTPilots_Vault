@@ -7,8 +7,8 @@ import subprocess, os, re, unicodedata, sys, tempfile, shutil
 
 # git author / GitHub ID → 표시 이름 매핑 (팀에 맞게 수정하세요)
 AUTHOR_MAP = {
-    "팀원A": "팀원A(PM)",
-    "YOUR_GITHUB_ID": "팀원A(PM)",
+    "김범진": "김범진(PM)",
+    "beomjinkim2000": "김범진(PM)",
     "팀원B": "팀원B(Exp)",
     "TEAMMATE_B_GITHUB_ID": "팀원B(Exp)",
     "팀원C": "팀원C(Model)",
