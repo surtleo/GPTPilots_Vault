@@ -7,14 +7,14 @@ import subprocess, os, re, unicodedata, sys, tempfile, shutil
 
 # git author / GitHub ID → 표시 이름 매핑 (팀에 맞게 수정하세요)
 AUTHOR_MAP = {
-    "김범진": "김범진(PM)",
-    "beomjinkim2000": "김범진(PM)",
-    "팀원B": "팀원B(Exp)",
-    "TEAMMATE_B_GITHUB_ID": "팀원B(Exp)",
-    "팀원C": "팀원C(Model)",
-    "TEAMMATE_C_GITHUB_ID": "팀원C(Model)",
-    "팀원D": "팀원D(Data)",
-    "TEAMMATE_D_GITHUB_ID": "팀원D(Data)",
+    "김범진": "김범진(데이터 처리)",
+    "beomjinkim2000": "김범진(데이터 처리)",
+    "전재완": "전재완(Retrieval)",
+    "jaewan31313": "전재완(Retrieval)",
+    "이찬율": "이찬율(Generation)",
+    "Lee Chanwool": "이찬율(Generation)",
+    "황인홍": "황인홍(PM)",
+    "박종선": "박종선",
 }
 
 SECTION_RE = {

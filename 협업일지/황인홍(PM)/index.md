@@ -7,8 +7,8 @@ tags:
 # 협업일지 — 황인홍(PM)
 
 ```dataviewjs
-// @prerender from="협업일지/팀원A(PM)" list
-const pages = dv.pages('"협업일지/팀원A(PM)"')
+// @prerender from="협업일지/황인홍(PM)" list
+const pages = dv.pages('"협업일지/황인홍(PM)"')
   .where(p => p.file.name !== "index")
   .sort(p => p.file.name, 'desc');
 dv.table(["파일", "날짜"], pages.map(p => [

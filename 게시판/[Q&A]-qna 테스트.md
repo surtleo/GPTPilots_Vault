@@ -1,11 +1,12 @@
 ---
-글쓴사람: 김범진(PM)
+글쓴사람: 김범진(데이터 처리)
 날짜: 2026-07-14 13:11
-상태: 미해결
+상태: 해결됨
 tags:
   - qna
 ---
 <div style="display:flex;align-items:center;gap:12px;margin:16px 0"><hr style="flex:1;margin:0"><span style="font-weight:bold;white-space:nowrap">질문</span><hr style="flex:1;margin:0"></div>
+
 
 
 
@@ -16,10 +17,10 @@ tags:
 
 <div style="display:flex;align-items:center;gap:12px;margin:16px 0"><hr style="flex:1;margin:0"><span style="font-weight:bold;white-space:nowrap">답변</span><hr style="flex:1;margin:0"></div>
 
-> [!note] 김범진(PM)
+> [!note] 김범진(데이터 처리)
 > ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ
 
 <div style="display:flex;align-items:center;gap:12px;margin:16px 0"><hr style="flex:1;margin:0"><span style="font-weight:bold;white-space:nowrap">댓글</span><hr style="flex:1;margin:0"></div>
 
-> [!note] 김범진(PM)
+> [!note] 김범진(데이터 처리)
 > ㅁㄴㅇㄹㅁㄴㅇㄹ
