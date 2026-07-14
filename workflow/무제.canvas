@@ -1,10 +1,17 @@
 {
 	"nodes":[
-		{"id":"1a884636fb8a62a4","type":"text","text":"데이터 5~10개","x":0,"y":-440,"width":250,"height":60},
-		{"id":"9ff8c40d9ceb376e","type":"text","text":"top-k 유사도 ","x":-300,"y":-300,"width":250,"height":60},
-		{"id":"01ea9f7dc5f688e3","type":"text","text":"Chroma(기본 필터링 X) ","x":-300,"y":-440,"width":250,"height":60}
+		{"id":"9ff8c40d9ceb376e","type":"text","text":"top-k 유사도 ","x":-480,"y":-160,"width":250,"height":60},
+		{"id":"d1e25111cb91c2c1","type":"text","text":"Hybrid Search(키워드 검색 추가)","x":-175,"y":-160,"width":250,"height":60},
+		{"id":"471191c6729a2f66","x":440,"y":-160,"width":250,"height":60,"type":"text","text":"Multi-Query"},
+		{"id":"b0cfe61e4feda8b9","type":"text","text":"MMR","x":125,"y":-160,"width":250,"height":60},
+		{"id":"01ea9f7dc5f688e3","type":"text","text":"Chroma(기본 필터링 X) ","x":-175,"y":-560,"width":250,"height":60},
+		{"id":"1a884636fb8a62a4","type":"text","text":"데이터 5~10개","x":250,"y":-560,"width":250,"height":60}
 	],
 	"edges":[
-		{"id":"358ff102feec5ee0","fromNode":"1a884636fb8a62a4","fromSide":"left","toNode":"01ea9f7dc5f688e3","toSide":"right"}
+		{"id":"358ff102feec5ee0","fromNode":"1a884636fb8a62a4","fromSide":"left","toNode":"01ea9f7dc5f688e3","toSide":"right"},
+		{"id":"8f2fa0ff5551995f","fromNode":"01ea9f7dc5f688e3","fromSide":"left","toNode":"9ff8c40d9ceb376e","toSide":"left","toEnd":"none","label":"베이스라인"},
+		{"id":"d5827deeccd00a58","fromNode":"01ea9f7dc5f688e3","fromSide":"left","toNode":"d1e25111cb91c2c1","toSide":"top"},
+		{"id":"88015c80c735e6c9","fromNode":"01ea9f7dc5f688e3","fromSide":"left","toNode":"b0cfe61e4feda8b9","toSide":"top"},
+		{"id":"e277eb3f2fdc628b","fromNode":"01ea9f7dc5f688e3","fromSide":"left","toNode":"471191c6729a2f66","toSide":"top"}
 	]
 }
