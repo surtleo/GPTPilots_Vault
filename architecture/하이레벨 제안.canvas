@@ -21,12 +21,12 @@
 		{
 			"id":"8432c489bfdf5d15",
 			"type":"text",
-			"text":"<메타데이터 정규화>\ndata_list.csv -> 금액, 날짜 파생컬럼 기관명 표준 사전 (NFC)",
+			"text":"<메타데이터 정규화>\ndata_list.csv -> 금액, 날짜 파생컬럼 기관명 표준 사전 (NFC,NFD 아님)",
 			"styleAttributes":{},
 			"x":-860,
-			"y":560,
+			"y":545,
 			"width":260,
-			"height":100
+			"height":115
 		},
 		{
 			"id":"4b1a6b73b5bedaf3",
@@ -261,6 +261,7 @@
 			"id":"aa550457dd3376fd",
 			"styleAttributes":{},
 			"toFloating":false,
+			"fromFloating":false,
 			"fromNode":"8432c489bfdf5d15",
 			"fromSide":"bottom",
 			"toNode":"8fa38ac044192d63",
