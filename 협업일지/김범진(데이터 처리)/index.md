@@ -1,9 +1,10 @@
 ---
-title: "협업일지 — 팀원C(Model)"
-tags: [협업일지]
+title: 협업일지 — 김범진(데이터 처리)
+tags:
+  - 협업일지
 ---
 
-# 협업일지 — 팀원C(Model)
+# 협업일지 — 김범진(데이터 처리)
 
 ```dataviewjs
 // @prerender from="협업일지/팀원C(Model)" list
