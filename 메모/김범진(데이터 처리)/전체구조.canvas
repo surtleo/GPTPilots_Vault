@@ -1,0 +1,36 @@
+{
+	"nodes":[
+		{"id":"50c19eead5d37e53","x":9,"y":-96,"width":250,"height":60,"type":"text","text":"개인"},
+		{"id":"c8af659eda629b8b","x":-280,"y":-96,"width":250,"height":60,"type":"text","text":"개인"},
+		{"id":"0d0d9a4202f782df","type":"text","text":"개인(모델)","x":320,"y":-96,"width":250,"height":60},
+		{"id":"937dee08f11ebc0e","x":900,"y":-760,"width":250,"height":60,"type":"text","text":"클라우드 드라이브"},
+		{"id":"7c6220584f70cfdd","x":9,"y":-322,"width":250,"height":60,"type":"text","text":"깃허브"},
+		{"id":"f2a4e55b733e81d9","x":1080,"y":-581,"width":250,"height":60,"type":"text","text":"GPU"},
+		{"id":"2467cca4147ba520","x":1650,"y":-322,"width":250,"height":60,"type":"text","text":"노트북 실행"},
+		{"id":"8c83e756faf724ab","x":1650,"y":-230,"width":250,"height":60,"type":"text","text":"임베딩"},
+		{"id":"46c909db409600a3","x":700,"y":-322,"width":250,"height":60,"type":"text","text":"GCP VM(100g)"},
+		{"id":"7b4d2e9fbc860b1a","x":1120,"y":-322,"width":250,"height":60,"type":"text","text":"개인 계정1(깃허브 클론)"},
+		{"id":"3c1b4d4eabeffe75","x":1120,"y":-230,"width":250,"height":60,"type":"text","text":"개인 계정2(깃허브 클론)"},
+		{"id":"84da0181ad91fb37","x":1120,"y":-140,"width":250,"height":60,"type":"text","text":"개인 계정3(깃허브 클론)"},
+		{"id":"e37db28d1a4fb4d9","x":305,"y":-820,"width":250,"height":60,"type":"text","text":"v1"},
+		{"id":"dc5b34d3711a1209","x":1330,"y":-440,"width":250,"height":60,"type":"text","text":"공유폴더(clone)"}
+	],
+	"edges":[
+		{"id":"87a28552409a7bb2","fromNode":"c8af659eda629b8b","fromSide":"top","toNode":"7c6220584f70cfdd","toSide":"bottom","label":"push"},
+		{"id":"04783e1f48d5f522","fromNode":"50c19eead5d37e53","fromSide":"top","toNode":"7c6220584f70cfdd","toSide":"bottom","label":"push"},
+		{"id":"e4f5d063ab012e2d","fromNode":"0d0d9a4202f782df","fromSide":"top","toNode":"7c6220584f70cfdd","toSide":"bottom","label":"push"},
+		{"id":"685839a661be3e33","fromNode":"46c909db409600a3","fromSide":"right","toNode":"7b4d2e9fbc860b1a","toSide":"left"},
+		{"id":"8cb7ddc2ea997cd9","fromNode":"46c909db409600a3","fromSide":"right","toNode":"3c1b4d4eabeffe75","toSide":"left"},
+		{"id":"68074ba86d9a0f95","fromNode":"46c909db409600a3","fromSide":"right","toNode":"84da0181ad91fb37","toSide":"left"},
+		{"id":"5102a6eafa89af5a","fromNode":"46c909db409600a3","fromSide":"top","toNode":"f2a4e55b733e81d9","toSide":"left","toEnd":"none"},
+		{"id":"e57cab801693b84b","fromNode":"2467cca4147ba520","fromSide":"top","toNode":"f2a4e55b733e81d9","toSide":"right"},
+		{"id":"da4b2444a4396e5b","fromNode":"8c83e756faf724ab","fromSide":"top","toNode":"f2a4e55b733e81d9","toSide":"right"},
+		{"id":"1532c10a66d5de75","fromNode":"7b4d2e9fbc860b1a","fromSide":"right","toNode":"2467cca4147ba520","toSide":"left"},
+		{"id":"76b72708a857fb5f","fromNode":"3c1b4d4eabeffe75","fromSide":"right","toNode":"8c83e756faf724ab","toSide":"left"},
+		{"id":"1a7a881afbcf7894","fromNode":"7c6220584f70cfdd","fromSide":"right","toNode":"46c909db409600a3","toSide":"left","label":"test"},
+		{"id":"ad2dee92adcaf2b5","fromNode":"7b4d2e9fbc860b1a","fromSide":"top","toNode":"dc5b34d3711a1209","toSide":"bottom"},
+		{"id":"2c3214cb7b0d876a","fromNode":"3c1b4d4eabeffe75","fromSide":"top","toNode":"dc5b34d3711a1209","toSide":"bottom"},
+		{"id":"6ff5c31109a852d4","fromNode":"84da0181ad91fb37","fromSide":"top","toNode":"dc5b34d3711a1209","toSide":"bottom"},
+		{"id":"7871875bffb039dd","fromNode":"7c6220584f70cfdd","fromSide":"right","toNode":"dc5b34d3711a1209","toSide":"left","label":"clone"}
+	]
+}
