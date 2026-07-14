@@ -1,28 +1,27 @@
 {
 	"nodes":[
+		{"id":"defcc7b10e43bb95","x":-300,"y":-342,"width":890,"height":326,"type":"group","label":"구현 및 버전관리"},
+		{"id":"ec33c1ec01abda13","x":660,"y":-342,"width":740,"height":326,"type":"group","label":"테스트 공간"},
 		{"id":"50c19eead5d37e53","x":9,"y":-96,"width":250,"height":60,"type":"text","text":"개인"},
 		{"id":"c8af659eda629b8b","x":-280,"y":-96,"width":250,"height":60,"type":"text","text":"개인"},
 		{"id":"0d0d9a4202f782df","type":"text","text":"개인(모델)","x":320,"y":-96,"width":250,"height":60},
 		{"id":"7c6220584f70cfdd","x":9,"y":-322,"width":250,"height":60,"type":"text","text":"깃허브"},
-		{"id":"99dcf3687f74d700","x":570,"y":-322,"width":250,"height":60,"type":"text","text":"VM"},
-		{"id":"1d645b790000c90f","x":980,"y":-322,"width":250,"height":60,"type":"text","text":"개인1"},
-		{"id":"a4af37ff7ae69aff","type":"text","text":"개인2","x":980,"y":-240,"width":250,"height":60},
-		{"id":"6d22ad3aeff1f66c","x":980,"y":-156,"width":250,"height":60,"type":"text","text":"개인3"},
-		{"id":"0154ec70693dd63d","x":570,"y":-460,"width":250,"height":60,"type":"text","text":"공유폴더"},
-		{"id":"01168746bdee529f","x":1320,"y":-322,"width":250,"height":60,"type":"text","text":"개인 브랜치1"},
-		{"id":"2272c7da87767d88","type":"text","text":"개인 브랜치2","x":1320,"y":-240,"width":250,"height":60},
-		{"id":"a834738c0e9ac189","type":"text","text":"개인 브랜치3","x":1320,"y":-156,"width":250,"height":60}
+		{"id":"1d645b790000c90f","x":1090,"y":-262,"width":250,"height":60,"type":"text","text":"개인1(버전2)"},
+		{"id":"a4af37ff7ae69aff","type":"text","text":"개인2(버전2)","x":1090,"y":-180,"width":250,"height":60},
+		{"id":"6d22ad3aeff1f66c","x":1090,"y":-96,"width":250,"height":60,"type":"text","text":"개인3(버전2)"},
+		{"id":"99dcf3687f74d700","x":680,"y":-262,"width":250,"height":60,"type":"text","text":"VM"},
+		{"id":"07134d74bed2c5ea","x":1090,"y":-680,"width":250,"height":100,"type":"text","text":"필수 조건: 기본 베이스 조건이 맞아야됨. 또는 테스트할때 기본조건이 맞아야됨."},
+		{"id":"ce1bcb8f1fcd20e8","x":1400,"y":-660,"width":250,"height":60,"type":"text","text":"전체 테스트"},
+		{"id":"3b61915c520909a9","x":9,"y":-470,"width":250,"height":60,"type":"text","text":"버전2"},
+		{"id":"ce23f5eb34b03f64","x":9,"y":-680,"width":250,"height":60,"type":"text","text":"버전3"}
 	],
 	"edges":[
 		{"id":"87a28552409a7bb2","fromNode":"c8af659eda629b8b","fromSide":"top","toNode":"7c6220584f70cfdd","toSide":"bottom","label":"push"},
 		{"id":"04783e1f48d5f522","fromNode":"50c19eead5d37e53","fromSide":"top","toNode":"7c6220584f70cfdd","toSide":"bottom","label":"push"},
 		{"id":"e4f5d063ab012e2d","fromNode":"0d0d9a4202f782df","fromSide":"top","toNode":"7c6220584f70cfdd","toSide":"bottom","label":"push"},
-		{"id":"b10df6c6cf339ccc","fromNode":"7c6220584f70cfdd","fromSide":"right","toNode":"0154ec70693dd63d","toSide":"left","label":"main"},
 		{"id":"d362154b0cb3f9e1","fromNode":"99dcf3687f74d700","fromSide":"right","toNode":"1d645b790000c90f","toSide":"left"},
 		{"id":"463071860c982de4","fromNode":"99dcf3687f74d700","fromSide":"right","toNode":"a4af37ff7ae69aff","toSide":"left"},
 		{"id":"990bf7a3702f6800","fromNode":"99dcf3687f74d700","fromSide":"right","toNode":"6d22ad3aeff1f66c","toSide":"left"},
-		{"id":"1b0228f834fdc105","fromNode":"1d645b790000c90f","fromSide":"right","toNode":"01168746bdee529f","toSide":"left"},
-		{"id":"bda7f2246cf1788b","fromNode":"a4af37ff7ae69aff","fromSide":"right","toNode":"2272c7da87767d88","toSide":"left"},
-		{"id":"a81d6fc200bdb723","fromNode":"6d22ad3aeff1f66c","fromSide":"right","toNode":"a834738c0e9ac189","toSide":"left"}
+		{"id":"b1c1f91d67cfb293","fromNode":"07134d74bed2c5ea","fromSide":"right","toNode":"ce1bcb8f1fcd20e8","toSide":"left"}
 	]
 }
