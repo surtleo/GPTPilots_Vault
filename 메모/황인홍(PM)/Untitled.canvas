@@ -3,20 +3,20 @@
 		{"id":"8d856092c2be5b26","x":-523,"y":-258,"width":250,"height":60,"type":"text","text":"청킹, 토큰화"},
 		{"id":"720aafd95d32cc9c","x":-237,"y":-259,"width":250,"height":60,"type":"text","text":"임베딩 (e5)"},
 		{"id":"48d12eac543db02c","x":60,"y":-259,"width":250,"height":60,"type":"text","text":"벡터db(chroma)"},
-		{"id":"471f42c44cb143f4","x":4,"y":10,"width":250,"height":60,"type":"text","text":"임베딩((e5))"},
-		{"id":"c081874c66b1e874","x":40,"y":200,"width":250,"height":60,"type":"text","text":"질문 : 이거 수자원공사에서 입찰 시기가 언제야?"},
-		{"id":"8bad485839de4661","x":137,"y":-114,"width":250,"height":60,"type":"text","text":"벡터"},
-		{"id":"cacff437f493b130","x":480,"y":-54,"width":250,"height":60,"type":"text","text":"retriever (코사인 유사도 검색 등)"},
-		{"id":"fb087ad58ce1a7c1","x":-420,"y":-10,"width":250,"height":50,"type":"text","text":"벡터를 텍스트로 변환"},
-		{"id":"cb5f328ee521b575","x":-453,"y":191,"width":250,"height":60,"type":"text","text":"LLM(generator)"}
+		{"id":"fb087ad58ce1a7c1","x":-420,"y":-10,"width":250,"height":50,"type":"text","text":"벡터를 텍스트로 변환 "},
+		{"id":"cb5f328ee521b575","x":-453,"y":191,"width":250,"height":60,"type":"text","text":"LLM(generator) : 관련자료를 기반으로 해서 답변생성"},
+		{"id":"c081874c66b1e874","x":230,"y":280,"width":250,"height":80,"type":"text","text":"질문 : 이거 수자원공사에서 입찰 시기가 언제야?"},
+		{"id":"471f42c44cb143f4","x":185,"y":120,"width":250,"height":60,"type":"text","text":"임베딩((e5))"},
+		{"id":"8bad485839de4661","x":185,"y":6,"width":250,"height":60,"type":"text","text":"벡터"},
+		{"id":"cacff437f493b130","x":13,"y":-140,"width":250,"height":60,"type":"text","text":"retriever (코사인 유사도 검색 등)"}
 	],
 	"edges":[
 		{"id":"a27612d7d23e89cf","fromNode":"c081874c66b1e874","fromSide":"top","toNode":"471f42c44cb143f4","toSide":"bottom"},
 		{"id":"14cbe412481cc4d8","fromNode":"471f42c44cb143f4","fromSide":"top","toNode":"8bad485839de4661","toSide":"bottom"},
-		{"id":"d28d90b7d9fa3137","fromNode":"8bad485839de4661","fromSide":"right","toNode":"cacff437f493b130","toSide":"left"},
-		{"id":"083bc3581f822de9","fromNode":"cacff437f493b130","fromSide":"top","toNode":"48d12eac543db02c","toSide":"right"},
-		{"id":"9140d20d3770bb17","fromNode":"48d12eac543db02c","fromSide":"bottom","toNode":"fb087ad58ce1a7c1","toSide":"top"},
+		{"id":"d28d90b7d9fa3137","fromNode":"8bad485839de4661","fromSide":"right","toNode":"cacff437f493b130","toSide":"bottom"},
 		{"id":"99f26f7220c5aa30","fromNode":"fb087ad58ce1a7c1","fromSide":"bottom","toNode":"cb5f328ee521b575","toSide":"top"},
-		{"id":"5dd7b52aebdff611","fromNode":"8d856092c2be5b26","fromSide":"right","toNode":"720aafd95d32cc9c","toSide":"left"}
+		{"id":"5dd7b52aebdff611","fromNode":"8d856092c2be5b26","fromSide":"right","toNode":"720aafd95d32cc9c","toSide":"left"},
+		{"id":"9397ecbc9a93ab3a","fromNode":"48d12eac543db02c","fromSide":"right","toNode":"cacff437f493b130","toSide":"top"},
+		{"id":"eba378beaf25163a","fromNode":"cacff437f493b130","fromSide":"left","toNode":"fb087ad58ce1a7c1","toSide":"top"}
 	]
 }
