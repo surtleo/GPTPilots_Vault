@@ -11,6 +11,23 @@
   <uv 설치 및 세팅은 # uv 설정 가이드 참고>
 
 4. 프로젝트 구동에 필요한 데이터셋을 이동시키는 방법
+
   <우선적으로 # VS Code ↔ GCP VM 원격 개발 환경 연결 가이드를 참고>
+  
   <사용자 로컬 환경에서 GCP CLI Linux 환경으로 데이터셋 이동하는 방법>
-  gcloud 설치 확이
+  gcloud 설치 진행 : https://docs.cloud.google.com/sdk/docs/install-sdk?hl=ko
+  ㄱ. 로컬의 파일 하나를 GCP로 보낼 때
+	gcloud compute scp /로컬/파일/경로 [VM인스턴스이름]:/home/ChanwoolLee/ --zone=[존이름]
+
+  ㄴ. 로컬의 폴더 전체를 통째로 보낼 때 (-r 옵션 추가)
+	gcloud compute scp --recurse /로컬/폴더/경로 [VM인스턴스이름]:/home/ChanwoolLee/ --zone=[존이름]
+
+ <VM 인스턴스 이름과 zone 이름 확인법>
+	 gcloud compute instances list
+	 ->입력하면 다음과 같이 보입니다.
+	 NAME               ZONE               MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
+	hongildong     asia-east3-pa  ou1-stand-4               10.142.9.2   25.63.73.123   RUNNING
+
+	 이 중 인스턴스이름은 NAME 항목에, 존이름은 ZONE에 있습니다.
+
+	* 데이터는 사용자가 GCP의 원하는 경로에 이동시켜서 프로젝트를 구동할 때 활용합다. *
