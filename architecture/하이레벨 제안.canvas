@@ -28,16 +28,6 @@
 			"height":60
 		},
 		{
-			"id":"3eb43e53e463602c",
-			"type":"text",
-			"text":"<기관명 RapidFuzz 매칭>\n표준 사전 기반, LLM 호출 없음",
-			"styleAttributes":{},
-			"x":-1300,
-			"y":1340,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"83bde60f02da76d7",
 			"type":"text",
 			"text":"<골든셋 20~30문항>\nLLM-as-judge 표 질의 정답률 < 50% -> 파서 재검토",
@@ -57,6 +47,26 @@
 			"width":260,
 			"height":60
 		},
+		{
+			"id":"f3af9952eecc9315",
+			"type":"text",
+			"text":"<메타 데이터 직답>\n예산, 마감일, 일정",
+			"styleAttributes":{},
+			"x":-1480,
+			"y":1710,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"3eb43e53e463602c",
+			"type":"text",
+			"text":"<기관명 RapidFuzz 매칭>\n표준 사전 기반, LLM 호출 없음",
+			"styleAttributes":{},
+			"x":-1300,
+			"y":1340,
+			"width":260,
+			"height":60
+		},
 		{"id":"aa6244babcffa863","type":"text","text":"<경로 B 전환>\nLibreOffice -> 전부 PDF 통일","x":270,"y":480,"width":250,"height":60},
 		{
 			"id":"4b1a6b73b5bedaf3",
@@ -67,6 +77,57 @@
 			"y":540,
 			"width":260,
 			"height":130
+		},
+		{
+			"id":"e21064d850778c82",
+			"type":"text",
+			"text":"라우터",
+			"styleAttributes":{"shape":"diamond","textAlign":"center"},
+			"x":-1255,
+			"y":1510,
+			"width":170,
+			"height":100
+		},
+		{"id":"e0af893c32a76ce4","type":"text","text":"공통 Markdown + 문서ID,섹션,페이지 메타","x":-60,"y":40,"width":255,"height":60},
+		{
+			"id":"8432c489bfdf5d15",
+			"type":"text",
+			"text":"<메타데이터 정규화>\ndata_list.csv -> 금액, 날짜 파생컬럼 기관명 표준 사전 (NFC,NFD 아님)",
+			"styleAttributes":{},
+			"x":-860,
+			"y":545,
+			"width":260,
+			"height":115
+		},
+		{
+			"id":"d6a59e4a676825a4",
+			"type":"text",
+			"text":"<필터 + Top-k 검색>\nquery : 임베딩, where = 기관",
+			"styleAttributes":{},
+			"x":-1085,
+			"y":1710,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"aee5a269aa45c2eb",
+			"type":"text",
+			"text":"프롬프트 조립 -> gpt-5-mini -> 답변 + 출처",
+			"styleAttributes":{},
+			"x":-1125,
+			"y":1880,
+			"width":340,
+			"height":60
+		},
+		{
+			"id":"9a8c2072e0e1a07b",
+			"type":"text",
+			"text":"<텍스트 클리닝>\n줄바꿈, 목차, 반복 헤더 제거",
+			"styleAttributes":{},
+			"x":-560,
+			"y":420,
+			"width":260,
+			"height":60
 		},
 		{
 			"id":"4351a88a1788efbc",
@@ -117,71 +178,10 @@
 			"y":1560,
 			"width":260,
 			"height":180
-		},
-		{
-			"id":"e21064d850778c82",
-			"type":"text",
-			"text":"라우터",
-			"styleAttributes":{"shape":"diamond","textAlign":"center"},
-			"x":-1255,
-			"y":1510,
-			"width":170,
-			"height":100
-		},
-		{"id":"e0af893c32a76ce4","type":"text","text":"공통 Markdown + 문서ID,섹션,페이지 메타","x":-60,"y":40,"width":255,"height":60},
-		{
-			"id":"8432c489bfdf5d15",
-			"type":"text",
-			"text":"<메타데이터 정규화>\ndata_list.csv -> 금액, 날짜 파생컬럼 기관명 표준 사전 (NFC,NFD 아님)",
-			"styleAttributes":{},
-			"x":-860,
-			"y":545,
-			"width":260,
-			"height":115
-		},
-		{
-			"id":"d6a59e4a676825a4",
-			"type":"text",
-			"text":"<필터 + Top-k 검색>\nquery : 임베딩, where = 기관",
-			"styleAttributes":{},
-			"x":-1085,
-			"y":1710,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"f3af9952eecc9315",
-			"type":"text",
-			"text":"<메타 데이터 직답>\n예산, 마감일, 일정",
-			"styleAttributes":{},
-			"x":-1480,
-			"y":1710,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"aee5a269aa45c2eb",
-			"type":"text",
-			"text":"프롬프트 조립 -> gpt-5-mini -> 답변 + 출처",
-			"styleAttributes":{},
-			"x":-1125,
-			"y":1880,
-			"width":340,
-			"height":60
-		},
-		{
-			"id":"9a8c2072e0e1a07b",
-			"type":"text",
-			"text":"<텍스트 클리닝>\n줄바꿈, 목차, 반복 헤더 제거",
-			"styleAttributes":{},
-			"x":-560,
-			"y":420,
-			"width":260,
-			"height":60
 		}
 	],
 	"edges":[
-		{"id":"bd82dabac9db02ca","fromNode":"0a97e0001b2e5252","fromSide":"bottom","toNode":"e0af893c32a76ce4","toSide":"top"},
+		{"id":"bd82dabac9db02ca","toFloating":false,"fromNode":"0a97e0001b2e5252","fromSide":"bottom","toNode":"e0af893c32a76ce4","toSide":"top"},
 		{"id":"2773dbc5166b4b19","fromNode":"897ca0b685b02faf","fromSide":"bottom","toNode":"e0af893c32a76ce4","toSide":"top"},
 		{
 			"id":"aaf8d9ee030e4c32",
