@@ -3,7 +3,6 @@
 
 
 1. OS : Linux CLI(CommandLine Interface) 환경
-
 2. 깃허브 클론 & Pull : 깃허브 레포지토리를 VM 개인 소유자 권한의 경로에 클론 또는 풀하여 AI 프로그램 개발을 진행한다.
 
   <개인 소유자 권한의 경로 확인>
