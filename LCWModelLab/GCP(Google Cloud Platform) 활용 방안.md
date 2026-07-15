@@ -1,0 +1,33 @@
+
+
+1. OS : Linux CLI(CommandLine Interface) 환경
+2. 깃허브 클론 & Pull : 깃허브 레포지토리를 VM 개인 소유자 권한의 경로에 클론 또는 풀하여 AI 프로그램 개발을 진행한다.
+
+  <개인 소유자 권한의 경로 확인>
+  홈 디렉토리로 이동 : $ cd ~
+  현재 작업 디렉토리 확인 : $ pwd
+
+3. 클론이나 풀하여 로드한 프로젝트를 실행하는 방법 : uv 가상환경을 활용하여 .toml 파일에 작성되어 있는 라이브러리 및 파이썬 버전을 맞춘다.
+  <uv 설치 및 세팅은 # uv 설정 가이드 참고>
+
+4. 프로젝트 구동에 필요한 데이터셋을 이동시키는 방법
+
+  <우선적으로 # VS Code ↔ GCP VM 원격 개발 환경 연결 가이드를 참고>
+  
+  <사용자 로컬 환경에서 GCP CLI Linux 환경으로 데이터셋 이동하는 방법>
+  gcloud 설치 진행 : https://docs.cloud.google.com/sdk/docs/install-sdk?hl=ko
+  ㄱ. 로컬의 파일 하나를 GCP로 보낼 때
+	gcloud compute scp /로컬/파일/경로 [VM인스턴스이름]:/home/ChanwoolLee/ --zone=[존이름]
+
+  ㄴ. 로컬의 폴더 전체를 통째로 보낼 때 (-r 옵션 추가)
+	gcloud compute scp --recurse /로컬/폴더/경로 [VM인스턴스이름]:/home/ChanwoolLee/ --zone=[존이름]
+
+ <VM 인스턴스 이름과 zone 이름 확인법>
+	 gcloud compute instances list
+	 ->입력하면 다음과 같이 보입니다.
+	 NAME               ZONE               MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
+	hongildong     asia-east3-pa  ou1-stand-4               10.142.9.2   25.63.73.123   RUNNING
+
+	 이 중 인스턴스이름은 NAME 항목에, 존이름은 ZONE에 있습니다.
+
+	* 데이터는 사용자가 GCP의 원하는 경로에 이동시켜서 프로젝트를 구동할 때 활용합다. *
