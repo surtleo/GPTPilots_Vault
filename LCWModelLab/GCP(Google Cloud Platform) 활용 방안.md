@@ -1,4 +1,6 @@
 
+작성자 이찬울
+
 
 1. OS : Linux CLI(CommandLine Interface) 환경
 
