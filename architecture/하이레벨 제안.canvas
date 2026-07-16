@@ -4,8 +4,7 @@
 		{"id":"df46c40abeb69e45","type":"group","x":-2060,"y":500,"width":440,"height":1235,"label":"LangSmith"},
 		{"id":"8fd80339eb5b8127","type":"group","x":-240,"y":-100,"width":771,"height":660,"label":"1. 추출"},
 		{"id":"d16ab5180bdb58c8","type":"group","x":-680,"y":760,"width":530,"height":500,"label":"3. 청킹"},
-		{"id":"76ebf73476489f6e","type":"group","x":-880,"y":400,"width":600,"height":290,"label":"2. 전처리"},
-		{"id":"897ca0b685b02faf","type":"text","text":"<HWP 96개>\nhwp-hwpx-parser","x":-211,"y":-80,"width":250,"height":60},
+		{"id":"76ebf73476489f6e","type":"group","x":-880,"y":400,"width":600,"height":300,"label":"2. 전처리"},
 		{
 			"id":"83bde60f02da76d7",
 			"type":"text",
@@ -37,6 +36,38 @@
 			"height":60
 		},
 		{
+			"id":"4b1a6b73b5bedaf3",
+			"type":"text",
+			"text":"<PII 마스킹>\n전화, 이메일 정규식, Presido NER기반 개인정보 탐지 도구 \n(임베딩 전)",
+			"styleAttributes":{},
+			"x":-560,
+			"y":540,
+			"width":260,
+			"height":130
+		},
+		{
+			"id":"9a8c2072e0e1a07b",
+			"type":"text",
+			"text":"<텍스트 클리닝>\n줄바꿈, 목차, 반복 헤더 제거",
+			"styleAttributes":{},
+			"x":-560,
+			"y":420,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"fb3cb0138a307c5a",
+			"type":"text",
+			"text":"사용자 질문 (+ 히스토리)",
+			"styleAttributes":{},
+			"x":-1300,
+			"y":1160,
+			"width":260,
+			"height":60
+		},
+		{"id":"053a358ba6c4ec18","type":"text","text":"작성자: 김범진","x":-1580,"y":29,"width":250,"height":60},
+		{"id":"897ca0b685b02faf","type":"text","text":"<HWP 96개>\nhwp-hwpx-parser","x":-211,"y":-80,"width":250,"height":60},
+		{
 			"id":"e21064d850778c82",
 			"type":"text",
 			"text":"라우터",
@@ -45,16 +76,6 @@
 			"y":1510,
 			"width":170,
 			"height":100
-		},
-		{
-			"id":"d6a59e4a676825a4",
-			"type":"text",
-			"text":"<필터 + Top-k 검색>\nquery : 임베딩, where = 기관",
-			"styleAttributes":{},
-			"x":-1085,
-			"y":1710,
-			"width":260,
-			"height":60
 		},
 		{
 			"id":"aee5a269aa45c2eb",
@@ -78,16 +99,6 @@
 		},
 		{"id":"0a97e0001b2e5252","type":"text","text":"<PDF 4개>\npymupdf4llm","x":140,"y":-80,"width":250,"height":60},
 		{"id":"aa6244babcffa863","type":"text","text":"<경로 B 전환>\nLibreOffice -> 전부 PDF 통일","x":270,"y":480,"width":250,"height":60},
-		{
-			"id":"4b1a6b73b5bedaf3",
-			"type":"text",
-			"text":"<PII 마스킹>\n전화, 이메일 정규식, Presido NER기반 개인정보 탐지 도구 \n(임베딩 전)",
-			"styleAttributes":{},
-			"x":-560,
-			"y":540,
-			"width":260,
-			"height":130
-		},
 		{"id":"e0af893c32a76ce4","type":"text","text":"공통 Markdown + 문서ID,섹션,페이지 메타","x":-60,"y":40,"width":255,"height":60},
 		{
 			"id":"8432c489bfdf5d15",
@@ -100,12 +111,22 @@
 			"height":115
 		},
 		{
-			"id":"9a8c2072e0e1a07b",
+			"id":"3eb43e53e463602c",
 			"type":"text",
-			"text":"<텍스트 클리닝>\n줄바꿈, 목차, 반복 헤더 제거",
+			"text":"<기관명 RapidFuzz 매칭>\n표준 사전 기반, LLM 호출 없음",
 			"styleAttributes":{},
-			"x":-560,
-			"y":420,
+			"x":-1300,
+			"y":1340,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"d6a59e4a676825a4",
+			"type":"text",
+			"text":"<필터 + Top-k 검색>\nquery : 임베딩, where = 기관",
+			"styleAttributes":{},
+			"x":-1085,
+			"y":1710,
 			"width":260,
 			"height":60
 		},
@@ -118,26 +139,6 @@
 			"y":780,
 			"width":340,
 			"height":100
-		},
-		{
-			"id":"fb3cb0138a307c5a",
-			"type":"text",
-			"text":"사용자 질문 (+ 히스토리)",
-			"styleAttributes":{},
-			"x":-1300,
-			"y":1160,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"3eb43e53e463602c",
-			"type":"text",
-			"text":"<기관명 RapidFuzz 매칭>\n표준 사전 기반, LLM 호출 없음",
-			"styleAttributes":{},
-			"x":-1300,
-			"y":1340,
-			"width":260,
-			"height":60
 		},
 		{
 			"id":"8fa38ac044192d63",
@@ -178,8 +179,7 @@
 			"y":1560,
 			"width":260,
 			"height":180
-		},
-		{"id":"053a358ba6c4ec18","x":-1580,"y":29,"width":250,"height":60,"type":"text","text":"작성자: 김범진"}
+		}
 	],
 	"edges":[
 		{"id":"bd82dabac9db02ca","toFloating":false,"fromNode":"0a97e0001b2e5252","fromSide":"bottom","toNode":"e0af893c32a76ce4","toSide":"top"},
