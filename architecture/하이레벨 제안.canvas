@@ -179,7 +179,7 @@
 			"width":260,
 			"height":180
 		},
-		{"id":"053a358ba6c4ec18","x":-1580,"y":29,"width":250,"height":60,"type":"text","text":"작성자: 김범진"}
+		{"id":"053a358ba6c4ec18","type":"text","text":"작성자: 김범진","x":-1580,"y":29,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"bd82dabac9db02ca","toFloating":false,"fromNode":"0a97e0001b2e5252","fromSide":"bottom","toNode":"e0af893c32a76ce4","toSide":"top"},
