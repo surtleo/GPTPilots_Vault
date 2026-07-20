@@ -75,7 +75,7 @@ flowchart TD
     CARDEMBED["카드 임베딩<br/>사업명 / 발주기관 / 사업요약"]
     CHROMACARDS[("Chroma: doc_cards 컬렉션<br/>카드 검색용 · 100건 전부")]
 
-    GATE{"check_index_gate()<br/>cards−chunks == extract_failed ?"}
+    GATE{"check_index_gate()<br/>cards - chunks == extract_failed ?"}
     PIPEERR["PipelineError<br/>→ 파이프라인 중단"]:::errorNode
 
     EXTRACTED --> LOADINPUT
@@ -172,7 +172,6 @@ flowchart TD
     VARIANTS --> EXPCHROMA --> HITMETRIC --> CHOSEN
   end
 
-  %% 에러 및 누락 데이터 노드 스타일 정의 복구
   classDef missingData stroke-dasharray: 5 5,stroke:#f0932b,stroke-width:2px;
   classDef errorNode stroke:#eb4d4b,stroke-width:2.5px,fill:#ffdddd;
 ```
