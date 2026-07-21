@@ -5,21 +5,28 @@ tags:
   - index
 ---
 
-# 업무 분장
+# 업무 분장 — 일일 업무 보고
 
-각자 **무엇을 하고 있고(Doing) / 해야 하고(To Do) / 했는지(Done)** 를 본인 파일에 기록하는 곳입니다.
+매일 **본인 폴더에서 "새 노트 만들기"** 를 하면 일일 보고 템플릿이 자동 적용됩니다.
+오늘 한 일(Done) / 진행 중(Doing) / 다음 할 일(Next) / 블로커만 짧게 적으면 됩니다.
 
-## 팀원별 분장표
+## 팀원별 보고 폴더
 
-```dataview
-TABLE WITHOUT ID file.link as "팀원", file.mtime as "최근 갱신" FROM "workflow/업무 분장" WHERE file.name != "index" SORT file.name ASC
-```
+- [[workflow/업무 분장/황인홍(PM)/index|황인홍(PM)]]
+- [[workflow/업무 분장/김범진(데이터 처리)/index|김범진(데이터 처리)]]
+- [[workflow/업무 분장/전재완(Retrieval)/index|전재완(Retrieval)]]
+- [[workflow/업무 분장/이찬울(Generation)/index|이찬울(Generation)]]
+- [[workflow/업무 분장/박종선/index|박종선]]
 
-## 작성 규칙
+## 최종 정리
 
-- **본인 파일만 수정**합니다 (파일명: `이름(역할).md`)
-- 항목은 체크박스째 옮깁니다: 📋 To Do → 🔄 Doing → ✅ Done
-- 갱신할 때 frontmatter의 `updated` 날짜도 함께 바꿔주세요
-- 새 팀원은 이 폴더에 `이름(역할).md` 파일을 만들고 `_templates/업무 분장` 템플릿을 적용하면 됩니다
+- [[workflow/업무 분장/최종 정리|최종 정리]] — 일일 보고를 LLM이 종합·갱신하는 문서
+- 갱신 방법: Claude Code에서 **"업무 보고 정리해줘"** (스킬 `work-report-digest` 실행)
+
+## 규칙
+
+- 하루 1개, 본인 폴더에만 작성 — 파일명은 자동으로 `YYYY-MM-DD-이름(역할)`이 됩니다
+- 일일 보고 원본은 나중에 고치지 않기 — 종합·수정은 [[workflow/업무 분장/최종 정리|최종 정리]]에서
+- 새 팀원: 이 폴더 아래에 본인 폴더를 만들고, Templater 설정 → Folder Templates에 `workflow/업무 분장/이름(역할)` → `_templates/업무 분장.md` 한 줄 추가
 
 관련: [[프로젝트 개요]]의 "역할 분담 (권장 가이드)" 참고
