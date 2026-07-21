@@ -41,6 +41,26 @@
     {
       "folder": "협업일지/전재완(Retrieval)",
       "template": "_templates/협업일지.md"
+    },
+    {
+      "folder": "workflow/업무 분장/황인홍(PM)",
+      "template": "_templates/업무 분장.md"
+    },
+    {
+      "folder": "workflow/업무 분장/김범진(데이터 처리)",
+      "template": "_templates/업무 분장.md"
+    },
+    {
+      "folder": "workflow/업무 분장/전재완(Retrieval)",
+      "template": "_templates/업무 분장.md"
+    },
+    {
+      "folder": "workflow/업무 분장/이찬울(Generation)",
+      "template": "_templates/업무 분장.md"
+    },
+    {
+      "folder": "workflow/업무 분장/박종선",
+      "template": "_templates/업무 분장.md"
     }
   ],
   "enable_file_templates": false,
