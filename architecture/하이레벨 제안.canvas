@@ -26,16 +26,6 @@
 			"height":60
 		},
 		{
-			"id":"f3af9952eecc9315",
-			"type":"text",
-			"text":"<메타 데이터 직답>\n예산, 마감일, 일정",
-			"styleAttributes":{},
-			"x":-1480,
-			"y":1710,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"4b1a6b73b5bedaf3",
 			"type":"text",
 			"text":"<PII 마스킹>\n전화, 이메일 정규식, Presido NER기반 개인정보 탐지 도구 \n(임베딩 전)",
@@ -55,6 +45,28 @@
 			"width":260,
 			"height":60
 		},
+		{"id":"053a358ba6c4ec18","type":"text","text":"작성자: 김범진","x":-1580,"y":29,"width":250,"height":60},
+		{"id":"897ca0b685b02faf","type":"text","text":"<HWP 96개>\nhwp-hwpx-parser","x":-211,"y":-80,"width":250,"height":60},
+		{
+			"id":"8432c489bfdf5d15",
+			"type":"text",
+			"text":"<메타데이터 정규화>\ndata_list.csv -> 금액, 날짜 파생컬럼 기관명 표준 사전 (NFC,NFD 아님)",
+			"styleAttributes":{},
+			"x":-860,
+			"y":545,
+			"width":260,
+			"height":115
+		},
+		{
+			"id":"f3af9952eecc9315",
+			"type":"text",
+			"text":"<메타 데이터 직답>\n예산, 마감일, 일정",
+			"styleAttributes":{},
+			"x":-1480,
+			"y":1710,
+			"width":260,
+			"height":60
+		},
 		{
 			"id":"fb3cb0138a307c5a",
 			"type":"text",
@@ -65,8 +77,6 @@
 			"width":260,
 			"height":60
 		},
-		{"id":"053a358ba6c4ec18","type":"text","text":"작성자: 김범진","x":-1580,"y":29,"width":250,"height":60},
-		{"id":"897ca0b685b02faf","type":"text","text":"<HWP 96개>\nhwp-hwpx-parser","x":-211,"y":-80,"width":250,"height":60},
 		{
 			"id":"e21064d850778c82",
 			"type":"text",
@@ -93,23 +103,13 @@
 			"text":"<정량 검증 게이트>\n추출량 , 표 보존, 문장 완결",
 			"styleAttributes":{"shape":"diamond","textAlign":"center"},
 			"x":-60,
-			"y":180,
+			"y":280,
 			"width":255,
-			"height":160
+			"height":60
 		},
 		{"id":"0a97e0001b2e5252","type":"text","text":"<PDF 4개>\npymupdf4llm","x":140,"y":-80,"width":250,"height":60},
 		{"id":"aa6244babcffa863","type":"text","text":"<경로 B 전환>\nLibreOffice -> 전부 PDF 통일","x":270,"y":480,"width":250,"height":60},
 		{"id":"e0af893c32a76ce4","type":"text","text":"공통 Markdown + 문서ID,섹션,페이지 메타","x":-60,"y":40,"width":255,"height":60},
-		{
-			"id":"8432c489bfdf5d15",
-			"type":"text",
-			"text":"<메타데이터 정규화>\ndata_list.csv -> 금액, 날짜 파생컬럼 기관명 표준 사전 (NFC,NFD 아님)",
-			"styleAttributes":{},
-			"x":-860,
-			"y":545,
-			"width":260,
-			"height":115
-		},
 		{
 			"id":"3eb43e53e463602c",
 			"type":"text",
