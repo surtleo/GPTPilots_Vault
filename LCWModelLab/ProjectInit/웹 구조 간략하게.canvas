@@ -1,0 +1,48 @@
+{
+	"nodes":[
+		{
+			"id":"a36be28ae94d7abf",
+			"type":"text",
+			"text":"![[Pasted image 20260722101938.png]]\nBackEnd-Firebase\n데이터들의 보관과 처리는 Firebase가 해줍니다. ",
+			"styleAttributes":{},
+			"x":80,
+			"y":-20,
+			"width":260,
+			"height":300
+		},
+		{
+			"id":"08bfc28d6f9b9c16",
+			"type":"text",
+			"text":"![[Pasted image 20260722101724.png]]\nFrontEnd-React",
+			"styleAttributes":{},
+			"x":-360,
+			"y":-20,
+			"width":280,
+			"height":220
+		}
+	],
+	"edges":[
+		{
+			"id":"2627d2d04fcab72b",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"08bfc28d6f9b9c16",
+			"fromSide":"right",
+			"toNode":"a36be28ae94d7abf",
+			"toSide":"left"
+		},
+		{
+			"id":"a68fd965ebbc5c68",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"a36be28ae94d7abf",
+			"fromSide":"left",
+			"toNode":"08bfc28d6f9b9c16",
+			"toSide":"right"
+		}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}
