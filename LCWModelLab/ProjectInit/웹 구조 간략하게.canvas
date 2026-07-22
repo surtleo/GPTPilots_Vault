@@ -8,17 +8,7 @@
 			"x":380,
 			"y":-20,
 			"width":260,
-			"height":380
-		},
-		{
-			"id":"08bfc28d6f9b9c16",
-			"type":"text",
-			"text":"![[Pasted image 20260722101724.png]]\nFrontEnd-React\n브라우저의 View를 담당하고\n사용자의 입력에 대해 반응하는 반응형 앱을 만드는데 초점이 맞춰져있습니다.",
-			"styleAttributes":{},
-			"x":-60,
-			"y":-20,
-			"width":280,
-			"height":440
+			"height":480
 		},
 		{
 			"id":"4343eabd700b012f",
@@ -28,14 +18,24 @@
 			"x":-520,
 			"y":-20,
 			"width":260,
-			"height":440
+			"height":480
+		},
+		{
+			"id":"08bfc28d6f9b9c16",
+			"type":"text",
+			"text":"![[Pasted image 20260722101724.png]]\nFrontEnd-React\n브라우저의 View를 담당하고\n사용자의 입력에 대해 반응하는 반응형 앱을 만드는데 초점이 맞춰져있습니다.",
+			"styleAttributes":{},
+			"x":-80,
+			"y":-20,
+			"width":280,
+			"height":480
 		},
 		{
 			"id":"95c61ae71adfbd2c",
 			"type":"text",
 			"text":"   전체적인 웹 구조",
 			"styleAttributes":{},
-			"x":-60,
+			"x":-70,
 			"y":-200,
 			"width":260,
 			"height":60
