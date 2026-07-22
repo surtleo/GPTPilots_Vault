@@ -2,6 +2,9 @@
 
 팀 단위 스프린트 프로젝트를 위한 Obsidian 볼트 템플릿입니다. 협업일지, 게시판(자유/Q&A), 전체 공지사항, Q&A 칸반 보드, GitHub 이슈 동기화(tasks), Quartz 정적 사이트 배포, Discord 웹훅 알림을 포함합니다.
 
+> 🌐 **배포 사이트 (Quartz)**: https://surtleo.github.io/GPTPilots_Vault/
+> main에 푸시하면 `deploy-quartz.yml`이 자동 빌드·배포합니다. (사이트가 안 뜨면 레포 **Settings → Pages → Source: `gh-pages` 브랜치**가 켜져 있는지 확인)
+
 ## 포함된 것
 
 - **협업일지/** — 팀원별 일일 협업일지 (Templater 템플릿 + dataview index 자동 목록)
@@ -38,7 +41,7 @@
 - [ ] **GitHub 연동** — `.github/scripts/`의 `YOUR_GITHUB_ID`, `YOUR_CODE_REPO`를 실제 값으로 치환. `_templates/게시판.md`·`공지사항.md`의 `authorMap`에 팀원 GitHub ID 등록
 - [ ] **Actions 시크릿 등록** — 위 [GitHub Actions 시크릿 설정](#github-actions-시크릿-설정) 참고 (`GH_PAT`, `DISCORD_WEBHOOK_URL`)
 - [ ] **`_config/me.md` 생성** — 파일 내용으로 본인 GitHub ID 한 줄 작성 (템플릿이 글쓴이 식별에 사용, 최초 템플릿 실행 시 자동 생성됨)
-- [ ] **Quartz 설정** — `quartz.config.ts`의 `baseUrl`을 배포 주소로 수정
+- [ ] **Quartz 설정** — `quartz.config.ts`의 `baseUrl`을 배포 주소(`surtleo.github.io/GPTPilots_Vault`)로 수정 + 레포 Settings → Pages에서 `gh-pages` 브랜치 게시 활성화
 - [ ] **git hooks 활성화** — 클론 후 한 번 실행:
   ```bash
   git config core.hooksPath .githooks
