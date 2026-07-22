@@ -338,6 +338,7 @@
 			"id":"a52ddf2555f20135",
 			"styleAttributes":{},
 			"toFloating":false,
+			"fromFloating":false,
 			"fromNode":"e21064d850778c82",
 			"fromSide":"left",
 			"toNode":"f3af9952eecc9315",
