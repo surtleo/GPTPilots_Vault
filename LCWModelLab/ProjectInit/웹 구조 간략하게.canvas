@@ -3,7 +3,7 @@
 		{
 			"id":"a36be28ae94d7abf",
 			"type":"text",
-			"text":"![[Pasted image 20260722101938.png]]\nBackEnd-Firebase\n데이터들의 보관과 처리는 Firebase가 해줍니다. 클라우드 서비스이므로 웹으로 편하게 파일을 db에 저장하세요",
+			"text":"<백엔드-Firebase>\n\n데이터들의 보관과 처리는 Firebase가 해줍니다. 클라우드 서비스이므로 웹으로 편하게 파일을 db에 저장하세요\n\n![[Pasted image 20260722104603.png]]",
 			"styleAttributes":{},
 			"x":380,
 			"y":-20,
@@ -13,7 +13,7 @@
 		{
 			"id":"4343eabd700b012f",
 			"type":"text",
-			"text":"<웹 디자인>\n\n웹 디자인은 주로 템플릿을 구매하여 사용하고(무료 템플릿도 많음), 웹 디자인을 조금 손보고 싶을 때는 Bootstrap을 쓰면 됩니다. 이건 디자인 프레임워크로 페이스북 개발자들이 다 사용법을 만들어두었습니다.\n![[Pasted image 20260722103730.png]]\nDesign-Bootstrap",
+			"text":"<웹 디자인>\n\n웹 디자인은 주로 템플릿을 구매하여 사용하고(무료 템플릿도 많음), 웹 디자인을 조금 손보고 싶을 때는 Bootstrap을 쓰면 됩니다. 이건 디자인 프레임워크로 페이스북 개발자들이 다 사용법을 만들어두었습니다.\n![[Pasted image 20260722103730.png]]",
 			"styleAttributes":{},
 			"x":-520,
 			"y":-20,
@@ -23,7 +23,7 @@
 		{
 			"id":"08bfc28d6f9b9c16",
 			"type":"text",
-			"text":"![[Pasted image 20260722101724.png]]\nFrontEnd-React\n브라우저의 View를 담당하고\n사용자의 입력에 대해 반응하는 반응형 앱을 만드는데 초점이 맞춰져있습니다.",
+			"text":"<프론트엔드-React>\n\n브라우저의 View를 담당하고\n사용자의 입력에 대해 반응하는 반응형 앱을 만드는데 초점이 맞춰져있습니다.\n\n![[Pasted image 20260722104347.png]]\n\n",
 			"styleAttributes":{},
 			"x":-80,
 			"y":-20,
@@ -39,6 +39,16 @@
 			"y":-200,
 			"width":260,
 			"height":60
+		},
+		{
+			"id":"6d7d02bd0fcfb581",
+			"type":"text",
+			"text":"핵심 : React Project 내부에 Bootstrap과 Firebase의 코드가 모두 포함됩니다.",
+			"styleAttributes":{},
+			"x":-70,
+			"y":640,
+			"width":260,
+			"height":100
 		}
 	],
 	"edges":[
