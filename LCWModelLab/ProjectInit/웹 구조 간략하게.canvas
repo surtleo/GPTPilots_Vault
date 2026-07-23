@@ -43,12 +43,12 @@
 		{
 			"id":"6d7d02bd0fcfb581",
 			"type":"text",
-			"text":"핵심 : React Project 내부에 Bootstrap과 Firebase의 코드가 모두 포함됩니다.",
+			"text":"핵심 : React Project 내부에 브라우저 뷰 관련한 로직이, Fast-API 내부에 데이터처리에 대한 로직이 포함됩니다. 두 시스템이 각각 로컬, GCP VM에 존재하여 서로 데이터를 가공처리하여 공유하게됩니다.",
 			"styleAttributes":{},
-			"x":-70,
-			"y":640,
-			"width":260,
-			"height":100
+			"x":-115,
+			"y":620,
+			"width":350,
+			"height":120
 		}
 	],
 	"edges":[
