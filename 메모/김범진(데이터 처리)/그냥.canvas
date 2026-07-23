@@ -1,0 +1,158 @@
+{
+	"nodes":[
+		{
+			"id":"d7eea81aa63249fb",
+			"type":"text",
+			"text":"회사프로필정보, 주는 사내 문서",
+			"styleAttributes":{},
+			"x":-300,
+			"y":-200,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"99f718b676da2889",
+			"type":"text",
+			"text":"포괄적인 rfp를 추천\n회사의 방향성과 맞다면",
+			"styleAttributes":{},
+			"x":-300,
+			"y":-60,
+			"width":260,
+			"height":80
+		},
+		{
+			"id":"1d92fe189a5e7355",
+			"type":"text",
+			"text":"사업 a -> 얼마나 적격한가.",
+			"styleAttributes":{},
+			"x":40,
+			"y":-40,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"7ea25f96da08d335",
+			"type":"text",
+			"text":"회사가 rfp를 확인, 확인후 실제로 진행을 하면서 평가 기준에 맞게 개발 계획서(?), 등등 프로젝트를 하면서 회사 내부 정보를 인풋",
+			"styleAttributes":{},
+			"x":40,
+			"y":-200,
+			"width":260,
+			"height":120
+		},
+		{
+			"id":"44103084dab32b31",
+			"type":"text",
+			"text":"회사 정보, 회사 방향성, 회사 문서 예시 (어떤회사인지, 규모, 매출)",
+			"styleAttributes":{},
+			"x":-300,
+			"y":120,
+			"width":300,
+			"height":60
+		},
+		{
+			"id":"896856720b029650",
+			"type":"text",
+			"text":"rfp 중에서 필요한것들\n(사업개요, 사업 뭐시기 .. )\n100데이터중에서 실제문서기반",
+			"styleAttributes":{},
+			"x":-300,
+			"y":240,
+			"width":260,
+			"height":100
+		},
+		{
+			"id":"0727f26918235313",
+			"type":"text",
+			"text":"어떤 인풋을 넣어야할지",
+			"styleAttributes":{},
+			"x":-640,
+			"y":120,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"a5c150eadc47a032",
+			"type":"text",
+			"text":"rag 기대되는 아웃풋",
+			"styleAttributes":{},
+			"x":-640,
+			"y":240,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"6ad5d8f5e41cd0d4",
+			"type":"text",
+			"text":"그걸 조합해서 어떤 결과가 나오면 좋겠나",
+			"styleAttributes":{},
+			"x":-640,
+			"y":400,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"d95c7dcabc949a31",
+			"type":"text",
+			"text":"추천 rfp 1,2,3 머시기\n방향성이 적격함.\n",
+			"styleAttributes":{},
+			"x":-300,
+			"y":400,
+			"width":260,
+			"height":120
+		},
+		{
+			"id":"bd3668bbda99560b",
+			"type":"text",
+			"text":"평가를 이게 맞았는지 아닌지 \n어떻게 평가할지.",
+			"styleAttributes":{},
+			"x":-640,
+			"y":640,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"298d6ccc2dfeb893",
+			"type":"text",
+			"text":"실제로 rag에서 기대되는 아웃풋이 실제로 문서자체가 틀림.\nrag에서 나와야하는 데이터가 기대되는 아웃과 괴리가 큼.\n조합해서 나올 결과가 괴리가 큼.",
+			"styleAttributes":{},
+			"x":-300,
+			"y":640,
+			"width":260,
+			"height":160
+		},
+		{
+			"id":"cc463479e0b4322f",
+			"type":"text",
+			"text":"유형을 나눠서 실험하기에는 좋았다.",
+			"styleAttributes":{},
+			"x":-300,
+			"y":40,
+			"width":260,
+			"height":60
+		}
+	],
+	"edges":[
+		{
+			"id":"27771ec71e79d3d1",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"d7eea81aa63249fb",
+			"fromSide":"bottom",
+			"toNode":"99f718b676da2889",
+			"toSide":"top"
+		},
+		{
+			"id":"b026ee9d19baa19c",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"7ea25f96da08d335",
+			"fromSide":"bottom",
+			"toNode":"1d92fe189a5e7355",
+			"toSide":"top"
+		}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}
