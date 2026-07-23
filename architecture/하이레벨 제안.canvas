@@ -105,7 +105,7 @@
 			"x":-60,
 			"y":280,
 			"width":255,
-			"height":60
+			"height":80
 		},
 		{"id":"0a97e0001b2e5252","type":"text","text":"<PDF 4개>\npymupdf4llm","x":140,"y":-80,"width":250,"height":60},
 		{"id":"aa6244babcffa863","type":"text","text":"<경로 B 전환>\nLibreOffice -> 전부 PDF 통일","x":270,"y":480,"width":250,"height":60},
