@@ -3,7 +3,7 @@
 		{
 			"id":"a36be28ae94d7abf",
 			"type":"text",
-			"text":"<백엔드-FastAPI>\n\n데이터들의 보관과 처리는 FastAPI가 해줍니다. Python을 기반으로 한 백엔드 서\n\n![[Pasted image 20260722104603.png]]",
+			"text":"<백엔드-FastAPI>\n\n데이터들의 보관과 처리는 FastAPI가 해줍니다. Python을 기반으로 한 백엔드 서버이기 때문에, AI Project를 적재하기 쉽습니다.\n\n![[Pasted image 20260723154510.png]]",
 			"styleAttributes":{},
 			"x":380,
 			"y":-20,
