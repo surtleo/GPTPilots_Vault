@@ -37,29 +37,9 @@
 			"text":"회사가 rfp를 확인, 확인후 실제로 진행을 하면서 평가 기준에 맞게 개발 계획서(?), 등등 프로젝트를 하면서 회사 내부 정보를 인풋",
 			"styleAttributes":{},
 			"x":40,
-			"y":-200,
+			"y":-260,
 			"width":260,
-			"height":120
-		},
-		{
-			"id":"44103084dab32b31",
-			"type":"text",
-			"text":"회사 정보, 회사 방향성, 회사 문서 예시 (어떤회사인지, 규모, 매출)",
-			"styleAttributes":{},
-			"x":-300,
-			"y":120,
-			"width":300,
-			"height":60
-		},
-		{
-			"id":"896856720b029650",
-			"type":"text",
-			"text":"rfp 중에서 필요한것들\n(사업개요, 사업 뭐시기 .. )\n100데이터중에서 실제문서기반",
-			"styleAttributes":{},
-			"x":-300,
-			"y":240,
-			"width":260,
-			"height":100
+			"height":180
 		},
 		{
 			"id":"0727f26918235313",
@@ -68,26 +48,6 @@
 			"styleAttributes":{},
 			"x":-640,
 			"y":120,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"a5c150eadc47a032",
-			"type":"text",
-			"text":"rag 기대되는 아웃풋",
-			"styleAttributes":{},
-			"x":-640,
-			"y":240,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"6ad5d8f5e41cd0d4",
-			"type":"text",
-			"text":"그걸 조합해서 어떤 결과가 나오면 좋겠나",
-			"styleAttributes":{},
-			"x":-640,
-			"y":400,
 			"width":260,
 			"height":60
 		},
@@ -128,6 +88,46 @@
 			"styleAttributes":{},
 			"x":-300,
 			"y":40,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"44103084dab32b31",
+			"type":"text",
+			"text":"회사 정보, 회사 방향성, 회사 문서 예시 (어떤회사인지, 규모, 매출)",
+			"styleAttributes":{},
+			"x":-300,
+			"y":120,
+			"width":300,
+			"height":60
+		},
+		{
+			"id":"896856720b029650",
+			"type":"text",
+			"text":"rfp 중에서 필요한것들\n(사업개요, 사업 뭐시기 .. )\n100데이터중에서 실제문서기반",
+			"styleAttributes":{},
+			"x":-300,
+			"y":240,
+			"width":260,
+			"height":100
+		},
+		{
+			"id":"a5c150eadc47a032",
+			"type":"text",
+			"text":"rag 기대되는 아웃풋",
+			"styleAttributes":{},
+			"x":-640,
+			"y":240,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"6ad5d8f5e41cd0d4",
+			"type":"text",
+			"text":"그걸 조합해서 어떤 결과가 나오면 좋겠나",
+			"styleAttributes":{},
+			"x":-640,
+			"y":400,
 			"width":260,
 			"height":60
 		}
