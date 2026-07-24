@@ -1,0 +1,35 @@
+{
+  "nodes": [
+    {"id":"title-before","type":"text","text":"# ⬅️ BEFORE\n**커스텀 `@traced` 함수 기반**\n(LangChain 미사용 — 인제스트만 LC)","x":-760,"y":-460,"width":420,"height":120,"color":"1"},
+    {"id":"title-after","type":"text","text":"# ➡️ AFTER\n**LCEL(LangChain Expression Language) 기반**\n쿼리 경로 전체를 Runnable로","x":360,"y":-460,"width":440,"height":120,"color":"4"},
+
+    {"id":"b1","type":"text","text":"## retrieve()\n`@traced(\"retrieve\", run_type=\"retriever\")`\n\n직접 만든 데코레이터로 감싼 순수 함수.\n`retrieve.py:16`","x":-760,"y":-300,"width":420,"height":150,"color":"1"},
+    {"id":"b2","type":"text","text":"## query_index()\nChroma `collection.query()` 직접 호출\n`query:` prefix 임베딩 → top-k\n`build_index.query_index`","x":-760,"y":-110,"width":420,"height":140,"color":"1"},
+    {"id":"b3","type":"text","text":"## format_context()\n순수 문자열 `join` — hit 리스트를\n`[출처: …]\\n본문` 블록으로 이어붙임\n`retrieve.py:29`","x":-760,"y":70,"width":420,"height":140,"color":"1"},
+    {"id":"b4","type":"text","text":"## generate_answer()\n`@traced(\"generate_answer\")`\nOpenAI SDK `chat.completions.create` 직접\n+ 재시도·TokenLedger 수동\n`generate.py:141`","x":-760,"y":250,"width":420,"height":160,"color":"1"},
+    {"id":"b5","type":"text","text":"## 🔭 LangSmith 트리\n```\nrun_turn (chain)\n └ retrieve (retriever)\n └ generate_answer (chain)\n```\n**전부 우리가 붙인 커스텀 이름.**\nVectorStoreRetriever·RunnableSequence 안 뜸.","x":-760,"y":450,"width":420,"height":200,"color":"3"},
+
+    {"id":"a1","type":"text","text":"## Chroma(...).as_retriever()\n→ **VectorStoreRetriever** 인스턴스\n`search_kwargs={\"k\":k, \"filter\":{\"doc_id\":…}}`\n임베딩 함수는 e5-small 래핑(Embeddings 인터페이스)","x":360,"y":-300,"width":460,"height":170,"color":"4"},
+    {"id":"a2","type":"text","text":"## RunnableLambda(format_context)\n기존 format_context를 그대로 감싸\n체인 스텝으로 편입 (로직 동일)","x":360,"y":-100,"width":460,"height":120,"color":"4"},
+    {"id":"a3","type":"text","text":"## ChatPromptTemplate | ChatOpenAI\nSYSTEM_PROMPT → `ChatPromptTemplate`\n`ChatOpenAI(model=gpt-5-mini, …)`\n→ 재시도·usage는 LC 콜백/`with_retry`로 이관\n(모델 제약 그대로: mini/nano만)","x":360,"y":80,"width":460,"height":170,"color":"4"},
+    {"id":"a4","type":"text","text":"## RunnableSequence (LCEL)\n```\nchain = (\n  retriever\n  | RunnableLambda(format_context)\n  | prompt\n  | llm\n  | StrOutputParser()\n)\n```\n`retriever | prompt | llm` = **RunnableSequence**","x":360,"y":300,"width":460,"height":210,"color":"4"},
+    {"id":"a5","type":"text","text":"## 🔭 LangSmith 트리 (자동)\n```\nRunnableSequence\n ├ VectorStoreRetriever\n ├ RunnableLambda(format_context)\n ├ ChatPromptTemplate\n └ ChatOpenAI\n```\n**LC 컴포넌트 이름이 자동으로 뜸.** ✅","x":360,"y":560,"width":460,"height":210,"color":"5"},
+
+    {"id":"nda","type":"text","text":"## ⚠️ NDA 가드 (ADR-007) — 최우선 리스크\nLCEL은 각 스텝 input/output을 **자동으로** LangSmith에 올림.\n지금은 `@traced`가 마스킹을 통제 → 리팩터하면 **자동 트레이스가 질문·청크 본문·답변을 그대로 업로드할 수 있음.**\n\n**대응:** `Client(hide_inputs=mask_io, hide_outputs=mask_io)` 싱글턴을 LCEL 실행에도 강제로 물려야 함(`config={\"callbacks\":[tracer(client=…)]}` 또는 전역 client 주입). 마스킹 콜백은 `observability.mask_io` 재사용.\n검증: 리팩터 후 실제 트레이스에서 자유텍스트 0 확인이 **채택 조건.**","x":-160,"y":800,"width":900,"height":230,"color":"1"},
+
+    {"id":"scope","type":"text","text":"## 남는 것 / 바뀌는 것\n- **라우터(router.py)**: 그대로. 5분기 디스패치는 LC 아님 (fuzz·CSV 즉답). retrieval 분기만 chain 호출로 교체.\n- **direct_meta/meta_only/clarify/explore**: LLM 무호출 → 체인 밖 유지.\n- **TokenLedger·비용상한**: LC usage_metadata 콜백으로 재구현 필요(세션 $2 가드 유지).\n- **테스트**: retrieve/generate/run_turn 계약 테스트 다수 → 시그니처 유지 or 병행 업데이트.","x":-160,"y":1060,"width":900,"height":210,"color":"6"}
+  ],
+  "edges": [
+    {"id":"eb12","fromNode":"b1","toNode":"b2","fromSide":"bottom","toSide":"top"},
+    {"id":"eb23","fromNode":"b2","toNode":"b3","fromSide":"bottom","toSide":"top"},
+    {"id":"eb34","fromNode":"b3","toNode":"b4","fromSide":"bottom","toSide":"top"},
+    {"id":"eb45","fromNode":"b4","toNode":"b5","fromSide":"bottom","toSide":"top"},
+    {"id":"ea12","fromNode":"a1","toNode":"a2","fromSide":"bottom","toSide":"top"},
+    {"id":"ea23","fromNode":"a2","toNode":"a3","fromSide":"bottom","toSide":"top"},
+    {"id":"ea34","fromNode":"a3","toNode":"a4","fromSide":"bottom","toSide":"top"},
+    {"id":"ea45","fromNode":"a4","toNode":"a5","fromSide":"bottom","toSide":"top"},
+    {"id":"ebtoa1","fromNode":"b1","toNode":"a1","fromSide":"right","toSide":"left","label":"as_retriever()로 교체"},
+    {"id":"ebtoa3","fromNode":"b4","toNode":"a3","fromSide":"right","toSide":"left","label":"ChatOpenAI로 교체"},
+    {"id":"ea5nda","fromNode":"a5","toNode":"nda","fromSide":"bottom","toSide":"top","label":"자동 업로드 위험"}
+  ]
+}
