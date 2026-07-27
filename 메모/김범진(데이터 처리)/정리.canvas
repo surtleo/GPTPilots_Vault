@@ -507,6 +507,17 @@
 			"y":2080,
 			"width":260,
 			"height":60
+		},
+		{"id":"512be79db1417254","type":"file","file":"Pasted image 20260728043815.png","x":973,"y":2560,"width":575,"height":262},
+		{
+			"id":"2a1340465d511845",
+			"type":"text",
+			"text":"이런 느낌으로 표가 항상 메타데이터에 있으면 너무 크니까 캐시처럼 요약함.",
+			"styleAttributes":{},
+			"x":1610,
+			"y":2641,
+			"width":260,
+			"height":100
 		}
 	],
 	"edges":[
@@ -892,6 +903,24 @@
 			"fromSide":"bottom",
 			"toNode":"de7823ebd526ec49",
 			"toSide":"top"
+		},
+		{
+			"id":"7c4e13ab3dc1900c",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"51fdcd9e24aa7a89",
+			"fromSide":"bottom",
+			"toNode":"512be79db1417254",
+			"toSide":"top"
+		},
+		{
+			"id":"e3bbae6cb6769630",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"512be79db1417254",
+			"fromSide":"right",
+			"toNode":"2a1340465d511845",
+			"toSide":"left"
 		}
 	],
 	"metadata":{
