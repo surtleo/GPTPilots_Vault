@@ -1,7 +1,9 @@
 {
 	"nodes":[
-		{"id":"6625ac9055604db0","type":"group","x":-280,"y":-240,"width":1800,"height":1850,"label":"골든셋"},
+		{"id":"6625ac9055604db0","type":"group","x":-280,"y":-240,"width":1840,"height":1850,"label":"골든셋"},
 		{"id":"ac4594cef69ee09e","type":"group","x":-260,"y":-140,"width":880,"height":939,"label":"골든셋 40개 검수방법 및 검수 결과"},
+		{"id":"72f45bbfd4afaad6","type":"group","x":1700,"y":980,"width":800,"height":460,"label":"after"},
+		{"id":"5afd661b74273b6b","type":"group","x":1700,"y":580,"width":780,"height":333,"label":"before"},
 		{"id":"6f43b5ba43417f57","type":"file","file":"Images/Pasted image 20260728005236.png","x":-200,"y":380,"width":394,"height":399},
 		{
 			"id":"78dc48367b0f3d93",
@@ -44,16 +46,6 @@
 			"height":220
 		},
 		{
-			"id":"8209b51c5f711083",
-			"type":"text",
-			"text":"그럼 미검출 4건은 왜 실패했나?",
-			"styleAttributes":{},
-			"x":780,
-			"y":0,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"548c3dbe48311e6d",
 			"type":"text",
 			"text":"미검출 4건은 원인이 딱 둘로 갈린다. **넷 다 정답이 표 청크**이고, dense와 BM25가 **같은 문항에서 동시에** 실패했다. 그래서 하이브리드(bm25 + e5)로도 구제되지 않는다.",
@@ -62,6 +54,36 @@
 			"y":-170,
 			"width":440,
 			"height":140
+		},
+		{
+			"id":"36051df05f95a462",
+			"type":"text",
+			"text":"리랭커에게 parent text인 표 원문을 질문에 줘서 확실히 알수있도록함.",
+			"styleAttributes":{},
+			"x":260,
+			"y":1170,
+			"width":260,
+			"height":100
+		},
+		{
+			"id":"4a8b5c8152e8071e",
+			"type":"text",
+			"text":"금액비교는 숫자로 정규화 하면됨.\n40,000천원 = 40000000",
+			"styleAttributes":{},
+			"x":890,
+			"y":1520,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"8209b51c5f711083",
+			"type":"text",
+			"text":"그럼 미검출 4건은 왜 실패했나?",
+			"styleAttributes":{},
+			"x":780,
+			"y":0,
+			"width":260,
+			"height":60
 		},
 		{
 			"id":"57254c1699f77a67",
@@ -124,22 +146,94 @@
 			"height":400
 		},
 		{
-			"id":"36051df05f95a462",
+			"id":"e01c3a28bb060a0d",
 			"type":"text",
-			"text":"리랭커에게 parent text인 표 원문을 질문에 줘서 확실히 알수있도록함.",
+			"text":"메타데이터 정형검색",
 			"styleAttributes":{},
-			"x":260,
-			"y":1170,
+			"x":1880,
+			"y":210,
 			"width":260,
-			"height":100
+			"height":60
 		},
 		{
-			"id":"4a8b5c8152e8071e",
+			"id":"448c3514dc8cfe58",
 			"type":"text",
-			"text":"금액비교는 숫자로 정규화 하면됨.\n40,000천원 = 40000000",
+			"text":"e5 dense",
 			"styleAttributes":{},
-			"x":890,
-			"y":1520,
+			"x":2220,
+			"y":210,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"f43368ff167f9705",
+			"type":"text",
+			"text":"라우터",
+			"styleAttributes":{},
+			"x":2040,
+			"y":40,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"8f635a733135abc2",
+			"type":"text",
+			"text":"베이스라인은 1 아니면 2로가서 둘중에 하나만 됐었다. 간혹 메타데이터가 검색이 됐던 이유는 청킹 본문자체에 메타데이터가 포함된 경우였다.",
+			"styleAttributes":{},
+			"x":2040,
+			"y":320,
+			"width":260,
+			"height":140
+		},
+		{"id":"0381db53d44d2b6d","type":"file","file":"Pasted image 20260728032238.png","x":2060,"y":601,"width":400,"height":293},
+		{
+			"id":"adb38ea7d751b73c",
+			"type":"text",
+			"text":"그리고 원래 메타데이터는 이런식으로 langsmith에서 출처를 남기기위한 용도였으므로 사업개요,doc_id인 출처정도만 남겼다.",
+			"styleAttributes":{},
+			"x":1720,
+			"y":691,
+			"width":260,
+			"height":113
+		},
+		{
+			"id":"fc6c5d9d56c79d40",
+			"type":"text",
+			"text":"그리고 예산 메타데이터가 안불러와지는 문제로 인해 메타데이터 자체를 rag출력에 포함시키기로했다.",
+			"styleAttributes":{},
+			"x":1720,
+			"y":1000,
+			"width":260,
+			"height":120
+		},
+		{
+			"id":"ebcca17bcfbb8586",
+			"type":"text",
+			"text":"여기에서 두갈래로 나뉜다.\n1. 예산, 마감일 등등 한번만 알려주면 전 문서에 적용되는 메타데이터는 헤더로\n2. 청크마다 출처나 개요가 달라지는건 매번\n이렇게 llm에게 효율적으로 출력을 주게 되었다.",
+			"styleAttributes":{},
+			"x":1720,
+			"y":1186,
+			"width":260,
+			"height":234
+		},
+		{"id":"462491a17d396c39","type":"file","file":"Pasted image 20260728032348.png","x":2080,"y":1060,"width":400,"height":331},
+		{
+			"id":"74d2bdd3312cbf8a",
+			"type":"text",
+			"text":"그렇다고 기존의 fuzz나 메타데이터 정형검색이 사라진것은 아님.",
+			"styleAttributes":{},
+			"x":1950,
+			"y":1480,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"15bc40ebac5010aa",
+			"type":"text",
+			"text":"아무튼 이런 우여곡절끝에 ",
+			"styleAttributes":{},
+			"x":2740,
+			"y":1180,
 			"width":260,
 			"height":60
 		}
@@ -236,6 +330,63 @@
 			"fromSide":"bottom",
 			"toNode":"4a8b5c8152e8071e",
 			"toSide":"top"
+		},
+		{
+			"id":"8923cdd26147c43d",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromFloating":false,
+			"fromNode":"f43368ff167f9705",
+			"fromSide":"bottom",
+			"toNode":"e01c3a28bb060a0d",
+			"toSide":"top",
+			"label":"1"
+		},
+		{
+			"id":"31b0f8ad6ac981d5",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"f43368ff167f9705",
+			"fromSide":"bottom",
+			"toNode":"448c3514dc8cfe58",
+			"toSide":"top",
+			"label":"2"
+		},
+		{
+			"id":"309835b6889df393",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"adb38ea7d751b73c",
+			"fromSide":"right",
+			"toNode":"0381db53d44d2b6d",
+			"toSide":"left"
+		},
+		{
+			"id":"9b3f3f93828c7be2",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"fc6c5d9d56c79d40",
+			"fromSide":"right",
+			"toNode":"462491a17d396c39",
+			"toSide":"left"
+		},
+		{
+			"id":"78bae133908b083d",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"ebcca17bcfbb8586",
+			"fromSide":"right",
+			"toNode":"462491a17d396c39",
+			"toSide":"left"
+		},
+		{
+			"id":"5476fb8fbe6d3e63",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"72f45bbfd4afaad6",
+			"fromSide":"right",
+			"toNode":"15bc40ebac5010aa",
+			"toSide":"left"
 		}
 	],
 	"metadata":{
