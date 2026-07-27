@@ -4,7 +4,6 @@
 		{"id":"ac4594cef69ee09e","type":"group","x":-260,"y":-140,"width":880,"height":939,"label":"골든셋 40개 검수방법 및 검수 결과"},
 		{"id":"72f45bbfd4afaad6","type":"group","x":1700,"y":980,"width":800,"height":460,"label":"after"},
 		{"id":"5afd661b74273b6b","type":"group","x":1700,"y":580,"width":780,"height":333,"label":"before"},
-		{"id":"6f43b5ba43417f57","type":"file","file":"Images/Pasted image 20260728005236.png","x":-200,"y":380,"width":394,"height":399},
 		{
 			"id":"78dc48367b0f3d93",
 			"type":"text",
@@ -56,16 +55,6 @@
 			"height":140
 		},
 		{
-			"id":"36051df05f95a462",
-			"type":"text",
-			"text":"리랭커에게 parent text인 표 원문을 질문에 줘서 확실히 알수있도록함.",
-			"styleAttributes":{},
-			"x":260,
-			"y":1170,
-			"width":260,
-			"height":100
-		},
-		{
 			"id":"4a8b5c8152e8071e",
 			"type":"text",
 			"text":"금액비교는 숫자로 정규화 하면됨.\n40,000천원 = 40000000",
@@ -95,6 +84,17 @@
 			"width":260,
 			"height":240
 		},
+		{"id":"6f43b5ba43417f57","type":"file","file":"Images/Pasted image 20260728005236.png","x":-200,"y":380,"width":394,"height":399},
+		{
+			"id":"36051df05f95a462",
+			"type":"text",
+			"text":"리랭커에게 parent text인 표 원문을 질문에 줘서 확실히 알수있도록함.",
+			"styleAttributes":{},
+			"x":260,
+			"y":1170,
+			"width":260,
+			"height":100
+		},
 		{
 			"id":"6ec76fbb96a1d9ea",
 			"type":"text",
@@ -104,16 +104,6 @@
 			"y":300,
 			"width":260,
 			"height":60
-		},
-		{
-			"id":"69c982d6deb1427e",
-			"type":"text",
-			"text":"1. 표는 정보의 집합체라 길수밖에 없는데 핵심단어라도 표하나에 여러번 들어가면 bm25는 점수를 깎는다. 흔한단어라고 판단해서.\n2. 어휘불일치는 e5모델로 부족하다.",
-			"styleAttributes":{},
-			"x":1240,
-			"y":520,
-			"width":260,
-			"height":200
 		},
 		{
 			"id":"1a4d9c2edb98cd89",
@@ -185,6 +175,16 @@
 			"width":260,
 			"height":140
 		},
+		{
+			"id":"69c982d6deb1427e",
+			"type":"text",
+			"text":"1. 표는 정보의 집합체라 길수밖에 없는데 핵심단어라도 표하나에 여러번 들어가면 bm25는 점수를 깎는다. 흔한단어라고 판단해서.\n2. 어휘불일치는 e5모델로 부족하다.",
+			"styleAttributes":{},
+			"x":1240,
+			"y":520,
+			"width":260,
+			"height":200
+		},
 		{"id":"0381db53d44d2b6d","type":"file","file":"Pasted image 20260728032238.png","x":2060,"y":601,"width":400,"height":293},
 		{
 			"id":"adb38ea7d751b73c",
@@ -230,12 +230,62 @@
 		{
 			"id":"15bc40ebac5010aa",
 			"type":"text",
-			"text":"아무튼 이런 우여곡절끝에 ",
+			"text":"아무튼 이런 우여곡절끝에 검색부분을 좀더 키우기로했고 그 첫번째가 bm25 즉, 하이브리드로 만들어보는것이었다.",
 			"styleAttributes":{},
-			"x":2740,
+			"x":2680,
+			"y":1140,
+			"width":260,
+			"height":140
+		},
+		{
+			"id":"124e583f943655e2",
+			"type":"text",
+			"text":"왜 bm25였는가?\n- bm25가 최소베이스가되어 실험을 할때 bm25보다 성능이 좋아야하기 때문.",
+			"styleAttributes":{},
+			"x":3060,
+			"y":1140,
+			"width":260,
+			"height":140
+		},
+		{
+			"id":"d53762381747e72e",
+			"type":"text",
+			"text":"bm25는 무엇인가?\n- 형태소기반 검색 알고리즘\n- 희귀단어에 약함\n- 한 청크에 반복되는 단어에 가중치를 크게줌.",
+			"styleAttributes":{},
+			"x":3060,
+			"y":1480,
+			"width":260,
+			"height":160
+		},
+		{
+			"id":"8bb441d74dd01453",
+			"type":"text",
+			"text":"그럼 실험은?",
+			"styleAttributes":{},
+			"x":3440,
+			"y":1170,
+			"width":260,
+			"height":80
+		},
+		{
+			"id":"d432c842f9a13456",
+			"type":"text",
+			"text":"그래서 실험 지표와 골든셋을 준비했었다.",
+			"styleAttributes":{},
+			"x":3820,
 			"y":1180,
 			"width":260,
 			"height":60
+		},
+		{
+			"id":"10b6c58c1c713e22",
+			"type":"text",
+			"text":"| 지표           | 역할                                     |\n| ------------ | -------------------------------------- |\n| **MRR@10**   | 주 지표. 첫 정답이 몇 등인가                      |\n| **nDCG@10**  | 정답이 여러 개일 때 위쪽에 몰렸나 (정답 2개 이상 문항이 22개) |\n| **Recall@5** | 실제 생성에 넘어가는 top-5의 실질 품질               |\n| hit@5        | 회귀 감시용. 문서 단위 적중이 안 깨지는지만 확인           |",
+			"styleAttributes":{},
+			"x":3520,
+			"y":1420,
+			"width":560,
+			"height":180
 		}
 	],
 	"edges":[
@@ -386,6 +436,42 @@
 			"fromNode":"72f45bbfd4afaad6",
 			"fromSide":"right",
 			"toNode":"15bc40ebac5010aa",
+			"toSide":"left"
+		},
+		{
+			"id":"e3689a5948ca3133",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"15bc40ebac5010aa",
+			"fromSide":"right",
+			"toNode":"124e583f943655e2",
+			"toSide":"left"
+		},
+		{
+			"id":"ff685ce5e169a0ee",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"124e583f943655e2",
+			"fromSide":"bottom",
+			"toNode":"d53762381747e72e",
+			"toSide":"top"
+		},
+		{
+			"id":"6b56ce8930988f33",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"124e583f943655e2",
+			"fromSide":"right",
+			"toNode":"8bb441d74dd01453",
+			"toSide":"left"
+		},
+		{
+			"id":"d0ef17858243a793",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"8bb441d74dd01453",
+			"fromSide":"right",
+			"toNode":"d432c842f9a13456",
 			"toSide":"left"
 		}
 	],
