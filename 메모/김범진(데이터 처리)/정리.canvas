@@ -85,12 +85,42 @@
 		{
 			"id":"69c982d6deb1427e",
 			"type":"text",
-			"text":"1. 표는 정보의 집합체라 길수밖에 없는데 핵심단어라도 표하나에 여러번 들어가면 bm25는 점수를 깎는다. 흔한단어라고 판단해서.\n2. 어휘불일치는 e5모델로 부족하다.\n3. ",
+			"text":"1. 표는 정보의 집합체라 길수밖에 없는데 핵심단어라도 표하나에 여러번 들어가면 bm25는 점수를 깎는다. 흔한단어라고 판단해서.\n2. 어휘불일치는 e5모델로 부족하다.",
 			"styleAttributes":{},
 			"x":1240,
 			"y":520,
 			"width":260,
-			"height":280
+			"height":200
+		},
+		{
+			"id":"1a4d9c2edb98cd89",
+			"type":"text",
+			"text":"그래서  bgm-m3 임베딩 모델을 고려해볼만함.\n다만, e5 + bm25보다 좋아야함.",
+			"styleAttributes":{},
+			"x":860,
+			"y":575,
+			"width":260,
+			"height":90
+		},
+		{
+			"id":"9bc76d42907d3191",
+			"type":"text",
+			"text":"라벨링이라는 행동자체에서 교훈을 얻은것도 있다.",
+			"styleAttributes":{},
+			"x":840,
+			"y":780,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"16604420bc4cd8f1",
+			"type":"text",
+			"text":"1. 정답과 오답의 생김새가 비슷한 부분이 자주 관찰됐다. 이땐 리랭커가 힘을 내기 힘들다.\n2. ",
+			"styleAttributes":{},
+			"x":820,
+			"y":1020,
+			"width":260,
+			"height":140
 		}
 	],
 	"edges":[
@@ -138,6 +168,24 @@
 			"fromSide":"bottom",
 			"toNode":"69c982d6deb1427e",
 			"toSide":"top"
+		},
+		{
+			"id":"78476980ae30b7d1",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"69c982d6deb1427e",
+			"fromSide":"left",
+			"toNode":"1a4d9c2edb98cd89",
+			"toSide":"right"
+		},
+		{
+			"id":"856ae1e8f94aff89",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"ac4594cef69ee09e",
+			"fromSide":"right",
+			"toNode":"9bc76d42907d3191",
+			"toSide":"left"
 		}
 	],
 	"metadata":{
