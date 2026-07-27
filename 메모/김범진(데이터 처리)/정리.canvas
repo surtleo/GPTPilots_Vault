@@ -290,10 +290,70 @@
 		{
 			"id":"d3aaa4d750f1b792",
 			"type":"text",
-			"text":"앞에서 메타데이터를 rag출력으로 뒀기때문에 ",
+			"text":"앞에서 봤듯이 doc_id(출처), 사업개요를 청크마다 매번넣기 때문에 hit@5 기준으로 지표를 가진다는것은 1.0이기때문에 의미없다.",
 			"styleAttributes":{},
-			"x":3540,
+			"x":3520,
 			"y":1360,
+			"width":260,
+			"height":120
+		},
+		{
+			"id":"abbac251098be692",
+			"type":"text",
+			"text":"골든셋 40개를 손으로 하고 일정한 기준을가진 심사위원과 블라인드 에이전트를 통해 40개를 다 맞출때까지 스킬을 변형해가며 루프 엔지니어링으로 골든셋을 만들 에이전트 스킬을 만든다.",
+			"styleAttributes":{},
+			"x":4180,
+			"y":1120,
+			"width":260,
+			"height":180
+		},
+		{
+			"id":"e66fcf37d2e76e67",
+			"type":"text",
+			"text":"그렇게 추가된 골든셋 200개를 기준으로 실험을 한다.",
+			"styleAttributes":{},
+			"x":4520,
+			"y":1180,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"d6fd628000437a98",
+			"type":"text",
+			"text":"실험은 bm25,리랭커가 실제로 필요한가?",
+			"styleAttributes":{},
+			"x":4480,
+			"y":1360,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"ab99e136c743b269",
+			"type":"text",
+			"text":"bm25는 dense보다 표를 검색하는데 있어서 강하다.",
+			"styleAttributes":{},
+			"x":4280,
+			"y":1540,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"82edbb851bd58b52",
+			"type":"text",
+			"text":"bgm m3 리랭커 오리지널과 한국어 파인튜닝 모델을 비교한다.",
+			"styleAttributes":{},
+			"x":4650,
+			"y":1540,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"8294ead1478c376f",
+			"type":"text",
+			"text":"적합",
+			"styleAttributes":{},
+			"x":4280,
+			"y":1640,
 			"width":260,
 			"height":60
 		}
@@ -483,6 +543,78 @@
 			"fromSide":"right",
 			"toNode":"d432c842f9a13456",
 			"toSide":"left"
+		},
+		{
+			"id":"73e7f413ce3da778",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"8bb441d74dd01453",
+			"fromSide":"bottom",
+			"toNode":"d3aaa4d750f1b792",
+			"toSide":"top"
+		},
+		{
+			"id":"53b4fe492694764c",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"d3aaa4d750f1b792",
+			"fromSide":"bottom",
+			"toNode":"10b6c58c1c713e22",
+			"toSide":"top"
+		},
+		{
+			"id":"ee295fe4064573b1",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"d432c842f9a13456",
+			"fromSide":"right",
+			"toNode":"abbac251098be692",
+			"toSide":"left"
+		},
+		{
+			"id":"8c5226f7c9087588",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"abbac251098be692",
+			"fromSide":"right",
+			"toNode":"e66fcf37d2e76e67",
+			"toSide":"left"
+		},
+		{
+			"id":"5feb804e170fe199",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"e66fcf37d2e76e67",
+			"fromSide":"bottom",
+			"toNode":"d6fd628000437a98",
+			"toSide":"top"
+		},
+		{
+			"id":"bf55664eb265960a",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"d6fd628000437a98",
+			"fromSide":"bottom",
+			"toNode":"ab99e136c743b269",
+			"toSide":"top"
+		},
+		{
+			"id":"d6df9c99e4367c90",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"d6fd628000437a98",
+			"fromSide":"bottom",
+			"toNode":"82edbb851bd58b52",
+			"toSide":"top"
+		},
+		{
+			"id":"932dbcbeee36d7a2",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"ab99e136c743b269",
+			"fromSide":"bottom",
+			"toNode":"8294ead1478c376f",
+			"toSide":"top"
 		}
 	],
 	"metadata":{
