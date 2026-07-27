@@ -1,0 +1,39 @@
+{
+	"nodes":[
+		{
+			"id":"32d738f498d652de",
+			"type":"text",
+			"text":"골드셋 40개 자체검수",
+			"styleAttributes":{},
+			"x":-240,
+			"y":-200,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"ccd597e0f6dc8660",
+			"type":"text",
+			"text":"검수방법\n- 골드셋 : 종선님께서 주신 골드셋중 40개만 진행함.\n- 시점 : 청킹 재인덱싱 후\n- 청크의 인덱스 번호와 실제 골드셋의 질문에의한 기대하는 값이 맞는지 확인하기위해 전수조사.\n- bm25로 20개, e5로 20개 총 40개 질문중 확률이 높은것들을 뽑고 실제 청크하나하나를 조사함.",
+			"styleAttributes":{},
+			"x":-240,
+			"y":-100,
+			"width":260,
+			"height":360
+		},
+		{
+			"id":"ba0b2a3bc137d9c5",
+			"type":"text",
+			"text":"",
+			"styleAttributes":{},
+			"x":80,
+			"y":-100,
+			"width":260,
+			"height":60
+		}
+	],
+	"edges":[],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}
