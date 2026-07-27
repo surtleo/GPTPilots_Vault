@@ -428,16 +428,6 @@
 			"height":60
 		},
 		{
-			"id":"de7823ebd526ec49",
-			"type":"text",
-			"text":"평가 레이어",
-			"styleAttributes":{},
-			"x":1940,
-			"y":2000,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"cfe07abcc0716653",
 			"type":"text",
 			"text":"전재완님의 청킹관련 작업 총정리",
@@ -446,16 +436,6 @@
 			"y":1840,
 			"width":260,
 			"height":60
-		},
-		{
-			"id":"3e7bf42d2ae8b9ac",
-			"type":"text",
-			"text":"hwp에서 똑같은 카테고리는 셀을 병합해버리는데 이때 파서로 떼올때 그 빈칸인식을 하지못해 표가 깨짐.",
-			"styleAttributes":{},
-			"x":1480,
-			"y":2160,
-			"width":260,
-			"height":120
 		},
 		{
 			"id":"46758fab47a073ce",
@@ -468,12 +448,63 @@
 			"height":60
 		},
 		{
+			"id":"3e7bf42d2ae8b9ac",
+			"type":"text",
+			"text":"hwp에서 똑같은 카테고리는 셀을 병합해버리는데 이때 파서로 떼올때 그 빈칸인식을 하지못해 표가 깨짐.",
+			"styleAttributes":{},
+			"x":1260,
+			"y":2160,
+			"width":260,
+			"height":120
+		},
+		{
 			"id":"53f144efb3f8a747",
 			"type":"text",
 			"text":"검사전에 빠진값을 직전인덱스의 셀값으로 복사해서 채워둠.",
 			"styleAttributes":{},
-			"x":1480,
+			"x":1260,
 			"y":2340,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"3e1e9024b555fbc3",
+			"type":"text",
+			"text":"표가 청크사이즈 이상으로 크면 분할되서 깨진다.",
+			"styleAttributes":{},
+			"x":1540,
+			"y":2160,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"51fdcd9e24aa7a89",
+			"type":"text",
+			"text":"parent context라는 개념을 추가해서 깨진 청크를 검색하게되면 메타데이터로 완전한 표를 넣어 llm이 잘 읽어오도록함.",
+			"styleAttributes":{},
+			"x":1540,
+			"y":2280,
+			"width":260,
+			"height":120
+		},
+		{"id":"beef27eea94ac21e","type":"text","text":"## 🎯 개편 핵심 — 유형마다 다른 지표를 쓴다\n기존: 모든 문항에 같은 지표 → 직답(LLM 무호출)·반문에 RAGAS를 매기는 게 무의미\n\n| 카테고리    | 골든셋 유형    | 적용 지표                                                                                                            |\n| ------- | --------- | ---------------------------------------------------------------------------------------------------------------- |\n| **생성**  | 단일세부 · 후속 | 풀 RAGAS 5종 — relevancy / precision / recall / correctness / semantic similarity **(단 `route==\"retrieval\"`일 때만)** |\n| **직답**  | 직답        | `value_match` — 숫자·날짜·명칭 일치만                                                                                     |\n| **미확인** | 모른다 · 반문  | `abstention_correctness` (거절 정확도). 반문은 라우팅으로만 판정                                                                 |\n| **제외**  | 탐색비교      | 미구현 — 라우팅만                                                                                                       |\n\n`METRIC_CATEGORY` 딕셔너리 1개로 매핑, `METRIC_ABBR`로 콘솔 축약 출력","x":1820,"y":2200,"width":620,"height":360,"color":"4"},
+		{
+			"id":"de7823ebd526ec49",
+			"type":"text",
+			"text":"2. 평가 레이어",
+			"styleAttributes":{},
+			"x":1960,
+			"y":2000,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"35426e00ef611a62",
+			"type":"text",
+			"text":"그 외 doc hit오판 버그 수정 등등",
+			"styleAttributes":{},
+			"x":2220,
+			"y":2080,
 			"width":260,
 			"height":60
 		}
@@ -551,7 +582,7 @@
 			"fromSide":"bottom",
 			"toNode":"f5aaa970eab9785d",
 			"toSide":"top",
-			"label":"청킹문제 해결후에 또 나온 청킹문제"
+			"label":"청킹문제 해결후에 또 나온 청킹문제 하지만 미미함"
 		},
 		{
 			"id":"4bc20d75c0de712e",
@@ -806,6 +837,60 @@
 			"fromNode":"3e7bf42d2ae8b9ac",
 			"fromSide":"bottom",
 			"toNode":"53f144efb3f8a747",
+			"toSide":"top"
+		},
+		{
+			"id":"4ed85a63bdcd6214",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"46758fab47a073ce",
+			"fromSide":"bottom",
+			"toNode":"3e1e9024b555fbc3",
+			"toSide":"top"
+		},
+		{
+			"id":"4cf49dcc92f5d692",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"3e1e9024b555fbc3",
+			"fromSide":"bottom",
+			"toNode":"51fdcd9e24aa7a89",
+			"toSide":"top"
+		},
+		{
+			"id":"66da2006308589bd",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"de7823ebd526ec49",
+			"fromSide":"bottom",
+			"toNode":"beef27eea94ac21e",
+			"toSide":"top"
+		},
+		{
+			"id":"5853413fdbee518e",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"de7823ebd526ec49",
+			"fromSide":"bottom",
+			"toNode":"35426e00ef611a62",
+			"toSide":"top"
+		},
+		{
+			"id":"af2fe11818bc62db",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"cfe07abcc0716653",
+			"fromSide":"bottom",
+			"toNode":"46758fab47a073ce",
+			"toSide":"top"
+		},
+		{
+			"id":"73e02591b92ead64",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"cfe07abcc0716653",
+			"fromSide":"bottom",
+			"toNode":"de7823ebd526ec49",
 			"toSide":"top"
 		}
 	],
