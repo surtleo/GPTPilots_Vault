@@ -65,12 +65,32 @@
 		{
 			"id":"57254c1699f77a67",
 			"type":"text",
-			"text":"1. 질문도 긴데 질문자체가 흔한 단어라서 핵심 희귀어를 골라내지 못함.\n2. top20보다 밖에 있음.\n3. ",
+			"text":"1. 질문도 긴데 질문자체가 흔한 단어라서 핵심 희귀어를 골라내지 못함.\n2. top20보다 밖에 있음.\n3. 질문과 맥락이 다른데 dense가 못잡아주는 어휘 불일치",
 			"styleAttributes":{},
 			"x":1240,
 			"y":-80,
 			"width":260,
-			"height":720
+			"height":240
+		},
+		{
+			"id":"6ec76fbb96a1d9ea",
+			"type":"text",
+			"text":"그럼 여기서 얻은 교훈은?",
+			"styleAttributes":{},
+			"x":1240,
+			"y":300,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"69c982d6deb1427e",
+			"type":"text",
+			"text":"",
+			"styleAttributes":{},
+			"x":1240,
+			"y":520,
+			"width":260,
+			"height":280
 		}
 	],
 	"edges":[
@@ -100,6 +120,24 @@
 			"fromSide":"right",
 			"toNode":"57254c1699f77a67",
 			"toSide":"left"
+		},
+		{
+			"id":"11b703083c6f89e0",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"57254c1699f77a67",
+			"fromSide":"bottom",
+			"toNode":"6ec76fbb96a1d9ea",
+			"toSide":"top"
+		},
+		{
+			"id":"01b6d7e4b63d0364",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"6ec76fbb96a1d9ea",
+			"fromSide":"bottom",
+			"toNode":"69c982d6deb1427e",
+			"toSide":"top"
 		}
 	],
 	"metadata":{
