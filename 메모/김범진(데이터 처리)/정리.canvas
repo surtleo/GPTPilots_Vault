@@ -1,20 +1,11 @@
 {
 	"nodes":[
-		{
-			"id":"ccd597e0f6dc8660",
-			"type":"text",
-			"text":"검수방법\n- 골드셋 : 종선님께서 주신 골드셋중 40개만 진행함. [[검색 실험 골든셋 40문항]]\n- 시점 : 청킹 재인덱싱 후\n- 청크의 인덱스 번호와 실제 골드셋의 질문에의한 기대하는 값이 맞는지 확인하기위해 전수조사.\n- bm25로 20개, e5로 20개 총 40개 질문중 확률이 높은것들을 뽑고 실제 청크하나하나를 조사함.",
-			"styleAttributes":{},
-			"x":-240,
-			"y":-100,
-			"width":260,
-			"height":360
-		},
+		{"id":"ac4594cef69ee09e","type":"group","x":-260,"y":-140,"width":880,"height":939,"label":"골든셋 40개 검수방법 및 검수 결과"},
 		{"id":"6f43b5ba43417f57","type":"file","file":"Images/Pasted image 20260728005236.png","x":-200,"y":380,"width":394,"height":399},
 		{
 			"id":"78dc48367b0f3d93",
 			"type":"text",
-			"text":"라벨링 도구만들어서 라벨링함",
+			"text":"라벨링 도구만들어서 라벨링함 하나하나 봄. 아래는 실제 예시",
 			"styleAttributes":{},
 			"x":-200,
 			"y":300,
@@ -32,27 +23,85 @@
 			"height":260
 		},
 		{
+			"id":"ccd597e0f6dc8660",
+			"type":"text",
+			"text":"검수방법\n- 골드셋 : 종선님께서 주신 골드셋중 30개를 기존, 나머지 10개는 bm25의 성능을 좀 더 잘 검색하기위한 질문들로 진행함. [[검색 실험 골든셋 40문항]]\n- 시점 : 청킹 재인덱싱 후\n- 청크의 인덱스 번호와 실제 골드셋의 질문에의한 기대하는 값이 맞는지 확인하기위해 전수조사.\n- bm25로 20개, e5로 20개 총 40개 질문중 확률이 높은것들을 뽑고 실제 청크하나하나를 조사함.",
+			"styleAttributes":{},
+			"x":-240,
+			"y":-120,
+			"width":260,
+			"height":400
+		},
+		{
 			"id":"89b07c3c60ed4269",
 			"type":"text",
 			"text":"- bm25 20개, e5 20개를 봤을때 40개 밖에 있던것이 미검출 상태로 4개\n- 검색 대상이 아닌것은 본문에는 없는 메타데이터. (어째서 본문에 없을 수 있는지는 알아봐야함)",
 			"styleAttributes":{},
-			"x":260,
-			"y":220,
+			"x":240,
+			"y":280,
 			"width":260,
 			"height":220
 		},
 		{
-			"id":"32d738f498d652de",
+			"id":"8209b51c5f711083",
 			"type":"text",
-			"text":"골드셋 40개 자체검수",
+			"text":"그럼 미검출 4건은 왜 실패했나?",
 			"styleAttributes":{},
-			"x":-133,
-			"y":-220,
+			"x":780,
+			"y":0,
 			"width":260,
 			"height":60
+		},
+		{
+			"id":"548c3dbe48311e6d",
+			"type":"text",
+			"text":"미검출 4건은 원인이 딱 둘로 갈린다. **넷 다 정답이 표 청크**이고, dense와 BM25가 **같은 문항에서 동시에** 실패했다. 그래서 하이브리드(bm25 + e5)로도 구제되지 않는다.",
+			"styleAttributes":{},
+			"x":720,
+			"y":-170,
+			"width":440,
+			"height":140
+		},
+		{
+			"id":"57254c1699f77a67",
+			"type":"text",
+			"text":"",
+			"styleAttributes":{},
+			"x":1240,
+			"y":-80,
+			"width":260,
+			"height":720
 		}
 	],
-	"edges":[],
+	"edges":[
+		{
+			"id":"3e348db6d12f1f93",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"87666ed6ad91dc0d",
+			"fromSide":"bottom",
+			"toNode":"89b07c3c60ed4269",
+			"toSide":"top"
+		},
+		{
+			"id":"32c151c510d3cf8e",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"ac4594cef69ee09e",
+			"fromSide":"right",
+			"toNode":"8209b51c5f711083",
+			"toSide":"left"
+		},
+		{
+			"id":"01ef48dd3f481311",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"8209b51c5f711083",
+			"fromSide":"right",
+			"toNode":"57254c1699f77a67",
+			"toSide":"left"
+		}
+	],
 	"metadata":{
 		"version":"1.0-1.0",
 		"frontmatter":{}
