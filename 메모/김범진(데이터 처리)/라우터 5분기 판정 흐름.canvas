@@ -1,0 +1,51 @@
+{
+	"nodes":[
+		{"id":"n2","type":"text","text":"## ② 동점인가?\n1위−2위 **< 5점**이고 서로 다른 문서집합\n→ 모호 → 반문\n\n예외: 1위 문서를 포함하는 **상위집합**(같은 기관)은 모호성 아님 → 소거","x":-960,"y":-60,"width":460,"height":180,"color":"5"},
+		{"id":"r-tie","type":"text","text":"## ⚪ clarify — 동점 반문\n`RouteDecision(route=\"clarify\", candidates=[…])`\ncore.py가 후보 목록 텍스트로 렌더 (LLM 무호출)","x":-360,"y":-60,"width":440,"height":140,"color":"3"},
+		{"id":"r-explore","type":"text","text":"## ⚪ explore\n`doc_cards` 컬렉션 임베딩 검색 top-K\n→ \"관련해 다음 사업 문서들이 검색되었습니다\"\n(LLM 무호출 — 검색만)","x":-360,"y":120,"width":440,"height":150,"color":"3"},
+		{"id":"r-nodoc","type":"text","text":"## ⚪ clarify — 문서 미특정\ndoc_cards 상위 `ROUTER_CLARIFY_TOP_K`건 반문","x":-360,"y":460,"width":440,"height":110,"color":"3"},
+		{"id":"r-token","type":"text","text":"## ⚪ clarify — 토큰 단독 확정 가드\n토큰 유일성은 **코퍼스 통계**일 뿐 사용자가 그 문서를 지목한 근거가 아님.\n오매칭 시 direct_meta는 **권위적 오답**이 되므로 확인 반문.\n(비직답 경로는 유지 — 생성이 \"확인되지 않습니다\"로 자기교정)","x":-360,"y":590,"width":440,"height":200,"color":"3"},
+		{"id":"r-direct","type":"text","text":"## ⚪ direct_meta\n`data_list.csv` 메타 직답 — 라우터가 **완성 문장**까지 만들어 반환\n출처 문구 `(출처: data_list.csv)` 포함. LLM 무호출 = 비용 0","x":-360,"y":870,"width":440,"height":170,"color":"2"},
+		{"id":"r-metaonly","type":"text","text":"## ⚪ meta_only\n\"본문 미인덱싱 상태라 메타 정보만 제공합니다\"\n+ 사업명·발주기관·금액·마감일·사업요약 나열\nLLM 무호출 고정 응답","x":-360,"y":1060,"width":440,"height":150,"color":"2"},
+		{"id":"r-retrieval","type":"text","text":"## 🟢 retrieval — 유일한 LLM 경로\n`RouteDecision(route=\"retrieval\", doc_id=…)`\n→ run_turn이 retrieve → format_context → generate_answer","x":-360,"y":1250,"width":440,"height":150,"color":"4"},
+		{"id":"d-match","type":"text","text":"## 📐 매칭 설계 근거\n- **왜 2티어인가**: 지역 축약은 파생 증거. 1차와 동점 경쟁시키면 타 문서 사업명 속 지역명('평택시 스마트시티')과 충돌해 멀쩡한 특정을 깬다 (6.4 ③ 실측)\n- **왜 라우터에서 별칭 파생**: org_dictionary 재생성은 meta→index 연쇄 재임베딩을 부르지만, 코드 정규화는 재빌드 0으로 신규 코퍼스에도 자동 적용\n- **토큰 스톱워드 3계열**: ① 법인격(주식회사·산학협력단) ② 조달 어휘(제안서·공고·시스템·구축) ③ 조사 파편(공고의·기반의). 순수 숫자(연도)는 별도 배제\n- 한 기관 다수 문서 → 사업명으로 소거 시도, 실패 시 그 기관 문서들로 반문","x":140,"y":-320,"width":500,"height":340,"color":"6"},
+		{"id":"d-direct","type":"text","text":"## ⚠️ 직답 패턴의 알려진 취약성\n`DIRECT_PATTERNS`는 손관리 문자열 — 어미 결합형만 등재.\n- `예산은` ✅ / `예산액과` ❌ (복합 가드에서 `과/와`는 오탐 위험으로 제외)\n- 명사 단독 `예산`은 미등재 — \"예산 산출 근거\" 류 오라우팅 방지 (EVIDENCE_WORDS와 이중 방어)\n\n→ 개선 방향은 [[쿼리 파이프라인 개선안]] §2 (트리거 확장 + 골든셋 회귀 방지)","x":140,"y":570,"width":500,"height":280,"color":"1"},
+		{"id":"d-downstream","type":"text","text":"## 🔻 retrieval 다운스트림 (머지 반영)\n**PR #15 (LCEL)** — `retrieve()`는 `langchain_chroma` `VectorStoreRetriever.invoke()`.\nE5Embeddings가 `query: ` prefix 부착, `doc_id` 메타 필터, top-k=5.\n0청크면 **빈 목록 반환 — 필터 해제 전체 검색 폴백 금지** (spec §12-3).\nLangSmith에 retriever 노드로 자동 기록.\n\n**PR #16 (메타 헤더)** — `format_context()`가 히트를 doc_id로 묶고 문서당 1회\n`[문서 정보(출처: data_list.csv) — 발주기관 … | 사업금액 3.8억원(380,000,000원) | 입찰마감 …]`\n금액은 억/만 단위 병기(LLM 자릿수 오독 방지). 마감일은 본문 히트 0건 실측 → 헤더 없으면 답 불가.\n\n**Parent-Document** — `parent_text` 있는 히트는 조각 대신 표 전체 원문으로 복원(중복 제거).","x":140,"y":1250,"width":500,"height":380,"color":"4"},
+		{"id":"d-contract","type":"text","text":"## 🧾 계약 · 관련 노트\n`RouteDecision(route, doc_id, answer, candidates, reason)` — dataclass(frozen)\n의존성(meta·org_dict·chunk_count·search_doc_cards)은 **전부 주입 가능** → 단위 테스트는 fake로, 통합은 지연 로드\n\n**핵심**: 라우터를 탄다 ≠ LLM을 안 쓴다. 5분기 중 LLM 호출은 `retrieval` 하나뿐.\n\n관련: [[온라인 쿼리 파이프라인]] · [[쿼리 파이프라인 개념 정리]] · [[쿼리 파이프라인 개선안]]","x":140,"y":870,"width":500,"height":260,"color":"6"},
+		{"id":"n0","type":"text","text":"## ⬇️ 입력\n`question` (+ `active_doc_id`)\n\nrun_turn이 매 턴 `route_question()` 1회 호출\n(`src/api/core.py:run_turn`)","x":-960,"y":-510,"width":460,"height":150,"color":"6"},
+		{"id":"title","type":"text","text":"# 🧭 라우터 5분기 판정 흐름\n`src/query/router.py:route_question` — **규칙 기반(RapidFuzz + 정규식), LLM 무호출**\n기준: main `33973f8` (PR #15 LCEL · #16 메타헤더 머지 반영)","x":-960,"y":-700,"width":560,"height":130,"color":"6"},
+		{"id":"legend","type":"text","text":"**범례**\n🟢 LLM 호출 있음 (gpt-5-mini)  ·  ⚪ LLM 무호출 (즉답/반문)\n왼쪽 = 판정 순서, 가운데 = 확정 route, 오른쪽 = 규칙 상세·근거","x":-360,"y":-700,"width":460,"height":130},
+		{"id":"n1","type":"text","text":"## ① 문서 특정 `_match()`\nRapidFuzz `partial_ratio` ≥ **80**\n\n**1차 티어** — 사업명 · 발주기관_표준 · org_dictionary 수동 별칭 · **고유 토큰**(코퍼스에서 단 1문서에만 나오는 토큰, `fuzz.ratio`로 질문 토큰 단위 비교)\n**2차 티어** — 1차가 전부 임계 미달일 때만 지역 축약 별칭\n(`울산광역시`→`울산`, `경기도 평택시`→`평택시`/`평택`)","x":-960,"y":-320,"width":460,"height":240,"color":"5"},
+		{"id":"n3","type":"text","text":"## ③ 탐색형 질문인가?\n문서 **미특정** + `뭐 있 / 뭐가 있 / 어떤 사업 / 무슨 사업 / 관련 사업 / 사업 목록`\n\n⚠️ 활성 doc 후속(④)보다 **먼저** 판정 — 안 그러면 '뭐 있어'가 이전 문서 후속으로 흡수돼 불필요한 생성 호출","x":-960,"y":180,"width":460,"height":180,"color":"5"},
+		{"id":"n4","type":"text","text":"## ④ 히스토리 승계\n매칭 실패 + `active_doc_id` 있음\n→ 후속 질문으로 보고 활성 문서 유지","x":-960,"y":405,"width":460,"height":120,"color":"5"},
+		{"id":"n5","type":"text","text":"## ⑤ 둘 다 없음\n세부 질문인데 문서 미특정\n→ doc_cards 상위 3건 반문","x":-960,"y":585,"width":460,"height":110,"color":"5"},
+		{"id":"n6","type":"text","text":"## ⑥ 직답 판정 `_direct_field()`\n**직접 패턴만** 직답\n- `금액` ← 얼마 · 금액이 · 금액은 · 예산은 · 예산이\n- `마감일` ← 언제까지 · 마감일\n\n**가드 3중**\n1. 근거·기준·산출·내역 동반 → 직답 금지\n2. `(이랑|랑|하고|및)+(예산|금액|마감)` 복합 → 직답 금지\n3. **고유 토큰 단독 확정** + 직답 패턴 → 단정 금지, 확인 반문","x":-960,"y":770,"width":460,"height":260,"color":"5"},
+		{"id":"n7","type":"text","text":"## ⑦ 직답 실행 / 폴백\n`_direct_answer()` — 파싱값(`금액_num`·`마감일_dt`)은 값으로,\n**원문 보존분**(`금액_원문`)은 계산·비교 없이 그대로 인용\n\n완전 결측 → **retrieval 폴백** (spec §10-4)","x":-960,"y":1080,"width":460,"height":170,"color":"5"},
+		{"id":"n8","type":"text","text":"## ⑧ 청크 존재 게이트\n`chunk_count(doc_id) == 0` 선조회 (spec §12-1-3)\n→ 빈 컨텍스트로 생성 호출하는 것을 **구조적으로 차단**","x":-960,"y":1310,"width":460,"height":130,"color":"5"}
+	],
+	"edges":[
+		{"id":"e01","fromNode":"n0","fromSide":"bottom","toNode":"n1","toSide":"top"},
+		{"id":"e12","fromNode":"n1","fromSide":"bottom","toNode":"n2","toSide":"top"},
+		{"id":"e23","fromNode":"n2","fromSide":"bottom","toNode":"n3","toSide":"top","label":"동점 아님"},
+		{"id":"e34","fromNode":"n3","fromSide":"bottom","toNode":"n4","toSide":"top","label":"탐색형 아님"},
+		{"id":"e45","fromNode":"n4","fromSide":"bottom","toNode":"n5","toSide":"top","label":"active_doc 없음"},
+		{"id":"e46","fromNode":"n4","fromSide":"right","toNode":"n6","toSide":"left","label":"doc 확정"},
+		{"id":"e67","fromNode":"n6","fromSide":"bottom","toNode":"n7","toSide":"top","label":"직답 패턴 O"},
+		{"id":"e68","fromNode":"n6","fromSide":"left","toNode":"n8","toSide":"left","label":"직답 패턴 X"},
+		{"id":"e78","fromNode":"n7","fromSide":"bottom","toNode":"n8","toSide":"top","label":"CSV 결측 폴백"},
+		{"id":"e2tie","fromNode":"n2","fromSide":"right","toNode":"r-tie","toSide":"left","label":"동점"},
+		{"id":"e3exp","fromNode":"n3","fromSide":"right","toNode":"r-explore","toSide":"left","label":"탐색형"},
+		{"id":"e5no","fromNode":"n5","fromSide":"right","toNode":"r-nodoc","toSide":"left"},
+		{"id":"e6tok","fromNode":"n6","fromSide":"right","toNode":"r-token","toSide":"left","label":"토큰 단독 + 직답"},
+		{"id":"e7dir","fromNode":"n7","fromSide":"right","toNode":"r-direct","toSide":"left","label":"값 있음"},
+		{"id":"e8meta","fromNode":"n8","fromSide":"right","toNode":"r-metaonly","toSide":"left","label":"청크 0개"},
+		{"id":"e8ret","fromNode":"n8","fromSide":"bottom","toNode":"r-retrieval","toSide":"left","label":"청크 있음"},
+		{"id":"ed1","fromNode":"n1","fromSide":"right","toNode":"d-match","toSide":"left"},
+		{"id":"ed2","fromNode":"n6","fromSide":"right","toNode":"d-direct","toSide":"left"},
+		{"id":"ed3","fromNode":"r-retrieval","fromSide":"right","toNode":"d-downstream","toSide":"left"}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}
