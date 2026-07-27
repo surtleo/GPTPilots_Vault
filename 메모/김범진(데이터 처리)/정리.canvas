@@ -120,7 +120,17 @@
 			"x":820,
 			"y":1020,
 			"width":260,
-			"height":140
+			"height":280
+		},
+		{
+			"id":"36051df05f95a462",
+			"type":"text",
+			"text":"리랭커에게 parent text인 표 원문을 질문에 줘서 확실히 알수있도록함.",
+			"styleAttributes":{},
+			"x":380,
+			"y":1110,
+			"width":260,
+			"height":100
 		}
 	],
 	"edges":[
@@ -186,6 +196,15 @@
 			"fromSide":"right",
 			"toNode":"9bc76d42907d3191",
 			"toSide":"left"
+		},
+		{
+			"id":"4f0028517635d228",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"16604420bc4cd8f1",
+			"fromSide":"left",
+			"toNode":"36051df05f95a462",
+			"toSide":"right"
 		}
 	],
 	"metadata":{
