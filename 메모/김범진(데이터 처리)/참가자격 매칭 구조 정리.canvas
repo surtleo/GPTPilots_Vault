@@ -1,0 +1,68 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# 🧭 참가자격 매칭 — 구조 이해 정리\n2026-07-29 · 전재완 작업(Eligibility)을 데이터 처리 관점에서 재정리\n\n**핵심 질문 3개** — ① 뭘 하는 기능인가 ② 왜 RAG를 안 쓰나 ③ 무엇이 아직 안 됐나\n\n원본: [[전재완 작업 정리 — 참가자격 매칭(Eligibility)]]","x":-1080,"y":-760,"width":660,"height":200,"color":"6"},
+
+		{"id":"h-flow","type":"text","text":"# 🅰️ 전체 흐름 — 2단계로 쪼개져 있다","x":-1080,"y":-520,"width":660,"height":70,"color":"2"},
+
+		{"id":"f1","type":"text","text":"## ① 요건 추출 — 문서당 딱 1회\n`extract_requirements(doc_id)`\n\n공고문 **전문**을 LLM에 통째로 → 자격 조건 문장을 20~40개 목록으로 (GKL 실측 36개)\n\n결과를 `data/extracted/eligibility.json`에 **캐시**. 같은 문서를 100번 물어봐도 추출은 0회 추가.\n\n**이 목록 = 채점표.** 여기서 빠진 항목은 채점 자체가 안 됨 → recall이 생명","x":-1080,"y":-410,"width":660,"height":290,"color":"4"},
+
+		{"id":"f2","type":"text","text":"## ② 적격 판정 — 매번, 그러나 가볍다\n`match_profile(doc_id, profile)`\n\n**원문은 안 봄.** 캐시된 요건 목록 + 회사 프로필만 LLM에 → 요건별 충족 / 미충족 / 불명\n\nverdict: 미충족 0 → 🟢 · 1~3 → 🟡 · 4+ → 🔴\n\nPhase 3에서 98건 → doc_cards 임베딩으로 후보 15건 압축 후 매칭(=적합도 정렬). 병렬화로 141초 → 40초","x":-1080,"y":-90,"width":660,"height":290,"color":"4"},
+
+		{"id":"f3","type":"text","text":"## 💰 비용 — 최적화 여지 거의 없음\n| 항목 | 값 |\n|---|---|\n| 문서 1건 추출 | **$0.01~0.015** |\n| 98건 전체 | **$1~1.5** (1회성) |\n| 새 문서 10건 추가 | ~$0.15 |\n| 사용자 질문 반복 | **$0** (캐시) |\n\ngpt-5-mini 기준. 프롬프트를 고쳐 전건 재추출할 때만 다시 발생","x":-1080,"y":230,"width":660,"height":270,"color":"5"},
+
+		{"id":"order","type":"text","text":"## 🧭 진행 순서 (변수 하나씩)\n1. **98건 재추출 완료** ← 현재\n2. 팀원 `eligibility_sujeong.json`과 전건 대조\n3. recall 확보 확인 후 → 정형화(우측 ②) 착수\n\n**동시에 손대지 말 것.** recall이 떨어졌을 때 프롬프트 탓인지 새 작업 탓인지 못 가림","x":-1080,"y":530,"width":660,"height":220,"color":"6"},
+
+		{"id":"h-why","type":"text","text":"# 🅱️ 왜 RAG로 안 뽑나 — 그게 원래 방식이었고 실패했다","x":-380,"y":-520,"width":660,"height":70,"color":"2"},
+
+		{"id":"w1","type":"text","text":"## ❗ 목적이 정반대다\n| | RAG 검색 | 자격요건 추출 |\n|---|---|---|\n| 목적 | 근거 **몇 개** 찾기 | **하나도 빠짐없이** |\n| 최적화 | precision (top-K) | **recall (전수조사)** |\n| 놓치면 | 다른 청크로 답함 | 자격 미달인데 🟢 |\n\n기존: `retrieve()` top-20 청크만 전달 → \"상호출자제한기업집단\"이 랭킹 밖이라 LLM이 **애초에 못 봄**","x":-380,"y":-410,"width":660,"height":290,"color":"1"},
+
+		{"id":"w2","type":"text","text":"## ✅ 그래서 문서 전체 읽기로 전환\n어차피 **문서당 1회 캐시** 작업 → 검색으로 지름길 낼 이유가 처음부터 없었음\n(CLAUDE.md STEP2 \"recall 우선\" 원칙과 일치)\n\n15만자 초과 문서만 겹침 있게 분할","x":-380,"y":-90,"width":660,"height":200,"color":"4"},
+
+		{"id":"w3","type":"text","text":"## ❌ grep 사전필터도 안 됨\n자격 조항은 \"자격\"이라는 단어 없이 존재한다:\n- \"상호출자제한기업집단은 참가 불가\" → `자격` 미포함\n- 청렴서약서 안 담합 조항 → `참가자격` 미포함\n- \"제안서 처리\" 섹션의 정보누출 조항 → 섹션도 무관\n\n패턴을 넓히면 절약이 안 되고, 좁히면 놓침. **원인 3·4가 이미 증명**","x":-380,"y":140,"width":660,"height":250,"color":"1"},
+
+		{"id":"w4","type":"text","text":"## 🐛 누락 원인 4개 — 뿌리는 하나\n| # | 원인 | 수정 |\n|---|---|---|\n| 1 | top-20 밖이라 못 봄 | 전문 전달 |\n| 2 | 다른 법령·서류를 병합 | \"합치지 마라\" |\n| 3 | 섹션 제목 보고 제외 | \"위치 무시\" |\n| 4 | 나열 항목 첫 개만 | \"건너뛰지 마라\" |\n\n전부 **LLM의 요약하려는 습성**. 수정 1이 문제 2를 부르는 두더지잡기 구조.\n검증: GKL 24 → 36개, 정답지 10건 중 완전일치 6 / 부분 3 / 미해결 1","x":-380,"y":420,"width":660,"height":330,"color":"3"},
+
+		{"id":"h-open","type":"text","text":"# ⚠️ 확인·논의 필요 (5건)","x":340,"y":-520,"width":560,"height":70,"color":"2"},
+
+		{"id":"o1","type":"text","text":"## 1️⃣ 판정 로직 결함 — 모든 요건이 1표\n미충족 **개수**로만 판정하니:\n\n| 상황 | 지금 | 실제 |\n|---|---|---|\n| 부정당업자 제재 1건 | 🟡 | **🔴 즉시 탈락** |\n| 서류 3종 미비 | 🟡 | 준비하면 통과 |\n\n**둘 다 🟡로 나옴.** 요건에 경중 구분이 없어서 생긴 문제","x":340,"y":-410,"width":560,"height":270,"color":"1"},
+
+		{"id":"o2","type":"text","text":"## 2️⃣ 요건 정형화 제안 (미착수)\n지금 저장 형태는 **문장 배열**뿐. 유형·치명도 없음\n\n제안 — 유형 라벨 부착:\n🔴 결격사유(부정당업자·담합) = 1건이라도 즉시 탈락\n🟠 필수자격(확인서·면허) · 🟡 보완가능(실적·서류) · ⚪ 기타\n\n**⚠️ 추출 프롬프트에 섞지 말 것** — \"틀에 안 맞으면 버림\"이 되어 원인 3 재발.\n1패스 원문 그대로 추출 → 2패스 라벨만 부착(문장 불변). 2패스는 짧은 목록만 보니 비용 ~0","x":340,"y":-110,"width":560,"height":330,"color":"3"},
+
+		{"id":"o3","type":"text","text":"## 3️⃣ \"98건\"의 근거 불명\n| 수 | 대상 | 근거 |\n|---|---|---|\n| 100 | 원본 RFP · doc_cards | 문서화됨 |\n| 99 | chunks | 추출 실패 1건 제외 |\n| **98** | 자격요건 재추출 | **미기재** |\n\n정답지와 기준 건수가 다르면 대조에서 \"누락\"으로 오판됨 → **재대조 전 양쪽 건수 정렬 필요**","x":340,"y":250,"width":560,"height":260,"color":"3"},
+
+		{"id":"o4","type":"text","text":"## 4️⃣ 팀 API 키 한도\n팀 공용 키 **$20 한도**, 초과 시 즉시 disabled ([[검색 실험 구도]] · 프로젝트 개요)\n\n전건 재추출 1회 = 한도의 **5~7.5%**. 프롬프트 수정마다 반복하면 누적이 빠름\n\n선례: 청킹 Phase 11에서 전건 재추출은 **팀 공유 산출물을 덮어쓴다**는 이유로 `--adopt` 동결 + 팀 합의 대상이었음 → 자격요건도 같은 성격인지 확인","x":340,"y":540,"width":560,"height":290,"color":"1"},
+
+		{"id":"o5","type":"text","text":"## 5️⃣ JSON 캐시 확장성 (지금은 무해)\n`eligibility.json` 파일 1개에 전건 저장\n\n- 문서 수천 건 → 매번 전체 로드\n- 동시 쓰기 시 덮어쓸 여지\n- **어느 프롬프트 버전으로 뽑혔는지 구분 불가** → 전건 재추출 외 방법 없음\n\n회의록 0722: \"일단 100개로 해보고 확장하기\" → 확장 시점에 버전 태그 + 저장소 교체 필요","x":340,"y":860,"width":560,"height":270,"color":"3"},
+
+		{"id":"o6","type":"text","text":"## ❓ 기존 미해결 — 정의 경계\n\"협상에 의한 계약체결 방식\"을 자격요건에 넣을지 (전재완: 계약방식이라 제외 / 팀원: 포함)\n\n**재해석** — 이건 자격요건이 아니라 **공고 진단 카드의 다른 칸**(계약방식)에 들어갈 정보일 수 있음. 그 관점이면 논쟁 자체가 해소됨","x":340,"y":1160,"width":560,"height":240,"color":"6"},
+
+		{"id":"scope","type":"text","text":"## 🗂 용어 구분 (헷갈리기 쉬움)\n| 이름 | 정체 |\n|---|---|\n| `doc_cards` | 문서 1건=요약 1장, 100건. **탐색용 검색 컬렉션** |\n| 공고 진단 카드 | 화면1 사용자 출력 — 배점·자격·제출서류·낙찰하한 |\n| 참가자격 요건 | 자격 조건만 뽑은 채점표 (`eligibility.json`) |\n\n**진단 카드 = 화면, 자격요건 = 그 카드의 한 칸.** 적격/부적격은 카드 전체가 아니라 자격 칸의 결론","x":-380,"y":780,"width":660,"height":280,"color":"5"},
+
+		{"id":"link","type":"text","text":"## 🔗 관련 노트\n[[전재완 작업 정리 — 참가자격 매칭(Eligibility)]] — 원본\n[[쿼리 파이프라인 개념 정리]] — doc_cards vs chunks\n[[검색 실험 구도]] — 팀 키 한도\n[[청킹 표 처리 수정 (Phase 11)]] — 전건 재추출 합의 선례\n[[BidMate 웹 연동 현황]] — 적합도 정의 미합의 이슈","x":-1080,"y":780,"width":660,"height":280,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"title","fromSide":"bottom","toNode":"h-flow","toSide":"top"},
+		{"id":"e2","fromNode":"h-flow","fromSide":"bottom","toNode":"f1","toSide":"top"},
+		{"id":"e3","fromNode":"f1","fromSide":"bottom","toNode":"f2","toSide":"top","label":"캐시된 목록만 전달"},
+		{"id":"e4","fromNode":"f2","fromSide":"bottom","toNode":"f3","toSide":"top"},
+		{"id":"e5","fromNode":"f3","fromSide":"bottom","toNode":"order","toSide":"top"},
+		{"id":"e6","fromNode":"title","fromSide":"right","toNode":"h-why","toSide":"top"},
+		{"id":"e7","fromNode":"h-why","fromSide":"bottom","toNode":"w1","toSide":"top"},
+		{"id":"e8","fromNode":"w1","fromSide":"bottom","toNode":"w2","toSide":"top"},
+		{"id":"e9","fromNode":"w2","fromSide":"bottom","toNode":"w3","toSide":"top","label":"대안도 불가"},
+		{"id":"e10","fromNode":"w2","fromSide":"bottom","toNode":"w4","toSide":"top"},
+		{"id":"e11","fromNode":"w4","fromSide":"right","toNode":"h-open","toSide":"left"},
+		{"id":"e12","fromNode":"h-open","fromSide":"bottom","toNode":"o1","toSide":"top"},
+		{"id":"e13","fromNode":"o1","fromSide":"bottom","toNode":"o2","toSide":"top","label":"해결책"},
+		{"id":"e14","fromNode":"o2","fromSide":"bottom","toNode":"o3","toSide":"top"},
+		{"id":"e15","fromNode":"o3","fromSide":"bottom","toNode":"o4","toSide":"top"},
+		{"id":"e16","fromNode":"o4","fromSide":"bottom","toNode":"o5","toSide":"top"},
+		{"id":"e17","fromNode":"o5","fromSide":"bottom","toNode":"o6","toSide":"top"},
+		{"id":"e18","fromNode":"f2","fromSide":"right","toNode":"scope","toSide":"left"},
+		{"id":"e19","fromNode":"order","fromSide":"bottom","toNode":"link","toSide":"top"}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}
