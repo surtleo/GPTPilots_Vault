@@ -1,0 +1,369 @@
+{
+	"nodes": [
+		{
+			"id": "title",
+			"type": "text",
+			"text": "# 📸 BidMate 실제 웹 플로우\n2026-07-29 · localhost:5173(프론트) + :8000(백엔드) 실기동 촬영\n\n**목업이 아니라 실제 화면이다.** 공고 100건은 `GET /rfps` 실데이터, 채팅은 실제 RAG 응답(gpt-5-mini).\n\n설계 원안 → [[유저 플로우]] · 연동 현황 → [[BidMate 웹 연동 현황]]",
+			"x": -80,
+			"y": -560,
+			"width": 900,
+			"height": 220,
+			"color": "6"
+		},
+		{
+			"id": "s1",
+			"type": "file",
+			"file": "메모/김범진(데이터 처리)/attachments/bidmate-flow/01-온보딩-입력전.jpg",
+			"x": -80,
+			"y": -280,
+			"width": 660,
+			"height": 410
+		},
+		{
+			"id": "s1c",
+			"type": "text",
+			"text": "## ① 온보딩 1/3 — `/onboarding`\n회사 사업 내용을 자유 서술하거나 회사소개서를 첨부.\n\n**진행 1/3** 표시. 파일 업로드는 PDF·PPTX·HWP 최대 20MB.",
+			"x": -80,
+			"y": 142,
+			"width": 660,
+			"height": 175,
+			"color": "4"
+		},
+		{
+			"id": "s2",
+			"type": "file",
+			"file": "메모/김범진(데이터 처리)/attachments/bidmate-flow/02-온보딩-입력후.jpg",
+			"x": 680,
+			"y": -280,
+			"width": 660,
+			"height": 410
+		},
+		{
+			"id": "s2c",
+			"type": "text",
+			"text": "## ② 입력 완료\n\"지자체 관제·모니터링, IoT 센서 연동, 3년간 5건\"으로 입력.\n\n이 자유 서술이 다음 단계 자동추론의 입력이 된다.",
+			"x": 680,
+			"y": 142,
+			"width": 660,
+			"height": 175,
+			"color": "4"
+		},
+		{
+			"id": "s3",
+			"type": "file",
+			"file": "메모/김범진(데이터 처리)/attachments/bidmate-flow/03-질문지-1of3.jpg",
+			"x": 1440,
+			"y": -280,
+			"width": 660,
+			"height": 410
+		},
+		{
+			"id": "s3c",
+			"type": "text",
+			"text": "## ③ 질문지 1/3 — `/questionnaire`\n주력 사업 분야 3택. **다음 버튼이 비활성** — 선택 전엔 못 넘어간다.",
+			"x": 1440,
+			"y": 142,
+			"width": 660,
+			"height": 175,
+			"color": "5"
+		},
+		{
+			"id": "s4",
+			"type": "file",
+			"file": "메모/김범진(데이터 처리)/attachments/bidmate-flow/04-질문지-1of3-선택.jpg",
+			"x": -80,
+			"y": 340,
+			"width": 660,
+			"height": 410
+		},
+		{
+			"id": "s4c",
+			"type": "text",
+			"text": "## ④ 선택 시 활성화\n\"관제·모니터링 시스템\" 선택 → 다음 버튼 활성.",
+			"x": -80,
+			"y": 762,
+			"width": 660,
+			"height": 175,
+			"color": "5"
+		},
+		{
+			"id": "s5",
+			"type": "file",
+			"file": "메모/김범진(데이터 처리)/attachments/bidmate-flow/05-질문지-2of3-자동추론칩.jpg",
+			"x": 680,
+			"y": 340,
+			"width": 660,
+			"height": 410
+		},
+		{
+			"id": "s5c",
+			"type": "text",
+			"text": "## ⑤ 2/3 — 자동추론 칩 ⚠️\n온보딩 서술에서 뽑았다며 `관제 시스템`·`IoT 센서 연동`·`지자체 대응` 칩 제시.\n\n> **여기가 전재완이 지적한 지점이다.**\n> 이 칩은 **mock 자동추론**이었고, 화면2가 묻는 건 참가자격이 아니라 **적합도**라는 게 감사 중 드러났다 → [[참가자격 매칭 구조 정리]]",
+			"x": 680,
+			"y": 762,
+			"width": 660,
+			"height": 175,
+			"color": "1"
+		},
+		{
+			"id": "s6",
+			"type": "file",
+			"file": "메모/김범진(데이터 처리)/attachments/bidmate-flow/06-질문지-3of3.jpg",
+			"x": 1440,
+			"y": 340,
+			"width": 660,
+			"height": 410
+		},
+		{
+			"id": "s6c",
+			"type": "text",
+			"text": "## ⑥ 3/3 — 3년 실적 건수\n\"계약 서류 기준으로 입력해주세요\" 힌트. 숫자 입력.",
+			"x": 1440,
+			"y": 762,
+			"width": 660,
+			"height": 175,
+			"color": "5"
+		},
+		{
+			"id": "s7",
+			"type": "file",
+			"file": "메모/김범진(데이터 처리)/attachments/bidmate-flow/07-질문지-3of3-입력.jpg",
+			"x": -80,
+			"y": 960,
+			"width": 660,
+			"height": 410
+		},
+		{
+			"id": "s7c",
+			"type": "text",
+			"text": "## ⑦ 입력 후 → 추천 받기\n5건 입력하니 `추천 받기` 활성화.",
+			"x": -80,
+			"y": 1382,
+			"width": 660,
+			"height": 175,
+			"color": "5"
+		},
+		{
+			"id": "s8",
+			"type": "file",
+			"file": "메모/김범진(데이터 처리)/attachments/bidmate-flow/08-추천목록-100건.jpg",
+			"x": 680,
+			"y": 960,
+			"width": 660,
+			"height": 410
+		},
+		{
+			"id": "s8c",
+			"type": "text",
+			"text": "## ⑧ 추천 목록 — `/recommendations` ✅ 실데이터\n**공고 100건**, 마감일 최신순, 사업명·발주기관 검색.\n\n> 헤더에 명시: *\"적합도 추천은 준비 중이라 아직 표시하지 않습니다.\"*\n> 별점·적합도·태그를 **일부러 안 붙였다** — 판정 기준 미합의 상태에서 근거 없는 점수를 붙이면 진짜 추천으로 오해되기 때문 → [[BidMate 웹 연동 현황]] §4",
+			"x": 680,
+			"y": 1382,
+			"width": 660,
+			"height": 175,
+			"color": "2"
+		},
+		{
+			"id": "s9",
+			"type": "file",
+			"file": "메모/김범진(데이터 처리)/attachments/bidmate-flow/09-공고상세.jpg",
+			"x": 1440,
+			"y": 960,
+			"width": 660,
+			"height": 410
+		},
+		{
+			"id": "s9c",
+			"type": "text",
+			"text": "## ⑨ 공고 상세 — `/rfp/:doc_id` ✅ 실데이터\n좌: 사업개요·주요조건(규모 2.1억·공고번호·공개일·마감일·HWP)\n우: 채팅 진입 + 응답 유형 3종 안내\n\n**활성 문서로 고정**되어 사업명을 안 써도 된다.",
+			"x": 1440,
+			"y": 1382,
+			"width": 660,
+			"height": 175,
+			"color": "2"
+		},
+		{
+			"id": "s10",
+			"type": "file",
+			"file": "메모/김범진(데이터 처리)/attachments/bidmate-flow/10-상세-2단레이아웃.jpg",
+			"x": -80,
+			"y": 1580,
+			"width": 660,
+			"height": 410
+		},
+		{
+			"id": "s10c",
+			"type": "text",
+			"text": "## ⑩ 2단 레이아웃\n좌측에 공고 리스트가 상주해 문서를 바꿔가며 물어볼 수 있다.\n\n응답 유형: `근거 기반 답변` / `반문(CLARIFY)` / `NO_EVIDENCE`",
+			"x": -80,
+			"y": 2002,
+			"width": 660,
+			"height": 175,
+			"color": "2"
+		},
+		{
+			"id": "s11",
+			"type": "file",
+			"file": "메모/김범진(데이터 처리)/attachments/bidmate-flow/11-채팅-RAG답변.jpg",
+			"x": 680,
+			"y": 1580,
+			"width": 660,
+			"height": 410
+		},
+		{
+			"id": "s11c",
+			"type": "text",
+			"text": "## ⑪ 실제 RAG 답변 ✅\n\"주요 과업 내용은?\" → **출처(문서·섹션)와 함께** 항목별 답변.\n\n`(출처: … II. 제안서 목차 및 작성방법 — 2. 제안의 범위)` 형태로 섹션 경로까지 표기.\n\n실측 비용 약 **$0.002/질문**. 답변 생성 15초 안내.",
+			"x": 680,
+			"y": 2002,
+			"width": 660,
+			"height": 175,
+			"color": "2"
+		},
+		{
+			"id": "s12",
+			"type": "file",
+			"file": "메모/김범진(데이터 처리)/attachments/bidmate-flow/12-마이페이지.jpg",
+			"x": 1440,
+			"y": 1580,
+			"width": 660,
+			"height": 410
+		},
+		{
+			"id": "s12c",
+			"type": "text",
+			"text": "## ⑫ 마이페이지 — `/me` (목업)\n프로필 칩(관제 시스템·IoT 센서·지자체) + 지난 대화 3건.\n\n> `이어서 대화하기`는 **비활성**이다 — 대화 이력 저장 백엔드가 없어 죽은 링크가 되기 때문.",
+			"x": 1440,
+			"y": 2002,
+			"width": 660,
+			"height": 175,
+			"color": "3"
+		},
+		{
+			"id": "state",
+			"type": "text",
+			"text": "## 🚦 화면별 상태 (촬영 시점 실측)\n| 경로 | 화면 | 상태 |\n|---|---|---|\n| `/onboarding` | 온보딩 | 🟡 목업 |\n| `/questionnaire` | 질문지 | 🟡 목업 (자동추론 칩이 mock) |\n| `/recommendations` | 공고 목록 | 🟢 **실데이터 100건** |\n| `/rfp/:doc_id` | 공고 상세 + 채팅 | 🟢 **실데이터 + 실제 RAG** |\n| `/me` | 마이페이지 | 🟡 목업 |\n\n목업 3화면이 전부 **추천 엔진 미정**이라는 한 블로커에 걸려 있다.",
+			"x": -80,
+			"y": 2200,
+			"width": 700,
+			"height": 330,
+			"color": "3"
+		},
+		{
+			"id": "blocker",
+			"type": "text",
+			"text": "## 🔴 최대 블로커 — 적합도 정의\n\"적합도 상/중/하\"가 뭔지 합의된 바가 없다.\n실적 도메인 매칭인지, 금액대인지, 기관 유형인지 미정.\n\n**막힌 건 구현이 아니라 정의다.** 온보딩·질문지가 무엇을 수집할지도 여기서 갈린다.\n\n→ [[BidMate 웹 연동 현황]] §5 · [[참가자격 매칭 구조 정리]] (참가자격 ↔ 적합도 2축 분리)",
+			"x": 680,
+			"y": 2200,
+			"width": 700,
+			"height": 330,
+			"color": "1"
+		},
+		{
+			"id": "howto",
+			"type": "text",
+			"text": "## ▶️ 재현 방법\n```bash\ncd GPTPilots_Webs\ncp .env.example .env   # VITE_API_TOKEN=devtoken\n./scripts/dev.sh\n```\n런처가 백엔드(`../GPTPilots_Project`, :8000)를 먼저 띄우고 `/health` 200을 기다린 뒤 프론트(:5173)를 연다.\n백엔드 warmup(e5 모델 + Chroma 로딩) 60~90초.\n\n**비용** — 목록·상세 열람 $0 / 채팅만 질문당 약 $0.002",
+			"x": 1440,
+			"y": 2200,
+			"width": 700,
+			"height": 330,
+			"color": "6"
+		}
+	],
+	"edges": [
+		{
+			"id": "e0",
+			"fromNode": "title",
+			"fromSide": "bottom",
+			"toNode": "s1",
+			"toSide": "top"
+		},
+		{
+			"id": "e1",
+			"fromNode": "s1c",
+			"fromSide": "right",
+			"toNode": "s2",
+			"toSide": "left"
+		},
+		{
+			"id": "e2",
+			"fromNode": "s2c",
+			"fromSide": "right",
+			"toNode": "s3",
+			"toSide": "left"
+		},
+		{
+			"id": "e3",
+			"fromNode": "s3c",
+			"fromSide": "bottom",
+			"toNode": "s4",
+			"toSide": "top"
+		},
+		{
+			"id": "e4",
+			"fromNode": "s4c",
+			"fromSide": "right",
+			"toNode": "s5",
+			"toSide": "left"
+		},
+		{
+			"id": "e5",
+			"fromNode": "s5c",
+			"fromSide": "right",
+			"toNode": "s6",
+			"toSide": "left"
+		},
+		{
+			"id": "e6",
+			"fromNode": "s6c",
+			"fromSide": "bottom",
+			"toNode": "s7",
+			"toSide": "top"
+		},
+		{
+			"id": "e7",
+			"fromNode": "s7c",
+			"fromSide": "right",
+			"toNode": "s8",
+			"toSide": "left"
+		},
+		{
+			"id": "e8",
+			"fromNode": "s8c",
+			"fromSide": "right",
+			"toNode": "s9",
+			"toSide": "left"
+		},
+		{
+			"id": "e9",
+			"fromNode": "s9c",
+			"fromSide": "bottom",
+			"toNode": "s10",
+			"toSide": "top"
+		},
+		{
+			"id": "e10",
+			"fromNode": "s10c",
+			"fromSide": "right",
+			"toNode": "s11",
+			"toSide": "left"
+		},
+		{
+			"id": "e11",
+			"fromNode": "s11c",
+			"fromSide": "right",
+			"toNode": "s12",
+			"toSide": "left"
+		},
+		{
+			"id": "e-state",
+			"fromNode": "s12c",
+			"fromSide": "bottom",
+			"toNode": "state",
+			"toSide": "top"
+		}
+	],
+	"metadata": {
+		"version": "1.0-1.0",
+		"frontmatter": {}
+	}
+}
