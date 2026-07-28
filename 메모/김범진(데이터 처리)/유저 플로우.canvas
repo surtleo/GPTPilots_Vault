@@ -1,517 +1,334 @@
 {
-	"nodes":[
-		{"id":"8884289a2e26e35b","type":"group","x":-460,"y":-100,"width":620,"height":200,"label":"프로필"},
-		{"id":"hdr-flow","type":"text","text":"# 🅰️ BidMate 유저 플로우\n프로필 → 4개 기능 → 프로젝트 → 챗·분석 (2026-07-23)","x":-460,"y":-260,"width":620,"height":100,"color":"2"},
+	"nodes": [
 		{
-			"id":"36caf558a3a671de",
-			"type":"text",
-			"text":"회사 정보",
-			"styleAttributes":{},
-			"x":-120,
-			"y":-80,
-			"width":260,
-			"height":60
+			"id": "title",
+			"type": "text",
+			"text": "# 🗺 BidMate 유저 플로우\n2026-07-29 재작성 · 실기동 화면 기준\n\n원 설계(2026-07-23 스케치)를 **실제 구현된 화면에 맞춰 다시 그린 것**.\n스케치 원본은 `_archive/유저 플로우 원본 스케치` · 화면 캡처는 [[BidMate 실제 웹 플로우]]\n\n**🟢 실데이터 · 🟡 목업(화면만) · ⚪ 미구현(설계에만 있음)**",
+			"x": -980,
+			"y": -700,
+			"width": 900,
+			"height": 250,
+			"color": "6"
 		},
 		{
-			"id":"eda585dc4051a5a9",
-			"type":"text",
-			"text":"뭐하는 회사인지, 규모가 어떤지 등등",
-			"styleAttributes":{},
-			"x":-120,
-			"y":20,
-			"width":260,
-			"height":60
+			"id": "s0",
+			"type": "text",
+			"text": "## 진입\n`/` → `/onboarding` 리다이렉트\n\n첫 방문 가정. 로그인·세션 없음.",
+			"x": -980,
+			"y": -380,
+			"width": 620,
+			"height": 160,
+			"color": "6"
 		},
 		{
-			"id":"09f85d7bd4abf69c",
-			"type":"text",
-			"text":"회사문서",
-			"styleAttributes":{},
-			"x":-440,
-			"y":20,
-			"width":260,
-			"height":60
+			"id": "s1",
+			"type": "text",
+			"text": "## 1. 온보딩 🟡\n`/onboarding` · 진행 1/3\n\n**회사가 뭘 해왔는지** 자유 서술\n또는 회사소개서 첨부\n(PDF·PPTX·HWP, 20MB)\n\n→ 이 텍스트가 다음 단계 추론 입력",
+			"x": -200,
+			"y": -380,
+			"width": 620,
+			"height": 260,
+			"color": "3"
 		},
 		{
-			"id":"0c59d4232206e949",
-			"type":"text",
-			"text":"1. 현재 정부 사업 rfp 탐색\n2. rfp 평가 보고서\n3. rfp 기본 요건 충족 확인\n4. 직접쓰기",
-			"styleAttributes":{},
-			"x":400,
-			"y":-20,
-			"width":260,
-			"height":310
+			"id": "s2",
+			"type": "text",
+			"text": "## 2. 질문지 🟡\n`/questionnaire` · 3단계\n\n**1/3** 주력 분야 3택\n**2/3** 자동추론 칩 확인 ⚠️\n**3/3** 최근 3년 실적 건수\n\n각 단계는 응답 전 `다음` 비활성",
+			"x": 580,
+			"y": -380,
+			"width": 620,
+			"height": 260,
+			"color": "3"
 		},
 		{
-			"id":"ec2f24db66b24c59",
-			"type":"text",
-			"text":"rfp 우리회사 방향과 맞는것 추천해주기",
-			"styleAttributes":{},
-			"x":400,
-			"y":-120,
-			"width":260,
-			"height":60
+			"id": "s3",
+			"type": "text",
+			"text": "## 3. 추천 목록 🟢\n`/recommendations`\n\n**공고 100건** · 마감일 최신순\n사업명·발주기관 검색\n카드: 사업명·기관·금액·마감·요약·공고번호·형식\n\n> 적합도·별점 **표시 안 함**",
+			"x": 1360,
+			"y": -380,
+			"width": 620,
+			"height": 260,
+			"color": "4"
 		},
 		{
-			"id":"4ea711cedae26744",
-			"type":"text",
-			"text":"질문",
-			"styleAttributes":{},
-			"x":780,
-			"y":40,
-			"width":260,
-			"height":60
+			"id": "s4",
+			"type": "text",
+			"text": "## 4. 공고 상세 + 채팅 🟢\n`/rfp/:doc_id`\n\n좌: 사업개요·주요조건 / 우: 채팅\n**해당 공고가 활성 문서로 고정**\n→ 사업명 없이 질문 가능\n\n2단 레이아웃에서 문서 전환 가능",
+			"x": 2140,
+			"y": -380,
+			"width": 620,
+			"height": 260,
+			"color": "4"
 		},
 		{
-			"id":"c4bdbaecc3d55c3f",
-			"type":"text",
-			"text":"3",
-			"styleAttributes":{},
-			"x":780,
-			"y":135,
-			"width":260,
-			"height":60
+			"id": "s5",
+			"type": "text",
+			"text": "## 5. 마이페이지 🟡\n`/me`\n\n내 프로필 / 저장한 공고 / 대화 기록\n프로필 칩 + 지난 대화 목록\n\n> `이어서 대화하기` **비활성**",
+			"x": 2920,
+			"y": -380,
+			"width": 620,
+			"height": 240,
+			"color": "3"
 		},
 		{
-			"id":"e772512d962eaa78",
-			"type":"text",
-			"text":"1. 현재 정부 사업 rfp 탐색",
-			"styleAttributes":{},
-			"x":930,
-			"y":-120,
-			"width":260,
-			"height":60
+			"id": "d1",
+			"type": "text",
+			"text": "### 입력 데이터\n자유 서술 텍스트 + (선택) 첨부 문서\n\n**저장 백엔드 없음** — 새로고침 시 소실",
+			"x": -200,
+			"y": -40,
+			"width": 620,
+			"height": 160,
+			"color": "5"
 		},
 		{
-			"id":"6ec9b2ef5daac95f",
-			"type":"text",
-			"text":"회사자료",
-			"styleAttributes":{},
-			"x":1060,
-			"y":40,
-			"width":260,
-			"height":60
+			"id": "d2",
+			"type": "text",
+			"text": "### ⚠️ 자동추론 칩은 mock\n온보딩 서술에서 뽑았다고 표시하지만 **실제 추론이 아니다**.\n\n게다가 여기서 묻는 분야·3년 실적은 참가자격이 아니라 **적합도** 정보다.\n→ [[참가자격 매칭 구조 정리]] Phase 3",
+			"x": 580,
+			"y": -40,
+			"width": 620,
+			"height": 210,
+			"color": "1"
 		},
 		{
-			"id":"c551f2034983eed6",
-			"type":"text",
-			"text":"1. 첫번째 사업",
-			"styleAttributes":{},
-			"x":1720,
-			"y":140,
-			"width":260,
-			"height":60
+			"id": "d3",
+			"type": "text",
+			"text": "### `GET /rfps`\n출처 `data/extracted/meta.json` 100건\n\n**비용 0** — 임베딩·Chroma·LLM 안 탐 (검색이 아니라 열람)\n목록을 아무리 넘겨도 돈이 안 든다",
+			"x": 1360,
+			"y": -40,
+			"width": 620,
+			"height": 190,
+			"color": "5"
 		},
 		{
-			"id":"300e770e84c61024",
-			"type":"text",
-			"text":"2. 두번째 사업",
-			"styleAttributes":{},
-			"x":2040,
-			"y":135,
-			"width":260,
-			"height":60
+			"id": "d4",
+			"type": "text",
+			"text": "### `POST /ask`\n라우터 5분기 → `retrieval`이면 RAG\n\n답변에 **출처(문서·섹션 경로)** 부착\n응답 유형: 근거기반 / 반문(CLARIFY) / NO_EVIDENCE\n\n**약 $0.002/질문** · 생성 15초",
+			"x": 2140,
+			"y": -40,
+			"width": 620,
+			"height": 220,
+			"color": "5"
 		},
 		{
-			"id":"f7a8f3a760a3de14",
-			"type":"text",
-			"text":"이것에대한 출처를 클릭하면 문서 다운받아짐. rfp문서. 사용자마다 저장소? 정부사업을 현재진행형중이다. 또는 그냥 리서치만함.",
-			"styleAttributes":{},
-			"x":1420,
-			"y":-15,
-			"width":260,
-			"height":185
+			"id": "b3",
+			"type": "text",
+			"text": "### 목록에서 갈라지는 곳\n- 검색어 입력 → 필터링\n- `상세 →` 클릭 → 4번으로\n- 상단 `내 정보` → 5번으로",
+			"x": 1360,
+			"y": 250,
+			"width": 620,
+			"height": 170
 		},
 		{
-			"id":"1088d06ccee81242",
-			"type":"text",
-			"text":"현재 정부 사업 rfp를 탐색 top3",
-			"styleAttributes":{},
-			"x":1420,
-			"y":-120,
-			"width":260,
-			"height":60
+			"id": "b4",
+			"type": "text",
+			"text": "### 상세에서 갈라지는 곳\n- 좌측 리스트에서 **다른 공고 클릭** → 활성 문서 교체\n- `새 대화` → 이력 초기화\n- `공고 자세히 ∨` → 메타 펼치기\n- 추천 질문 칩 3종",
+			"x": 2140,
+			"y": 250,
+			"width": 620,
+			"height": 200
 		},
 		{
-			"id":"eb751d17ebe6a813",
-			"type":"text",
-			"text":"실제진행",
-			"styleAttributes":{},
-			"x":1720,
-			"y":280,
-			"width":260,
-			"height":60
+			"id": "h-plan",
+			"type": "text",
+			"text": "# ⚪ 원 설계에 있었으나 아직 없는 것\n2026-07-23 스케치가 그렸던 4개 기능 중 **1개만** 구현됐다.",
+			"x": -980,
+			"y": 540,
+			"width": 900,
+			"height": 130,
+			"color": "2"
 		},
 		{
-			"id":"27073900cef9a5e1",
-			"type":"text",
-			"text":"알아본것",
-			"styleAttributes":{},
-			"x":2040,
-			"y":280,
-			"width":260,
-			"height":60
+			"id": "p1",
+			"type": "text",
+			"text": "## ① RFP 탐색\n**구현됨** → 3번 추천 목록\n단, \"우리 회사 방향과 맞는 것\" 추천은 빠지고 **전체 목록 + 검색**만 살았다",
+			"x": -200,
+			"y": 710,
+			"width": 620,
+			"height": 190,
+			"color": "4"
 		},
 		{
-			"id":"c5ac0c38a637913d",
-			"type":"text",
-			"text":"프로젝트",
-			"styleAttributes":{},
-			"x":1940,
-			"y":-120,
-			"width":260,
-			"height":60
+			"id": "p2",
+			"type": "text",
+			"text": "## ② RFP 평가 보고서 ⚪\n공고를 평가해 보고서를 내주는 기능.\n미착수.",
+			"x": 580,
+			"y": 710,
+			"width": 620,
+			"height": 170
 		},
 		{
-			"id":"a8f1f162d6f80c0e",
-			"type":"text",
-			"text":"3. 내가 가져온 문서",
-			"styleAttributes":{},
-			"x":2340,
-			"y":135,
-			"width":260,
-			"height":60
+			"id": "p3",
+			"type": "text",
+			"text": "## ③ 기본 요건 충족 확인 ⚪\n참가자격 판정. **백엔드는 진행 중** (전재완 Eligibility) 이나 화면 연결은 아직.\n→ [[참가자격 매칭 구조 정리]]",
+			"x": 1360,
+			"y": 710,
+			"width": 620,
+			"height": 190,
+			"color": "3"
 		},
 		{
-			"id":"296d78807abf07d9",
-			"type":"text",
-			"text":"인포그래피",
-			"styleAttributes":{},
-			"x":1060,
-			"y":135,
-			"width":260,
-			"height":60
+			"id": "p4",
+			"type": "text",
+			"text": "## ④ 직접 쓰기 ⚪\n제안서를 직접 작성하는 기능. 미착수.\n\n스케치의 \"프로젝트 / 첫번째·두번째 사업 / 내가 가져온 문서 / 회사자료랑 1:1 분석\"이 여기 묶여 있었다.",
+			"x": 2140,
+			"y": 710,
+			"width": 620,
+			"height": 210
 		},
 		{
-			"id":"a3d2cb4056823ec8",
-			"type":"text",
-			"text":"이 rfp 문서 요약을 볼수도",
-			"styleAttributes":{},
-			"x":2040,
-			"y":420,
-			"width":260,
-			"height":60
+			"id": "blocker",
+			"type": "text",
+			"text": "# 🔴 목업 3화면을 막고 있는 것 — 하나다\n\n**\"적합도 상/중/하\"가 무엇인지 합의된 바가 없다.**\n실적 도메인 매칭인지, 금액대인지, 기관 유형인지 미정.\n\n| 막힌 화면 | 왜 |\n|---|---|\n| 온보딩 | 무엇을 수집해야 하는지가 추천 기준에 달림 |\n| 질문지 | 같은 이유. 지금 칩이 mock인 것도 여기서 옴 |\n| 마이페이지 | 저장·이력 백엔드 부재(별개 사유) |\n\n> 막힌 건 구현이 아니라 **정의**다. → [[BidMate 웹 연동 현황]] §5",
+			"x": -980,
+			"y": 990,
+			"width": 900,
+			"height": 400,
+			"color": "1"
 		},
 		{
-			"id":"d18404c99174853d",
-			"type":"text",
-			"text":"여기서 쭉 진행",
-			"styleAttributes":{},
-			"x":1720,
-			"y":440,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"821c2e20886537b4",
-			"type":"text",
-			"text":"챗 화면",
-			"styleAttributes":{},
-			"x":1720,
-			"y":620,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"578d80c9bb0cb7bb",
-			"type":"text",
-			"text":"회사자료랑 1:1 분석",
-			"styleAttributes":{},
-			"x":2340,
-			"y":280,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"d7eea81aa63249fb",
-			"type":"text",
-			"text":"회사프로필정보, 주는 사내 문서",
-			"styleAttributes":{},
-			"x":-120,
-			"y":950,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"99f718b676da2889",
-			"type":"text",
-			"text":"포괄적인 rfp를 추천\n회사의 방향성과 맞다면",
-			"styleAttributes":{},
-			"x":-120,
-			"y":1090,
-			"width":260,
-			"height":80
-		},
-		{
-			"id":"1d92fe189a5e7355",
-			"type":"text",
-			"text":"사업 a -> 얼마나 적격한가.",
-			"styleAttributes":{},
-			"x":220,
-			"y":1110,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"7ea25f96da08d335",
-			"type":"text",
-			"text":"회사가 rfp를 확인, 확인후 실제로 진행을 하면서 평가 기준에 맞게 개발 계획서(?), 등등 프로젝트를 하면서 회사 내부 정보를 인풋",
-			"styleAttributes":{},
-			"x":220,
-			"y":950,
-			"width":260,
-			"height":120
-		},
-		{
-			"id":"cc463479e0b4322f",
-			"type":"text",
-			"text":"유형을 나눠서 실험하기에는 좋았다.",
-			"styleAttributes":{},
-			"x":-120,
-			"y":1190,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"44103084dab32b31",
-			"type":"text",
-			"text":"회사 정보, 회사 방향성, 회사 문서 예시 (어떤회사인지, 규모, 매출)",
-			"styleAttributes":{},
-			"x":-120,
-			"y":1270,
-			"width":300,
-			"height":60
-		},
-		{
-			"id":"896856720b029650",
-			"type":"text",
-			"text":"rfp 중에서 필요한것들\n(사업개요, 사업 뭐시기 .. )\n100데이터중에서 실제문서기반",
-			"styleAttributes":{},
-			"x":-120,
-			"y":1390,
-			"width":260,
-			"height":100
-		},
-		{
-			"id":"0727f26918235313",
-			"type":"text",
-			"text":"어떤 인풋을 넣어야할지",
-			"styleAttributes":{},
-			"x":-460,
-			"y":1270,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"a5c150eadc47a032",
-			"type":"text",
-			"text":"rag 기대되는 아웃풋",
-			"styleAttributes":{},
-			"x":-460,
-			"y":1390,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"6ad5d8f5e41cd0d4",
-			"type":"text",
-			"text":"그걸 조합해서 어떤 결과가 나오면 좋겠나",
-			"styleAttributes":{},
-			"x":-460,
-			"y":1550,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"d95c7dcabc949a31",
-			"type":"text",
-			"text":"추천 rfp 1,2,3 머시기\n방향성이 적격함.\n",
-			"styleAttributes":{},
-			"x":-120,
-			"y":1550,
-			"width":260,
-			"height":120
-		},
-		{
-			"id":"bd3668bbda99560b",
-			"type":"text",
-			"text":"평가를 이게 맞았는지 아닌지 \n어떻게 평가할지.",
-			"styleAttributes":{},
-			"x":-460,
-			"y":1790,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"298d6ccc2dfeb893",
-			"type":"text",
-			"text":"실제로 rag에서 기대되는 아웃풋이 실제로 문서자체가 틀림.\nrag에서 나와야하는 데이터가 기대되는 아웃과 괴리가 큼.\n조합해서 나올 결과가 괴리가 큼.",
-			"styleAttributes":{},
-			"x":-120,
-			"y":1790,
-			"width":260,
-			"height":160
-		},
-		{"id":"hdr-brain","type":"text","text":"# 🅱️ 그 전 — RFP 추천 초기 브레인스토밍\n구 `그냥.canvas`(2026-07-23)를 흡수한 것. 위 플로우의 **초기 형태**이자, \"추천을 뭘 기준으로 하나\"라는 질문이 처음 나온 자리다.\n\n여기서 제기된 **추천 기준 미정** 문제는 아직 안 풀렸다 → [[BidMate 웹 연동 현황]] (화면 3개가 이 때문에 블록됨)","x":-340,"y":600,"width":700,"height":200,"color":"2"}
+			"id": "axis",
+			"type": "text",
+			"text": "## 🧭 참고 — 두 축을 섞지 말 것\n\n| 축 | 질문 | 성격 |\n|---|---|---|\n| **참가자격** | 우리가 낼 수 있나? | 합·불 (이분법) |\n| **적합도** | 우리가 잘할 일인가? | 순위 (연속값) |\n\n질문지 2/3이 묻던 분야·실적은 **적합도** 쪽이다. 자격이 아니다.\n이 분리가 [[참가자격 매칭 구조 정리]] Phase 3의 결론이었다.",
+			"x": -20,
+			"y": 990,
+			"width": 700,
+			"height": 330,
+			"color": "6"
+		}
 	],
-	"edges":[
+	"edges": [
 		{
-			"id":"1f3fce559e8e9581",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"09f85d7bd4abf69c",
-			"fromSide":"right",
-			"toNode":"eda585dc4051a5a9",
-			"toSide":"left"
+			"id": "m0",
+			"fromNode": "s0",
+			"fromSide": "right",
+			"toNode": "s1",
+			"toSide": "left"
 		},
 		{
-			"id":"ccdf54eba85f6fa1",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"36caf558a3a671de",
-			"fromSide":"bottom",
-			"toNode":"eda585dc4051a5a9",
-			"toSide":"top"
+			"id": "m1",
+			"fromNode": "s1",
+			"fromSide": "right",
+			"toNode": "s2",
+			"toSide": "left"
 		},
 		{
-			"id":"88e18c7a33487f65",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"8884289a2e26e35b",
-			"fromSide":"top",
-			"toNode":"e772512d962eaa78",
-			"toSide":"top"
+			"id": "m2",
+			"fromNode": "s2",
+			"fromSide": "right",
+			"toNode": "s3",
+			"toSide": "left"
 		},
 		{
-			"id":"dd0c4b956495b24c",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"e772512d962eaa78",
-			"fromSide":"bottom",
-			"toNode":"4ea711cedae26744",
-			"toSide":"top"
+			"id": "m3",
+			"fromNode": "s3",
+			"fromSide": "right",
+			"toNode": "s4",
+			"toSide": "left"
 		},
 		{
-			"id":"bd29bd13fec85f66",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"e772512d962eaa78",
-			"fromSide":"bottom",
-			"toNode":"6ec9b2ef5daac95f",
-			"toSide":"top"
+			"id": "m4",
+			"fromNode": "s4",
+			"fromSide": "right",
+			"toNode": "s5",
+			"toSide": "left"
 		},
 		{
-			"id":"ead12ef458367f98",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"4ea711cedae26744",
-			"fromSide":"bottom",
-			"toNode":"c4bdbaecc3d55c3f",
-			"toSide":"top"
+			"id": "e-d1",
+			"fromNode": "s1",
+			"fromSide": "bottom",
+			"toNode": "d1",
+			"toSide": "top"
 		},
 		{
-			"id":"8c8668355c61e664",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"c5ac0c38a637913d",
-			"fromSide":"bottom",
-			"toNode":"c551f2034983eed6",
-			"toSide":"top"
+			"id": "e-d2",
+			"fromNode": "s2",
+			"fromSide": "bottom",
+			"toNode": "d2",
+			"toSide": "top"
 		},
 		{
-			"id":"0b4b3a0067f42bbc",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"c5ac0c38a637913d",
-			"fromSide":"bottom",
-			"toNode":"300e770e84c61024",
-			"toSide":"top"
+			"id": "e-d3",
+			"fromNode": "s3",
+			"fromSide": "bottom",
+			"toNode": "d3",
+			"toSide": "top"
 		},
 		{
-			"id":"2edc53f0dbfb5e9c",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"c551f2034983eed6",
-			"fromSide":"bottom",
-			"toNode":"eb751d17ebe6a813",
-			"toSide":"top"
+			"id": "e-d4",
+			"fromNode": "s4",
+			"fromSide": "bottom",
+			"toNode": "d4",
+			"toSide": "top"
 		},
 		{
-			"id":"8d6aa11aeff8f65e",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"300e770e84c61024",
-			"fromSide":"bottom",
-			"toNode":"27073900cef9a5e1",
-			"toSide":"top"
+			"id": "e-b3",
+			"fromNode": "d3",
+			"fromSide": "bottom",
+			"toNode": "b3",
+			"toSide": "top"
 		},
 		{
-			"id":"49dea261a3c42d76",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"27073900cef9a5e1",
-			"fromSide":"bottom",
-			"toNode":"a3d2cb4056823ec8",
-			"toSide":"top"
+			"id": "e-b4",
+			"fromNode": "d4",
+			"fromSide": "bottom",
+			"toNode": "b4",
+			"toSide": "top"
 		},
 		{
-			"id":"d505c6cfd11eed91",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"c5ac0c38a637913d",
-			"fromSide":"bottom",
-			"toNode":"a8f1f162d6f80c0e",
-			"toSide":"top"
+			"id": "e-b3s4",
+			"fromNode": "b3",
+			"fromSide": "right",
+			"toNode": "s4",
+			"toSide": "bottom",
+			"label": "상세 열기"
 		},
 		{
-			"id":"c32b23fc77edb5e9",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"a8f1f162d6f80c0e",
-			"fromSide":"bottom",
-			"toNode":"578d80c9bb0cb7bb",
-			"toSide":"top"
+			"id": "e-b4s4",
+			"fromNode": "b4",
+			"fromSide": "top",
+			"toNode": "s4",
+			"toSide": "bottom",
+			"label": "문서 교체"
 		},
 		{
-			"id":"1a663c3e9a9bee99",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"eb751d17ebe6a813",
-			"fromSide":"bottom",
-			"toNode":"d18404c99174853d",
-			"toSide":"top"
+			"id": "e-plan0",
+			"fromNode": "h-plan",
+			"fromSide": "bottom",
+			"toNode": "p1",
+			"toSide": "top"
 		},
 		{
-			"id":"6bea1f4700592bde",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"d18404c99174853d",
-			"fromSide":"bottom",
-			"toNode":"821c2e20886537b4",
-			"toSide":"top"
+			"id": "e-plan1",
+			"fromNode": "h-plan",
+			"fromSide": "right",
+			"toNode": "p2",
+			"toSide": "top"
 		},
 		{
-			"id":"27771ec71e79d3d1",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"d7eea81aa63249fb",
-			"fromSide":"bottom",
-			"toNode":"99f718b676da2889",
-			"toSide":"top"
+			"id": "e-plan2",
+			"fromNode": "h-plan",
+			"fromSide": "right",
+			"toNode": "p3",
+			"toSide": "top"
 		},
 		{
-			"id":"b026ee9d19baa19c",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"7ea25f96da08d335",
-			"fromSide":"bottom",
-			"toNode":"1d92fe189a5e7355",
-			"toSide":"top"
+			"id": "e-plan3",
+			"fromNode": "h-plan",
+			"fromSide": "right",
+			"toNode": "p4",
+			"toSide": "top"
 		},
-		{"id":"e-brain-link","fromNode":"hdr-brain","fromSide":"bottom","toNode":"d7eea81aa63249fb","toSide":"top"}
+		{
+			"id": "e-blocker",
+			"fromNode": "blocker",
+			"fromSide": "right",
+			"toNode": "axis",
+			"toSide": "left"
+		}
 	],
-	"metadata":{
-		"version":"1.0-1.0",
-		"frontmatter":{}
+	"metadata": {
+		"version": "1.0-1.0",
+		"frontmatter": {}
 	}
 }
