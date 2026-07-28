@@ -1,0 +1,48 @@
+{
+	"nodes":[
+		{"id":"defcc7b10e43bb95","x":-300,"y":-500,"width":890,"height":484,"type":"group","label":"구현 및 버전관리"},
+		{"id":"ec33c1ec01abda13","x":660,"y":-380,"width":1080,"height":284,"type":"group","label":"테스트 공간"},
+		{"id":"50c19eead5d37e53","x":9,"y":-96,"width":250,"height":60,"type":"text","text":"개인"},
+		{"id":"c8af659eda629b8b","x":-280,"y":-96,"width":250,"height":60,"type":"text","text":"개인"},
+		{"id":"0d0d9a4202f782df","type":"text","text":"개인(모델)","x":320,"y":-96,"width":250,"height":60},
+		{"id":"7c6220584f70cfdd","x":9,"y":-322,"width":250,"height":60,"type":"text","text":"깃허브"},
+		{"id":"a4e26318f6413b4e","x":9,"y":-440,"width":250,"height":60,"type":"text","text":"메인"},
+		{"id":"1d645b790000c90f","x":1090,"y":-344,"width":250,"height":60,"type":"text","text":"개인1"},
+		{"id":"a4af37ff7ae69aff","type":"text","text":"개인2","x":1090,"y":-262,"width":250,"height":60},
+		{"id":"6d22ad3aeff1f66c","x":1090,"y":-178,"width":250,"height":60,"type":"text","text":"개인3"},
+		{"id":"99dcf3687f74d700","x":680,"y":-344,"width":250,"height":60,"type":"text","text":"VM(100g)"},
+		{"id":"f3d2d8f212b93c3a","x":1440,"y":-344,"width":250,"height":60,"type":"text","text":"각자 브랜치"},
+		{"id":"c1fcc70e04e910a1","type":"text","text":"각자 브랜치","x":1440,"y":-262,"width":250,"height":60},
+		{"id":"9e1019ea2d2e85ad","type":"text","text":"각자 브랜치","x":1440,"y":-178,"width":250,"height":60},
+		{"id":"6f6a126758416e3a","x":180,"y":-759,"width":250,"height":60,"type":"text","text":"all 구글 드라이브"},
+		{"id":"baba4891ba990713","x":605,"y":-759,"width":250,"height":60,"type":"text","text":"2TB"},
+		{"id":"2ad6374c651cf3db","x":605,"y":-819,"width":250,"height":60,"type":"text","text":"가능?"},
+		{"id":"4f30a36e3e280e6c","x":180,"y":-699,"width":250,"height":60,"type":"text","text":"최신"},
+		{"id":"a674dc9301be3221","x":1780,"y":-783,"width":250,"height":60,"type":"text","text":"공유폴더"},
+		{"id":"c57abe655a2478c9","x":2190,"y":-819,"width":250,"height":60,"type":"text","text":"raw"},
+		{"id":"3b7dce8fea80e22a","x":2190,"y":-753,"width":250,"height":60,"type":"text","text":"메인"},
+		{"id":"b3995005fef4a0a7","x":2540,"y":-821,"width":250,"height":60,"type":"text","text":"드래"},
+		{"id":"1df56e155d9357e6","x":2540,"y":-753,"width":250,"height":60,"type":"text","text":"백터 db"},
+		{"id":"d91462b53c829e0a","x":1049,"y":-729,"width":250,"height":60,"type":"text","text":""},
+		{"id":"467ac1ad27e976ef","x":1049,"y":-600,"width":250,"height":60,"type":"text","text":""}
+	],
+	"edges":[
+		{"id":"87a28552409a7bb2","fromNode":"c8af659eda629b8b","fromSide":"top","toNode":"7c6220584f70cfdd","toSide":"bottom","label":"push"},
+		{"id":"04783e1f48d5f522","fromNode":"50c19eead5d37e53","fromSide":"top","toNode":"7c6220584f70cfdd","toSide":"bottom","label":"push"},
+		{"id":"e4f5d063ab012e2d","fromNode":"0d0d9a4202f782df","fromSide":"top","toNode":"7c6220584f70cfdd","toSide":"bottom","label":"push"},
+		{"id":"d362154b0cb3f9e1","fromNode":"99dcf3687f74d700","fromSide":"right","toNode":"1d645b790000c90f","toSide":"left"},
+		{"id":"463071860c982de4","fromNode":"99dcf3687f74d700","fromSide":"right","toNode":"a4af37ff7ae69aff","toSide":"left"},
+		{"id":"990bf7a3702f6800","fromNode":"99dcf3687f74d700","fromSide":"right","toNode":"6d22ad3aeff1f66c","toSide":"left"},
+		{"id":"873315fc23b990e2","fromNode":"7c6220584f70cfdd","fromSide":"top","toNode":"a4e26318f6413b4e","toSide":"bottom"},
+		{"id":"73b1c475b2b3c344","fromNode":"1d645b790000c90f","fromSide":"right","toNode":"f3d2d8f212b93c3a","toSide":"left"},
+		{"id":"2a4e39999de9e602","fromNode":"a4af37ff7ae69aff","fromSide":"right","toNode":"c1fcc70e04e910a1","toSide":"left"},
+		{"id":"fba88588e61de9e9","fromNode":"6d22ad3aeff1f66c","fromSide":"right","toNode":"9e1019ea2d2e85ad","toSide":"left"},
+		{"id":"06da3c2cc83d41bb","fromNode":"6f6a126758416e3a","fromSide":"right","toNode":"baba4891ba990713","toSide":"left"},
+		{"id":"8bf7be49535790b1","fromNode":"a674dc9301be3221","fromSide":"right","toNode":"3b7dce8fea80e22a","toSide":"left"},
+		{"id":"96fb4149ff06aa7b","fromNode":"a674dc9301be3221","fromSide":"right","toNode":"c57abe655a2478c9","toSide":"left"}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}
