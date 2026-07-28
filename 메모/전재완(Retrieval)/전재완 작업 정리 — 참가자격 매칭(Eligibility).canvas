@@ -1,211 +1,47 @@
 {
-  "nodes": [
-    {
-      "id": "title",
-      "type": "text",
-      "text": "# 🔍 전재완 작업 정리 — 참가자격 매칭(Eligibility)\n2026-07-27~28 · Phase 1~3 구현 + 팀원(수정) 대조 기반 4단계 디버깅\n\n**두 축** — ① 기능 설계(참가자격·적합도 분리, 프론트 3화면 연동) ② 추출 정확도 디버깅(팀원 raw data 대조 → 원인 4개·수정 4개)",
-      "x": -1080,
-      "y": -760,
-      "width": 660,
-      "height": 170,
-      "color": "6"
-    },
-    {
-      "id": "timeline",
-      "type": "text",
-      "text": "## 🗓 작업 흐름\n| 단계 | 내용 |\n|---|---|\n| 계획 | `ELIGIBILITY_MATCH_PLAN.md` — CLAUDE.md v1 Q1(참가자격) 스코프 |\n| Phase 1 | `src/eligibility.py` — 요건 추출(캐시) + 프로필 매칭 |\n| Phase 2 | 화면 간 프로필 상태 공유(Context) |\n| Phase 3 | 참가자격·적합도 2축 분리 + 추천 API |\n| 피드백 반영 | 병렬화 · met 근거 노출 · 문서 chips · 자격 체크리스트 |\n| **버그 발견** | 팀원이 raw data 직접 대조 → 누락 다수 |\n| 디버깅 | 원인 4개 발견 → 프롬프트 4단계 수정 |\n| 현재 | 98건 전체 재추출 진행 중 |",
-      "x": -380,
-      "y": -760,
-      "width": 660,
-      "height": 400
-    },
-    {
-      "id": "h-design",
-      "type": "text",
-      "text": "# 🅰️ 축 1 — 기능 설계\n`src/eligibility.py` · `src/profile.py` · `src/api/eligibility.py`",
-      "x": -1080,
-      "y": -540,
-      "width": 660,
-      "height": 90,
-      "color": "2"
-    },
-    {
-      "id": "d1-phase12",
-      "type": "text",
-      "text": "## 📦 Phase 1~2 — 요건 추출 + 매칭\n`extract_requirements(doc_id)` — 문서 참가자격 요건 목록, **문서당 1회 캐시**(`data/extracted/eligibility.json`)\n\n`match_profile(doc_id, profile_text)` — 캐시된 요건 vs 회사 프로필 LLM 대조 → 요건별 충족/미충족/불명\n\nverdict: 미충족 0 → 🟢적격 · 1~3 → 🟡확인필요 · 4+ → 🔴미달",
-      "x": -1080,
-      "y": -420,
-      "width": 660,
-      "height": 240,
-      "color": "1"
-    },
-    {
-      "id": "d2-phase3",
-      "type": "text",
-      "text": "## ✅ Phase 3 — 참가자격 vs 적합도 2축 분리\n화면2(분야 선택·3년 실적)가 묻는 건 참가자격이 아니라 **적합도**였다는 걸 감사 중 발견(화면2가 mock chips로 가짜 자동추론 하고 있었음)\n\n`_search_candidates()` — doc_cards 임베딩으로 후보 15개 좁힘(=적합도 정렬, 실제 유사도)\n→ 그 후보만 `match_profile` 순차 매칭 → 🟢🟡만 반환",
-      "x": -1080,
-      "y": -160,
-      "width": 660,
-      "height": 260,
-      "color": "4"
-    },
-    {
-      "id": "d3-feedback",
-      "type": "text",
-      "text": "## 🎛 사용자 피드백 3개 반영\n- **\"1~2분 너무 느림\"** → `ThreadPoolExecutor`로 매칭 병렬화(141초 → ~40초)\n- **\"왜 적격인지 모르겠다\"** → met(충족 근거) + unclear_count 노출, met=0이면 배지를 \"적격·근거부족\"으로 구분\n- **\"문서마다 키워드 칩\"** → `infer_doc_chips()` 신설(문서당 캐시)\n- **\"자격증 안 쓰면?\"** → 온보딩에 자격·신고사항 체크리스트 추가(98건 실측 기반 5개 항목)",
-      "x": -1080,
-      "y": 130,
-      "width": 660,
-      "height": 260,
-      "color": "5"
-    },
-    {
-      "id": "f-plan",
-      "type": "file",
-      "file": "ELIGIBILITY_MATCH_PLAN.md",
-      "x": -1080,
-      "y": 420,
-      "width": 660,
-      "height": 100
-    },
-    {
-      "id": "h-debug",
-      "type": "text",
-      "text": "# 🅱️ 축 2 — 추출 정확도 디버깅\n팀원이 raw 원문 직접 대조(`data/eligibility_sujeong.json`) → 6개 문서에서 누락 10건 발견",
-      "x": -380,
-      "y": -340,
-      "width": 660,
-      "height": 100,
-      "color": "2"
-    },
-    {
-      "id": "c1-problem",
-      "type": "text",
-      "text": "## ❗ 원인 1 — 검색 top-20이 문서를 다 못 봄\n기존: `retrieve()`로 참가자격 키워드 검색 후 상위 20청크만 LLM에 전달\n\n실측: \"상호출자제한기업집단\" 문구가 원문엔 있는데 검색 후보 20개 안엔 아예 없음(랭킹 밖) → LLM이 애초에 못 봄",
-      "x": -380,
-      "y": -210,
-      "width": 660,
-      "height": 190,
-      "color": "1"
-    },
-    {
-      "id": "c1-fix",
-      "type": "text",
-      "text": "## ✅ 수정 1 — 문서 전체 읽기\n검색 기반 → `_load_doc_markdown()` 전체 텍스트(정제+마스킹) 그대로 LLM에\n\n요건 추출은 문서당 1회 캐시 작업이라 애초에 검색으로 지름길 낼 이유 없었음(CLAUDE.md STEP2 \"recall 우선\" 원칙과 일치)\n\n15만자 초과 문서만 겹침 있게 분할(`_split_for_extraction`)",
-      "x": -380,
-      "y": -5,
-      "width": 660,
-      "height": 220,
-      "color": "4"
-    },
-    {
-      "id": "c2-problem",
-      "type": "text",
-      "text": "## ❗ 원인 2 — 비슷한 조항을 하나로 뭉갬\n\"직접생산확인증명서\"(제품 기준)와 \"중기업·소기업·소상공인 확인서\"(회사 규모 기준) — 서로 다른 법령·다른 서류인데 한 문장으로 뭉쳐 요약됨\n\n전체 문서를 한 번에 보여주니 비슷한 주제 조항이 한눈에 들어와 LLM이 자체적으로 요약·병합",
-      "x": -380,
-      "y": 240,
-      "width": 660,
-      "height": 200,
-      "color": "1"
-    },
-    {
-      "id": "c2-fix",
-      "type": "text",
-      "text": "## ✅ 수정 2 — \"합치지 마라\" 명시\n프롬프트에 추가: \"각 요건은 원문 표현 그대로, 근거 법령·서류가 다르면 절대 하나로 합치지 마라. '등', '(해당 시)'로 뭉뚱그리지 마라\"\n\n검증: GKL 재추출 → 팀원 것과 거의 토씨까지 일치 (24개 → 36개)",
-      "x": -380,
-      "y": 465,
-      "width": 660,
-      "height": 180,
-      "color": "4"
-    },
-    {
-      "id": "c3-problem",
-      "type": "text",
-      "text": "## ❗ 원인 3 — 섹션 위치로 암묵적 제외\n한영대 문서 재추출 시 \"담합·금품제공·정보누출 시 자격제한\" 5개가 **더 적게** 나옴(10개→7개)\n\n원인: 이 조항들이 \"참가자격\" 섹션이 아니라 \"제안서 처리\" 섹션에 위치 — 문서 전체를 보니 LLM이 섹션 제목을 인식해 암묵적으로 제외",
-      "x": -380,
-      "y": 680,
-      "width": 660,
-      "height": 210,
-      "color": "1"
-    },
-    {
-      "id": "c3-fix",
-      "type": "text",
-      "text": "## ✅ 수정 3 — 섹션 위치 무시 지시\n\"문서 어느 섹션에 있든 판단 기준 아니다 — 제안서 작성 요령·청렴서약 등에 있어도 '입찰참가자격 제한'으로 이어지면 반드시 포함\"\n\n검증: 5개 중 4개 복구(담합·정보누출 등), \"금품제공\" 1개만 잔존",
-      "x": -380,
-      "y": 925,
-      "width": 660,
-      "height": 190,
-      "color": "4"
-    },
-    {
-      "id": "c4-problem",
-      "type": "text",
-      "text": "## ❗ 원인 4 — 반복 나열 항목 일부만 뽑고 생략\n청렴서약서 안에 \"1.담합 2.금품제공(금액 4단계) 3.허위기재 4.윤리강령\"이 연달아 나열 — 1번(담합)만 뽑고 2~4번은 스킵\n\n비슷한 원인 2와 한 뿌리: 반복되는 항목을 만나면 LLM이 대표 하나만 남기고 요약·생략하는 습성",
-      "x": -380,
-      "y": 1140,
-      "width": 660,
-      "height": 210,
-      "color": "1"
-    },
-    {
-      "id": "c4-fix",
-      "type": "text",
-      "text": "## ✅ 수정 4 — \"건너뛰지 마라\" 명시\n\"비슷한 조항이 연달아 나열돼도(금액 구간별 등) 앞부분만 뽑고 나머지를 건너뛰지 마라 — 전부 참가자격에 영향을 준다면 각각 빠짐없이 포함\"\n\n4단계 프롬프트 수정 완료 → 98건 전체 재추출 착수",
-      "x": -380,
-      "y": 1385,
-      "width": 660,
-      "height": 180,
-      "color": "4"
-    },
-    {
-      "id": "measure",
-      "type": "text",
-      "text": "## 📊 최종 검증 (6개 문서 · 10개 팀원 추가분 기준)\n- ✅ 완전 일치: 6/10 (GKL 상호출자제한, 한영대 .NET·공동수급, 한국연구재단·봉화군 중소기업확인서 등)\n- 🟡 부분 일치: 3/10 (내용은 있으나 법조문 인용 없이 뭉뚱그려짐)\n- ❌ 미해결: 1/10 — 한국전기안전공사 \"협상에 의한 계약체결 방식\"\n\n비용: 6문서 재추출 수 회 반복 + 98건 전체 재추출(진행 중, 예상 $1~1.5)",
-      "x": -380,
-      "y": 1615,
-      "width": 660,
-      "height": 220,
-      "color": "5"
-    },
-    {
-      "id": "open-question",
-      "type": "text",
-      "text": "## ❓ 미해결 — 팀 판단 필요\n\"협상에 의한 계약체결 방식\" 정보는 **참가자격**(누가 참여 가능한가)이 아니라 **계약방식**(어떻게 계약 맺을지) 정보 — 프롬프트가 의도적으로 제외 중\n\n팀원은 이걸 참가자격 범위에 넣고 싶어함 → 정의 경계 재논의 필요",
-      "x": 340,
-      "y": 40,
-      "width": 480,
-      "height": 200,
-      "color": "3"
-    },
-    {
-      "id": "impact",
-      "type": "text",
-      "text": "## 🔗 현재 상태\n98건 전체 강제 재추출 진행 중(새 프롬프트 4단계 전부 적용)\n\n완료 후: 팀원 `eligibility_sujeong.json`과 전체 재대조 예정\n\n영향 범위: `src/eligibility.py`(핵심 로직) · `src/profile.py`(자동추론·문서칩) · `src/api/eligibility.py`·`server.py`(API) · 프론트 3화면(온보딩·질문·추천)",
-      "x": 340,
-      "y": 280,
-      "width": 480,
-      "height": 260
-    }
-  ],
-  "edges": [
-    { "id": "et1", "fromNode": "title", "fromSide": "bottom", "toNode": "h-design", "toSide": "top" },
-    { "id": "et2", "fromNode": "title", "fromSide": "right", "toNode": "timeline", "toSide": "left" },
-    { "id": "ed1", "fromNode": "h-design", "fromSide": "bottom", "toNode": "d1-phase12", "toSide": "top" },
-    { "id": "ed2", "fromNode": "d1-phase12", "fromSide": "bottom", "toNode": "d2-phase3", "toSide": "top" },
-    { "id": "ed3", "fromNode": "d2-phase3", "fromSide": "bottom", "toNode": "d3-feedback", "toSide": "top" },
-    { "id": "ed4", "fromNode": "d3-feedback", "fromSide": "bottom", "toNode": "f-plan", "toSide": "top" },
-    { "id": "eh1", "fromNode": "timeline", "fromSide": "bottom", "toNode": "h-debug", "toSide": "top" },
-    { "id": "ec1", "fromNode": "h-debug", "fromSide": "bottom", "toNode": "c1-problem", "toSide": "top" },
-    { "id": "ec2", "fromNode": "c1-problem", "fromSide": "bottom", "toNode": "c1-fix", "toSide": "top" },
-    { "id": "ec3", "fromNode": "c1-fix", "fromSide": "bottom", "toNode": "c2-problem", "toSide": "top", "label": "그래도 남는 문제" },
-    { "id": "ec4", "fromNode": "c2-problem", "fromSide": "bottom", "toNode": "c2-fix", "toSide": "top" },
-    { "id": "ec5", "fromNode": "c2-fix", "fromSide": "bottom", "toNode": "c3-problem", "toSide": "top", "label": "또 남는 문제" },
-    { "id": "ec6", "fromNode": "c3-problem", "fromSide": "bottom", "toNode": "c3-fix", "toSide": "top" },
-    { "id": "ec7", "fromNode": "c3-fix", "fromSide": "bottom", "toNode": "c4-problem", "toSide": "top", "label": "잔여 1건 추적" },
-    { "id": "ec8", "fromNode": "c4-problem", "fromSide": "bottom", "toNode": "c4-fix", "toSide": "top" },
-    { "id": "ec9", "fromNode": "c4-fix", "fromSide": "bottom", "toNode": "measure", "toSide": "top" },
-    { "id": "ei1", "fromNode": "measure", "fromSide": "right", "toNode": "impact", "toSide": "left" },
-    { "id": "ei2", "fromNode": "measure", "fromSide": "right", "toNode": "open-question", "toSide": "left" }
-  ]
+	"nodes":[
+		{"id":"title","type":"text","text":"# 🔍 전재완 작업 정리 — 참가자격 매칭(Eligibility)\n2026-07-27~28 · Phase 1~3 구현 + 팀원(수정) 대조 기반 4단계 디버깅\n\n**두 축** — ① 기능 설계(참가자격·적합도 분리, 프론트 3화면 연동) ② 추출 정확도 디버깅(팀원 raw data 대조 → 원인 4개·수정 4개)","x":-1080,"y":-760,"width":660,"height":170,"color":"6"},
+		{"id":"timeline","type":"text","text":"## 🗓 작업 흐름\n| 단계 | 내용 |\n|---|---|\n| 계획 | `ELIGIBILITY_MATCH_PLAN.md` — CLAUDE.md v1 Q1(참가자격) 스코프 |\n| Phase 1 | `src/eligibility.py` — 요건 추출(캐시) + 프로필 매칭 |\n| Phase 2 | 화면 간 프로필 상태 공유(Context) |\n| Phase 3 | 참가자격·적합도 2축 분리 + 추천 API |\n| 피드백 반영 | 병렬화 · met 근거 노출 · 문서 chips · 자격 체크리스트 |\n| **버그 발견** | 팀원이 raw data 직접 대조 → 누락 다수 |\n| 디버깅 | 원인 4개 발견 → 프롬프트 4단계 수정 |\n| 현재 | 98건 전체 재추출 진행 중 |","x":-380,"y":-760,"width":660,"height":400},
+		{"id":"h-design","type":"text","text":"# 🅰️ 축 1 — 기능 설계\n`src/eligibility.py` · `src/profile.py` · `src/api/eligibility.py`","x":-1080,"y":-540,"width":660,"height":90,"color":"2"},
+		{"id":"d1-phase12","type":"text","text":"## 📦 Phase 1~2 — 요건 추출 + 매칭\n`extract_requirements(doc_id)` — 문서 참가자격 요건 목록, **문서당 1회 캐시**(`data/extracted/eligibility.json`)\n\n`match_profile(doc_id, profile_text)` — 캐시된 요건 vs 회사 프로필 LLM 대조 → 요건별 충족/미충족/불명\n\nverdict: 미충족 0 → 🟢적격 · 1~3 → 🟡확인필요 · 4+ → 🔴미달","x":-1080,"y":-420,"width":660,"height":240,"color":"1"},
+		{"id":"d2-phase3","type":"text","text":"## ✅ Phase 3 — 참가자격 vs 적합도 2축 분리\n화면2(분야 선택·3년 실적)가 묻는 건 참가자격이 아니라 **적합도**였다는 걸 감사 중 발견(화면2가 mock chips로 가짜 자동추론 하고 있었음)\n\n`_search_candidates()` — doc_cards 임베딩으로 후보 15개 좁힘(=적합도 정렬, 실제 유사도)\n→ 그 후보만 `match_profile` 순차 매칭 → 🟢🟡만 반환","x":-1080,"y":-160,"width":660,"height":260,"color":"4"},
+		{"id":"d3-feedback","type":"text","text":"## 🎛 사용자 피드백 3개 반영\n- **\"1~2분 너무 느림\"** → `ThreadPoolExecutor`로 매칭 병렬화(141초 → ~40초)\n- **\"왜 적격인지 모르겠다\"** → met(충족 근거) + unclear_count 노출, met=0이면 배지를 \"적격·근거부족\"으로 구분\n- **\"문서마다 키워드 칩\"** → `infer_doc_chips()` 신설(문서당 캐시)\n- **\"자격증 안 쓰면?\"** → 온보딩에 자격·신고사항 체크리스트 추가(98건 실측 기반 5개 항목)","x":-1080,"y":130,"width":660,"height":260,"color":"5"},
+		{"id":"f-plan","type":"file","file":"ELIGIBILITY_MATCH_PLAN.md","x":-1080,"y":420,"width":660,"height":100},
+		{"id":"h-debug","type":"text","text":"# 🅱️ 축 2 — 추출 정확도 디버깅\n팀원이 raw 원문 직접 대조(`data/eligibility_sujeong.json`) → 6개 문서에서 누락 10건 발견","x":-380,"y":-340,"width":660,"height":100,"color":"2"},
+		{"id":"c1-problem","type":"text","text":"## ❗ 원인 1 — 검색 top-20이 문서를 다 못 봄\n기존: `retrieve()`로 참가자격 키워드 검색 후 상위 20청크만 LLM에 전달\n\n실측: \"상호출자제한기업집단\" 문구가 원문엔 있는데 검색 후보 20개 안엔 아예 없음(랭킹 밖) → LLM이 애초에 못 봄","x":-380,"y":-210,"width":660,"height":190,"color":"1"},
+		{"id":"c1-fix","type":"text","text":"## ✅ 수정 1 — 문서 전체 읽기\n검색 기반 → `_load_doc_markdown()` 전체 텍스트(정제+마스킹) 그대로 LLM에\n\n요건 추출은 문서당 1회 캐시 작업이라 애초에 검색으로 지름길 낼 이유 없었음(CLAUDE.md STEP2 \"recall 우선\" 원칙과 일치)\n\n15만자 초과 문서만 겹침 있게 분할(`_split_for_extraction`)","x":-380,"y":-5,"width":660,"height":220,"color":"4"},
+		{"id":"c2-problem","type":"text","text":"## ❗ 원인 2 — 비슷한 조항을 하나로 뭉갬\n\"직접생산확인증명서\"(제품 기준)와 \"중기업·소기업·소상공인 확인서\"(회사 규모 기준) — 서로 다른 법령·다른 서류인데 한 문장으로 뭉쳐 요약됨\n\n전체 문서를 한 번에 보여주니 비슷한 주제 조항이 한눈에 들어와 LLM이 자체적으로 요약·병합","x":-380,"y":240,"width":660,"height":200,"color":"1"},
+		{"id":"c2-fix","type":"text","text":"## ✅ 수정 2 — \"합치지 마라\" 명시\n프롬프트에 추가: \"각 요건은 원문 표현 그대로, 근거 법령·서류가 다르면 절대 하나로 합치지 마라. '등', '(해당 시)'로 뭉뚱그리지 마라\"\n\n검증: GKL 재추출 → 팀원 것과 거의 토씨까지 일치 (24개 → 36개)","x":-380,"y":465,"width":660,"height":180,"color":"4"},
+		{"id":"c3-problem","type":"text","text":"## ❗ 원인 3 — 섹션 위치로 암묵적 제외\n한영대 문서 재추출 시 \"담합·금품제공·정보누출 시 자격제한\" 5개가 **더 적게** 나옴(10개→7개)\n\n원인: 이 조항들이 \"참가자격\" 섹션이 아니라 \"제안서 처리\" 섹션에 위치 — 문서 전체를 보니 LLM이 섹션 제목을 인식해 암묵적으로 제외","x":-380,"y":680,"width":660,"height":210,"color":"1"},
+		{"id":"c3-fix","type":"text","text":"## ✅ 수정 3 — 섹션 위치 무시 지시\n\"문서 어느 섹션에 있든 판단 기준 아니다 — 제안서 작성 요령·청렴서약 등에 있어도 '입찰참가자격 제한'으로 이어지면 반드시 포함\"\n\n검증: 5개 중 4개 복구(담합·정보누출 등), \"금품제공\" 1개만 잔존","x":-380,"y":925,"width":660,"height":190,"color":"4"},
+		{"id":"c4-problem","type":"text","text":"## ❗ 원인 4 — 반복 나열 항목 일부만 뽑고 생략\n청렴서약서 안에 \"1.담합 2.금품제공(금액 4단계) 3.허위기재 4.윤리강령\"이 연달아 나열 — 1번(담합)만 뽑고 2~4번은 스킵\n\n비슷한 원인 2와 한 뿌리: 반복되는 항목을 만나면 LLM이 대표 하나만 남기고 요약·생략하는 습성","x":-380,"y":1140,"width":660,"height":210,"color":"1"},
+		{"id":"c4-fix","type":"text","text":"## ✅ 수정 4 — \"건너뛰지 마라\" 명시\n\"비슷한 조항이 연달아 나열돼도(금액 구간별 등) 앞부분만 뽑고 나머지를 건너뛰지 마라 — 전부 참가자격에 영향을 준다면 각각 빠짐없이 포함\"\n\n4단계 프롬프트 수정 완료 → 98건 전체 재추출 착수","x":-380,"y":1385,"width":660,"height":180,"color":"4"},
+		{"id":"measure","type":"text","text":"## 📊 최종 검증 (6개 문서 · 10개 팀원 추가분 기준)\n- ✅ 완전 일치: 6/10 (GKL 상호출자제한, 한영대 .NET·공동수급, 한국연구재단·봉화군 중소기업확인서 등)\n- 🟡 부분 일치: 3/10 (내용은 있으나 법조문 인용 없이 뭉뚱그려짐)\n- ❌ 미해결: 1/10 — 한국전기안전공사 \"협상에 의한 계약체결 방식\"\n\n비용: 6문서 재추출 수 회 반복 + 98건 전체 재추출(진행 중, 예상 $1~1.5)","x":-380,"y":1615,"width":660,"height":220,"color":"5"},
+		{"id":"open-question","type":"text","text":"## ❓ 미해결 — 팀 판단 필요\n\"협상에 의한 계약체결 방식\" 정보는 **참가자격**(누가 참여 가능한가)이 아니라 **계약방식**(어떻게 계약 맺을지) 정보 — 프롬프트가 의도적으로 제외 중\n\n팀원은 이걸 참가자격 범위에 넣고 싶어함 → 정의 경계 재논의 필요","x":340,"y":40,"width":480,"height":200,"color":"3"},
+		{"id":"impact","type":"text","text":"## 🔗 현재 상태\n98건 전체 강제 재추출 진행 중(새 프롬프트 4단계 전부 적용)\n\n완료 후: 팀원 `eligibility_sujeong.json`과 전체 재대조 예정\n\n영향 범위: `src/eligibility.py`(핵심 로직) · `src/profile.py`(자동추론·문서칩) · `src/api/eligibility.py`·`server.py`(API) · 프론트 3화면(온보딩·질문·추천)","x":340,"y":280,"width":480,"height":260}
+	],
+	"edges":[
+		{"id":"et1","fromNode":"title","fromSide":"bottom","toNode":"h-design","toSide":"top"},
+		{"id":"et2","fromNode":"title","fromSide":"right","toNode":"timeline","toSide":"left"},
+		{"id":"ed1","fromNode":"h-design","fromSide":"bottom","toNode":"d1-phase12","toSide":"top"},
+		{"id":"ed2","fromNode":"d1-phase12","fromSide":"bottom","toNode":"d2-phase3","toSide":"top"},
+		{"id":"ed3","fromNode":"d2-phase3","fromSide":"bottom","toNode":"d3-feedback","toSide":"top"},
+		{"id":"ed4","fromNode":"d3-feedback","fromSide":"bottom","toNode":"f-plan","toSide":"top"},
+		{"id":"eh1","fromNode":"timeline","fromSide":"bottom","toNode":"h-debug","toSide":"top"},
+		{"id":"ec1","fromNode":"h-debug","fromSide":"bottom","toNode":"c1-problem","toSide":"top"},
+		{"id":"ec2","fromNode":"c1-problem","fromSide":"bottom","toNode":"c1-fix","toSide":"top"},
+		{"id":"ec3","fromNode":"c1-fix","fromSide":"bottom","toNode":"c2-problem","toSide":"top","label":"그래도 남는 문제"},
+		{"id":"ec4","fromNode":"c2-problem","fromSide":"bottom","toNode":"c2-fix","toSide":"top"},
+		{"id":"ec5","fromNode":"c2-fix","fromSide":"bottom","toNode":"c3-problem","toSide":"top","label":"또 남는 문제"},
+		{"id":"ec6","fromNode":"c3-problem","fromSide":"bottom","toNode":"c3-fix","toSide":"top"},
+		{"id":"ec7","fromNode":"c3-fix","fromSide":"bottom","toNode":"c4-problem","toSide":"top","label":"잔여 1건 추적"},
+		{"id":"ec8","fromNode":"c4-problem","fromSide":"bottom","toNode":"c4-fix","toSide":"top"},
+		{"id":"ec9","fromNode":"c4-fix","fromSide":"bottom","toNode":"measure","toSide":"top"},
+		{"id":"ei1","fromNode":"measure","fromSide":"right","toNode":"impact","toSide":"left"},
+		{"id":"ei2","fromNode":"measure","fromSide":"right","toNode":"open-question","toSide":"left"}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
 }
