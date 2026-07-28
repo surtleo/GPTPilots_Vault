@@ -5,197 +5,6 @@
 		{"id":"72f45bbfd4afaad6","type":"group","x":1700,"y":980,"width":800,"height":460,"label":"after"},
 		{"id":"5afd661b74273b6b","type":"group","x":1700,"y":580,"width":780,"height":333,"label":"before"},
 		{
-			"id":"abbac251098be692",
-			"type":"text",
-			"text":"골든셋 40개를 손으로 하고 일정한 기준을가진 심사위원과 블라인드 에이전트를 통해 40개를 다 맞출때까지 스킬을 변형해가며 루프 엔지니어링으로 골든셋을 만들 에이전트 스킬을 만든다.",
-			"styleAttributes":{},
-			"x":4180,
-			"y":1120,
-			"width":260,
-			"height":180
-		},
-		{
-			"id":"e66fcf37d2e76e67",
-			"type":"text",
-			"text":"그렇게 추가된 골든셋 200개를 기준으로 실험을 한다.",
-			"styleAttributes":{},
-			"x":4520,
-			"y":1180,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"8a4be72d1a865579",
-			"type":"text",
-			"text":"[[검색 실험 구도]] 에 상세가 있다. 에이전트한데 그대로 주고 실험 결과만 중간중간 받아도된다.",
-			"styleAttributes":{},
-			"x":4900,
-			"y":1200,
-			"width":260,
-			"height":120
-		},
-		{
-			"id":"15bc40ebac5010aa",
-			"type":"text",
-			"text":"아무튼 이런 우여곡절끝에 검색부분을 좀더 키우기로했고 그 첫번째가 bm25 즉, 하이브리드로 만들어보는것이었다.",
-			"styleAttributes":{},
-			"x":2680,
-			"y":1140,
-			"width":260,
-			"height":140
-		},
-		{
-			"id":"547e40d2264baa96",
-			"type":"text",
-			"text":"골든셋 200개 공유폴더 저장.",
-			"styleAttributes":{},
-			"x":4520,
-			"y":1060,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"02bacdec9233b8d3",
-			"type":"text",
-			"text":"재인덱싱될시에는 다시 골든셋 만들어야함.",
-			"styleAttributes":{},
-			"x":4560,
-			"y":900,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"cc980091424e97c3",
-			"type":"text",
-			"text":"그럼 카드는?",
-			"styleAttributes":{},
-			"x":3440,
-			"y":920,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"9b0be4ea1efe80db",
-			"type":"text",
-			"text":"현재 임베딩되는 카드는 불안정한상태. 진행된게 거의없음.",
-			"styleAttributes":{},
-			"x":3440,
-			"y":800,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"9545e5de80a037df",
-			"type":"text",
-			"text":"포괄검색은 질문만 바꿔서 실제 사용자가 문서단위로 회사상황에 맞는 rfp를 추천받게함.",
-			"styleAttributes":{},
-			"x":3440,
-			"y":640,
-			"width":260,
-			"height":100
-		},
-		{
-			"id":"ec3f21e219bdfda4",
-			"type":"text",
-			"text":"하이브리드할때 bm25말고 다른것도 실험해봐야되는데 지금은 컷하는게 좋을듯함. 리랭커만",
-			"styleAttributes":{},
-			"x":3440,
-			"y":1040,
-			"width":260,
-			"height":100
-		},
-		{
-			"id":"74d2bdd3312cbf8a",
-			"type":"text",
-			"text":"그렇다고 기존의 fuzz나 메타데이터 정형검색이 사라진것은 아님.",
-			"styleAttributes":{},
-			"x":1950,
-			"y":1480,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"8bb441d74dd01453",
-			"type":"text",
-			"text":"그럼 실험은?",
-			"styleAttributes":{},
-			"x":3440,
-			"y":1170,
-			"width":260,
-			"height":80
-		},
-		{
-			"id":"d3aaa4d750f1b792",
-			"type":"text",
-			"text":"앞에서 봤듯이 doc_id(출처), 사업개요를 청크마다 매번넣기 때문에 hit@5 기준으로 지표를 가진다는것은 1.0이기때문에 의미없다.",
-			"styleAttributes":{},
-			"x":3520,
-			"y":1360,
-			"width":260,
-			"height":120
-		},
-		{
-			"id":"d432c842f9a13456",
-			"type":"text",
-			"text":"그래서 실험 지표와 골든셋을 준비했었다.",
-			"styleAttributes":{},
-			"x":3820,
-			"y":1180,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"124e583f943655e2",
-			"type":"text",
-			"text":"왜 bm25였는가?\n- bm25가 최소베이스가되어 실험을 할때 bm25보다 성능이 좋아야하기 때문.",
-			"styleAttributes":{},
-			"x":3060,
-			"y":1140,
-			"width":260,
-			"height":140
-		},
-		{
-			"id":"d53762381747e72e",
-			"type":"text",
-			"text":"bm25는 무엇인가?\n- 형태소기반 검색 알고리즘\n- 희귀단어에 약함\n- 한 청크에 반복되는 단어에 가중치를 크게줌.",
-			"styleAttributes":{},
-			"x":3060,
-			"y":1480,
-			"width":260,
-			"height":160
-		},
-		{
-			"id":"cfe07abcc0716653",
-			"type":"text",
-			"text":"전재완님의 청킹관련 작업 총정리",
-			"styleAttributes":{},
-			"x":1770,
-			"y":1840,
-			"width":260,
-			"height":60
-		},
-		{"id":"beef27eea94ac21e","type":"text","text":"## 🎯 개편 핵심 — 유형마다 다른 지표를 쓴다\n기존: 모든 문항에 같은 지표 → 직답(LLM 무호출)·반문에 RAGAS를 매기는 게 무의미\n\n| 카테고리    | 골든셋 유형    | 적용 지표                                                                                                            |\n| ------- | --------- | ---------------------------------------------------------------------------------------------------------------- |\n| **생성**  | 단일세부 · 후속 | 풀 RAGAS 5종 — relevancy / precision / recall / correctness / semantic similarity **(단 `route==\"retrieval\"`일 때만)** |\n| **직답**  | 직답        | `value_match` — 숫자·날짜·명칭 일치만                                                                                     |\n| **미확인** | 모른다 · 반문  | `abstention_correctness` (거절 정확도). 반문은 라우팅으로만 판정                                                                 |\n| **제외**  | 탐색비교      | 미구현 — 라우팅만                                                                                                       |\n\n`METRIC_CATEGORY` 딕셔너리 1개로 매핑, `METRIC_ABBR`로 콘솔 축약 출력","x":1820,"y":2200,"width":620,"height":360,"color":"4"},
-		{
-			"id":"de7823ebd526ec49",
-			"type":"text",
-			"text":"2. 평가 레이어",
-			"styleAttributes":{},
-			"x":1960,
-			"y":2000,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"35426e00ef611a62",
-			"type":"text",
-			"text":"그 외 doc hit오판 버그 수정 등등",
-			"styleAttributes":{},
-			"x":2220,
-			"y":2080,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"f5aaa970eab9785d",
 			"type":"text",
 			"text":"| 관찰                      | 실측                                                                | 영향                      |\n| ----------------------- | ----------------------------------------------------------------- | ----------------------- |\n| **표 정답을 dense가 잘 못 찾음** | 정답이 표일 때 dense 중앙값 **10위**·top20 진입 **70%** / 줄글이면 **4위**·**87%** | 하이브리드가 이득 볼 지점          |\n| BM25는 표에서 dense와 대등     | 표 정답 중앙값 10위·진입 70% / 줄글 12위·진입 64%                               | 표에서는 BM25가 오히려 앞섬       |\n| 정답이 인접 청크로 쪼개짐          | 정답 2개 이상 문항 22개 중 **10개(45%)**                                    | nDCG가 측정                |\n| 거의 동일한 청크가 후보에 공존       | **40문항 중 19개(48%)**, 최대 6개                                        | 리랭커가 텍스트로 구분 불가 → 결과 잡음 |\n| hwp 파싱 깨짐 문자(`楴䵴`)      | **298청크 (1.0%)**                                                  | 사람·검색 모두 방해             |\n| 가운뎃점 유니코드 변종            | `∙` 92청크 / `·` 4,149청크                                            | BM25 정확매칭 방해            |\n| 단위 표기 불일치               | `40,000천원` ↔ `40,000,000원`                                        | 라벨 누락 유발                |",
@@ -518,6 +327,197 @@
 			"y":2641,
 			"width":260,
 			"height":100
+		},
+		{
+			"id":"abbac251098be692",
+			"type":"text",
+			"text":"골든셋 40개를 손으로 하고 일정한 기준을가진 심사위원과 블라인드 에이전트를 통해 40개를 다 맞출때까지 스킬을 변형해가며 루프 엔지니어링으로 골든셋을 만들 에이전트 스킬을 만든다.",
+			"styleAttributes":{},
+			"x":4180,
+			"y":1120,
+			"width":260,
+			"height":180
+		},
+		{
+			"id":"e66fcf37d2e76e67",
+			"type":"text",
+			"text":"그렇게 추가된 골든셋 200개를 기준으로 실험을 한다.",
+			"styleAttributes":{},
+			"x":4520,
+			"y":1180,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"15bc40ebac5010aa",
+			"type":"text",
+			"text":"아무튼 이런 우여곡절끝에 검색부분을 좀더 키우기로했고 그 첫번째가 bm25 즉, 하이브리드로 만들어보는것이었다.",
+			"styleAttributes":{},
+			"x":2680,
+			"y":1140,
+			"width":260,
+			"height":140
+		},
+		{
+			"id":"547e40d2264baa96",
+			"type":"text",
+			"text":"골든셋 200개 공유폴더 저장.",
+			"styleAttributes":{},
+			"x":4520,
+			"y":1060,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"02bacdec9233b8d3",
+			"type":"text",
+			"text":"재인덱싱될시에는 다시 골든셋 만들어야함.",
+			"styleAttributes":{},
+			"x":4560,
+			"y":900,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"74d2bdd3312cbf8a",
+			"type":"text",
+			"text":"그렇다고 기존의 fuzz나 메타데이터 정형검색이 사라진것은 아님.",
+			"styleAttributes":{},
+			"x":1950,
+			"y":1480,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"cfe07abcc0716653",
+			"type":"text",
+			"text":"전재완님의 청킹관련 작업 총정리",
+			"styleAttributes":{},
+			"x":1770,
+			"y":1840,
+			"width":260,
+			"height":60
+		},
+		{"id":"beef27eea94ac21e","type":"text","text":"## 🎯 개편 핵심 — 유형마다 다른 지표를 쓴다\n기존: 모든 문항에 같은 지표 → 직답(LLM 무호출)·반문에 RAGAS를 매기는 게 무의미\n\n| 카테고리    | 골든셋 유형    | 적용 지표                                                                                                            |\n| ------- | --------- | ---------------------------------------------------------------------------------------------------------------- |\n| **생성**  | 단일세부 · 후속 | 풀 RAGAS 5종 — relevancy / precision / recall / correctness / semantic similarity **(단 `route==\"retrieval\"`일 때만)** |\n| **직답**  | 직답        | `value_match` — 숫자·날짜·명칭 일치만                                                                                     |\n| **미확인** | 모른다 · 반문  | `abstention_correctness` (거절 정확도). 반문은 라우팅으로만 판정                                                                 |\n| **제외**  | 탐색비교      | 미구현 — 라우팅만                                                                                                       |\n\n`METRIC_CATEGORY` 딕셔너리 1개로 매핑, `METRIC_ABBR`로 콘솔 축약 출력","x":1820,"y":2200,"width":620,"height":360,"color":"4"},
+		{
+			"id":"de7823ebd526ec49",
+			"type":"text",
+			"text":"2. 평가 레이어",
+			"styleAttributes":{},
+			"x":1960,
+			"y":2000,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"35426e00ef611a62",
+			"type":"text",
+			"text":"그 외 doc hit오판 버그 수정 등등",
+			"styleAttributes":{},
+			"x":2220,
+			"y":2080,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"8a4be72d1a865579",
+			"type":"text",
+			"text":"[[검색 실험 구도]] 에 상세가 있다. 에이전트한데 그대로 주고 실험 결과만 중간중간 받아도된다.",
+			"styleAttributes":{},
+			"x":4900,
+			"y":1200,
+			"width":260,
+			"height":120
+		},
+		{
+			"id":"cc980091424e97c3",
+			"type":"text",
+			"text":"그럼 카드는?",
+			"styleAttributes":{},
+			"x":3440,
+			"y":920,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"9b0be4ea1efe80db",
+			"type":"text",
+			"text":"현재 임베딩되는 카드는 불안정한상태. 진행된게 거의없음.",
+			"styleAttributes":{},
+			"x":3440,
+			"y":800,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"9545e5de80a037df",
+			"type":"text",
+			"text":"포괄검색은 질문만 바꿔서 실제 사용자가 문서단위로 회사상황에 맞는 rfp를 추천받게함.",
+			"styleAttributes":{},
+			"x":3440,
+			"y":640,
+			"width":260,
+			"height":100
+		},
+		{
+			"id":"ec3f21e219bdfda4",
+			"type":"text",
+			"text":"하이브리드할때 bm25말고 다른것도 실험해봐야되는데 지금은 컷하는게 좋을듯함. 리랭커만",
+			"styleAttributes":{},
+			"x":3440,
+			"y":1040,
+			"width":260,
+			"height":100
+		},
+		{
+			"id":"8bb441d74dd01453",
+			"type":"text",
+			"text":"그럼 실험은?",
+			"styleAttributes":{},
+			"x":3440,
+			"y":1170,
+			"width":260,
+			"height":80
+		},
+		{
+			"id":"d3aaa4d750f1b792",
+			"type":"text",
+			"text":"앞에서 봤듯이 doc_id(출처), 사업개요를 청크마다 매번넣기 때문에 hit@5 기준으로 지표를 가진다는것은 1.0이기때문에 의미없다.",
+			"styleAttributes":{},
+			"x":3520,
+			"y":1360,
+			"width":260,
+			"height":120
+		},
+		{
+			"id":"d432c842f9a13456",
+			"type":"text",
+			"text":"그래서 실험 지표와 골든셋을 준비했었다.",
+			"styleAttributes":{},
+			"x":3820,
+			"y":1180,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"124e583f943655e2",
+			"type":"text",
+			"text":"왜 bm25였는가?\n- bm25가 최소베이스가되어 실험을 할때 bm25보다 성능이 좋아야하기 때문.",
+			"styleAttributes":{},
+			"x":3060,
+			"y":1140,
+			"width":260,
+			"height":140
+		},
+		{
+			"id":"d53762381747e72e",
+			"type":"text",
+			"text":"bm25는 무엇인가?\n- 형태소기반 검색 알고리즘\n- 희귀단어에 약함\n- 한 청크에 반복되는 단어에 가중치를 크게줌.",
+			"styleAttributes":{},
+			"x":3060,
+			"y":1480,
+			"width":260,
+			"height":160
 		}
 	],
 	"edges":[
