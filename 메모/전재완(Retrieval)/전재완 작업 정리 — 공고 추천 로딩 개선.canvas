@@ -128,6 +128,46 @@
 			"width": 560,
 			"height": 220,
 			"color": "5"
+		},
+		{
+			"id": "h4",
+			"type": "text",
+			"text": "문제 4 (실전 발생) — 연결이 조용히 끊겨서 20분 멈춤",
+			"x": 1220,
+			"y": -420,
+			"width": 640,
+			"height": 60,
+			"color": "2"
+		},
+		{
+			"id": "p4",
+			"type": "text",
+			"text": "회원님이 직접 겪음: 화면이 \"후보 8건 선별\" 상태에서 20분 넘게 그대로.\n즉시 새 요청을 날려보니 서버는 1초 만에 정상 응답 -> 서버는 멀쩡했음.\n\n원인 추정: 배치 그룹 하나가 예산 재시도까지 겹치면 몇 분씩 걸리는데,\n그 사이 아무 신호도 없으면 터널이 죽은 연결로 보고 조용히 끊어버림.\nfetch의 스트림 읽기는 이런 상황을 에러로 알려주지 않아 화면이\n마지막 상태 그대로 영원히 멈춤.\n\n곁들여 발견: 재시작 시도 중 GPU 메모리 부족(CUDA OOM)도 발견 —\n공유 VM이라 팀원이 GPU 19GB 사용 중 + 제 좀비 프로세스도 물고 있었음.\n이건 코드 문제가 아니라 VM 자원 경합이라 별개로 처리.",
+			"x": 1220,
+			"y": -340,
+			"width": 640,
+			"height": 340,
+			"color": "1"
+		},
+		{
+			"id": "fix4",
+			"type": "text",
+			"text": "수정\n백엔드: 8초마다 heartbeat 이벤트 전송. as_completed 대신\nwait(timeout=8)로 폴링하며 heartbeat를 끼워 넣음.\n\n프론트: 이벤트가 30초 넘게 하나도 안 오면 스스로 포기하고\n\"서버 응답이 끊긴 것 같아요\" 에러로 전환 — 최악의 경우에도\n30초 안에 재시도 버튼이 뜸.",
+			"x": 1220,
+			"y": 10,
+			"width": 640,
+			"height": 200,
+			"color": "4"
+		},
+		{
+			"id": "lesson4",
+			"type": "text",
+			"text": "교훈\n오래 걸리는 스트리밍 응답은 진행 이벤트만으로는 부족하다 —\n주기적으로 뭔가 나가야 중간의 프록시·터널이 죽은 연결로\n오판하지 않는다. 클라이언트도 \"마지막으로 뭔가 받은 지\n얼마나 됐는지\"를 스스로 감시해야 무한 대기를 끊어낼 수 있다.",
+			"x": 1220,
+			"y": 230,
+			"width": 640,
+			"height": 190,
+			"color": "6"
 		}
 	],
 	"edges": [
@@ -222,6 +262,34 @@
 			"toNode": "verify",
 			"toSide": "left",
 			"label": "구현 반영"
+		},
+		{
+			"id": "e14",
+			"fromNode": "verify",
+			"fromSide": "right",
+			"toNode": "h4",
+			"toSide": "left"
+		},
+		{
+			"id": "e15",
+			"fromNode": "h4",
+			"fromSide": "bottom",
+			"toNode": "p4",
+			"toSide": "top"
+		},
+		{
+			"id": "e16",
+			"fromNode": "p4",
+			"fromSide": "bottom",
+			"toNode": "fix4",
+			"toSide": "top"
+		},
+		{
+			"id": "e17",
+			"fromNode": "fix4",
+			"fromSide": "bottom",
+			"toNode": "lesson4",
+			"toSide": "top"
 		}
 	]
 }
