@@ -1,0 +1,6 @@
+PNG integrity check (System.Drawing.Image.FromFile)
+- hwp-parsing-report-desktop-preview.png: decoded; 1280x6200; PNG raw format GUID b96b3caf-0728-11d3-9d7b-0000f81ef32e
+- hwp-parsing-report-mobile-preview.png: decoded; 390x1800; PNG raw format GUID b96b3caf-0728-11d3-9d7b-0000f81ef32e
+- fresh-desktop.png: decoded; 1280x6200; PNG raw format GUID b96b3caf-0728-11d3-9d7b-0000f81ef32e
+- fresh-mobile.png: decoded; 390x1800; PNG raw format GUID b96b3caf-0728-11d3-9d7b-0000f81ef32e
+- All four artifacts were non-empty and opened successfully.

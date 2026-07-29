@@ -118,7 +118,7 @@
     .flow-step strong { display: block; font-size: 15px; line-height: 1.45; }
     .flow-step span:last-child { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; line-height: 1.55; }
 
-    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 14px; }
     th, td { padding: 15px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
     th { border-top: 1px solid var(--ink); color: var(--muted); font-size: 12px; letter-spacing: .04em; }
     td:first-child { color: var(--navy); font-weight: 700; }
@@ -148,7 +148,12 @@
     footer { margin-top: 66px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 
     @media (max-width: 760px) {
-      .page { margin: 0; padding: 42px 24px 56px; box-shadow: none; }
+      html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+      .page { width: 100vw; max-width: 100vw; margin: 0; padding: 42px 24px 56px; box-shadow: none; }
+      .report-header, section, .verdict, .verdict p, .fact, .definition, .flow-step, .route-card, .recommendation, .share-box, p, li, td, .subtitle, .fact-detail { min-width: 0; max-width: 100%; }
+      p, li, td, .subtitle, .fact-detail { word-break: keep-all; overflow-wrap: break-word; }
+      .byte-line { font-size: 24px; letter-spacing: .07em; overflow-wrap: anywhere; }
+      pre { max-width: 100%; }
       .facts, .route { grid-template-columns: 1fr; }
       .fact { min-height: auto; }
       .definition-grid { grid-template-columns: 1fr; }
@@ -157,7 +162,7 @@
       .flow-step:nth-child(2) { border-right: 0; }
       .flow-step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
       table { font-size: 13px; }
-      th, td { padding: 12px 9px; }
+      th, td { padding: 12px 9px; overflow-wrap: anywhere; }
     }
 
     @media print {
@@ -319,5 +324,6 @@
       조사 기준: 프로젝트의 실제 재추출 결과, 케빈랩 HWP/PDF 추출 결과, 설치된 <code>hwp_hwpx_parser</code>의 실행 흐름. &nbsp;|&nbsp; 이 문서는 원인 공유와 의사결정을 위한 보고서이며, HWP 명세 미확인 부분을 확정 사실로 취급하지 않습니다.
     </footer>
   </main>
+  <script>document.title = `${window.innerWidth}/${document.documentElement.scrollWidth}`;</script>
 </body>
 </html>
