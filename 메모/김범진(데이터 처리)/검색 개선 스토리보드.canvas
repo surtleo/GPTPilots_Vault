@@ -25,58 +25,6 @@
 			"height":60
 		},
 		{
-			"id":"69c982d6deb1427e",
-			"type":"text",
-			"text":"1. 표는 정보의 집합체라 길수밖에 없는데 핵심단어라도 표하나에 여러번 들어가면 bm25는 점수를 깎는다. 흔한단어라고 판단해서.\n2. 어휘불일치는 e5모델로 부족하다.",
-			"styleAttributes":{},
-			"x":1240,
-			"y":520,
-			"width":260,
-			"height":200
-		},
-		{
-			"id":"cfe07abcc0716653",
-			"type":"text",
-			"text":"전재완님의 청킹관련 작업 총정리",
-			"styleAttributes":{},
-			"x":1770,
-			"y":1840,
-			"width":260,
-			"height":60
-		},
-		{"id":"beef27eea94ac21e","type":"text","text":"## 🎯 개편 핵심 — 유형마다 다른 지표를 쓴다\n기존: 모든 문항에 같은 지표 → 직답(LLM 무호출)·반문에 RAGAS를 매기는 게 무의미\n\n| 카테고리    | 골든셋 유형    | 적용 지표                                                                                                            |\n| ------- | --------- | ---------------------------------------------------------------------------------------------------------------- |\n| **생성**  | 단일세부 · 후속 | 풀 RAGAS 5종 — relevancy / precision / recall / correctness / semantic similarity **(단 `route==\"retrieval\"`일 때만)** |\n| **직답**  | 직답        | `value_match` — 숫자·날짜·명칭 일치만                                                                                     |\n| **미확인** | 모른다 · 반문  | `abstention_correctness` (거절 정확도). 반문은 라우팅으로만 판정                                                                 |\n| **제외**  | 탐색비교      | 미구현 — 라우팅만                                                                                                       |\n\n`METRIC_CATEGORY` 딕셔너리 1개로 매핑, `METRIC_ABBR`로 콘솔 축약 출력","x":1820,"y":2200,"width":620,"height":360,"color":"4"},
-		{
-			"id":"de7823ebd526ec49",
-			"type":"text",
-			"text":"2. 평가 레이어",
-			"styleAttributes":{},
-			"x":1960,
-			"y":2000,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"35426e00ef611a62",
-			"type":"text",
-			"text":"그 외 doc hit오판 버그 수정 등등",
-			"styleAttributes":{},
-			"x":2220,
-			"y":2080,
-			"width":260,
-			"height":60
-		},
-		{"id":"0381db53d44d2b6d","type":"file","file":"Images/Pasted image 20260728032238.png","x":2060,"y":601,"width":400,"height":293},
-		{
-			"id":"adb38ea7d751b73c",
-			"type":"text",
-			"text":"그리고 원래 메타데이터는 이런식으로 langsmith에서 출처를 남기기위한 용도였으므로 사업개요,doc_id인 출처정도만 남겼다.",
-			"styleAttributes":{},
-			"x":1720,
-			"y":691,
-			"width":260,
-			"height":113
-		},
-		{
 			"id":"46758fab47a073ce",
 			"type":"text",
 			"text":"1. 표, 청킹 품질 개선",
@@ -128,44 +76,34 @@
 		},
 		{"id":"512be79db1417254","type":"file","file":"Images/Pasted image 20260728043815.png","x":973,"y":2560,"width":575,"height":262},
 		{
-			"id":"f43368ff167f9705",
+			"id":"4a8b5c8152e8071e",
 			"type":"text",
-			"text":"라우터",
+			"text":"금액비교는 숫자로 정규화 하면됨.\n40,000천원 = 40000000",
 			"styleAttributes":{},
-			"x":2040,
-			"y":40,
+			"x":890,
+			"y":1520,
 			"width":260,
 			"height":60
 		},
 		{
-			"id":"e01c3a28bb060a0d",
+			"id":"1a4d9c2edb98cd89",
 			"type":"text",
-			"text":"메타데이터 정형검색",
+			"text":"그래서  bgm-m3 임베딩 모델을 고려해볼만함.\n다만, e5 + bm25보다 좋아야함.",
 			"styleAttributes":{},
-			"x":1880,
-			"y":210,
+			"x":860,
+			"y":575,
 			"width":260,
-			"height":60
+			"height":90
 		},
 		{
-			"id":"8f635a733135abc2",
+			"id":"69c982d6deb1427e",
 			"type":"text",
-			"text":"베이스라인은 1 아니면 2로가서 둘중에 하나만 됐었다. 간혹 메타데이터가 검색이 됐던 이유는 청킹 본문자체에 메타데이터가 포함된 경우였다.",
+			"text":"1. 표는 정보의 집합체라 길수밖에 없는데 핵심단어라도 표하나에 여러번 들어가면 bm25는 점수를 깎는다. 흔한단어라고 판단해서.\n2. 어휘불일치는 e5모델로 부족하다.",
 			"styleAttributes":{},
-			"x":2040,
-			"y":320,
+			"x":1240,
+			"y":520,
 			"width":260,
-			"height":140
-		},
-		{
-			"id":"448c3514dc8cfe58",
-			"type":"text",
-			"text":"e5 dense",
-			"styleAttributes":{},
-			"x":2220,
-			"y":210,
-			"width":260,
-			"height":60
+			"height":200
 		},
 		{
 			"id":"9bc76d42907d3191",
@@ -174,16 +112,6 @@
 			"styleAttributes":{},
 			"x":840,
 			"y":780,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"4a8b5c8152e8071e",
-			"type":"text",
-			"text":"금액비교는 숫자로 정규화 하면됨.\n40,000천원 = 40000000",
-			"styleAttributes":{},
-			"x":890,
-			"y":1520,
 			"width":260,
 			"height":60
 		},
@@ -207,26 +135,6 @@
 			"y":-170,
 			"width":440,
 			"height":140
-		},
-		{
-			"id":"1a4d9c2edb98cd89",
-			"type":"text",
-			"text":"그래서  bgm-m3 임베딩 모델을 고려해볼만함.\n다만, e5 + bm25보다 좋아야함.",
-			"styleAttributes":{},
-			"x":860,
-			"y":575,
-			"width":260,
-			"height":90
-		},
-		{
-			"id":"78dc48367b0f3d93",
-			"type":"text",
-			"text":"라벨링 도구만들어서 라벨링함 하나하나 봄. 아래는 실제 예시",
-			"styleAttributes":{},
-			"x":-200,
-			"y":300,
-			"width":260,
-			"height":60
 		},
 		{
 			"id":"36051df05f95a462",
@@ -257,6 +165,16 @@
 			"y":-80,
 			"width":260,
 			"height":240
+		},
+		{
+			"id":"78dc48367b0f3d93",
+			"type":"text",
+			"text":"라벨링 도구만들어서 라벨링함 하나하나 봄. 아래는 실제 예시",
+			"styleAttributes":{},
+			"x":-200,
+			"y":300,
+			"width":260,
+			"height":60
 		},
 		{
 			"id":"8209b51c5f711083",
@@ -449,6 +367,66 @@
 			"height":100
 		},
 		{
+			"id":"cfe07abcc0716653",
+			"type":"text",
+			"text":"전재완님의 청킹관련 작업 총정리",
+			"styleAttributes":{},
+			"x":1770,
+			"y":1840,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"de7823ebd526ec49",
+			"type":"text",
+			"text":"2. 평가 레이어",
+			"styleAttributes":{},
+			"x":1960,
+			"y":2000,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"f43368ff167f9705",
+			"type":"text",
+			"text":"라우터",
+			"styleAttributes":{},
+			"x":2040,
+			"y":40,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"e01c3a28bb060a0d",
+			"type":"text",
+			"text":"메타데이터 정형검색",
+			"styleAttributes":{},
+			"x":1880,
+			"y":210,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"8f635a733135abc2",
+			"type":"text",
+			"text":"베이스라인은 1 아니면 2로가서 둘중에 하나만 됐었다. 간혹 메타데이터가 검색이 됐던 이유는 청킹 본문자체에 메타데이터가 포함된 경우였다.",
+			"styleAttributes":{},
+			"x":2040,
+			"y":320,
+			"width":260,
+			"height":140
+		},
+		{
+			"id":"448c3514dc8cfe58",
+			"type":"text",
+			"text":"e5 dense",
+			"styleAttributes":{},
+			"x":2220,
+			"y":210,
+			"width":260,
+			"height":60
+		},
+		{
 			"id":"8bb441d74dd01453",
 			"type":"text",
 			"text":"그럼 실험은?",
@@ -487,6 +465,28 @@
 			"y":1140,
 			"width":260,
 			"height":140
+		},
+		{"id":"beef27eea94ac21e","type":"text","text":"## 🎯 개편 핵심 — 유형마다 다른 지표를 쓴다\n기존: 모든 문항에 같은 지표 → 직답(LLM 무호출)·반문에 RAGAS를 매기는 게 무의미\n\n| 카테고리    | 골든셋 유형    | 적용 지표                                                                                                            |\n| ------- | --------- | ---------------------------------------------------------------------------------------------------------------- |\n| **생성**  | 단일세부 · 후속 | 풀 RAGAS 5종 — relevancy / precision / recall / correctness / semantic similarity **(단 `route==\"retrieval\"`일 때만)** |\n| **직답**  | 직답        | `value_match` — 숫자·날짜·명칭 일치만                                                                                     |\n| **미확인** | 모른다 · 반문  | `abstention_correctness` (거절 정확도). 반문은 라우팅으로만 판정                                                                 |\n| **제외**  | 탐색비교      | 미구현 — 라우팅만                                                                                                       |\n\n`METRIC_CATEGORY` 딕셔너리 1개로 매핑, `METRIC_ABBR`로 콘솔 축약 출력","x":1820,"y":2200,"width":620,"height":360,"color":"4"},
+		{
+			"id":"35426e00ef611a62",
+			"type":"text",
+			"text":"그 외 doc hit오판 버그 수정 등등",
+			"styleAttributes":{},
+			"x":2220,
+			"y":2080,
+			"width":260,
+			"height":60
+		},
+		{"id":"0381db53d44d2b6d","type":"file","file":"Images/Pasted image 20260728032238.png","x":2060,"y":601,"width":400,"height":293},
+		{
+			"id":"adb38ea7d751b73c",
+			"type":"text",
+			"text":"그리고 원래 메타데이터는 이런식으로 langsmith에서 출처를 남기기위한 용도였으므로 사업개요,doc_id인 출처정도만 남겼다.",
+			"styleAttributes":{},
+			"x":1720,
+			"y":691,
+			"width":260,
+			"height":113
 		},
 		{
 			"id":"fc6c5d9d56c79d40",
