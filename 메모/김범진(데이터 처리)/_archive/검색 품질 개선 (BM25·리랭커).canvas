@@ -13,7 +13,8 @@
 		{"id":"status","type":"text","text":"## 📌 현재 상태\n코드 완료 — 브랜치 `feat/hybrid-rerank`, 20커밋, 406테스트 통과, 기본 플래그 전부 OFF\n\n**남은 것**: 재인덱싱 대기 → 후보 풀 재생성 → 사람 라벨링 40문항 → VM(L4 GPU) 측정 → 결과·승격 판정·PR","x":-960,"y":1310,"width":520,"height":210,"color":"4"},
 		{"id":"limit1","type":"text","text":"## ⚠️ 제약 ① — BM25 청크는 리랭킹 불가\nBM25만 찾은 청크는 본문이 없어서 **리랭킹 대상에서 제외**됨\n→ BM25는 **dense가 이미 본 청크를 위로 올리는 역할**만 가능\n(결과 보고서에 명시 필요)","x":140,"y":600,"width":500,"height":200,"color":"1"},
 		{"id":"limit2","type":"text","text":"## ⚠️ 제약 ② — 플래그 ON 전 선결과제\n`src/api/server.py`의 `ask()`가 동기 함수라 FastAPI 스레드풀에서 모듈 캐시(리랭커 568M 모델, BM25 인덱스)가 **중복 로드될 수 있음**\n→ L4 OOM 위험. **락 필요**","x":140,"y":870,"width":500,"height":200,"color":"1"},
-		{"id":"links","type":"text","text":"## 🔗 관련 노트\n[[온라인 쿼리 파이프라인]] · [[쿼리 파이프라인 개선안]] · [[검색 개선 이력]]","x":140,"y":1310,"width":500,"height":120,"color":"6"}
+		{"id":"links","type":"text","text":"## 🔗 관련 노트\n[[쿼리 파이프라인]] · [[쿼리 파이프라인 개선안]] · [[검색 개선]]","x":140,"y":1310,"width":500,"height":120,"color":"6"},
+		{"id":"archived-notice","type":"text","text":"# ⚠️ 아카이브됨 — 낡은 스냅샷 (2026-07-29)\n이 캔버스는 **실험 6.x의 초기 설계도**(4변형 시절)이며 현행이 아니다.\n\n| 이 문서 | 실제 |\n|---|---|\n| 상태: 재인덱싱 대기 → 라벨링 → VM 측정 | 4단계 전부 완료 |\n| 후보 분포 411/411/69 (겹침 14%) | 재인덱싱 후 638/638/162 (11%) |\n| 4변형 A~D | 실제는 검색 범위 축으로 진행 |\n\n**정본** — 측정 결과: [[검색 개선]] · 변경 이력: [[검색 개선]] · 평가셋: [[검색 실험 골든셋 40문항]]","x":-1020,"y":-1120,"width":720,"height":300,"color":"1"}
 	],
 	"edges":[
 		{"id":"e01","fromNode":"problem","fromSide":"bottom","toNode":"metric","toSide":"top","label":"해결"},
@@ -27,7 +28,8 @@
 		{"id":"e-stat","fromNode":"criteria","fromSide":"bottom","toNode":"status","toSide":"top"},
 		{"id":"e-l1","fromNode":"vc","fromSide":"bottom","toNode":"limit1","toSide":"top","label":"리랭킹 범위 제약"},
 		{"id":"e-l2","fromNode":"limit1","fromSide":"bottom","toNode":"limit2","toSide":"top"},
-		{"id":"e-lk","fromNode":"status","fromSide":"right","toNode":"links","toSide":"left"}
+		{"id":"e-lk","fromNode":"status","fromSide":"right","toNode":"links","toSide":"left"},
+		{"id":"e-archived","fromNode":"archived-notice","fromSide":"bottom","toNode":"title","toSide":"top"}
 	],
 	"metadata":{
 		"version":"1.0-1.0",
