@@ -1,334 +1,48 @@
 {
-	"nodes": [
-		{
-			"id": "title",
-			"type": "text",
-			"text": "# 🗺 BidMate 유저 플로우\n2026-07-29 재작성 · 실기동 화면 기준\n\n원 설계(2026-07-23 스케치)를 **실제 구현된 화면에 맞춰 다시 그린 것**.\n스케치 원본은 `_archive/유저 플로우 원본 스케치` · 화면 캡처는 [[BidMate 실제 웹 플로우]]\n\n**🟢 실데이터 · 🟡 목업(화면만) · ⚪ 미구현(설계에만 있음)**",
-			"x": -980,
-			"y": -700,
-			"width": 900,
-			"height": 250,
-			"color": "6"
-		},
-		{
-			"id": "s0",
-			"type": "text",
-			"text": "## 진입\n`/` → `/onboarding` 리다이렉트\n\n첫 방문 가정. 로그인·세션 없음.",
-			"x": -980,
-			"y": -380,
-			"width": 620,
-			"height": 160,
-			"color": "6"
-		},
-		{
-			"id": "s1",
-			"type": "text",
-			"text": "## 1. 온보딩 🟡\n`/onboarding` · 진행 1/3\n\n**회사가 뭘 해왔는지** 자유 서술\n또는 회사소개서 첨부\n(PDF·PPTX·HWP, 20MB)\n\n→ 이 텍스트가 다음 단계 추론 입력",
-			"x": -200,
-			"y": -380,
-			"width": 620,
-			"height": 260,
-			"color": "3"
-		},
-		{
-			"id": "s2",
-			"type": "text",
-			"text": "## 2. 질문지 🟡\n`/questionnaire` · 3단계\n\n**1/3** 주력 분야 3택\n**2/3** 자동추론 칩 확인 ⚠️\n**3/3** 최근 3년 실적 건수\n\n각 단계는 응답 전 `다음` 비활성",
-			"x": 580,
-			"y": -380,
-			"width": 620,
-			"height": 260,
-			"color": "3"
-		},
-		{
-			"id": "s3",
-			"type": "text",
-			"text": "## 3. 추천 목록 🟢\n`/recommendations`\n\n**공고 100건** · 마감일 최신순\n사업명·발주기관 검색\n카드: 사업명·기관·금액·마감·요약·공고번호·형식\n\n> 적합도·별점 **표시 안 함**",
-			"x": 1360,
-			"y": -380,
-			"width": 620,
-			"height": 260,
-			"color": "4"
-		},
-		{
-			"id": "s4",
-			"type": "text",
-			"text": "## 4. 공고 상세 + 채팅 🟢\n`/rfp/:doc_id`\n\n좌: 사업개요·주요조건 / 우: 채팅\n**해당 공고가 활성 문서로 고정**\n→ 사업명 없이 질문 가능\n\n2단 레이아웃에서 문서 전환 가능",
-			"x": 2140,
-			"y": -380,
-			"width": 620,
-			"height": 260,
-			"color": "4"
-		},
-		{
-			"id": "s5",
-			"type": "text",
-			"text": "## 5. 마이페이지 🟡\n`/me`\n\n내 프로필 / 저장한 공고 / 대화 기록\n프로필 칩 + 지난 대화 목록\n\n> `이어서 대화하기` **비활성**",
-			"x": 2920,
-			"y": -380,
-			"width": 620,
-			"height": 240,
-			"color": "3"
-		},
-		{
-			"id": "d1",
-			"type": "text",
-			"text": "### 입력 데이터\n자유 서술 텍스트 + (선택) 첨부 문서\n\n**저장 백엔드 없음** — 새로고침 시 소실",
-			"x": -200,
-			"y": -40,
-			"width": 620,
-			"height": 160,
-			"color": "5"
-		},
-		{
-			"id": "d2",
-			"type": "text",
-			"text": "### ⚠️ 자동추론 칩은 mock\n온보딩 서술에서 뽑았다고 표시하지만 **실제 추론이 아니다**.\n\n게다가 여기서 묻는 분야·3년 실적은 참가자격이 아니라 **적합도** 정보다.\n→ [[참가자격 매칭 구조 정리]] Phase 3",
-			"x": 580,
-			"y": -40,
-			"width": 620,
-			"height": 210,
-			"color": "1"
-		},
-		{
-			"id": "d3",
-			"type": "text",
-			"text": "### `GET /rfps`\n출처 `data/extracted/meta.json` 100건\n\n**비용 0** — 임베딩·Chroma·LLM 안 탐 (검색이 아니라 열람)\n목록을 아무리 넘겨도 돈이 안 든다",
-			"x": 1360,
-			"y": -40,
-			"width": 620,
-			"height": 190,
-			"color": "5"
-		},
-		{
-			"id": "d4",
-			"type": "text",
-			"text": "### `POST /ask`\n라우터 5분기 → `retrieval`이면 RAG\n\n답변에 **출처(문서·섹션 경로)** 부착\n응답 유형: 근거기반 / 반문(CLARIFY) / NO_EVIDENCE\n\n**약 $0.002/질문** · 생성 15초",
-			"x": 2140,
-			"y": -40,
-			"width": 620,
-			"height": 220,
-			"color": "5"
-		},
-		{
-			"id": "b3",
-			"type": "text",
-			"text": "### 목록에서 갈라지는 곳\n- 검색어 입력 → 필터링\n- `상세 →` 클릭 → 4번으로\n- 상단 `내 정보` → 5번으로",
-			"x": 1360,
-			"y": 250,
-			"width": 620,
-			"height": 170
-		},
-		{
-			"id": "b4",
-			"type": "text",
-			"text": "### 상세에서 갈라지는 곳\n- 좌측 리스트에서 **다른 공고 클릭** → 활성 문서 교체\n- `새 대화` → 이력 초기화\n- `공고 자세히 ∨` → 메타 펼치기\n- 추천 질문 칩 3종",
-			"x": 2140,
-			"y": 250,
-			"width": 620,
-			"height": 200
-		},
-		{
-			"id": "h-plan",
-			"type": "text",
-			"text": "# ⚪ 원 설계에 있었으나 아직 없는 것\n2026-07-23 스케치가 그렸던 4개 기능 중 **1개만** 구현됐다.",
-			"x": -980,
-			"y": 540,
-			"width": 900,
-			"height": 130,
-			"color": "2"
-		},
-		{
-			"id": "p1",
-			"type": "text",
-			"text": "## ① RFP 탐색\n**구현됨** → 3번 추천 목록\n단, \"우리 회사 방향과 맞는 것\" 추천은 빠지고 **전체 목록 + 검색**만 살았다",
-			"x": -200,
-			"y": 710,
-			"width": 620,
-			"height": 190,
-			"color": "4"
-		},
-		{
-			"id": "p2",
-			"type": "text",
-			"text": "## ② RFP 평가 보고서 ⚪\n공고를 평가해 보고서를 내주는 기능.\n미착수.",
-			"x": 580,
-			"y": 710,
-			"width": 620,
-			"height": 170
-		},
-		{
-			"id": "p3",
-			"type": "text",
-			"text": "## ③ 기본 요건 충족 확인 ⚪\n참가자격 판정. **백엔드는 진행 중** (전재완 Eligibility) 이나 화면 연결은 아직.\n→ [[참가자격 매칭 구조 정리]]",
-			"x": 1360,
-			"y": 710,
-			"width": 620,
-			"height": 190,
-			"color": "3"
-		},
-		{
-			"id": "p4",
-			"type": "text",
-			"text": "## ④ 직접 쓰기 ⚪\n제안서를 직접 작성하는 기능. 미착수.\n\n스케치의 \"프로젝트 / 첫번째·두번째 사업 / 내가 가져온 문서 / 회사자료랑 1:1 분석\"이 여기 묶여 있었다.",
-			"x": 2140,
-			"y": 710,
-			"width": 620,
-			"height": 210
-		},
-		{
-			"id": "blocker",
-			"type": "text",
-			"text": "# 🔴 목업 3화면을 막고 있는 것 — 하나다\n\n**\"적합도 상/중/하\"가 무엇인지 합의된 바가 없다.**\n실적 도메인 매칭인지, 금액대인지, 기관 유형인지 미정.\n\n| 막힌 화면 | 왜 |\n|---|---|\n| 온보딩 | 무엇을 수집해야 하는지가 추천 기준에 달림 |\n| 질문지 | 같은 이유. 지금 칩이 mock인 것도 여기서 옴 |\n| 마이페이지 | 저장·이력 백엔드 부재(별개 사유) |\n\n> 막힌 건 구현이 아니라 **정의**다. → [[BidMate 웹 연동 현황]] §5",
-			"x": -980,
-			"y": 990,
-			"width": 900,
-			"height": 400,
-			"color": "1"
-		},
-		{
-			"id": "axis",
-			"type": "text",
-			"text": "## 🧭 참고 — 두 축을 섞지 말 것\n\n| 축 | 질문 | 성격 |\n|---|---|---|\n| **참가자격** | 우리가 낼 수 있나? | 합·불 (이분법) |\n| **적합도** | 우리가 잘할 일인가? | 순위 (연속값) |\n\n질문지 2/3이 묻던 분야·실적은 **적합도** 쪽이다. 자격이 아니다.\n이 분리가 [[참가자격 매칭 구조 정리]] Phase 3의 결론이었다.",
-			"x": -20,
-			"y": 990,
-			"width": 700,
-			"height": 330,
-			"color": "6"
-		}
+	"nodes":[
+		{"id":"title","type":"text","text":"# 🗺 BidMate 유저 플로우\n2026-07-29 재작성 · 실기동 화면 기준\n\n원 설계(2026-07-23 스케치)를 **실제 구현된 화면에 맞춰 다시 그린 것**.\n스케치 원본은 `_archive/유저 플로우 원본 스케치` · 화면 캡처는 [[BidMate 실제 웹 플로우]]\n\n**🟢 실데이터 · 🟡 목업(화면만) · ⚪ 미구현(설계에만 있음)**","x":-980,"y":-700,"width":900,"height":250,"color":"6"},
+		{"id":"s0","type":"text","text":"## 진입\n`/` → `/onboarding` 리다이렉트\n\n첫 방문 가정. 로그인·세션 없음.","x":-980,"y":-380,"width":620,"height":160,"color":"6"},
+		{"id":"s1","type":"text","text":"## 1. 온보딩 🟡\n`/onboarding` · 진행 1/3\n\n**회사가 뭘 해왔는지** 자유 서술\n또는 회사소개서 첨부\n(PDF·PPTX·HWP, 20MB)\n\n→ 이 텍스트가 다음 단계 추론 입력","x":-200,"y":-380,"width":620,"height":260,"color":"3"},
+		{"id":"s2","type":"text","text":"## 2. 질문지 🟡\n`/questionnaire` · 3단계\n\n**1/3** 주력 분야 3택\n**2/3** 자동추론 칩 확인 ⚠️\n**3/3** 최근 3년 실적 건수\n\n각 단계는 응답 전 `다음` 비활성","x":580,"y":-380,"width":620,"height":260,"color":"3"},
+		{"id":"s3","type":"text","text":"## 3. 추천 목록 🟢\n`/recommendations`\n\n**공고 100건** · 마감일 최신순\n사업명·발주기관 검색\n카드: 사업명·기관·금액·마감·요약·공고번호·형식\n\n> 적합도·별점 **표시 안 함**","x":1360,"y":-380,"width":620,"height":260,"color":"4"},
+		{"id":"s4","type":"text","text":"## 4. 공고 상세 + 채팅 🟢\n`/rfp/:doc_id`\n\n좌: 사업개요·주요조건 / 우: 채팅\n**해당 공고가 활성 문서로 고정**\n→ 사업명 없이 질문 가능\n\n2단 레이아웃에서 문서 전환 가능","x":2140,"y":-380,"width":620,"height":260,"color":"4"},
+		{"id":"s5","type":"text","text":"## 5. 마이페이지 🟡\n`/me`\n\n내 프로필 / 저장한 공고 / 대화 기록\n프로필 칩 + 지난 대화 목록\n\n> `이어서 대화하기` **비활성**","x":2920,"y":-380,"width":620,"height":240,"color":"3"},
+		{"id":"d1","type":"text","text":"### 입력 데이터\n자유 서술 텍스트 + (선택) 첨부 문서\n\n**저장 백엔드 없음** — 새로고침 시 소실","x":-200,"y":-40,"width":620,"height":160,"color":"5"},
+		{"id":"d2","type":"text","text":"### ⚠️ 자동추론 칩은 mock\n온보딩 서술에서 뽑았다고 표시하지만 **실제 추론이 아니다**.\n\n게다가 여기서 묻는 분야·3년 실적은 참가자격이 아니라 **적합도** 정보다.\n→ [[참가자격 매칭 구조 정리]] Phase 3","x":580,"y":-40,"width":620,"height":210,"color":"1"},
+		{"id":"d3","type":"text","text":"### `GET /rfps`\n출처 `data/extracted/meta.json` 100건\n\n**비용 0** — 임베딩·Chroma·LLM 안 탐 (검색이 아니라 열람)\n목록을 아무리 넘겨도 돈이 안 든다","x":1360,"y":-40,"width":620,"height":190,"color":"5"},
+		{"id":"d4","type":"text","text":"### `POST /ask`\n라우터 5분기 → `retrieval`이면 RAG\n\n답변에 **출처(문서·섹션 경로)** 부착\n응답 유형: 근거기반 / 반문(CLARIFY) / NO_EVIDENCE\n\n**약 $0.002/질문** · 생성 15초","x":2140,"y":-40,"width":620,"height":220,"color":"5"},
+		{"id":"b3","type":"text","text":"### 목록에서 갈라지는 곳\n- 검색어 입력 → 필터링\n- `상세 →` 클릭 → 4번으로\n- 상단 `내 정보` → 5번으로","x":1360,"y":250,"width":620,"height":170},
+		{"id":"b4","type":"text","text":"### 상세에서 갈라지는 곳\n- 좌측 리스트에서 **다른 공고 클릭** → 활성 문서 교체\n- `새 대화` → 이력 초기화\n- `공고 자세히 ∨` → 메타 펼치기\n- 추천 질문 칩 3종","x":2140,"y":250,"width":620,"height":200},
+		{"id":"h-plan","type":"text","text":"# ⚪ 원 설계에 있었으나 아직 없는 것\n2026-07-23 스케치가 그렸던 4개 기능 중 **1개만** 구현됐다.","x":-980,"y":540,"width":900,"height":130,"color":"2"},
+		{"id":"p1","type":"text","text":"## ① RFP 탐색\n**구현됨** → 3번 추천 목록\n단, \"우리 회사 방향과 맞는 것\" 추천은 빠지고 **전체 목록 + 검색**만 살았다","x":-200,"y":710,"width":620,"height":190,"color":"4"},
+		{"id":"p2","type":"text","text":"## ② RFP 평가 보고서 ⚪\n공고를 평가해 보고서를 내주는 기능.\n미착수.","x":580,"y":710,"width":620,"height":170},
+		{"id":"p3","type":"text","text":"## ③ 기본 요건 충족 확인 ⚪\n참가자격 판정. **백엔드는 진행 중** (전재완 Eligibility) 이나 화면 연결은 아직.\n→ [[참가자격 매칭 구조 정리]]","x":1360,"y":710,"width":620,"height":190,"color":"3"},
+		{"id":"p4","type":"text","text":"## ④ 직접 쓰기 ⚪\n제안서를 직접 작성하는 기능. 미착수.\n\n스케치의 \"프로젝트 / 첫번째·두번째 사업 / 내가 가져온 문서 / 회사자료랑 1:1 분석\"이 여기 묶여 있었다.","x":2140,"y":710,"width":620,"height":210},
+		{"id":"blocker","type":"text","text":"# 🔴 목업 3화면을 막고 있는 것 — 하나다\n\n**\"적합도 상/중/하\"가 무엇인지 합의된 바가 없다.**\n실적 도메인 매칭인지, 금액대인지, 기관 유형인지 미정.\n\n| 막힌 화면 | 왜 |\n|---|---|\n| 온보딩 | 무엇을 수집해야 하는지가 추천 기준에 달림 |\n| 질문지 | 같은 이유. 지금 칩이 mock인 것도 여기서 옴 |\n| 마이페이지 | 저장·이력 백엔드 부재(별개 사유) |\n\n> 막힌 건 구현이 아니라 **정의**다. → [[BidMate 웹 연동 현황]] §5","x":-980,"y":990,"width":900,"height":400,"color":"1"},
+		{"id":"axis","type":"text","text":"## 🧭 참고 — 두 축을 섞지 말 것\n\n| 축 | 질문 | 성격 |\n|---|---|---|\n| **참가자격** | 우리가 낼 수 있나? | 합·불 (이분법) |\n| **적합도** | 우리가 잘할 일인가? | 순위 (연속값) |\n\n질문지 2/3이 묻던 분야·실적은 **적합도** 쪽이다. 자격이 아니다.\n이 분리가 [[참가자격 매칭 구조 정리]] Phase 3의 결론이었다.","x":-20,"y":990,"width":700,"height":330,"color":"6"}
 	],
-	"edges": [
-		{
-			"id": "m0",
-			"fromNode": "s0",
-			"fromSide": "right",
-			"toNode": "s1",
-			"toSide": "left"
-		},
-		{
-			"id": "m1",
-			"fromNode": "s1",
-			"fromSide": "right",
-			"toNode": "s2",
-			"toSide": "left"
-		},
-		{
-			"id": "m2",
-			"fromNode": "s2",
-			"fromSide": "right",
-			"toNode": "s3",
-			"toSide": "left"
-		},
-		{
-			"id": "m3",
-			"fromNode": "s3",
-			"fromSide": "right",
-			"toNode": "s4",
-			"toSide": "left"
-		},
-		{
-			"id": "m4",
-			"fromNode": "s4",
-			"fromSide": "right",
-			"toNode": "s5",
-			"toSide": "left"
-		},
-		{
-			"id": "e-d1",
-			"fromNode": "s1",
-			"fromSide": "bottom",
-			"toNode": "d1",
-			"toSide": "top"
-		},
-		{
-			"id": "e-d2",
-			"fromNode": "s2",
-			"fromSide": "bottom",
-			"toNode": "d2",
-			"toSide": "top"
-		},
-		{
-			"id": "e-d3",
-			"fromNode": "s3",
-			"fromSide": "bottom",
-			"toNode": "d3",
-			"toSide": "top"
-		},
-		{
-			"id": "e-d4",
-			"fromNode": "s4",
-			"fromSide": "bottom",
-			"toNode": "d4",
-			"toSide": "top"
-		},
-		{
-			"id": "e-b3",
-			"fromNode": "d3",
-			"fromSide": "bottom",
-			"toNode": "b3",
-			"toSide": "top"
-		},
-		{
-			"id": "e-b4",
-			"fromNode": "d4",
-			"fromSide": "bottom",
-			"toNode": "b4",
-			"toSide": "top"
-		},
-		{
-			"id": "e-b3s4",
-			"fromNode": "b3",
-			"fromSide": "right",
-			"toNode": "s4",
-			"toSide": "bottom",
-			"label": "상세 열기"
-		},
-		{
-			"id": "e-b4s4",
-			"fromNode": "b4",
-			"fromSide": "top",
-			"toNode": "s4",
-			"toSide": "bottom",
-			"label": "문서 교체"
-		},
-		{
-			"id": "e-plan0",
-			"fromNode": "h-plan",
-			"fromSide": "bottom",
-			"toNode": "p1",
-			"toSide": "top"
-		},
-		{
-			"id": "e-plan1",
-			"fromNode": "h-plan",
-			"fromSide": "right",
-			"toNode": "p2",
-			"toSide": "top"
-		},
-		{
-			"id": "e-plan2",
-			"fromNode": "h-plan",
-			"fromSide": "right",
-			"toNode": "p3",
-			"toSide": "top"
-		},
-		{
-			"id": "e-plan3",
-			"fromNode": "h-plan",
-			"fromSide": "right",
-			"toNode": "p4",
-			"toSide": "top"
-		},
-		{
-			"id": "e-blocker",
-			"fromNode": "blocker",
-			"fromSide": "right",
-			"toNode": "axis",
-			"toSide": "left"
-		}
+	"edges":[
+		{"id":"m0","fromNode":"s0","fromSide":"right","toNode":"s1","toSide":"left"},
+		{"id":"m1","fromNode":"s1","fromSide":"right","toNode":"s2","toSide":"left"},
+		{"id":"m2","fromNode":"s2","fromSide":"right","toNode":"s3","toSide":"left"},
+		{"id":"m3","fromNode":"s3","fromSide":"right","toNode":"s4","toSide":"left"},
+		{"id":"m4","fromNode":"s4","fromSide":"right","toNode":"s5","toSide":"left"},
+		{"id":"e-d1","fromNode":"s1","fromSide":"bottom","toNode":"d1","toSide":"top"},
+		{"id":"e-d2","fromNode":"s2","fromSide":"bottom","toNode":"d2","toSide":"top"},
+		{"id":"e-d3","fromNode":"s3","fromSide":"bottom","toNode":"d3","toSide":"top"},
+		{"id":"e-d4","fromNode":"s4","fromSide":"bottom","toNode":"d4","toSide":"top"},
+		{"id":"e-b3","fromNode":"d3","fromSide":"bottom","toNode":"b3","toSide":"top"},
+		{"id":"e-b4","fromNode":"d4","fromSide":"bottom","toNode":"b4","toSide":"top"},
+		{"id":"e-b3s4","fromNode":"b3","fromSide":"right","toNode":"s4","toSide":"bottom","label":"상세 열기"},
+		{"id":"e-b4s4","fromNode":"b4","fromSide":"top","toNode":"s4","toSide":"bottom","label":"문서 교체"},
+		{"id":"e-plan0","fromNode":"h-plan","fromSide":"bottom","toNode":"p1","toSide":"top"},
+		{"id":"e-plan1","fromNode":"h-plan","fromSide":"right","toNode":"p2","toSide":"top"},
+		{"id":"e-plan2","fromNode":"h-plan","fromSide":"right","toNode":"p3","toSide":"top"},
+		{"id":"e-plan3","fromNode":"h-plan","fromSide":"right","toNode":"p4","toSide":"top"},
+		{"id":"e-blocker","fromNode":"blocker","fromSide":"right","toNode":"axis","toSide":"left"}
 	],
-	"metadata": {
-		"version": "1.0-1.0",
-		"frontmatter": {}
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
 	}
 }

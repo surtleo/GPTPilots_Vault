@@ -1,262 +1,39 @@
 {
- "nodes": [
-  {
-   "id": "title",
-   "type": "text",
-   "text": "# 🧪 작업 화면 개편 실험\n**2026-07-28 실측** · 프론트 `4850fb3-dirty` + 백엔드 `1406222` · 모델 `gpt-5-mini`\n\n심사위원 3인 × 4라운드를 거쳐 통과한 판. 본문 → [[작업 화면 개편 실험]]\n**초안 결론 4개가 뒤집혔다** — 아래 빨간 카드가 그 결과다.",
-   "x": 0,
-   "y": -640,
-   "width": 2760,
-   "height": 200,
-   "color": "6"
-  },
-  {
-   "id": "before",
-   "type": "text",
-   "text": "## 개편 전 — 화면 2개\n\n```\n/recommendations   공고 목록 (채팅 없음)\n      ↓ 카드 클릭\n/rfp/:doc_id       상세 + 채팅\n      ↑ 뒤로가기\n```\n**공고를 바꿔 물어보려면 매번 화면을 오간다.**\n목록 화면에서는 질문 자체가 불가능.",
-   "x": 0,
-   "y": -400,
-   "width": 1340,
-   "height": 250,
-   "color": "3"
-  },
-  {
-   "id": "after",
-   "type": "text",
-   "text": "## 개편 후 — 화면 1개\n\n```\n┌ 공고 100건 ┬ 채팅 ────────┐\n│ ▸ 선택     │ 답변 + 출처   │\n│   …        ├──────────────┤\n│            │ 📄 활성 문서  │\n└────────────┴──────────────┘\n```\n**클릭 한 번으로 근거 문서를 갈아탄다.** 대화는 유지.",
-   "x": 1400,
-   "y": -400,
-   "width": 1360,
-   "height": 250,
-   "color": "4"
-  },
-  {
-   "id": "s1",
-   "type": "file",
-   "file": "메모/김범진(데이터 처리)/attachments/workspace-experiment/a-empty.jpg",
-   "x": 0,
-   "y": -110,
-   "width": 660,
-   "height": 400
-  },
-  {
-   "id": "s1c",
-   "type": "text",
-   "text": "### ① 미선택 진입\n공고 **100건** 전량. 아무것도 안 골라도 **입력창은 활성**이다.\n\n`U1` ✓",
-   "x": 0,
-   "y": 302,
-   "width": 660,
-   "height": 175,
-   "color": "5"
-  },
-  {
-   "id": "s2",
-   "type": "file",
-   "file": "메모/김범진(데이터 처리)/attachments/workspace-experiment/b-picked.jpg",
-   "x": 700,
-   "y": -110,
-   "width": 660,
-   "height": 400
-  },
-  {
-   "id": "s2c",
-   "type": "text",
-   "text": "### ② 공고 선택\n칩·요약·주소(`/rfp/…`)가 함께 갱신. 예시 질문 3개.\n\n`U2` `U3` ✓",
-   "x": 700,
-   "y": 302,
-   "width": 660,
-   "height": 175,
-   "color": "5"
-  },
-  {
-   "id": "s3",
-   "type": "file",
-   "file": "메모/김범진(데이터 처리)/attachments/workspace-experiment/e-answered.jpg",
-   "x": 1400,
-   "y": -110,
-   "width": 660,
-   "height": 400
-  },
-  {
-   "id": "s3c",
-   "type": "text",
-   "text": "### ③ 답변\n항목마다 출처. 하단에 **출처 4건 · $0.0024**.\n\n`U10-②` ✓ 12초",
-   "x": 1400,
-   "y": 302,
-   "width": 660,
-   "height": 175,
-   "color": "5"
-  },
-  {
-   "id": "s4",
-   "type": "file",
-   "file": "메모/김범진(데이터 처리)/attachments/workspace-experiment/f-switch-after-answer.jpg",
-   "x": 2100,
-   "y": -110,
-   "width": 660,
-   "height": 400
-  },
-  {
-   "id": "s4c",
-   "type": "text",
-   "text": "### ④ 공고 전환\n**대화는 남고 문서만 교체.** 재질문의 인용은 전부 새 문서.\n\n`U10-③④` ✓",
-   "x": 2100,
-   "y": 302,
-   "width": 660,
-   "height": 175,
-   "color": "5"
-  },
-  {
-   "id": "f1",
-   "type": "text",
-   "text": "## 🔴 고른 공고는 강제가 아니다\n\n질문 문자열이 `active_doc_id` 를 **덮어쓴다**.\n`router.py` 가 문자열 매칭(`_match`)을 먼저 보고,\n프론트가 보낸 `doc_id` 는 **실패했을 때만** 쓴다.\n\n| 관측 | 값 |\n|---|---|\n| `doc_id` 지정 요청 | 25건 |\n| **다른 공고로 전환** | **5건** (질문 4종) |\n\n> \"**서울** 오늘 날씨\" 한 단어로도 걸렸다.\n> 화면은 아무 안내 없이 칩·요약만 갈아탄다.",
-   "x": 0,
-   "y": 520,
-   "width": 660,
-   "height": 400,
-   "color": "1"
-  },
-  {
-   "id": "f2",
-   "type": "text",
-   "text": "## 🔴 덮어쓰는 순간 대화도 버려진다\n\n`core.py` — `switched` 면 history 를 통째로 비운다.\n```python\neffective_history = [] if switched else history\n```\n**문서를 고정한 채 절삭만 갈라 확인** (E7R):\n\n| 조건 | history | `in_tok` |\n|---|---|---|\n| X1 | 전량 | **758** |\n| X2 절삭 | 전량 전송 | **710** |\n| X0 | 안 보냄 | **710** |\n\n> X2 = X0 ≠ X1. 델타 48 = 심어둔 2턴 크기.\n> 사용자 클릭 전환에서는 **절삭되지 않는다.**",
-   "x": 700,
-   "y": 520,
-   "width": 660,
-   "height": 400,
-   "color": "1"
-  },
-  {
-   "id": "f3",
-   "type": "text",
-   "text": "## 🟡 NO_EVIDENCE 는 뜰 수 없다\n\n화면은 3분기를 안내한다 — 근거 답변 / 반문 / **NO_EVIDENCE**.\n세 번째는 \"거의\"가 아니라 **구조적으로** 안 나온다.\n\n- 0청크 문서 1건 → 라우터가 `meta_only` 로 가로챔\n- 나머지 99건 → `retrieve()` 가 임계값 없이 top-k 반환\n- 따라서 `if not hits:` 가 참이 될 수 없음\n\n> 코퍼스 100건 청크 전수조사로 확정 (LLM 무호출·비용 0).\n> \"문서에 없다\"는 판단은 전부 LLM 이 산문으로 하고\n> **출처까지 붙어** `answer` 로 렌더된다.",
-   "x": 1400,
-   "y": 520,
-   "width": 660,
-   "height": 400,
-   "color": "3"
-  },
-  {
-   "id": "f4",
-   "type": "text",
-   "text": "## 🟢 검색은 되는데, 자연어가 안 된다\n\n`q` 는 사업명·발주기관 **문자열 부분일치**.\n\n| 질의 | 결과 |\n|---|---|\n| `관제` | **2건** |\n| `재난` | **2건** |\n| `시스템` | 96건 |\n| `관제·모니터링 시스템` | **0건** |\n| `CCTV 영상분석 관련 사업` | **0건** |\n\n> 짧은 키워드는 100 → 2건으로 잘 좁힌다.\n> **질문지 보기 문구를 그대로 넣으면 0건** —\n> 질문지 답변을 검색어로 넘기는 방안은 성립 안 함.",
-   "x": 2100,
-   "y": 520,
-   "width": 660,
-   "height": 400,
-   "color": "4"
-  },
-  {
-   "id": "flip",
-   "type": "text",
-   "text": "## 🔁 심사에서 뒤집힌 초안 결론\n\n| # | 초안이 쓴 것 | 실제 | 무엇이 문제였나 |\n|---|---|---|---|\n| 1 | 고른 공고가 근거 문서가 된다 | **폴백 힌트일 뿐** | 자기 원자료(E5[0])가 반증하고 있었는데 다른 항목으로 축소해 적었다 |\n| 2 | 문서 전환 시 맥락이 절삭된다 | **사용자 클릭에선 안 걸린다** | 지표(인용 doc_id)가 반증 불가능 — 검색이 문서 스코프라 항상 참 |\n| 3 | 고정이 비용을 0으로 만든다 | **정반대** ($0 → $0.002) | 자기 표를 거꾸로 읽었다 |\n| 4 | 검색을 쓸 수 없다 | 짧은 키워드는 잘 된다 | 같은 표의 \"관제 2건\"과 모순 |\n\n심사 중 **마커 지표도 폐기**했다 — history 가 온전한 조건에서도 재현되지 않아 절삭의 증거가 못 된다.\n절삭의 근거는 입력 토큰 동일성 하나로 교체했다.",
-   "x": 0,
-   "y": 960,
-   "width": 2760,
-   "height": 330,
-   "color": "1"
-  },
-  {
-   "id": "method",
-   "type": "text",
-   "text": "## 📐 어떻게 쟀나\n\n**두 층으로 나눴다.**\n- 응답의 성질(분기·인용·비용) → `/ask` 직접 호출\n- 화면 동작 → CDP 로 실제 브라우저 조작\n- 분기 판정은 프론트 `classifyAnswer()` **3규칙 그대로**\n\n**반복** — E1·E2·E3 는 n=3, 나머지는 **조건당 n=1**.\nE4·청크조사·리콜은 결정적이라 n=1.\n\n생성 호출 22건, 턴당 **$0.00054 ~ $0.00289**.\n단일 대푯값으로 쓰지 말 것 — 출력 토큰이 비용을 지배한다.",
-   "x": 0,
-   "y": 1330,
-   "width": 1340,
-   "height": 340,
-   "color": "5"
-  },
-  {
-   "id": "next",
-   "type": "text",
-   "text": "## 🔜 여기서 나오는 할 일\n\n1. **덮어쓰기를 사용자에게 알리거나 막는다.** 지금은 문서가 바뀌고\n   대화가 버려지는데 화면에 아무 안내가 없다. 가장 급하다.\n2. **NO_EVIDENCE 안내를 실제 동작에 맞춘다.** 뜨지 않는 분기를\n   광고하고 있다. 문구를 고치거나 백엔드가 \"근거 불충분\"을\n   별도 신호로 내려주도록 계약을 넓힌다.\n3. **질문지 답변 연계는 보류.** 의미검색이 들어오기 전까지\n   문자열 부분일치로는 0건이 된다 → [[검색 개선]]\n\n**미검증**: 덮어쓰기 순간의 화면 표시, 검색→선택→질문 경로,\n답변 대기 중 공고 클릭 경합.",
-   "x": 1400,
-   "y": 1330,
-   "width": 1360,
-   "height": 340,
-   "color": "2"
-  }
- ],
- "edges": [
-  {
-   "id": "e0",
-   "fromNode": "title",
-   "fromSide": "bottom",
-   "toNode": "before",
-   "toSide": "top"
-  },
-  {
-   "id": "e1",
-   "fromNode": "before",
-   "fromSide": "right",
-   "toNode": "after",
-   "toSide": "left",
-   "label": "합쳤다"
-  },
-  {
-   "id": "e2",
-   "fromNode": "after",
-   "fromSide": "bottom",
-   "toNode": "s1",
-   "toSide": "top"
-  },
-  {
-   "id": "e3",
-   "fromNode": "s1c",
-   "fromSide": "right",
-   "toNode": "s2",
-   "toSide": "left"
-  },
-  {
-   "id": "e4",
-   "fromNode": "s2c",
-   "fromSide": "right",
-   "toNode": "s3",
-   "toSide": "left"
-  },
-  {
-   "id": "e5",
-   "fromNode": "s3c",
-   "fromSide": "right",
-   "toNode": "s4",
-   "toSide": "left"
-  },
-  {
-   "id": "e6",
-   "fromNode": "s2c",
-   "fromSide": "bottom",
-   "toNode": "f1",
-   "toSide": "top",
-   "label": "여기서 깨진다"
-  },
-  {
-   "id": "e7",
-   "fromNode": "s4c",
-   "fromSide": "bottom",
-   "toNode": "f2",
-   "toSide": "top"
-  },
-  {
-   "id": "e8",
-   "fromNode": "f1",
-   "fromSide": "right",
-   "toNode": "f2",
-   "toSide": "left",
-   "label": "같은 사건"
-  },
-  {
-   "id": "e9",
-   "fromNode": "f1",
-   "fromSide": "bottom",
-   "toNode": "flip",
-   "toSide": "top"
-  },
-  {
-   "id": "e10",
-   "fromNode": "flip",
-   "fromSide": "bottom",
-   "toNode": "next",
-   "toSide": "top"
-  }
- ]
+	"nodes":[
+		{"id":"title","type":"text","text":"# 🧪 작업 화면 개편 실험\n**2026-07-28 실측** · 프론트 `4850fb3-dirty` + 백엔드 `1406222` · 모델 `gpt-5-mini`\n\n심사위원 3인 × 4라운드를 거쳐 통과한 판. 본문 → [[작업 화면 개편 실험]]\n**초안 결론 4개가 뒤집혔다** — 아래 빨간 카드가 그 결과다.","x":0,"y":-640,"width":2760,"height":200,"color":"6"},
+		{"id":"before","type":"text","text":"## 개편 전 — 화면 2개\n\n```\n/recommendations   공고 목록 (채팅 없음)\n      ↓ 카드 클릭\n/rfp/:doc_id       상세 + 채팅\n      ↑ 뒤로가기\n```\n**공고를 바꿔 물어보려면 매번 화면을 오간다.**\n목록 화면에서는 질문 자체가 불가능.","x":0,"y":-400,"width":1340,"height":250,"color":"3"},
+		{"id":"after","type":"text","text":"## 개편 후 — 화면 1개\n\n```\n┌ 공고 100건 ┬ 채팅 ────────┐\n│ ▸ 선택     │ 답변 + 출처   │\n│   …        ├──────────────┤\n│            │ 📄 활성 문서  │\n└────────────┴──────────────┘\n```\n**클릭 한 번으로 근거 문서를 갈아탄다.** 대화는 유지.","x":1400,"y":-400,"width":1360,"height":250,"color":"4"},
+		{"id":"s1","type":"file","file":"메모/김범진(데이터 처리)/attachments/workspace-experiment/a-empty.jpg","x":0,"y":-110,"width":640,"height":400},
+		{"id":"s1c","type":"text","text":"### ① 미선택 진입\n공고 **100건** 전량. 아무것도 안 골라도 **입력창은 활성**이다.\n\n`U1` ✓","x":0,"y":302,"width":660,"height":175,"color":"5"},
+		{"id":"s2","type":"file","file":"메모/김범진(데이터 처리)/attachments/workspace-experiment/b-picked.jpg","x":700,"y":-110,"width":640,"height":400},
+		{"id":"s2c","type":"text","text":"### ② 공고 선택\n칩·요약·주소(`/rfp/…`)가 함께 갱신. 예시 질문 3개.\n\n`U2` `U3` ✓","x":700,"y":302,"width":660,"height":175,"color":"5"},
+		{"id":"s3","type":"file","file":"메모/김범진(데이터 처리)/attachments/workspace-experiment/e-answered.jpg","x":1400,"y":-110,"width":640,"height":400},
+		{"id":"s3c","type":"text","text":"### ③ 답변\n항목마다 출처. 하단에 **출처 4건 · $0.0024**.\n\n`U10-②` ✓ 12초","x":1400,"y":302,"width":660,"height":175,"color":"5"},
+		{"id":"s4","type":"file","file":"메모/김범진(데이터 처리)/attachments/workspace-experiment/f-switch-after-answer.jpg","x":2100,"y":-110,"width":640,"height":400},
+		{"id":"s4c","type":"text","text":"### ④ 공고 전환\n**대화는 남고 문서만 교체.** 재질문의 인용은 전부 새 문서.\n\n`U10-③④` ✓","x":2100,"y":302,"width":660,"height":175,"color":"5"},
+		{"id":"f1","type":"text","text":"## 🔴 고른 공고는 강제가 아니다\n\n질문 문자열이 `active_doc_id` 를 **덮어쓴다**.\n`router.py` 가 문자열 매칭(`_match`)을 먼저 보고,\n프론트가 보낸 `doc_id` 는 **실패했을 때만** 쓴다.\n\n| 관측 | 값 |\n|---|---|\n| `doc_id` 지정 요청 | 25건 |\n| **다른 공고로 전환** | **5건** (질문 4종) |\n\n> \"**서울** 오늘 날씨\" 한 단어로도 걸렸다.\n> 화면은 아무 안내 없이 칩·요약만 갈아탄다.","x":0,"y":520,"width":660,"height":400,"color":"1"},
+		{"id":"f2","type":"text","text":"## 🔴 덮어쓰는 순간 대화도 버려진다\n\n`core.py` — `switched` 면 history 를 통째로 비운다.\n```python\neffective_history = [] if switched else history\n```\n**문서를 고정한 채 절삭만 갈라 확인** (E7R):\n\n| 조건 | history | `in_tok` |\n|---|---|---|\n| X1 | 전량 | **758** |\n| X2 절삭 | 전량 전송 | **710** |\n| X0 | 안 보냄 | **710** |\n\n> X2 = X0 ≠ X1. 델타 48 = 심어둔 2턴 크기.\n> 사용자 클릭 전환에서는 **절삭되지 않는다.**","x":700,"y":520,"width":660,"height":400,"color":"1"},
+		{"id":"f3","type":"text","text":"## 🟡 NO_EVIDENCE 는 뜰 수 없다\n\n화면은 3분기를 안내한다 — 근거 답변 / 반문 / **NO_EVIDENCE**.\n세 번째는 \"거의\"가 아니라 **구조적으로** 안 나온다.\n\n- 0청크 문서 1건 → 라우터가 `meta_only` 로 가로챔\n- 나머지 99건 → `retrieve()` 가 임계값 없이 top-k 반환\n- 따라서 `if not hits:` 가 참이 될 수 없음\n\n> 코퍼스 100건 청크 전수조사로 확정 (LLM 무호출·비용 0).\n> \"문서에 없다\"는 판단은 전부 LLM 이 산문으로 하고\n> **출처까지 붙어** `answer` 로 렌더된다.","x":1400,"y":520,"width":660,"height":400,"color":"3"},
+		{"id":"f4","type":"text","text":"## 🟢 검색은 되는데, 자연어가 안 된다\n\n`q` 는 사업명·발주기관 **문자열 부분일치**.\n\n| 질의 | 결과 |\n|---|---|\n| `관제` | **2건** |\n| `재난` | **2건** |\n| `시스템` | 96건 |\n| `관제·모니터링 시스템` | **0건** |\n| `CCTV 영상분석 관련 사업` | **0건** |\n\n> 짧은 키워드는 100 → 2건으로 잘 좁힌다.\n> **질문지 보기 문구를 그대로 넣으면 0건** —\n> 질문지 답변을 검색어로 넘기는 방안은 성립 안 함.","x":2100,"y":520,"width":660,"height":400,"color":"4"},
+		{"id":"flip","type":"text","text":"## 🔁 심사에서 뒤집힌 초안 결론\n\n| # | 초안이 쓴 것 | 실제 | 무엇이 문제였나 |\n|---|---|---|---|\n| 1 | 고른 공고가 근거 문서가 된다 | **폴백 힌트일 뿐** | 자기 원자료(E5[0])가 반증하고 있었는데 다른 항목으로 축소해 적었다 |\n| 2 | 문서 전환 시 맥락이 절삭된다 | **사용자 클릭에선 안 걸린다** | 지표(인용 doc_id)가 반증 불가능 — 검색이 문서 스코프라 항상 참 |\n| 3 | 고정이 비용을 0으로 만든다 | **정반대** ($0 → $0.002) | 자기 표를 거꾸로 읽었다 |\n| 4 | 검색을 쓸 수 없다 | 짧은 키워드는 잘 된다 | 같은 표의 \"관제 2건\"과 모순 |\n\n심사 중 **마커 지표도 폐기**했다 — history 가 온전한 조건에서도 재현되지 않아 절삭의 증거가 못 된다.\n절삭의 근거는 입력 토큰 동일성 하나로 교체했다.","x":0,"y":960,"width":2760,"height":330,"color":"1"},
+		{"id":"method","type":"text","text":"## 📐 어떻게 쟀나\n\n**두 층으로 나눴다.**\n- 응답의 성질(분기·인용·비용) → `/ask` 직접 호출\n- 화면 동작 → CDP 로 실제 브라우저 조작\n- 분기 판정은 프론트 `classifyAnswer()` **3규칙 그대로**\n\n**반복** — E1·E2·E3 는 n=3, 나머지는 **조건당 n=1**.\nE4·청크조사·리콜은 결정적이라 n=1.\n\n생성 호출 22건, 턴당 **$0.00054 ~ $0.00289**.\n단일 대푯값으로 쓰지 말 것 — 출력 토큰이 비용을 지배한다.","x":0,"y":1330,"width":1340,"height":340,"color":"5"},
+		{"id":"next","type":"text","text":"## 🔜 여기서 나오는 할 일\n\n1. **덮어쓰기를 사용자에게 알리거나 막는다.** 지금은 문서가 바뀌고\n   대화가 버려지는데 화면에 아무 안내가 없다. 가장 급하다.\n2. **NO_EVIDENCE 안내를 실제 동작에 맞춘다.** 뜨지 않는 분기를\n   광고하고 있다. 문구를 고치거나 백엔드가 \"근거 불충분\"을\n   별도 신호로 내려주도록 계약을 넓힌다.\n3. **질문지 답변 연계는 보류.** 의미검색이 들어오기 전까지\n   문자열 부분일치로는 0건이 된다 → [[검색 개선]]\n\n**미검증**: 덮어쓰기 순간의 화면 표시, 검색→선택→질문 경로,\n답변 대기 중 공고 클릭 경합.","x":1400,"y":1330,"width":1360,"height":340,"color":"2"}
+	],
+	"edges":[
+		{"id":"e0","fromNode":"title","fromSide":"bottom","toNode":"before","toSide":"top"},
+		{"id":"e1","fromNode":"before","fromSide":"right","toNode":"after","toSide":"left","label":"합쳤다"},
+		{"id":"e2","fromNode":"after","fromSide":"bottom","toNode":"s1","toSide":"top"},
+		{"id":"e3","fromNode":"s1c","fromSide":"right","toNode":"s2","toSide":"left"},
+		{"id":"e4","fromNode":"s2c","fromSide":"right","toNode":"s3","toSide":"left"},
+		{"id":"e5","fromNode":"s3c","fromSide":"right","toNode":"s4","toSide":"left"},
+		{"id":"e6","fromNode":"s2c","fromSide":"bottom","toNode":"f1","toSide":"top","label":"여기서 깨진다"},
+		{"id":"e7","fromNode":"s4c","fromSide":"bottom","toNode":"f2","toSide":"top"},
+		{"id":"e8","fromNode":"f1","fromSide":"right","toNode":"f2","toSide":"left","label":"같은 사건"},
+		{"id":"e9","fromNode":"f1","fromSide":"bottom","toNode":"flip","toSide":"top"},
+		{"id":"e10","fromNode":"flip","fromSide":"bottom","toNode":"next","toSide":"top"}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
 }
