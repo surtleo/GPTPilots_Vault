@@ -15,7 +15,7 @@
 
 | scenario id | criterion reference | adversarial class | expected behavior | verdict | artifactRefs |
 |---|---|---|---|---|---|
-| adv-mobile-overflow-current | responsive layout | horizontal overflow / hidden overflow | all content stays within 390px; no text is cut; overflow is not masked | FAIL | `current-mobile-top`, `current-mobile-full`, `source-css-current` |
+| adv-mobile-overflow-current | responsive layout | horizontal overflow / hidden overflow | all content stays within 390px; no text is cut; overflow is not masked | FAIL | `current-mobile-top`, `current-mobile-full`, `source-css-current`, `overflow-probe-output` |
 | adv-cjk-wrap-current | Korean share-report readability | CJK semantic wrapping | Korean prose keeps natural word/phrase boundaries; only long code tokens break safely | REVISE (keep-all is better, but lines still reach/cut at viewport edge) | `current-mobile-top`, `source-css-current` |
 | adv-mobile-coverage-current | complete responsive evidence | partial capture / skipped lower sections | mobile evidence covers sections 01–08 and footer | PASS | `current-mobile-full` |
 | adv-desktop-glyphs | Korean readability | glyph loss / tofu / baseline clipping | Korean characters render as intact glyphs with no tofu or clipped baselines | PASS | `desktop-fresh`, `mobile-fresh` |
@@ -36,6 +36,7 @@
 | source-html | source | Standalone report HTML inspected for DOM, typography, responsive CSS | `보고서/2026-07-29 HWP 파싱 타임아웃 원인 및 대응 보고서.html` |
 | source-css | source excerpt | Previous capture build used blanket `word-break: break-all` and overflow clipping | `보고서/2026-07-29 HWP 파싱 타임아웃 원인 및 대응 보고서.html` |
 | source-css-current | source excerpt | Current mobile rules use `overflow-x: hidden`, `width:100vw`, and `word-break: keep-all; overflow-wrap: break-word` | `보고서/2026-07-29 HWP 파싱 타임아웃 원인 및 대응 보고서.html` |
+| overflow-probe-output | diagnostic | Chrome geometry probe identifies `main.page` width 390px vs body client width 375px; `pre` overflow is contained | `.omo/evidence/html-report-cjk-review/overflow-probe-output.txt` |
 
 ## Verdict
 
