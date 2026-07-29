@@ -231,6 +231,25 @@
 			"y": 230,
 			"width": 640,
 			"height": 260
+		},
+		{
+			"id": "d9",
+			"type": "text",
+			"text": "2026-07-29 — /loop로 무한 QA 시작. 완료 기준 없이 계속 테스트→발견→\n수정을 반복. 1라운드: 입력 길이 무제한으로 가짜 결과 생성되던 버그 발견·수정.",
+			"x": 1020,
+			"y": 400,
+			"width": 640,
+			"height": 130,
+			"color": "6"
+		},
+		{
+			"id": "f-roadmap",
+			"type": "file",
+			"file": "메모/전재완(Retrieval)/BidMate 품질 로드맵 (계속 갱신).md",
+			"x": 1020,
+			"y": 550,
+			"width": 640,
+			"height": 260
 		}
 	],
 	"edges": [
@@ -395,6 +414,20 @@
 			"fromNode": "d8",
 			"fromSide": "bottom",
 			"toNode": "f-history",
+			"toSide": "top"
+		},
+		{
+			"id": "e24",
+			"fromNode": "f-history",
+			"fromSide": "bottom",
+			"toNode": "d9",
+			"toSide": "top"
+		},
+		{
+			"id": "e25",
+			"fromNode": "d9",
+			"fromSide": "bottom",
+			"toNode": "f-roadmap",
 			"toSide": "top"
 		}
 	]
