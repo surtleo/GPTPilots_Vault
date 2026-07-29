@@ -212,6 +212,25 @@
 			"width": 640,
 			"height": 60,
 			"color": "5"
+		},
+		{
+			"id": "d8",
+			"type": "text",
+			"text": "실전 배포 후 첫 실사용 피드백 — 연결이 조용히 끊겨 20분 멈추는 문제\n발견·수정(heartbeat), \"새 대화\" 버튼 중복 지적 -> 진짜 대화 히스토리\n(세션 목록·삭제) 신설. 두 캔버스 모두 갱신함.",
+			"x": 1020,
+			"y": 60,
+			"width": 640,
+			"height": 150,
+			"color": "4"
+		},
+		{
+			"id": "f-history",
+			"type": "file",
+			"file": "메모/전재완(Retrieval)/대화 히스토리 — 세션 목록·삭제.md",
+			"x": 1020,
+			"y": 230,
+			"width": 640,
+			"height": 260
 		}
 	],
 	"edges": [
@@ -362,6 +381,20 @@
 			"fromNode": "d7",
 			"fromSide": "bottom",
 			"toNode": "canvas-b-link",
+			"toSide": "top"
+		},
+		{
+			"id": "e22",
+			"fromNode": "canvas-b-link",
+			"fromSide": "bottom",
+			"toNode": "d8",
+			"toSide": "top"
+		},
+		{
+			"id": "e23",
+			"fromNode": "d8",
+			"fromSide": "bottom",
+			"toNode": "f-history",
 			"toSide": "top"
 		}
 	]
