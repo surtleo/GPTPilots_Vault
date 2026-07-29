@@ -1,0 +1,40 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","x":-1020,"y":-900,"width":720,"height":150,"color":"6","text":"# 🧩 청킹 표 처리 수정 (Phase 11)\n섹션별 청킹 실패 · 표 깨짐의 **원인 3개**를 찾아 수정\nPR #19 + #21 → main `ab2696a` · 커밋 7건 · 테스트 353 → 401\n2026-07-27"},
+		{"id":"start","type":"text","x":-1020,"y":-700,"width":560,"height":160,"color":"1","text":"## 🔎 발단\n\"섹션별 청킹이 안 되거나 표가 깨지는 일이 많다\"\n\n고치기 전에 **원인부터** 파기로 하고 코퍼스 99개 문서 전건을 계측 → 서로 다른 원인 **3개**가 겹쳐 있었음"},
+		{"id":"c1","type":"text","x":-1020,"y":-480,"width":520,"height":300,"color":"1","text":"## ① 인접 표 융합\nLangChain `MarkdownHeaderTextSplitter`가 섹션을 자를 때 **빈 줄을 삭제**한다 (`\"  \\n\"`으로 조인).\n\n빈 줄로 나뉘어 있던 **표 2개가 하나의 파이프 블록으로 합쳐짐** → 열 수가 뒤섞임 → 멀쩡한 표까지 \"깨진 표\"로 판정되어 평문 폴백.\n\n*표 블록 6,139개만 인식되던 이유*"},
+		{"id":"c2","type":"text","x":-460,"y":-480,"width":520,"height":300,"color":"1","text":"## ② 표 게이트 오판정\n`_is_valid_table`이 **\"행별 열 수가 전부 같을 것\"** 을 요구했다.\n\nhwp 표는 **병합셀(colspan/rowspan)** 이 일상이라 행마다 셀 개수가 다른 게 **정상 형태**다. 성립할 수 없는 조건을 게이트로 걸어둔 셈.\n\n*표 행의 77.1%가 폴백된 주범*"},
+		{"id":"c3","type":"text","x":100,"y":-480,"width":520,"height":300,"color":"1","text":"## ③ 표 안 제목 미승격\nhwp의 제목 상자는 텍스트가 아니라 **1칸짜리 표**로 추출된다.\n\n```\n| Ⅰ. 추진개요 |\n| --- |\n```\n\n의사-헤더 승격 로직이 `|`로 시작하는 줄을 **통째로 건너뛰고** 있어서 제목이 헤더가 되지 못함 → 섹션 분할 자체가 성립 안 됨."},
+		{"id":"f1","type":"text","x":-1020,"y":-140,"width":520,"height":330,"color":"5","text":"## 🔧 ①-수정 · 자체 헤더 분할\n`_split_sections`를 직접 구현하고 LangChain 스플리터를 **제거**.\n\n- 빈 줄 포함 **모든 라인을 원문 그대로 보존**\n- 헤더 라인은 섹션 본문 첫 줄에 유지 (헤더-only 조각 병합 전제)\n- 상위 헤더 등장 시 하위 경로 리셋\n\n`_SPLIT_HEADER_RE`는 **ASCII 공백/탭만** 헤더로 인정 — 전각 공백(`#　…`) 본문 오탐 방지\n\n`src/index/chunk.py`"},
+		{"id":"f2","type":"text","x":-460,"y":-140,"width":520,"height":330,"color":"5","text":"## 🔧 ②-수정 · 열 수 정규화\n게이트를 **판정에서 변환으로** 바꿈.\n\n`normalize_table()`\n→ 최대 열 수 기준 **빈칸 패딩** + 구분행 재생성. **셀 절단 없음(무손실)**\n\n`_table_kind()` — data / layout 2분류\n- 빈 셀 비율 ≥ `TABLE_EMPTY_CELL_MAX` (0.8)\n- 열 수 > `TABLE_MAX_COLS` (12)\n→ 조직도·간트만 평문 폴백\n\n`_is_valid_table`은 **진단 지표용으로만** 존치"},
+		{"id":"f3","type":"text","x":100,"y":-140,"width":520,"height":330,"color":"5","text":"## 🔧 ③-수정 · 표 셀 제목 승격\n`_table_row_header()` 신설. **다음 줄이 구분행**일 때만 두 형태를 승격:\n\n- **1칸**: 의사-헤더 패턴 매치 **또는** 목차 제목과 일치\n- **번호+제목 2칸**: `| 1 | | 추진배경 |` → 번호가 셀로 분리돼 있으므로 제목엔 패턴 검사 **미적용**\n\n승격 시 표 행+구분행 **2줄을 헤더 1줄로 대체**.\n\n폼 라벨·조직도 셀·표지는 조건에서 자연 탈락"},
+		{"id":"result","type":"text","x":-1020,"y":240,"width":1180,"height":400,"color":"4","text":"## 📊 결과 — 코퍼스 99개 문서 전건 실측\n\n| 지표 | 수정 전 | 수정 후 |\n|---|---|---|\n| 폴백된 표 조각 청크 | 40.3% (11,397) | **2.0% (599)** |\n| 표 행 폴백 비율 | 77.1% | **4.5%** |\n| 구분행 없는 표 행 | 23,520줄 | **1,329줄** |\n| `is_table=True` 청크 | 4,872 | **18,332** |\n| 표 블록 수 (융합 해소) | 6,139 | **11,301** |\n| 표 셀에서 승격된 제목 | 0 | **556** |\n| validate 깨진 표 | 7,682 | **0** |\n| 테스트 | 353 | **381** |\n\n지표 11종을 `scripts/diag_chunk_quality.py`에 베이스라인으로 **동결** — 이후 변경의 회귀 감지용"},
+		{"id":"verify","type":"text","x":200,"y":240,"width":460,"height":400,"color":"2","text":"## ✅ 독립 검증\n\n**무손실 감사**\ndata 경로 표 블록 **11,389개 전건** 대조 → 셀 손실 **0**\n\n**의도된 폴백 유지**\n조직도·간트 등 레이아웃 블록 441개(3.7%)는 여전히 평문 폴백 — 설계대로\n\n**구분행 정규식 강화**\n하이픈 3개 이상 요구로 조임\n(`| - |` 데이터 셀 오인 방지)\n→ 코퍼스 영향 **0건**\n\n**섹션 경로**\n`Ⅰ. 추진개요 > 추진배경 및 방향`"},
+		{"id":"v117","type":"text","x":-1020,"y":690,"width":560,"height":330,"color":"4","text":"## 🩺 파생 발견 — validate 오판정 (11.7)\n수정 후 검증 리포트를 보다가 발견.\n\n`validate`는 **원문 markdown의 헤더 수**로 \"Recursive 폴백\" 을 판정했는데, 청킹은 **승격 후** 헤더로 분할한다. → hwp 추출물 대부분이 **사실과 다르게 플래그**.\n\n`effective_header_count()` 도입\n(clean → 승격 → 카운트, 청킹과 **같은 함수** 사용)\n\n| | 전 | 후 |\n|---|---|---|\n| flagged | 97 | **35** |\n| pass | 2 | **64** |\n| \"헤더 0개\" 사유 | 93 | **0** |\n\n잔여 35건은 문장 미완결 34·추출량 1 — 전부 실제 신호"},
+		{"id":"headers","type":"text","x":-400,"y":690,"width":560,"height":330,"color":"5","text":"## 📦 부수 — `src/ingest/headers.py` 분리\n처음엔 validate가 `src.index.chunk`에서 승격 함수를 **직접 import**하기로 하고 그렇게 문서화했음.\n\n그런데 실측하니 그 import 하나에 **15.4초** — `langchain_text_splitters`가 딸려옴.\n\n→ **판단을 철회**하고, 순수 정규식인 승격 로직만 langchain-free 모듈로 분리.\n\n- import **15.4s → 0.19s**\n- `ingest → index` **역방향 의존 제거**\n- 로직 복제 없음 (드리프트 방지)\n- 청킹 지표 11종 **전부 불변** (순수 리팩터링 확인)"},
+		{"id":"reindex","type":"text","x":200,"y":690,"width":460,"height":330,"color":"4","text":"## 🔁 재인덱싱 (11.6)\n청크 경계가 전면 변경 → 기존 인덱스 stale.\n\nVM `sprint-ai-11-2`에서 재실행,\n산출물을 **공유폴더로 이관**\n`/srv/GPTPilot/chroma` (311MB, team2 rw)\n`CHROMA_DIR_OVERRIDE` 사용 — 코드 수정 없음\n\n- chunks **30,002** (99문서)\n- doc_cards 100\n- `is_table` 63.3%\n- `parent_text` 11,805\n- **섹션 경로 95.2%**\n- 종료 게이트 통과\n\n기존 개인 인덱스 보존 → 롤백 가능"},
+		{"id":"todo","type":"text","x":-1020,"y":1070,"width":1180,"height":300,"color":"3","text":"## ⚠️ 남은 것 · 알려진 한계\n\n**11.9 골든셋 재평가** — 26문항 hit rate·정확성 전/후 비교, 회귀 0 확인. judge(gpt-5-nano) 비용 추산 후 착수. **아직 \"검색이 더 좋아졌다\"는 증명은 없음** — 청킹 지표만 좋아진 상태.\n\n**11.8 재추출 판단** — 공유 `extracted/`는 2026-07-15 생성인데 hwp 파싱 수정(`831f25c`)은 07-20. **추출물이 코드보다 낡음.** 재추출은 팀 공유 산출물을 덮어쓰고 전/후 비교 입력을 바꾸므로 `--adopt`로 동결해 둠 → 팀 합의 필요.\n\n**간트형 다단 헤더 표** — `TABLE_MAX_COLS` 초과로 여전히 평문 폴백.\n\n**정규화 빈칸** — 병합 자리에 남는 빈칸을 LLM이 \"값 없음\"으로 오독할 여지. 직전 값·`〃` 채우기는 **오정보 위험이 커서 미채택**, 11.9 지표를 보고 재판단."},
+		{"id":"decision","type":"text","x":-1020,"y":1420,"width":1180,"height":190,"color":"6","text":"## 🧭 설계 판단 기록\n\n**표 게이트** — 처음엔 \"추출 단계 재구성\"(C안)을 골랐다가 **열 수 정규화**(A안)로 선회. 추출기를 건드리면 100개 문서 전건 재추출이 필요하고 팀 공유 산출물이 바뀐다. 정규화는 청킹 단계에 갇혀 있어 되돌리기 쉽다.\n\n**공용 모듈 분리** — \"미채택\"으로 결론냈다가 import 15.4초를 실측하고 **뒤집음**. 근거 없이 내린 판단은 측정으로 교정한다.\n\n**`broken_table_count` 존치** — 값이 항상 0이지만 제거하지 않음. 코퍼스가 바뀌면(재추출·새 파서) 다시 유효해지는 지표. 조사 종결 근거를 Plans.md에 남겨 재조사 방지."}
+	],
+	"edges":[
+		{"id":"e-s1","fromNode":"start","fromSide":"bottom","toNode":"c1","toSide":"top"},
+		{"id":"e-s2","fromNode":"start","fromSide":"bottom","toNode":"c2","toSide":"top"},
+		{"id":"e-s3","fromNode":"start","fromSide":"bottom","toNode":"c3","toSide":"top"},
+		{"id":"e-c1","fromNode":"c1","fromSide":"bottom","toNode":"f1","toSide":"top","label":"제거"},
+		{"id":"e-c2","fromNode":"c2","fromSide":"bottom","toNode":"f2","toSide":"top","label":"판정→변환"},
+		{"id":"e-c3","fromNode":"c3","fromSide":"bottom","toNode":"f3","toSide":"top","label":"조건부 승격"},
+		{"id":"e-f1","fromNode":"f1","fromSide":"bottom","toNode":"result","toSide":"top"},
+		{"id":"e-f2","fromNode":"f2","fromSide":"bottom","toNode":"result","toSide":"top"},
+		{"id":"e-f3","fromNode":"f3","fromSide":"bottom","toNode":"result","toSide":"top"},
+		{"id":"e-rv","fromNode":"result","fromSide":"right","toNode":"verify","toSide":"left","label":"전건 대조"},
+		{"id":"e-r7","fromNode":"result","fromSide":"bottom","toNode":"v117","toSide":"top","label":"검증 리포트에서 발견"},
+		{"id":"e-7h","fromNode":"v117","fromSide":"right","toNode":"headers","toSide":"left","label":"import 15.4s 실측"},
+		{"id":"e-ri","fromNode":"result","fromSide":"bottom","toNode":"reindex","toSide":"top","label":"청크 경계 변경"},
+		{"id":"e-it","fromNode":"reindex","fromSide":"bottom","toNode":"todo","toSide":"top","label":"증명은 아직"},
+		{"id":"e-td","fromNode":"todo","fromSide":"bottom","toNode":"decision","toSide":"top"}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}
