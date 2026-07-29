@@ -374,6 +374,15 @@
 			"toNode":"5050a6b4d31e33e8",
 			"toSide":"left",
 			"label":"회귀 평가"
+		},
+		{
+			"id":"9bb3957a1beec562",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"aa6244babcffa863",
+			"fromSide":"right",
+			"toNode":"c5aff5adcdd0a7ac",
+			"toSide":"left"
 		}
 	],
 	"metadata":{
