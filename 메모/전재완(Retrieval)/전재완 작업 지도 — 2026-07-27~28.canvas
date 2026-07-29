@@ -163,6 +163,55 @@
 			"width": 560,
 			"height": 200,
 			"color": "1"
+		},
+		{
+			"id": "h4",
+			"type": "text",
+			"text": "# 🆕 추가 캔버스 (2026-07-29)",
+			"x": 1020,
+			"y": -620,
+			"width": 640,
+			"height": 70,
+			"color": "2"
+		},
+		{
+			"id": "d6",
+			"type": "text",
+			"text": "청킹/헤더 원본 관찰 기록 3건이 어느 캔버스에도 안 걸려있어서\n따로 캔버스로 정리. 헤더 인식 개선 시도는 실제로는 되돌려졌다는\n사실도 같이 기록(노트 자체엔 없던 결과).",
+			"x": 1020,
+			"y": -530,
+			"width": 640,
+			"height": 160,
+			"color": "4"
+		},
+		{
+			"id": "canvas-a-link",
+			"type": "text",
+			"text": "→ 전재완 작업 정리 — 표 청킹·헤더 인식 원본 이슈.canvas",
+			"x": 1020,
+			"y": -350,
+			"width": 640,
+			"height": 60
+		},
+		{
+			"id": "d7",
+			"type": "text",
+			"text": "오늘 세션 마지막 — 공고 추천 화면 실사용 중 나온 피드백 3건을\n그 자리에서 고침(탭 재요청·레이스·무진행 로딩). 전용 캔버스로\n따로 정리.",
+			"x": 1020,
+			"y": -270,
+			"width": 640,
+			"height": 150,
+			"color": "4"
+		},
+		{
+			"id": "canvas-b-link",
+			"type": "text",
+			"text": "→ 전재완 작업 정리 — 공고 추천 로딩 개선.canvas",
+			"x": 1020,
+			"y": -100,
+			"width": 640,
+			"height": 60,
+			"color": "5"
 		}
 	],
 	"edges": [
@@ -278,6 +327,41 @@
 			"fromNode": "prev",
 			"fromSide": "bottom",
 			"toNode": "open",
+			"toSide": "top"
+		},
+		{
+			"id": "e17",
+			"fromNode": "open",
+			"fromSide": "right",
+			"toNode": "h4",
+			"toSide": "left"
+		},
+		{
+			"id": "e18",
+			"fromNode": "h4",
+			"fromSide": "bottom",
+			"toNode": "d6",
+			"toSide": "top"
+		},
+		{
+			"id": "e19",
+			"fromNode": "d6",
+			"fromSide": "bottom",
+			"toNode": "canvas-a-link",
+			"toSide": "top"
+		},
+		{
+			"id": "e20",
+			"fromNode": "canvas-a-link",
+			"fromSide": "bottom",
+			"toNode": "d7",
+			"toSide": "top"
+		},
+		{
+			"id": "e21",
+			"fromNode": "d7",
+			"fromSide": "bottom",
+			"toNode": "canvas-b-link",
 			"toSide": "top"
 		}
 	]
