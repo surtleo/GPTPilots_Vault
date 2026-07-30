@@ -1,217 +1,35 @@
 {
-	"nodes": [
-		{
-			"id": "title",
-			"type": "text",
-			"text": "표 청킹·헤더 인식 — 원본 이슈 정리\n2026-07-23~24 · GKL 그룹웨어 문서로 표 파싱 문제 3가지를 실제로 짚어본 기록.\n이 문제들 중 상당수는 이후 다른 캔버스(청킹·Parent-Document·평가지표)에서\n고쳐졌다 — 여기는 그 원본 관찰 기록.",
-			"x": -1000,
-			"y": -700,
-			"width": 700,
-			"height": 170,
-			"color": "6"
-		},
-		{
-			"id": "h1",
-			"type": "text",
-			"text": "원본 관찰 3가지 (청킹 문제.md)",
-			"x": -1000,
-			"y": -480,
-			"width": 700,
-			"height": 60,
-			"color": "2"
-		},
-		{
-			"id": "p1",
-			"type": "text",
-			"text": "1) 전화번호 마스킹 안 됨\n   \"사업 담당자\" 표에서 전화번호가 그대로 노출됨\n\n2) 표가 통째로 깨짐\n   2칸 이상 비어있는 행이 있으면 표 구조 인식 실패\n\n3) 표가 잘려서 일부만 답변됨\n   큰 표가 청킹되면서 반쪽만 검색에 걸림",
-			"x": -1000,
-			"y": -400,
-			"width": 700,
-			"height": 220,
-			"color": "1"
-		},
-		{
-			"id": "f-problem",
-			"type": "file",
-			"file": "메모/전재완(Retrieval)/청킹 문제.md",
-			"x": -1000,
-			"y": -160,
-			"width": 700,
-			"height": 260
-		},
-		{
-			"id": "h2",
-			"type": "text",
-			"text": "원인 진단 4가지 (해결 방안.md)",
-			"x": -1000,
-			"y": 130,
-			"width": 700,
-			"height": 60,
-			"color": "2"
-		},
-		{
-			"id": "p2",
-			"type": "text",
-			"text": "① 전화번호 마스킹 — 정규식이 \"02)6421-6466\"(괄호+하이픈2토막) 형식을\n   못 잡음. 패턴 하나 추가하면 되는 간단한 수정.\n\n② 2칸 이상 빈칸 — forward-fill 로직이 \"1칸만 모자랄 때\"만 작동해서\n   2칸 이상 비면 표 구조를 통째로 잃음.\n\n③ 표 쪼개짐 — 표가 CHUNK_SIZE를 넘으면 여러 조각으로 나뉘어 검색 시\n   한쪽만 걸림 -> Parent-Document로 해결(다른 캔버스에서 실제로 반영됨).\n\n④ 근본 추출 깨짐 — hwp 파서 단계에서부터 표가 깨져서 나오는 경우.\n   forward-fill로 못 고치는 수준 — 확인불가 처리가 현실적이라고 판단.",
-			"x": -1000,
-			"y": 210,
-			"width": 700,
-			"height": 320,
-			"color": "1"
-		},
-		{
-			"id": "f-solution",
-			"type": "file",
-			"file": "메모/전재완(Retrieval)/청킹 문제 - 해결 방안.md",
-			"x": -1000,
-			"y": 550,
-			"width": 700,
-			"height": 260
-		},
-		{
-			"id": "status",
-			"type": "text",
-			"text": "이후 실제로 반영된 것\n①②③번은 다른 캔버스(청킹·Parent-Document·평가지표)에서 실제 커밋으로\n반영됨 — forward-fill 확장 + Parent-Document 분리.\n④번(근본 추출 깨짐)은 여전히 확인불가 처리 쪽으로 남아있음 — 근본\n해결(다른 파서 도입 등)은 미착수.",
-			"x": -230,
-			"y": -160,
-			"width": 560,
-			"height": 190,
-			"color": "5"
-		},
-		{
-			"id": "h3",
-			"type": "text",
-			"text": "헤더 인식 개선 시도 (파싱 문제.md)",
-			"x": -230,
-			"y": 60,
-			"width": 560,
-			"height": 60,
-			"color": "2"
-		},
-		{
-			"id": "p3",
-			"type": "text",
-			"text": "hwp 파서가 애초에 # 헤더를 못 만들어냄 -> 글자 크기로 제목 후보를\n판별해서 나중에 #을 붙여주는 방식을 시도.\n기존 추출 결과는 안 건드리고 표시만 덧붙이는 방식이라 안전할 것으로\n예상했음.\n\n실패 파일 2건 확인:\n- 한국농어촌공사 아세안 — 제어문자 에러로 pyhwp 파싱 실패\n- 대전대학교(MILE) — 깨진 UTF-16 문자로 파싱 실패\n(둘 다 본문 추출은 멀쩡, 헤더 보강만 조용히 스킵되는 것 확인함)",
-			"x": -230,
-			"y": 140,
-			"width": 560,
-			"height": 260,
-			"color": "1"
-		},
-		{
-			"id": "reverted",
-			"type": "text",
-			"text": "실제 결과 — 시도했다가 되돌림\n이 방식을 실제로 적용해봤더니 실제 질의 하나가 깨지는 부작용이\n발견되어 전체 되돌림(revert) 처리함.\nvalidate.py가 header_count==0 이라고 표시하는 문서들도, 실제로는\nchunk.py가 이미 다른 방식으로 커버하고 있어 진짜 공백이 아니었음\n— 그래서 이 개선 자체가 필요조건이 아니었던 것으로 결론.",
-			"x": -230,
-			"y": 420,
-			"width": 560,
-			"height": 210,
-			"color": "3"
-		},
-		{
-			"id": "open",
-			"type": "text",
-			"text": "열린 질문\n근본 추출 깨짐(④번)을 다른 hwp 파서로 다시 시도해볼지, 아니면\n확인불가 처리를 표준 대응으로 굳힐지 아직 결정 안 됨.",
-			"x": -230,
-			"y": 650,
-			"width": 560,
-			"height": 140,
-			"color": "4"
-		},
-		{
-			"id": "f-header",
-			"type": "file",
-			"file": "메모/전재완(Retrieval)/파싱 문제 - 헤더 인식 불가.md",
-			"x": -230,
-			"y": 880,
-			"width": 560,
-			"height": 260
-		}
+	"nodes":[
+		{"id":"title","type":"text","text":"표 청킹·헤더 인식 — 원본 이슈 정리\n2026-07-23~24 · GKL 그룹웨어 문서로 표 파싱 문제 3가지를 실제로 짚어본 기록.\n이 문제들 중 상당수는 이후 다른 캔버스(청킹·Parent-Document·평가지표)에서\n고쳐졌다 — 여기는 그 원본 관찰 기록.","x":-1000,"y":-700,"width":700,"height":170,"color":"6"},
+		{"id":"h1","type":"text","text":"원본 관찰 3가지 (청킹 문제.md)","x":-1000,"y":-480,"width":700,"height":60,"color":"2"},
+		{"id":"p1","type":"text","text":"1) 전화번호 마스킹 안 됨\n   \"사업 담당자\" 표에서 전화번호가 그대로 노출됨\n\n2) 표가 통째로 깨짐\n   2칸 이상 비어있는 행이 있으면 표 구조 인식 실패\n\n3) 표가 잘려서 일부만 답변됨\n   큰 표가 청킹되면서 반쪽만 검색에 걸림","x":-1000,"y":-400,"width":700,"height":220,"color":"1"},
+		{"id":"f-problem","type":"file","file":"메모/전재완(Retrieval)/청킹 문제.md","x":-1000,"y":-160,"width":700,"height":260},
+		{"id":"h2","type":"text","text":"원인 진단 4가지 (해결 방안.md)","x":-1000,"y":130,"width":700,"height":60,"color":"2"},
+		{"id":"p2","type":"text","text":"① 전화번호 마스킹 — 정규식이 \"02)6421-6466\"(괄호+하이픈2토막) 형식을\n   못 잡음. 패턴 하나 추가하면 되는 간단한 수정.\n\n② 2칸 이상 빈칸 — forward-fill 로직이 \"1칸만 모자랄 때\"만 작동해서\n   2칸 이상 비면 표 구조를 통째로 잃음.\n\n③ 표 쪼개짐 — 표가 CHUNK_SIZE를 넘으면 여러 조각으로 나뉘어 검색 시\n   한쪽만 걸림 -> Parent-Document로 해결(다른 캔버스에서 실제로 반영됨).\n\n④ 근본 추출 깨짐 — hwp 파서 단계에서부터 표가 깨져서 나오는 경우.\n   forward-fill로 못 고치는 수준 — 확인불가 처리가 현실적이라고 판단.","x":-1000,"y":210,"width":700,"height":320,"color":"1"},
+		{"id":"f-solution","type":"file","file":"메모/전재완(Retrieval)/청킹 문제 - 해결 방안.md","x":-1000,"y":550,"width":700,"height":260},
+		{"id":"status","type":"text","text":"이후 실제로 반영된 것\n①②③번은 다른 캔버스(청킹·Parent-Document·평가지표)에서 실제 커밋으로\n반영됨 — forward-fill 확장 + Parent-Document 분리.\n④번(근본 추출 깨짐)은 여전히 확인불가 처리 쪽으로 남아있음 — 근본\n해결(다른 파서 도입 등)은 미착수.","x":-230,"y":-160,"width":560,"height":190,"color":"5"},
+		{"id":"h3","type":"text","text":"헤더 인식 개선 시도 (파싱 문제.md)","x":-230,"y":60,"width":560,"height":60,"color":"2"},
+		{"id":"p3","type":"text","text":"hwp 파서가 애초에 # 헤더를 못 만들어냄 -> 글자 크기로 제목 후보를\n판별해서 나중에 #을 붙여주는 방식을 시도.\n기존 추출 결과는 안 건드리고 표시만 덧붙이는 방식이라 안전할 것으로\n예상했음.\n\n실패 파일 2건 확인:\n- 한국농어촌공사 아세안 — 제어문자 에러로 pyhwp 파싱 실패\n- 대전대학교(MILE) — 깨진 UTF-16 문자로 파싱 실패\n(둘 다 본문 추출은 멀쩡, 헤더 보강만 조용히 스킵되는 것 확인함)","x":-230,"y":140,"width":560,"height":260,"color":"1"},
+		{"id":"reverted","type":"text","text":"실제 결과 — 시도했다가 되돌림\n이 방식을 실제로 적용해봤더니 실제 질의 하나가 깨지는 부작용이\n발견되어 전체 되돌림(revert) 처리함.\nvalidate.py가 header_count==0 이라고 표시하는 문서들도, 실제로는\nchunk.py가 이미 다른 방식으로 커버하고 있어 진짜 공백이 아니었음\n— 그래서 이 개선 자체가 필요조건이 아니었던 것으로 결론.","x":-230,"y":420,"width":560,"height":210,"color":"3"},
+		{"id":"open","type":"text","text":"열린 질문\n근본 추출 깨짐(④번)을 다른 hwp 파서로 다시 시도해볼지, 아니면\n확인불가 처리를 표준 대응으로 굳힐지 아직 결정 안 됨.","x":-230,"y":650,"width":560,"height":140,"color":"4"},
+		{"id":"f-header","type":"file","file":"메모/전재완(Retrieval)/파싱 문제 - 헤더 인식 불가.md","x":-230,"y":880,"width":560,"height":260}
 	],
-	"edges": [
-		{
-			"id": "e1",
-			"fromNode": "title",
-			"fromSide": "bottom",
-			"toNode": "h1",
-			"toSide": "top"
-		},
-		{
-			"id": "e2",
-			"fromNode": "h1",
-			"fromSide": "bottom",
-			"toNode": "p1",
-			"toSide": "top"
-		},
-		{
-			"id": "e3",
-			"fromNode": "p1",
-			"fromSide": "bottom",
-			"toNode": "f-problem",
-			"toSide": "top"
-		},
-		{
-			"id": "e4",
-			"fromNode": "f-problem",
-			"fromSide": "bottom",
-			"toNode": "h2",
-			"toSide": "top"
-		},
-		{
-			"id": "e5",
-			"fromNode": "h2",
-			"fromSide": "bottom",
-			"toNode": "p2",
-			"toSide": "top"
-		},
-		{
-			"id": "e6",
-			"fromNode": "p2",
-			"fromSide": "bottom",
-			"toNode": "f-solution",
-			"toSide": "top"
-		},
-		{
-			"id": "e7",
-			"fromNode": "f-solution",
-			"fromSide": "right",
-			"toNode": "status",
-			"toSide": "left"
-		},
-		{
-			"id": "e8",
-			"fromNode": "status",
-			"fromSide": "bottom",
-			"toNode": "h3",
-			"toSide": "top"
-		},
-		{
-			"id": "e9",
-			"fromNode": "h3",
-			"fromSide": "bottom",
-			"toNode": "p3",
-			"toSide": "top"
-		},
-		{
-			"id": "e10",
-			"fromNode": "p3",
-			"fromSide": "bottom",
-			"toNode": "reverted",
-			"toSide": "top"
-		},
-		{
-			"id": "e11",
-			"fromNode": "reverted",
-			"fromSide": "bottom",
-			"toNode": "open",
-			"toSide": "top"
-		},
-		{
-			"id": "e12",
-			"fromNode": "reverted",
-			"fromSide": "bottom",
-			"toNode": "f-header",
-			"toSide": "top"
-		}
-	]
+	"edges":[
+		{"id":"e1","fromNode":"title","fromSide":"bottom","toNode":"h1","toSide":"top"},
+		{"id":"e2","fromNode":"h1","fromSide":"bottom","toNode":"p1","toSide":"top"},
+		{"id":"e3","fromNode":"p1","fromSide":"bottom","toNode":"f-problem","toSide":"top"},
+		{"id":"e4","fromNode":"f-problem","fromSide":"bottom","toNode":"h2","toSide":"top"},
+		{"id":"e5","fromNode":"h2","fromSide":"bottom","toNode":"p2","toSide":"top"},
+		{"id":"e6","fromNode":"p2","fromSide":"bottom","toNode":"f-solution","toSide":"top"},
+		{"id":"e7","fromNode":"f-solution","fromSide":"right","toNode":"status","toSide":"left"},
+		{"id":"e8","fromNode":"status","fromSide":"bottom","toNode":"h3","toSide":"top"},
+		{"id":"e9","fromNode":"h3","fromSide":"bottom","toNode":"p3","toSide":"top"},
+		{"id":"e10","fromNode":"p3","fromSide":"bottom","toNode":"reverted","toSide":"top"},
+		{"id":"e11","fromNode":"reverted","fromSide":"bottom","toNode":"open","toSide":"top"},
+		{"id":"e12","fromNode":"reverted","fromSide":"bottom","toNode":"f-header","toSide":"top"}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
 }
