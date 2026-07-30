@@ -37,6 +37,57 @@
 - `/ask`에 100턴 히스토리 — 정상 처리(clarify 케이스로 즉시 응답)
 - 빈 프로필/질문/필드 누락/잘못된 JSON — 전부 기존에 이미 올바르게 422/404 처리 중
 
+### 라운드 2 (2026-07-30) — feat/ux-v6-workspace 머지 직후
+
+팀원이 `feat/ux-v6-workspace`를 머지하면서 라우터 기반 화면(`/chat`·`/profile`·
+`/recommendations`)이 사라지고 **4단 상시 워크스페이스**(NavSidebar|DocsPanel|
+Viewer|ChatPanel)로 구조가 바뀜. 제가 이번 세션에 만든 상태 레이어(추천 캐시·
+활성 문서·프로필)는 그대로 살아 확장됐고, 채팅은 `chat-sessions-context`가
+`chat-flows.tsx`(새 파일, 프로토타입의 flowReco·flowCompare·flowSummary·flowReady를
+실제 엔드포인트에 연결)로 한 단계 더 커짐. 이 새 흐름 레이어를 코드 정독으로 검토.
+
+**발견 1 — 추천 대조 진행 카드가 세션 전환 중 엉뚱한 대화로 샘 [신뢰성·안정성]**
+
+새 "최근 대화" 사이드바로 대화를 여러 개 넘나들 수 있게 됐는데, `chat-flows.tsx`의
+`pushLocal`/`patchCard`는 항상 **"지금 보고 있는 세션"**(`chat-sessions-context`의
+`currentId`)에만 쓰도록 되어 있었다. 맞춤 공고 대조(`runReco`)는 1~2분 걸리는데
+(주석에 이미 명시돼 있던 사실), 그 사이 사용자가 사이드바에서 다른 대화로
+넘어가면:
+- 진행 카드("적합도 높은 공고 선별 중…")는 원래 세션 A에 남아 있는데, `patchCard`가
+  대상을 `currentId`(이제 세션 B)로 찾아서 A의 카드를 찾지 못해 **조용히 무시**
+  (no-op) → 세션 A는 "대조하는 중…" 스피너로 **영원히 멈춘 채** localStorage에
+  저장됨(새로고침해도 안 풀림 — 라운드 1 미해결 항목 7과 겹치는 지점).
+- 대조가 끝나면 `pushLocal`이 완료/실패 메시지를 이번엔 **세션 B**(사용자가
+  실제로 보고 있는, 이 흐름과 무관한 대화)에 끼워 넣는다 — 맥락 없는 "참가자격을
+  대조해 담아뒀어요" 메시지가 엉뚱한 대화에 뜬다.
+- 코드 정독만으로 발견(브라우저 없이 재현 불가한 종류의 버그라 정적 분석이 유일한
+  검증 수단이었음) — `chat-sessions-context.tsx`의 `patchCard`/`pushLocal` 구현이
+  `s.id === currentId`로만 필터링하는 걸 확인해 확정.
+
+→ **수정**: `chat-sessions-context`에 `currentIdRef`(state를 동기 미러링하는 ref)와
+`peekCurrentId()`를 추가하고, `pushLocal`/`patchCard`가 선택적 `sessionId`를 받게
+확장. `chat-flows.tsx`의 `runReco`가 흐름 시작 시점에 `peekCurrentId()`로 세션을
+고정해서(`recoCardRef`가 `{id, sessionId}` 쌍을 들고 있음) 이후 모든 패치·메시지가
+그 세션으로 향하도록 함 — `sessionId`를 명시한 쓰기는 화면도 그쪽으로 튕기지 않음
+(다른 대화를 보던 중 갑자기 화면이 바뀌는 것도 같이 막음). `tsc -b`·`lint`·
+`format:check`·`build` 전부 통과 확인. 브랜치 `fix/session-scoped-background-flows`
+(GPTPilots_Webs), 커밋 `a5fbe1b`, PR 대기 중.
+
+**같은 유형이지만 아직 안 고친 자리** — `runSummary`(핵심 정리, `/ask` 1회)·
+`runReady`/`judge`(입찰 준비 점검, `/eligibility` 1회)·`answerAsk`(확인 질문 답변
+후 재판정)도 원리상 같은 버그가 있다. 다만 이쪽은 네트워크 호출이 보통 수 초
+내로 끝나 사용자가 그 사이 대화를 옮길 확률이 낮아 우선순위를 낮춰 다음 라운드로
+미룸. 고칠 때는 이번에 추가한 `sessionId` 파라미터를 그대로 넘기면 된다.
+
+**테스트했으나 문제 없었던 것**
+- `workspace-context.tsx`의 탭 열기/닫기·`addFile`(같은 id로 재생성 시 교체)
+  로직 — 정상
+- `docKey`/`genKey`/`parseKey` 왕복 — 정상
+- `api.ts`의 doc_id 인코딩(`encodeURIComponent`) — 라우터 제거 후에도 여전히
+  fetch 경로에서만 쓰이고 URL 파라미터 디코딩 경로 자체가 없어져서, CLAUDE.md의
+  기존 "useParams 이중 디코딩" 경고가 가리키던 위험은 이번 개편으로 오히려
+  사라짐(라우터가 없으니 react-router 디코딩도 없음)
+
 ---
 
 ## 이미 알려진 미해결 항목 (이전 세션에서 발견, 아직 미착수)
@@ -93,6 +144,13 @@
 - `/recommendations/stream`을 브라우저가 아니라 curl로 중간에 강제 종료
   (Ctrl+C)했을 때 서버 쪽 스레드풀이 정상 정리되는지(리소스 누수 확인)
 - 다크모드 토큰이 실제로 WCAG 대비 기준을 만족하는지(코드 리뷰 수준에서)
+- `runSummary`·`runReady`/`judge`·`answerAsk`에도 라운드 2에서 만든 `sessionId`
+  파라미터를 적용해 세션 전환 중 결과가 새는 걸 마저 막기(우선순위 낮음)
+- `chat-flows.tsx`의 `runReady`가 체크된 문서 중 `docs[0]` 하나만 판정 —
+  여러 건 체크했을 때 나머지는 조용히 무시되는지, 사용자에게 안내가 있는지 확인
+- `send()`도 `currentIdRef` 기반으로 통일할지 검토(지금은 클로저 `currentId`를
+  써서 라운드 2와 같은 유형의 잠재 위험이 이론상 남아 있으나, 호출 패턴상
+  아직 실제 트리거 경로는 못 찾음)
 
 ## 관련
 
