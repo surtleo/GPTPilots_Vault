@@ -1,0 +1,8 @@
+Final3 capture/objective evidence (caller-supplied):
+- Desktop viewport/content width: 1440/1440.
+- Mobile viewport/content width: 390/390.
+- Horizontal overflow: 0.
+- Mobile code block 1 scrollWidth/clientWidth: 290/290.
+- Mobile code block 2 scrollWidth/clientWidth: 290/290.
+- Desktop byte string: fits on one line.
+- Capture files: hwp-report-20260730-desktop-final3.png (1440x4328 RGB), hwp-report-20260730-mobile-final3.png (390x6975 RGB).
