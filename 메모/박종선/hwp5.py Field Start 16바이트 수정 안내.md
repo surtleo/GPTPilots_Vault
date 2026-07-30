@@ -12,8 +12,6 @@ VS Code에서 아래 파일을 엽니다.
 GPTPilots_Project\.venv\Lib\site-packages\hwp_hwpx_parser\hwp5.py
 ```
 
-수정 전에 파일을 복사해 `hwp5.py.bak`로 백업해 두는 것을 권장합니다.
-
 ## 2. 수정할 함수 찾기
 
 파일에서 아래 함수를 검색합니다.
@@ -125,10 +123,9 @@ elif code == 0x04:
 
 ## 6. 적용 확인
 
-케빈랩 HWP를 다시 추출했을 때 다음처럼 나오면 적용 성공입니다.
+케빈랩 HWP를 다시 추출했을 때 아래처럼 나오면 적용 성공입니다.
 
 ```text
 성공: True
 추출 글자 수: 56,914
 ```
-
