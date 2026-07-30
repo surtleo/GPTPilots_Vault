@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HWP 파싱 타임아웃: 원인·수정·검증</title>
+  <style>
+    :root {
+      --ink: #17212b;
+      --navy: #24465f;
+      --muted: #60717d;
+      --line: #d7e0e4;
+      --paper: #ffffff;
+      --canvas: #e9eef0;
+      --navy-soft: #edf4f8;
+      --green: #2d7353;
+      --green-soft: #edf7f0;
+      --amber: #9b6b19;
+      --amber-soft: #fff7e6;
+      --red: #a6443d;
+      --red-soft: #fff0ee;
+      --mono: "Cascadia Code", "D2Coding", Consolas, monospace;
+      --sans: "Pretendard", "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
+      --serif: "Noto Serif KR", "Batang", serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--canvas); }
+    body { margin: 0; color: var(--ink); background: var(--canvas); font-family: var(--sans); line-height: 1.72; }
+    .page { width: min(100% - 48px, 1000px); margin: 36px auto; padding: 70px 76px 80px; background: var(--paper); box-shadow: 0 16px 48px rgba(25, 43, 54, .12); }
+    .eyebrow { margin: 0 0 14px; color: var(--navy); font-family: var(--mono); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    h1, h2, h3, p { overflow-wrap: break-word; }
+    h1 { max-width: 760px; margin: 0; font-family: var(--serif); font-size: clamp(35px, 5vw, 53px); line-height: 1.16; letter-spacing: -.035em; }
+    .subtitle { max-width: 740px; margin: 20px 0 0; color: var(--muted); font-size: 18px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 28px; color: var(--muted); font-size: 13px; }
+    .meta strong { color: var(--ink); }
+    section { margin-top: 66px; }
+    h2 { margin: 0 0 22px; font-size: 28px; line-height: 1.32; letter-spacing: -.025em; }
+    h3 { margin: 0 0 10px; font-size: 18px; line-height: 1.45; }
+    p { margin: 0 0 16px; }
+    .lead { font-size: 19px; line-height: 1.75; }
+    .section-number { color: var(--navy); font-family: var(--mono); font-size: .58em; letter-spacing: .05em; vertical-align: .18em; }
+    code { padding: .08em .32em; border-radius: 3px; background: #edf0ee; color: #274d61; font-family: var(--mono); font-size: .88em; }
+    a { color: var(--navy); }
+
+    .verdict { display: grid; grid-template-columns: 44px 1fr; gap: 18px; margin-top: 28px; padding: 25px 28px; border: 1px solid #c8d9e4; border-left: 5px solid var(--navy); background: var(--navy-soft); }
+    .verdict-label { color: var(--navy); font-family: var(--mono); font-size: 12px; font-weight: 800; letter-spacing: .08em; writing-mode: vertical-rl; }
+    .verdict p { margin: 0; font-size: 18px; font-weight: 650; line-height: 1.66; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .fact { min-height: 142px; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+    .fact-label { display: block; margin-bottom: 11px; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .fact-value { display: block; color: var(--navy); font-family: var(--serif); font-size: 30px; font-weight: 700; line-height: 1.1; }
+    .fact-detail { display: block; margin-top: 9px; font-size: 13px; line-height: 1.55; }
+    .note { margin: 24px 0; padding: 16px 18px; border-left: 3px solid var(--amber); background: var(--amber-soft); color: #5e481f; font-size: 14px; }
+    .warning { border-left-color: var(--red); background: var(--red-soft); color: #6d302b; }
+    .success { border-left-color: var(--green); background: var(--green-soft); color: #24563f; }
+
+    .record { margin: 26px 0; padding: 26px 28px; border: 1px solid var(--line); background: #f8faf9; }
+    .record-title { margin-bottom: 16px; color: var(--navy); font-family: var(--mono); font-size: 13px; font-weight: 800; letter-spacing: .04em; }
+    .byte-line { margin: 0; color: #213f54; font-family: var(--mono); font-size: clamp(16px, 2vw, 22px); font-weight: 700; letter-spacing: .03em; line-height: 1.8; overflow-wrap: anywhere; }
+    .byte-labels { display: grid; grid-template-columns: 16fr 2fr; gap: 10px; margin-top: 10px; color: var(--muted); font-size: 12px; }
+    .byte-labels span:first-child { border-top: 2px solid #47718b; padding-top: 7px; }
+    .byte-labels span:last-child { border-top: 2px solid #80927d; padding-top: 7px; }
+    .definition-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+    .definition { padding: 21px 24px 23px 0; border-bottom: 1px solid var(--line); }
+    .definition:nth-child(odd) { margin-right: 28px; }
+    .term { display: block; margin-bottom: 7px; color: var(--navy); font-size: 16px; font-weight: 800; }
+    .definition p { margin: 0; font-size: 14px; line-height: 1.7; }
+    .steps { margin: 0; padding-left: 23px; }
+    .steps li { margin: 10px 0; padding-left: 4px; }
+    pre { max-width: 100%; margin: 22px 0; padding: 20px 22px; overflow-x: auto; background: #202a30; color: #edf3ef; font-family: var(--mono); font-size: 13px; line-height: 1.65; }
+    .comparison { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin: 24px 0; }
+    .comparison article { min-width: 0; padding: 25px; border: 1px solid var(--line); border-radius: 8px; }
+    .comparison .before { border-top: 4px solid var(--red); }
+    .comparison .after { border-top: 4px solid var(--green); }
+    .comparison p { margin: 0; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 14px; }
+    th, td { padding: 15px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; overflow-wrap: break-word; }
+    th { border-top: 1px solid var(--ink); color: var(--muted); font-size: 12px; letter-spacing: .04em; }
+    td:first-child { color: var(--navy); font-weight: 700; }
+    .status-ok { color: var(--green); font-weight: 800; }
+    footer { margin-top: 66px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+
+    @media (max-width: 760px) {
+      html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+      .page { width: 100%; max-width: 100%; margin: 0; padding: 42px 24px 56px; box-shadow: none; }
+      h1, h2, h3, p, li, td, .subtitle, .fact-detail, .verdict p, .definition p { word-break: keep-all; overflow-wrap: normal; }
+      .facts, .comparison, .definition-grid { grid-template-columns: 1fr; }
+      .fact { min-height: auto; }
+      .definition:nth-child(odd) { margin-right: 0; }
+      .byte-labels { grid-template-columns: 1fr; }
+      .verdict { grid-template-columns: 30px 1fr; padding: 22px 20px; }
+      .verdict p { font-size: 17px; }
+      pre { padding: 16px 12px; font-size: 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
+      table, thead, tbody, tr, th, td { display: block; width: 100%; }
+      thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      table { border-top: 1px solid var(--ink); }
+      tr { padding: 14px 0; border-bottom: 1px solid var(--line); }
+      td { padding: 4px 0; border: 0; }
+      td::before { display: block; margin-bottom: 2px; color: var(--muted); content: attr(data-label); font-size: 11px; font-weight: 800; letter-spacing: .03em; }
+      td:first-child { margin-bottom: 7px; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 14mm; }
+      html, body { background: #fff; }
+      .page { width: auto; margin: 0; padding: 0; box-shadow: none; }
+      section, .fact, .comparison article, .record, .verdict { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="eyebrow">GPTPilots · HWP Parser Incident Brief</p>
+      <h1>HWP 파싱 타임아웃:<br>원인·수정·검증</h1>
+      <p class="subtitle">케빈랩 HWP 1건을 계기로 확인한 범용 파서 결함과, 팀 적용 전 알아야 할 검증 결과를 정리한 보고서입니다.</p>
+      <div class="meta">
+        <span><strong>작성일</strong> 2026. 07. 30.</span>
+        <span><strong>대상</strong> 케빈랩 주식회사 RFP HWP</span>
+        <span><strong>범위</strong> 원인 · 수정 지점 · 재추출 검증</span>
+      </div>
+    </header>
+
+    <section>
+      <h2><span class="section-number">01</span> 문제점</h2>
+      <p class="lead">케빈랩 HWP는 한글에서 정상적으로 열리고, 원본의 문제 구간도 HWP 구조상 정상입니다. 그런데 <code>hwp_hwpx_parser</code>의 하이퍼링크 사전 탐색 코드가 특정 제어 문자를 <strong>14바이트만 소비</strong>해, 남은 바이트를 다시 같은 제어 문자로 오인했습니다. 그 뒤 읽을 수 있는 바이트가 부족해도 현재 위치를 옮기지 않아 무한 반복이 발생했고, 추출 작업이 600초 후 타임아웃되었습니다.</p>
+      <div class="verdict">
+        <span class="verdict-label">결론</span>
+        <p>원본 문서가 깨진 문제가 아니라 파서의 제어 문자 길이 처리 문제입니다. 케빈랩만 예외 처리하면 다음 유사 문서에서 다시 멈출 수 있으므로, 제어 문자 길이를 명세에 맞게 고쳐야 합니다.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="section-number">02</span> 본문 레코드에서 필요한 설명</h2>
+      <p>HWP 본문은 글자만 이어진 텍스트가 아닙니다. 문단 안에는 글자와 함께 “여기부터 목차 필드가 시작된다”, “문단이 끝났다”처럼 문서 구조를 알리는 제어 문자가 들어 있습니다. 케빈랩의 문제 레코드는 <code>태그 67 (문단 텍스트)</code>이고, 본문 길이는 정확히 18바이트입니다.</p>
+      <div class="note success"><strong>HWP 공식 문서 기준:</strong> 한컴의 <a href="https://cdn.hancom.com/link/docs/%ED%95%9C%EA%B8%80%EB%AC%B8%EC%84%9C%ED%8C%8C%EC%9D%BC%ED%98%95%EC%8B%9D_5.0_revision1.3.pdf" target="_blank" rel="noreferrer">「한글 문서 파일 형식 5.0」</a> 3.2.3절은 제어 문자를 문자·인라인·확장 컨트롤로 구분하고, 인라인·확장 컨트롤의 크기를 <strong>8 WCHAR</strong>로 정의합니다. <code>0x0003</code>은 표 6에서 ‘필드 시작’ 확장 컨트롤이므로, WCHAR가 2바이트인 문단 텍스트에서는 <strong>8 × 2 = 16바이트</strong>를 한 단위로 읽어야 합니다.</div>
+      <div class="record">
+        <div class="record-title">문단 텍스트 레코드 payload 18 bytes</div>
+        <p class="byte-line">03 00 63 6f 74 25 00 00 00 00 00 00 00 00 03 00&nbsp;&nbsp;0d 00</p>
+        <div class="byte-labels">
+          <span>16바이트: <code>0x0003</code> Field Start. <code>63 6f 74 25</code>는 바이트 순서를 뒤집어 읽으면 <code>%toc</code>인 목차 관련 제어 ID입니다.</span>
+          <span>2바이트: <code>0x000d</code> 문단 끝</span>
+        </div>
+      </div>
+      <div class="record">
+        <div class="record-title">기존 hwp_hwpx_parser / hwp5.py의 14바이트 소비 결과</div>
+        <p class="byte-line">03 00 63 6f 74 25 00 00 00 00 00 00 00 00&nbsp;&nbsp;|&nbsp;&nbsp;03 00 0d 00</p>
+        <p class="byte-caption"><strong>기존 코드가 소비한 14바이트</strong> <code>i += 14</code> &nbsp;|&nbsp;&nbsp; <strong>남아 버린 4바이트</strong> <code>03 00 0d 00</code></p>
+        <p class="byte-caption">따라서 남은 <code>03 00</code>을 새 Field Start로 다시 오인합니다. 하지만 뒤에는 <code>0d 00</code>만 남아 있어 제어 ID를 읽을 수 없고, 기존 분기는 <code>i</code>를 이동시키지 않아 같은 위치를 반복합니다.</p>
+      </div>
+      <div class="definition-grid">
+        <article class="definition">
+          <span class="term">본문 레코드</span>
+          <p>HWP 파일은 문단 텍스트, 글자 모양, 표 같은 정보를 작은 레코드 단위로 저장합니다. 이 사례의 다음 레코드인 태그 68은 글자 모양 정보이며, 앞 레코드의 이어진 본문이 아닙니다.</p>
+        </article>
+        <article class="definition">
+          <span class="term">제어 문자</span>
+          <p>화면에 표시할 글자가 아니라 문서의 구조·기능을 표현하는 값입니다. <code>0x0003</code>은 Field Start, 즉 필드가 시작됨을 뜻하는 확장 제어 문자입니다.</p>
+        </article>
+        <article class="definition">
+          <span class="term">제어 ID</span>
+          <p>필드의 종류 또는 짝을 식별하는 번호입니다. 여기서는 <code>%toc</code>가 들어 있어 목차 관련 필드임을 알 수 있습니다. ID가 있다고 해서 화면에 그대로 글자로 나타나는 것은 아닙니다.</p>
+        </article>
+        <article class="definition">
+          <span class="term">왜 마지막에 <code>03 00</code>이 또 있나</span>
+          <p>이 <code>03 00</code>은 새 제어 문자의 시작이 아닙니다. 앞의 Field Start 전체가 16바이트이므로 그 안에 포함된 값입니다. 뒤의 <code>0d 00</code>만 별도의 문단 끝 제어 문자입니다.</p>
+        </article>
+      </div>
+      <div class="note"><strong>핵심:</strong> <code>03 00 0d 00</code>만 잘린 데이터처럼 보였던 이유는 파서가 앞 16바이트 중 14바이트만 건너뛰었기 때문입니다. 실제 원본 레코드는 18바이트이고 구조가 맞습니다.</div>
+    </section>
+
+    <section>
+      <h2><span class="section-number">03</span> 해결방안</h2>
+      <ol class="steps">
+        <li><code>0x0003</code> Field Start를 발견하면 14바이트가 아니라 <strong>16바이트</strong>를 하나의 확장 제어 문자로 처리합니다.</li>
+        <li>남은 길이가 16바이트보다 짧으면, 불완전한 제어 문자를 억지로 해석하지 말고 해당 문단의 사전 탐색을 안전하게 끝냅니다.</li>
+        <li>어떤 제어 문자 분기에서도 반복문 위치 <code>i</code>가 이동하거나 종료되는지 보장합니다. 이 안전장치가 있어야 새 RFP에서 예외적인 데이터가 와도 무한 루프가 나지 않습니다.</li>
+        <li>케빈랩 원본을 회귀 테스트로 추가하고, 전체 HWP 코퍼스의 결과가 바뀌지 않는지 비교합니다.</li>
+      </ol>
+      <div class="note success"><strong>권장 적용 방식:</strong> 현재의 <code>.venv</code> 수정은 원인 검증용입니다. 팀 코드에는 라이브러리를 포크하거나 의존성 패치 절차로 반영해야 하며, 가상환경을 다시 만들 때 사라지는 로컬 수정에 의존하면 안 됩니다.</div>
+    </section>
+
+    <section>
+      <h2><span class="section-number">04</span> 다른 HWP 파일들은 왜 됐었나</h2>
+      <p>다른 HWP가 모두 “제어 문자가 없어서” 성공한 것은 아닙니다. 96개 HWP 중 83개에 <code>0x0003</code> Field Start가 있었고, 총 677회 등장했습니다. 다만 케빈랩은 그 Field Start가 문단의 거의 끝에 있어서, 잘못 14바이트를 건너뛴 뒤 남은 <code>03 00 0d 00</code>을 다시 읽는 순간 이동할 여지가 없어졌습니다.</p>
+      <div class="record">
+        <div class="record-title">14바이트만 소비한 뒤, 남은 2바이트 <code>03 00</code>은 어떻게 되나</div>
+        <p><strong>버려지는 값이 아닙니다.</strong> 다음 반복에서 파서는 이 <code>03 00</code>을 <strong>새로운 Field Start의 시작</strong>이라고 잘못 읽습니다. 그 뒤에 무엇이 남아 있느냐가 케빈랩과 다른 HWP의 차이입니다.</p>
+        <div class="comparison">
+          <article class="before">
+            <h3>케빈랩: 뒤에 2바이트만 남음</h3>
+            <p class="byte-line">03 00&nbsp;&nbsp;|&nbsp;&nbsp;0d 00</p>
+            <p><code>03 00</code>을 새 Field Start로 오인했지만, 제어 ID를 읽으려면 뒤에 4바이트가 필요합니다. 실제로는 <code>0d 00</code> 2바이트뿐이라 읽기에 실패하고 <code>i</code>도 이동하지 않습니다.</p>
+            <p><strong>결과: 같은 <code>03 00</code>을 계속 다시 읽음 → 무한 루프</strong></p>
+          </article>
+          <article class="after">
+            <h3>다른 HWP: 뒤에 데이터가 더 남음</h3>
+            <p class="byte-line">03 00&nbsp;&nbsp;|&nbsp;&nbsp;xx xx xx xx ···</p>
+            <p>남은 <code>03 00</code> 뒤에 4바이트 이상이 있어, 파서는 그것들을 임시 제어 ID처럼 잘못 읽습니다. 이후 비하이퍼링크 분기에서 <code>i += 14</code>가 실행됩니다.</p>
+            <p><strong>결과: 잘못 읽었지만 위치는 앞으로 이동 → 타임아웃은 없음</strong></p>
+          </article>
+        </div>
+        <p class="byte-caption"><code>xx xx xx xx</code>은 실제 값이 아니라 “문단 뒤에 계속 남아 있던 데이터”를 표시한 것입니다. 문서마다 값은 다릅니다.</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>상황</th><th>잘못된 14바이트 처리 뒤의 결과</th></tr>
+        </thead>
+        <tbody>
+          <tr><td data-label="상황">대부분의 다른 HWP</td><td data-label="잘못된 14바이트 처리 뒤의 결과">뒤에 읽을 바이트가 더 남아 있어, 파서가 비록 정확하지 않은 위치에서 시작했더라도 다음 위치로 진행하여 멈추지는 않았습니다.</td></tr>
+          <tr><td data-label="상황">케빈랩 HWP</td><td data-label="잘못된 14바이트 처리 뒤의 결과">Field Start 끝 뒤에 문단 끝 <code>0d 00</code>만 남아, 재해석한 <code>03 00</code> 분기에서 위치가 전혀 이동하지 않았습니다.</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><strong>따라서:</strong> 기존 95개 HWP가 성공했다고 해서 기존 코드가 정확했다는 뜻은 아닙니다. 이번 수정은 케빈랩 전용 예외가 아니라, Field Start의 정상 길이인 16바이트를 따르는 범용 수정입니다.</div>
+    </section>
+
+    <section>
+      <h2><span class="section-number">05</span> 소스 수정해야 되는 부분</h2>
+      <p>문제가 있는 함수는 <code>_extract_hyperlink_texts_from_para</code>입니다. 현재 로컬 검증은 설치된 라이브러리 파일에서 했지만, 팀 적용 시에는 해당 라이브러리의 관리 가능한 포크 또는 패치된 버전으로 반영해야 합니다.</p>
+      <div class="comparison">
+        <article class="before">
+          <h3>기존</h3>
+          <p>Field Start를 14바이트로 취급해, 마지막 2바이트를 남긴 채 다음 반복으로 넘어갑니다.</p>
+          <pre>if code == 0x03:
+    text_start = i + 14
+    ...
+    i += 14</pre>
+        </article>
+        <article class="after">
+          <h3>수정</h3>
+          <p>HWP Field Start의 정확한 길이인 16바이트를 사용하고, 부족하면 안전하게 종료합니다.</p>
+          <pre>if code == 0x03:
+    field_start_size = 16
+    if i + field_start_size &gt; len(para_data):
+        break
+    text_start = i + field_start_size
+    ...
+    i += field_start_size</pre>
+        </article>
+      </div>
+      <div class="note warning"><strong>검증에 사용한 로컬 경로:</strong> <code>GPTPilots_Project\.venv\Lib\site-packages\hwp_hwpx_parser\hwp5.py</code>. 이 경로는 프로젝트 소스가 아니라 설치된 의존성입니다. 여기만 고치면 팀원·배포 서버·가상환경 재생성 시에는 적용되지 않습니다.</div>
+    </section>
+
+    <section>
+      <h2><span class="section-number">06</span> Test 결과</h2>
+      <table>
+        <thead>
+          <tr><th>검증 항목</th><th>결과</th><th>의미</th></tr>
+        </thead>
+        <tbody>
+          <tr><td data-label="검증 항목">수정 전 전체 추출</td><td data-label="결과">99 / 100 성공<br>케빈랩 600초 타임아웃</td><td data-label="의미">문제 재현 완료</td></tr>
+          <tr><td data-label="검증 항목">수정 후 케빈랩 원본 HWP</td><td data-label="결과" class="status-ok">성공 · 56,914자</td><td data-label="의미">동일 원본이 타임아웃 없이 본문 추출됨</td></tr>
+          <tr><td data-label="검증 항목">수정 후 전체 100건</td><td data-label="결과" class="status-ok">100 / 100 성공</td><td data-label="의미">케빈랩이 성공 상태로 전환됨</td></tr>
+          <tr><td data-label="검증 항목">케빈랩 제외 다른 HWP 95건</td><td data-label="결과" class="status-ok">상태·글자 수 변경 0건</td><td data-label="의미">이번 길이 수정이 기존 추출 결과를 바꾸지 않았음</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      근거: 프로젝트 내 원본 HWP 레코드 분석, 수정 전·후 100건 추출 리포트, <a href="https://tech.hancom.com/python-hwp-parsing-2/" target="_blank" rel="noreferrer">한컴 기술 블로그의 HWP 제어 문자 설명</a>.
+    </footer>
+  </main>
+</body>
+</html>

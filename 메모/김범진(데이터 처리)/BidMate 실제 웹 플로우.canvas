@@ -15,7 +15,6 @@
 		{"id":"s6c","type":"text","text":"## ⑥ 3/3 — 3년 실적 건수\n\"계약 서류 기준으로 입력해주세요\" 힌트. 숫자 입력.","x":1440,"y":762,"width":660,"height":175,"color":"5"},
 		{"id":"s7","type":"file","file":"메모/김범진(데이터 처리)/attachments/bidmate-flow/07-질문지-3of3-입력.jpg","x":-80,"y":960,"width":660,"height":410},
 		{"id":"s7c","type":"text","text":"## ⑦ 입력 후 → 추천 받기\n5건 입력하니 `추천 받기` 활성화.","x":-80,"y":1382,"width":660,"height":175,"color":"5"},
-		{"id":"s8","type":"file","file":"메모/김범진(데이터 처리)/attachments/bidmate-flow/08-추천목록-100건.jpg","x":680,"y":960,"width":660,"height":410},
 		{"id":"s8c","type":"text","text":"## ⑧ 추천 목록 — `/recommendations` ✅ 실데이터\n**공고 100건**, 마감일 최신순, 사업명·발주기관 검색.\n\n> 헤더에 명시: *\"적합도 추천은 준비 중이라 아직 표시하지 않습니다.\"*\n> 별점·적합도·태그를 **일부러 안 붙였다** — 판정 기준 미합의 상태에서 근거 없는 점수를 붙이면 진짜 추천으로 오해되기 때문 → [[BidMate 웹 연동 현황]] §4","x":680,"y":1382,"width":660,"height":175,"color":"2"},
 		{"id":"s9","type":"file","file":"메모/김범진(데이터 처리)/attachments/bidmate-flow/09-공고상세.jpg","x":1440,"y":960,"width":660,"height":410},
 		{"id":"s9c","type":"text","text":"## ⑨ 공고 상세 — `/rfp/:doc_id` ✅ 실데이터\n좌: 사업개요·주요조건(규모 2.1억·공고번호·공개일·마감일·HWP)\n우: 채팅 진입 + 응답 유형 3종 안내\n\n**활성 문서로 고정**되어 사업명을 안 써도 된다.","x":1440,"y":1382,"width":660,"height":175,"color":"2"},
@@ -27,7 +26,8 @@
 		{"id":"s12c","type":"text","text":"## ⑫ 마이페이지 — `/me` (목업)\n프로필 칩(관제 시스템·IoT 센서·지자체) + 지난 대화 3건.\n\n> `이어서 대화하기`는 **비활성**이다 — 대화 이력 저장 백엔드가 없어 죽은 링크가 되기 때문.","x":1440,"y":2002,"width":660,"height":175,"color":"3"},
 		{"id":"state","type":"text","text":"## 🚦 화면별 상태 (촬영 시점 실측)\n| 경로 | 화면 | 상태 |\n|---|---|---|\n| `/onboarding` | 온보딩 | 🟡 목업 |\n| `/questionnaire` | 질문지 | 🟡 목업 (자동추론 칩이 mock) |\n| `/recommendations` | 공고 목록 | 🟢 **실데이터 100건** |\n| `/rfp/:doc_id` | 공고 상세 + 채팅 | 🟢 **실데이터 + 실제 RAG** |\n| `/me` | 마이페이지 | 🟡 목업 |\n\n목업 3화면이 전부 **추천 엔진 미정**이라는 한 블로커에 걸려 있다.","x":-80,"y":2200,"width":700,"height":330,"color":"3"},
 		{"id":"blocker","type":"text","text":"## 🔴 최대 블로커 — 적합도 정의\n\"적합도 상/중/하\"가 뭔지 합의된 바가 없다.\n실적 도메인 매칭인지, 금액대인지, 기관 유형인지 미정.\n\n**막힌 건 구현이 아니라 정의다.** 온보딩·질문지가 무엇을 수집할지도 여기서 갈린다.\n\n→ [[BidMate 웹 연동 현황]] §5 · [[참가자격 매칭 구조 정리]] (참가자격 ↔ 적합도 2축 분리)","x":680,"y":2200,"width":700,"height":330,"color":"1"},
-		{"id":"howto","type":"text","text":"## ▶️ 재현 방법\n```bash\ncd GPTPilots_Webs\ncp .env.example .env   # VITE_API_TOKEN=devtoken\n./scripts/dev.sh\n```\n런처가 백엔드(`../GPTPilots_Project`, :8000)를 먼저 띄우고 `/health` 200을 기다린 뒤 프론트(:5173)를 연다.\n백엔드 warmup(e5 모델 + Chroma 로딩) 60~90초.\n\n**비용** — 목록·상세 열람 $0 / 채팅만 질문당 약 $0.002","x":1440,"y":2200,"width":700,"height":330,"color":"6"}
+		{"id":"howto","type":"text","text":"## ▶️ 재현 방법\n```bash\ncd GPTPilots_Webs\ncp .env.example .env   # VITE_API_TOKEN=devtoken\n./scripts/dev.sh\n```\n런처가 백엔드(`../GPTPilots_Project`, :8000)를 먼저 띄우고 `/health` 200을 기다린 뒤 프론트(:5173)를 연다.\n백엔드 warmup(e5 모델 + Chroma 로딩) 60~90초.\n\n**비용** — 목록·상세 열람 $0 / 채팅만 질문당 약 $0.002","x":1440,"y":2200,"width":700,"height":330,"color":"6"},
+		{"id":"s8","type":"file","file":"메모/김범진(데이터 처리)/attachments/bidmate-flow/08-추천목록-100건.jpg","x":680,"y":960,"width":660,"height":410}
 	],
 	"edges":[
 		{"id":"e0","fromNode":"title","fromSide":"bottom","toNode":"s1","toSide":"top"},
