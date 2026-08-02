@@ -1,0 +1,248 @@
+{
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "text": "# 🏗 BidMate 시스템 전체 아키텍처\n2026-08-02 기준 · 코드/실측 확인분만 기재\n\n프론트 `bidmate-web`(공개 레포) + 백엔드 `GPTPilots_Project`(프라이빗) 2레포 구성.\nRFP 원문·인덱스·답변 원문은 **로컬/팀 VM 밖으로 나가지 않는다**(spec §13-3).",
+      "x": -1420,
+      "y": -940,
+      "width": 1180,
+      "height": 230,
+      "color": "6"
+    },
+    {
+      "id": "fe",
+      "type": "text",
+      "text": "## 🖥 프론트 — bidmate-web\nVite + React 19 + TS + Tailwind v4 · `:5173`\n\n**라우터가 없다.** 화면을 옮겨 다니는 개념 대신 한 화면에 4열을 둔다 —\nURL 이동을 넣으면 그때마다 대화가 끊기고 어느 탭이 열렸는지를 잃는다.",
+      "x": -1420,
+      "y": -660,
+      "width": 620,
+      "height": 250,
+      "color": "5"
+    },
+    {
+      "id": "fe_cols",
+      "type": "text",
+      "text": "### 4열 셸 (`App.tsx`)\n① **내비** — 채팅 목록·프로필\n② **공고/파일 패널** — 맞춤 공고·생성물\n③ **뷰어** — 원문·비교표·프로필 (탭으로 쌓임)\n④ **채팅** — 항상 옆에 떠 있음\n\n뷰어에 연 게 없으면 열 자체를 없애고 채팅이 전체 폭을 쓴다.",
+      "x": -1420,
+      "y": -380,
+      "width": 620,
+      "height": 280
+    },
+    {
+      "id": "fe_store",
+      "type": "text",
+      "text": "### 브라우저 저장\n- `bidmate.profile.v1` — 회사 프로필 (localStorage)\n- `bidmate.chat-sessions.v1` — 대화\n- `bidmate.recommendations.v1` — 대조 결과\n  ↳ **2026-08-02 sessionStorage → localStorage**\n  탭을 닫으면 40초~1분짜리 대조 결과가 통째로 사라졌다.\n  캐시 키는 profileText — 프로필이 바뀌면 자동 재요청.",
+      "x": -1420,
+      "y": -70,
+      "width": 620,
+      "height": 290,
+      "color": "4"
+    },
+    {
+      "id": "api",
+      "type": "text",
+      "text": "## 🔌 API 계약 — FastAPI `:8000`\n`src/api/server.py`\n\n| 경로 | 쓰임 |\n|---|---|\n| `GET /health` | warmup 완료 확인 |\n| `GET /rfps` | 공고 목록(100건)·검색 |\n| `GET /rfps/{doc_id}` | 공고 상세 |\n| `GET /rfps/{doc_id}/content` | 원문 markdown |\n| `POST /ask` | 문서 근거 질의응답 |\n| `POST /recommendations` | 참가자격 대조 |\n| `POST /recommendations/stream` | 위의 NDJSON 진행 스트림 |\n| `POST /profile/infer` | 분야·키워드 추론 |\n| `GET /eligibility/{doc_id}` | 문서 요건 목록 |",
+      "x": -740,
+      "y": -660,
+      "width": 560,
+      "height": 560,
+      "color": "5"
+    },
+    {
+      "id": "api_auth",
+      "type": "text",
+      "text": "### 인증·경계\n- `X-API-Token` ↔ 서버 `WEB_SHARED_TOKEN` (불일치 401)\n- `WEB_ALLOWED_ORIGINS` 에 `localhost:5173`\n- `WEB_RATE_LIMIT` 창당 요청 상한 (초과 429)\n- **OpenAI 키는 서버 전용** — 프론트에 넣지 않는다\n- `doc_id` 는 공백·`/`·`%` 가 든 장문 한글 opaque id\n  → URL 만들 때만 `encodeURIComponent`",
+      "x": -740,
+      "y": -70,
+      "width": 560,
+      "height": 290,
+      "color": "1"
+    },
+    {
+      "id": "ask",
+      "type": "text",
+      "text": "## 💬 `/ask` — 근거 기반 답변\n\n**1. 라우팅** — 활성 문서가 있으면 그 문서로 고정.\n없고 사업명도 없으면 → `clarify`(후보 되묻기).\n\n**2. 검색** — `chunks` 컬렉션 dense 검색\n→ 후보 `RERANK_CANDIDATE_K = 20`\n\n**3. 리랭크** — `BAAI/bge-reranker-v2-m3` (ON, ADR-009)\n→ 최종 `RETRIEVAL_TOP_K = 5`\nGPU 없으면 자동 강등(맥 CPU 문항당 13초 실측)\n\n**4. 생성** — `gpt-5-mini`, 최대 2,500 토큰\n근거 없으면 `NO_EVIDENCE` 고정 응답\n\n**5. 응답** — `{answer, active_doc_id, citations[], cost}`\ncitations 는 `{doc_id, 사업명, 섹션}` — **원문 발췌는 NDA로 미포함**",
+      "x": -160,
+      "y": -660,
+      "width": 600,
+      "height": 560,
+      "color": "3"
+    },
+    {
+      "id": "reco",
+      "type": "text",
+      "text": "## 🎯 `/recommendations` — 참가자격 대조\n`src/eligibility.py`\n\n**1. 후보 검색** — `doc_cards` 임베딩 유사도, `K = 8`\n검색엔 `search_text`(자유서술+분야)만 쓴다 —\n자격 체크리스트는 모든 회사가 같은 법령 문구라\n섞으면 회사가 달라도 같은 공고가 나온다(겹침 25%→50% 실측)\n\n**2. 요건 확보** — `extract_requirements(doc_id)`\n캐시 적중이면 0초, 미스면 원문 전체(중앙값 9.9만자)를 LLM에\n\n**3. 대조** — `match_profile_batch`\n`BATCH_GROUP_SIZE = 1` · 워커 = 후보 수\n대조엔 `profile_text` 전체(자격·소재지·실적)를 쓴다\n— 정보가 많을수록 정확(확인율 10%→60% 실측)\n\n**4. 판정** — 즉시탈락(knockout) 규칙 + 개수 판정\n적격 🟢 / 확인필요 🟡 / 참가불가 🔴 를 목록에 남기고\n참가불가는 맨 아래로. 미달·확인불가는 제외.",
+      "x": 480,
+      "y": -660,
+      "width": 620,
+      "height": 620,
+      "color": "2"
+    },
+    {
+      "id": "embed",
+      "type": "text",
+      "text": "## 🧠 임베딩 · 인덱스\n\n**모델 = gpl3** (ADR-010, 2026-07-31 채택)\n`local/multilingual-e5-small-LoRA-gpl3`\ne5-small 베이스 + LoRA-GPL 머지 · 118M · **384차원**\n가중치 `model/pt/…gpl3.pt` (470MB, gitignore)\n`passage: `/`query: ` 프리픽스 **유지**(빼면 조용히 나빠짐)\n\n**인덱스 = `data/chroma_v3`**\n`doc_cards` 100건 · `chunks` 30,002건 (둘 다 384D)\n\n⚠️ 모델과 인덱스는 **함께** 바꿔야 한다 — 한쪽만 바꾸면\n차원이 같아 에러 없이 엉뚱한 결과가 나온다.",
+      "x": -160,
+      "y": -60,
+      "width": 600,
+      "height": 380,
+      "color": "5"
+    },
+    {
+      "id": "data",
+      "type": "text",
+      "text": "## 📁 데이터 (`data/`, gitignore)\n\n- `extracted/*.json` — 공고 원문 **103건**\n  키: `doc_id / source_file / format / markdown / meta`\n  ※ `meta` 는 전 문서 비어 있음\n- `extracted/meta.json` — 공고 메타 **100건**\n  공고번호·사업명·발주기관·금액·마감일·사업요약\n  → `/ask` 에선 **“공고 등록정보”** 라벨로 인용됨\n    (원문 본문엔 없는 정보)\n- `extracted/eligibility.json` — 참가자격 요건 캐시\n  현재 **29 / 103건** · 문서당 1회만 뽑으면 되는 값",
+      "x": 480,
+      "y": -20,
+      "width": 620,
+      "height": 340,
+      "color": "4"
+    },
+    {
+      "id": "perf",
+      "type": "text",
+      "text": "## ⏱ 성능 실측 (2026-08-02, 로컬 맥)\n\n| 구간 | 소요 |\n|---|---|\n| 후보 검색 (임베딩) | ~0.3초 |\n| 요건 추출 (캐시 미스 1건) | 30~50초 |\n| 자격 대조 (요건 9개) | 19.0초 |\n| 자격 대조 (요건 23개) | 41.8초 |\n| `/recommendations` 전체 | **40초** |\n| `/ask` 답변 | ~13초 |\n\n**병목은 왕복이 아니라 출력 토큰 수** — 요건마다 원문을\n그대로 복사해 돌려주므로 요건 1개당 약 1.8초로 선형이다.\n그래서 묶음을 2→1로 쪼개 53초 → 40초가 됐다.",
+      "x": -160,
+      "y": 380,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "issues",
+      "type": "text",
+      "text": "## ⚠️ 알려진 이슈 / 다음 할 일\n\n- **main 이 깨져 있다** — PR #31(lcwmodel)이 `config.py` 의 gpl3\n  설정을 지우고 Qwen3-Embedding-4B(2560D)로 덮었다.\n  인덱스는 384D라 검색이 예외로 죽는다.\n  → **PR #30 머지되면 복구** (main 머지·푸시 완료, MERGEABLE)\n- 요건 캐시 29/103 — 미스가 걸리면 그 요청만 느려진다\n- 대조 15초대로 줄이려면 응답 스키마에서 요건 원문 복사를\n  인덱스 번호로 바꿔야 한다\n- 추천 엔진의 “적합도 상/중/하” 기준은 **미정** —\n  임의 스코어링을 만들지 말 것",
+      "x": 480,
+      "y": 380,
+      "width": 620,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "infra",
+      "type": "text",
+      "text": "## 🖧 구동 환경\n\n**현재: 전부 로컬 맥**\n`./scripts/dev.sh` 하나로 백엔드+프론트 기동\nwarmup(모델·Chroma 로딩) 60~90초\n\n**GCP L4 GPU VM** — 인덱싱·임베딩 배치용\n접속정보 `vm.env`(gitignore)\n인덱스 원본 `/srv/GPTPilot/chroma`\n\n⚠️ VM 루트 디스크 96G 중 93G 사용 — 여유 3.6G.\n임베딩 모델(5GB) 다운로드가 막혀 VM 웹 API는 미기동.",
+      "x": -1420,
+      "y": 260,
+      "width": 620,
+      "height": 380
+    },
+    {
+      "id": "journey",
+      "type": "text",
+      "text": "## 🧭 사용자 여정 (합의본)\n\n**1. 우리 회사 알리기** → **2. 맞는 공고 받기** →\n**3. 공고 들여다보기** · **4. 궁금한 거 물어보기** · **5. 골라서 판단하기**\n\n- 1단계는 **관문이 아니다.** 건너뛰면 2단계가 “맞는 공고 받기” 대신\n  **“공고 둘러보기”**(`GET /rfps` 전체)로 열린다.\n- **1→2는 진행, 3~5는 체류다.** 원문 보다 묻고, 답 보고 다시 원문 짚고,\n  다른 공고를 담아 비교한다 — 그래서 화면이 4열 한 장이다.",
+      "x": -1420,
+      "y": 700,
+      "width": 1180,
+      "height": 300,
+      "color": "6"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "fromNode": "title",
+      "fromSide": "bottom",
+      "toNode": "fe",
+      "toSide": "top"
+    },
+    {
+      "id": "e2",
+      "fromNode": "fe",
+      "fromSide": "bottom",
+      "toNode": "fe_cols",
+      "toSide": "top"
+    },
+    {
+      "id": "e3",
+      "fromNode": "fe_cols",
+      "fromSide": "bottom",
+      "toNode": "fe_store",
+      "toSide": "top"
+    },
+    {
+      "id": "e4",
+      "fromNode": "fe",
+      "fromSide": "right",
+      "toNode": "api",
+      "toSide": "left",
+      "label": "X-API-Token"
+    },
+    {
+      "id": "e5",
+      "fromNode": "api",
+      "fromSide": "right",
+      "toNode": "ask",
+      "toSide": "left",
+      "label": "POST /ask"
+    },
+    {
+      "id": "e6",
+      "fromNode": "api",
+      "fromSide": "right",
+      "toNode": "reco",
+      "toSide": "left",
+      "label": "POST /recommendations"
+    },
+    {
+      "id": "e7",
+      "fromNode": "ask",
+      "fromSide": "bottom",
+      "toNode": "embed",
+      "toSide": "top",
+      "label": "chunks 검색"
+    },
+    {
+      "id": "e8",
+      "fromNode": "reco",
+      "fromSide": "bottom",
+      "toNode": "data",
+      "toSide": "top",
+      "label": "요건 캐시"
+    },
+    {
+      "id": "e9",
+      "fromNode": "reco",
+      "fromSide": "left",
+      "toNode": "embed",
+      "toSide": "right",
+      "label": "doc_cards 후보"
+    },
+    {
+      "id": "e10",
+      "fromNode": "embed",
+      "fromSide": "bottom",
+      "toNode": "perf",
+      "toSide": "top"
+    },
+    {
+      "id": "e11",
+      "fromNode": "data",
+      "fromSide": "bottom",
+      "toNode": "issues",
+      "toSide": "top"
+    },
+    {
+      "id": "e12",
+      "fromNode": "api_auth",
+      "fromSide": "top",
+      "toNode": "api",
+      "toSide": "bottom"
+    },
+    {
+      "id": "e13",
+      "fromNode": "infra",
+      "fromSide": "top",
+      "toNode": "fe_store",
+      "toSide": "bottom"
+    },
+    {
+      "id": "e14",
+      "fromNode": "journey",
+      "fromSide": "top",
+      "toNode": "infra",
+      "toSide": "bottom"
+    }
+  ]
+}
