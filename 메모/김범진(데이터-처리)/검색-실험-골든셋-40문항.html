@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"><head><title>검색 실험 골든셋 40문항</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Sprint First Project"/><meta property="og:title" content="검색 실험 골든셋 40문항"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="검색 실험 골든셋 40문항"/><meta name="twitter:description" content="검색 실험 골든셋 40문항 정답지 계보의 첫 판 — 수치는 현행이 아니다 현행 정답지는 200문항 골든셋 v5다 → 골든셋 · 골든셋 200문항 제작 여기 성적(36~40문항 기준)은 인용하지 말 것 — 164문항에서 부호까지 뒤집힌 것이 있다."/><meta property="og:description" content="검색 실험 골든셋 40문항 정답지 계보의 첫 판 — 수치는 현행이 아니다 현행 정답지는 200문항 골든셋 v5다 → 골든셋 · 골든셋 200문항 제작 여기 성적(36~40문항 기준)은 인용하지 말 것 — 164문항에서 부호까지 뒤집힌 것이 있다."/><meta property="og:image:alt" content="검색 실험 골든셋 40문항 정답지 계보의 첫 판 — 수치는 현행이 아니다 현행 정답지는 200문항 골든셋 v5다 → 골든셋 · 골든셋 200문항 제작 여기 성적(36~40문항 기준)은 인용하지 말 것 — 164문항에서 부호까지 뒤집힌 것이 있다."/><meta property="og:image" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta property="og:image:url" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta name="twitter:image" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME"/><meta property="og:url" content="https://your_github_id.github.io/YOUR_REPO_NAME/메모/김범진(데이터-처리)/검색-실험-골든셋-40문항"/><meta property="twitter:url" content="https://your_github_id.github.io/YOUR_REPO_NAME/메모/김범진(데이터-처리)/검색-실험-골든셋-40문항"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="검색 실험 골든셋 40문항 정답지 계보의 첫 판 — 수치는 현행이 아니다 현행 정답지는 200문항 골든셋 v5다 → 골든셋 · 골든셋 200문항 제작 여기 성적(36~40문항 기준)은 인용하지 말 것 — 164문항에서 부호까지 뒤집힌 것이 있다."/><meta name="generator" content="Quartz"/><link href="../../index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL3RtcC9xdWFydHovcXVhcnR6L2NvbXBvbmVudHMvc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/index.xml"/></head><body data-slug="메모/김범진(데이터-처리)/검색-실험-골든셋-40문항"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">Sprint First Project</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>검색</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="검색어를 입력하세요" placeholder="검색어를 입력하세요"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="다크 모드"><title>다크 모드</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="라이트 모드"><title>라이트 모드</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="리더 모드"><title>리더 모드</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-136"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>탐색기</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-136" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../메모/">메모</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../메모/김범진(데이터-처리)/">김범진(데이터 처리)</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>검색 실험 골든셋 40문항</a></div></nav><h1 class="article-title">검색 실험 골든셋 40문항</h1><p show-comma="true" class="content-meta"><time datetime="2026-07-28T00:00:00.000Z">2026년 7월 28일</time><span>21 min read</span></p><ul class="tags"><li><a href="../../tags/rag" class="internal tag-link">rag</a></li><li><a href="../../tags/retrieval" class="internal tag-link">retrieval</a></li><li><a href="../../tags/goldenset" class="internal tag-link">goldenset</a></li><li><a href="../../tags/experiment" class="internal tag-link">experiment</a></li><li><a href="../../tags/labeling" class="internal tag-link">labeling</a></li></ul></div></div><article class="popover-hint"><h1 id="검색-실험-골든셋-40문항">검색 실험 골든셋 40문항<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#검색-실험-골든셋-40문항" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>정답지 계보의 첫 판 — <strong>수치는 현행이 아니다</strong></p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>현행 정답지는 <strong>200문항 골든셋 v5</strong>다 → <a href="../../골든셋" class="internal alias" data-slug="골든셋">골든셋</a> · <a href="../../메모/김범진(데이터-처리)/골든셋-200문항-제작" class="internal alias" data-slug="메모/김범진(데이터-처리)/골든셋-200문항-제작">골든셋 200문항 제작</a>
+여기 성적(36~40문항 기준)은 <strong>인용하지 말 것</strong> — 164문항에서 부호까지 뒤집힌 것이 있다.
+<strong>남긴 이유</strong>: 40문항 전체 목록과 <strong>실패 4건의 원인 분석</strong>이 여기에만 있다. 검색 실험 → <a href="../../메모/김범진(데이터-처리)/검색-실험-설계-(4모델·BM25)" class="internal alias" data-slug="메모/김범진(데이터-처리)/검색-실험-설계-(4모델·BM25)">검색 실험 설계 (4모델·BM25)</a></p>
+</div>
+</blockquote>
+<blockquote>
+<p>40문항을 사람이 전수 라벨링하고 감사한 기록.
+실험 결과는 <a href="../../메모/김범진(데이터-처리)/_archive/검색-개선" class="internal alias" data-slug="메모/김범진(데이터-처리)/_archive/검색-개선">검색 개선</a>, 사전등록 설계는 <a href="../../아카이브" class="internal alias" data-slug="아카이브">[검색 실험 구도]</a>, 여기서 드러난 데이터 손상은 <a href="../../메모/김범진(데이터-처리)/인덱스-데이터-손상-진단" class="internal alias" data-slug="메모/김범진(데이터-처리)/인덱스-데이터-손상-진단">인덱스 데이터 손상 진단</a>.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>라벨링</td><td>40문항 (기존 30 · 어휘형 10)</td></tr><tr><td>측정 대상</td><td><strong>35문항 / 정답 청크 72개</strong></td></tr><tr><td>제외</td><td>검색 미검출 4 · 검색 대상 아님 1</td></tr><tr><td>최대 수확</td><td>실패 4건의 원인을 실측으로 규명 → 병목은 <strong>후보 깊이</strong></td></tr></tbody></table></div>
+<h2 id="라벨링-결과">라벨링 결과<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#라벨링-결과" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>상태</th><th>수</th><th>뜻</th></tr></thead><tbody><tr><td>✅ 정상</td><td>35</td><td>측정에 사용</td></tr><tr><td>❌ 검색 미검출</td><td>4</td><td>문서엔 답이 있으나 후보 30~40개에 못 들어옴</td></tr><tr><td>➖ 검색 대상 아님</td><td>1</td><td>본문에 답이 없고 <code>data_list.csv</code>에만 존재 (라우터 <code>direct_meta</code> 몫)</td></tr></tbody></table></div>
+<p>정답 개수 분포: 1개 12문항 · 2개 14 · 3개 7 · 5개 1 · 6개 1</p>
+<p>어휘형 10문항은 이번 실험용 신규 작성분이다. 고유번호·규격·법령처럼 임베딩이 뭉개기 쉬운 표층 문자열을 묻는다. 기존 30문항은 팀 확장 골든셋 42문항에서 검색이 실제로 도는 것만 추렸다.</p>
+<hr/>
+<h2 id="실패-4건--무엇을-답했어야-했고-왜-못-했나">실패 4건 — 무엇을 답했어야 했고 왜 못 했나<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#실패-4건--무엇을-답했어야-했고-왜-못-했나" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>후보는 dense·BM25 각 <strong>top-20</strong>까지만 가져온다. 아래 4건은 정답이 그 안에 못 들어왔다.</p>
+<p>각 건마다 세 가지를 쟀다 — 실제 질문 그대로 넣은 BM25, 핵심어만 남긴 BM25, dense top-100.</p>
+<h3 id="1-endura-5500은-어떤-공정-설비인가">1. ENDURA-5500은 어떤 공정 설비인가<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-endura-5500은-어떤-공정-설비인가" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>답했어야 할 것 — <code>TSP10 | SPUTTER | AMAT | ENDURA-5500 | RF Etch/Ti/MOCVD TiN/Al/TiN | SECS | 2</code> (설비 목록 표, 165토큰)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>검색</th><th>정답 순위</th></tr></thead><tbody><tr><td>BM25 (질문 26토큰 전체)</td><td>160위</td></tr><tr><td>BM25 (<code>ENDURA-5500</code>만)</td><td><strong>2위</strong></td></tr><tr><td>dense (top-100)</td><td>23위</td></tr></tbody></table></div>
+<p><code>ENDURA</code>는 30,002청크 중 <strong>2개에만</strong> 있는 희귀어다(IDF 9.39). 그런데 BM25는 질문의 모든 토큰 점수를 더하므로, <code>설비</code>(질문에 3회)·<code>시스템</code>·<code>구축</code> 같은 흔한 단어를 잔뜩 가진 청크가 합계에서 앞선다.</p>
+<p>정답 청크의 점수 자체는 짧은 질문일 때와 <strong>똑같이 17.34</strong>였다. 점수가 낮아진 게 아니라 다른 청크가 위로 올라왔다.</p>
+<h3 id="2-rfid-리더가-지원해야-하는-프로토콜-표준">2. RFID 리더가 지원해야 하는 프로토콜 표준<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-rfid-리더가-지원해야-하는-프로토콜-표준" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>답했어야 할 것 — <code>• Protocols : EPC C1G2 / ISO 18000-6C</code> (장비 사양 표, 287토큰)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>검색</th><th>정답 순위</th></tr></thead><tbody><tr><td>BM25 (질문 29토큰 전체)</td><td>264위</td></tr><tr><td>BM25 (<code>EPC C1G2 ISO 18000-6C</code>만)</td><td><strong>2위</strong></td></tr><tr><td>dense (top-100)</td><td>94위</td></tr></tbody></table></div>
+<p>1번과 같은 희석이 주원인. 여기에 길이 감점이 겹친다 — 287토큰은 평균(134)의 두 배가 넘어 BM25가 34%를 깎는다(<code>b=0.75</code>). 다만 감점이 없어도 top-20에는 못 들었을 것이라 부차적이다.</p>
+<h3 id="3-bit-유형별-수량">3. BIT 유형별 수량<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-bit-유형별-수량" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>답했어야 할 것 — <code>소형 쉘터형 50대 · 소형 독립형 30대 · 중형 쉘터형 38대 · 중형 독립형 4대 · 대형 쉘터형 8대</code> (사업범위 표, 113토큰)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>검색</th><th>정답 순위</th></tr></thead><tbody><tr><td>BM25 (질문 22토큰 전체)</td><td>7,406위</td></tr><tr><td>BM25 (<code>소형 쉘터형 … 수량</code>만)</td><td><strong>4위</strong></td></tr><tr><td>dense (top-100)</td><td>35위</td></tr></tbody></table></div>
+<p>질문은 “<strong>유형별</strong> 수량”인데 문서는 “<strong>도입장비</strong> 수량”이라 쓴다. 결정적 단어가 문서에 아예 없으니 BM25가 기댈 곳이 없다. 나머지 토큰(<code>울산</code>·<code>버스정보시스템</code>·<code>구축</code>)은 그 문서 418청크 전체에 널려 있어 변별력이 0이다.</p>
+<h3 id="4-한의학연구원이-새로-구축해야-하는-업무-영역">4. 한의학연구원이 새로 구축해야 하는 업무 영역<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-한의학연구원이-새로-구축해야-하는-업무-영역" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>답했어야 할 것 — <code>| 신규구축 | 1. 기관생명윤리… | 동물실험…</code> (사업범위 표, 211토큰)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>검색</th><th>정답 순위</th></tr></thead><tbody><tr><td>BM25 (질문 24토큰 전체)</td><td>18,254위</td></tr><tr><td>BM25 (<code>신규구축 기관생명윤리 동물실험</code>만)</td><td><strong>1위</strong></td></tr><tr><td>dense (top-100)</td><td><strong>100위 밖</strong></td></tr></tbody></table></div>
+<p>어휘 불일치가 가장 심하다. 질문의 “새로 구축” ↔ 문서의 “신규구축”, “업무 영역”은 문서에 한 번도 안 나온다. 4건 중 <strong>유일하게 dense도 100위 밖</strong>이라, 후보를 깊게 파도 안 잡히는 사례다.</p>
+<hr/>
+<h2 id="교훈-a--검색에-대해">교훈 A — 검색에 대해<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#교훈-a--검색에-대해" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-주범은-토크나이저가-아니라-긴-질문이다">① 주범은 토크나이저가 아니라 긴 질문이다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-주범은-토크나이저가-아니라-긴-질문이다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>처음엔 <code>EPC C1G2</code> → <code>['EPC','C','1','G','2']</code> 분해가 원인이라고 봤으나 틀렸다. 조각난 <code>ENDURA</code>도 IDF 9.39의 훌륭한 희귀어였고, 핵심어만 넣으면 <strong>4건 모두 1~4위</strong>로 올라온다.</p>
+<p>진짜 문제는 BM25가 질문의 모든 토큰 점수를 더한다는 것. 자연어 질문 20<del>29토큰 중 결정적인 건 1</del>3개고, 나머지 흔한 단어가 합계를 지배한다.</p>
+<blockquote>
+<p>손댈 곳은 <code>tokenize_ko</code>가 아니라 <strong>쿼리 전처리</strong>다. 저IDF 토큰을 BM25 쿼리에서 빼거나 고IDF에 가중치를 준다. → 변형 <code>B′</code></p>
+</blockquote>
+<h3 id="-후보-깊이top-20가-병목이다--가장-싸게-고칠-수-있다">② 후보 깊이(top-20)가 병목이다 — 가장 싸게 고칠 수 있다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-후보-깊이top-20가-병목이다--가장-싸게-고칠-수-있다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>dense 순위가 <strong>23위 · 94위 · 35위</strong>다. 셋은 후보를 40~100까지 넓히기만 해도 잡힌다.</p>
+<pre><code>RERANK_CANDIDATE_K = 20    ← 지금 값. 23위 청크를 버리고 있다
+</code></pre>
+<p>설정 한 줄이고, 리랭커에게 정답을 볼 기회를 준다. <strong>리랭커의 존재 이유가 여기 있다</strong> — 후보를 넓히면 정밀도가 떨어지는데 그걸 되살리는 게 리랭커다. → 변형 <code>E</code></p>
+<h3 id="-표에서는-dense가-약하고-bm25가-강하다">③ 표에서는 dense가 약하고 BM25가 강하다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-표에서는-dense가-약하고-bm25가-강하다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>정답 청크 72개를 표/줄글로 나눠 순위를 쟀다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>정답 청크</th><th>dense 중앙값</th><th>dense top-20</th><th>BM25 중앙값</th><th>BM25 top-20</th></tr></thead><tbody><tr><td>표 (27개)</td><td>10위</td><td>70%</td><td>10위</td><td><strong>70%</strong></td></tr><tr><td>줄글 (45개)</td><td><strong>4위</strong></td><td><strong>87%</strong></td><td>12위</td><td>64%</td></tr></tbody></table></div>
+<p>dense는 표에서 확연히 약하다 — 줄글 4위가 표에서 10위, 진입률 87%가 70%로. 파이프·구분선이 임베딩을 흐린다. 반면 BM25는 표에서 dense와 대등하고 진입률은 오히려 앞선다. 표에 든 고유번호·규격 같은 희귀어 이득이 길이 감점을 상쇄하고 남는다.</p>
+<p><strong>하이브리드가 이득을 낼 지점이 여기다.</strong> 그래서 결과는 표 문항 / 줄글 문항을 나눠 봐야 한다.</p>
+<blockquote>
+<p>길이 감점은 실재하지만 주범은 아니다. BM25는 평균(134토큰) 대비 287토큰에 66%, 500토큰에 45%만 준다. RFID 사양표가 이 손해를 봤지만, 감점을 없애도 264위 → 100~150위라 top-20에는 못 든다.</p>
+</blockquote>
+<h3 id="-어휘-불일치는-검색으로-못-푼다">④ 어휘 불일치는 검색으로 못 푼다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-어휘-불일치는-검색으로-못-푼다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>“새로 구축” ↔ “신규구축”, “업무 영역” ↔ 부재. dense도 BM25도 실패했고 후보를 넓혀도 안 잡힌다. 쿼리 확장이나 표 문장화 같은 다른 층의 대응이 필요하다.</p>
+<h3 id="-원인-추정은-반드시-실측으로-검증할-것">⑤ 원인 추정은 반드시 실측으로 검증할 것<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-원인-추정은-반드시-실측으로-검증할-것" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>이 절의 결론은 <strong>두 번 뒤집혔다.</strong> “토크나이저가 문자열을 부순다” → “흔한 단어가 희석한다” → “후보 깊이가 병목”. IDF 실측과 순위 재현이 없었으면 엉뚱한 곳(토크나이저)을 고칠 뻔했다.</p>
+<hr/>
+<h2 id="교훈-b--평가-데이터를-만드는-일에-대해">교훈 B — 평가 데이터를 만드는 일에 대해<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#교훈-b--평가-데이터를-만드는-일에-대해" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-라벨은-사람도-기계도-틀린다">① 라벨은 사람도 기계도 틀린다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-라벨은-사람도-기계도-틀린다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>사람은 300자 미리보기 절단과 깨진 문자(<code>楴䵴</code>)에 걸려 2건을 놓쳤다. 자동 채점은 표기 차이(<code>40,000천원</code> ↔ <code>40,000,000원</code>)와 짧은 답(“4점이다”)에서 37건 중 3건(8%)을 오판했다. <strong>원문 대조 감사를 반드시 거칠 것.</strong></p>
+<h3 id="-도구에-문서명이-없으면-타-문서-청크가-섞인다">② 도구에 문서명이 없으면 타 문서 청크가 섞인다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-도구에-문서명이-없으면-타-문서-청크가-섞인다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>검색에 <code>doc_id</code> 필터가 없어 후보에 타 사업 청크가 들어오는데, 화면에 문서명이 없어 정답에 3건이 혼입됐다. 전수 감사로 제거.</p>
+<h3 id="-검색으로-답할-수-없는-문항이-섞인다">③ 검색으로 답할 수 없는 문항이 섞인다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-검색으로-답할-수-없는-문항이-섞인다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>마감일·사업금액처럼 <code>data_list.csv</code>에만 있는 값은 라우터 <code>direct_meta</code>의 몫이다. 검색 실험 모수에서 분리해야 한다(실측 1건).</p>
+<h3 id="-구분-불가능한-중복-청크--지금은-안-터졌지만-감시-대상">④ 구분 불가능한 중복 청크 — 지금은 안 터졌지만 감시 대상<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-구분-불가능한-중복-청크--지금은-안-터졌지만-감시-대상" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>같은 형식의 표가 여러 벌 있는 문서에서 잘린 뒤 조각들이 거의 같아진다. 울산 BIT 사양표가 대표적이다.</p>
+<pre><code>후보 25 (::0054)  냉각 FAN(최소 2개이상) … 서지보호기 2P 40kA …   ← 소형
+후보 26 (::0057)  냉각 FAN(최소 2개이상) … 서지보호기 2P 40kA …   ← 중형A
+후보 27 (::0060)  냉각 FAN(최소 2개이상) … 서지보호기 2P 40kA …   ← 중형B
+후보 28 (::0063)  냉각 FAN(최소 2개이상) … 서지보호기 2P 40kA …   ← 대형
+</code></pre>
+<p>어느 타입인지는 <strong>앞 조각에만</strong> 적혀 있다. 리랭커 입력은 <code>(질문, 그 청크 텍스트)</code> 한 쌍뿐이라 앞 조각을 볼 수 없고, 넷을 구분하지 못한다.</p>
+<p>다만 실측하니 지금은 문제가 아니다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>실측</th><th>문항</th></tr></thead><tbody><tr><td>후보에 중복 청크가 있는 문항</td><td>19</td></tr><tr><td>그중 정답이 중복 무리에 낀 문항</td><td>1</td></tr><tr><td>그중 정답이 <strong>전부</strong> 중복 무리인 문항</td><td><strong>0</strong></td></tr></tbody></table></div>
+<p>중복은 대부분 오답 쪽에 몰려 있고, 오답끼리 헷갈리는 건 정답 선택에 지장이 없다. 위 BIT 사례도 정답 두 개 중 앞 조각(<code>도입장비 수량 ▹ 소형 쉘터형 : 50대</code>)이 유일한 텍스트라 리랭커가 정확히 짚는다.</p>
+<blockquote>
+<p><strong>왜 남겨두나</strong> — 문서가 늘거나 유사 양식 RFP가 쌓이면 정답이 중복 무리에 들어갈 수 있다. 조건(같은 양식 표 다수 + 표 절단 + 뒤 조각 식별자 부재)은 이미 갖춰져 있고, 그때는 리랭커가 손쓸 방법이 없다.</p>
+<p><strong>대비책</strong> — 리랭커 입력을 청크 본문 대신 <code>parent_text</code>(표 전문, 후보의 36%가 보유)로 바꾸면 표 머리의 식별자(<code>ECR-002</code> 등)까지 보게 되어 구분된다. 지금은 해당 문항이 1건뿐이라 우선순위가 낮다.</p>
+<p><strong>감시 지표</strong> — 재인덱싱·문서 추가 때마다 “정답이 전부 중복 무리인 문항 수”를 잰다. 0이 아니게 되면 적용한다.</p>
+</blockquote>
+<h3 id="-문제의-뿌리-상당수가-인제스트에-있다">⑤ 문제의 뿌리 상당수가 인제스트에 있다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-문제의-뿌리-상당수가-인제스트에-있다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>검색 알고리즘을 아무리 바꿔도 안 고쳐지는 층이다. 라벨링 중 실제로 걸린 것들:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>관찰</th><th>실측</th><th>단계</th></tr></thead><tbody><tr><td>정답이 인접 청크로 쪼개짐</td><td>정답 2개 이상 22문항 중 <strong>10개(45%)</strong></td><td>청킹</td></tr><tr><td>거의 동일한 청크가 후보에 공존</td><td>40문항 중 <strong>19개</strong>, 최대 6개</td><td>청킹</td></tr><tr><td>hwp 파싱 깨짐 문자 (<code>楴䵴</code>)</td><td><strong>345청크 (1.1%) · 57개 문서</strong></td><td>추출</td></tr><tr><td>가운뎃점 유니코드 변종</td><td><code>∙</code> 92청크 / <code>·</code> 4,149청크</td><td>클리닝</td></tr><tr><td>단위 표기 불일치</td><td><code>40,000천원</code> ↔ <code>40,000,000원</code></td><td>평가 데이터</td></tr></tbody></table></div>
+<p>전수 진단과 대응 우선순위는 <a href="../../메모/김범진(데이터-처리)/인덱스-데이터-손상-진단" class="internal alias" data-slug="메모/김범진(데이터-처리)/인덱스-데이터-손상-진단">인덱스 데이터 손상 진단</a>.</p>
+<hr/>
+<h2 id="감사에서-잡은-오류">감사에서 잡은 오류<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#감사에서-잡은-오류" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>라벨링 직후 전수 감사(형태소 겹침 + 원문 대조). <strong>자동 채점만으로는 못 잡았고 원문을 읽어야 했다.</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>오류</th><th>건수</th><th>내용</th></tr></thead><tbody><tr><td>정답이 후보에 있는데 <code>n</code> 처리</td><td>2</td><td><code>| 합 계 | 71 |</code>(300자 미리보기 밖) · <code>사업금액 : 40,000천원</code>(머리에 <code>楴䵴</code>, 기준답변은 원 단위)</td></tr><tr><td>타 문서 청크 혼입</td><td>3</td><td><code>doc_id</code> 필터 부재 + 화면에 문서명 없음</td></tr><tr><td>자동 채점 오판</td><td>3/37 (8%)</td><td>단위 표기 차이, 짧은 답은 내용어가 없어 0%로 계산</td></tr></tbody></table></div>
+<h2 id="측정-방법상의-성질">측정 방법상의 성질<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#측정-방법상의-성질" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>정답 풀이 dense ∪ BM25 각 top-20으로 구성되므로:</p>
+<ul>
+<li>두 검색기가 20위 안에 못 넣은 청크는 <strong>정답이 될 기회조차 없었다</strong>(실측 4건). 다만 그중 3건은 dense top-100 안에 있었으므로(23·35·94위) “못 찾은 것”이 아니라 <strong>잘라낸 것</strong>이다.</li>
+<li>측정 시 전 변형이 top-20을 가져오므로 정답은 항상 후보 안에 있다. 즉 이 측정은 <strong>순위 개선 효과</strong>를 재며, 재현율 개선 여지(후보 깊이 확대)는 별도 항목으로 보고한다.</li>
+</ul>
+<hr/>
+<h2 id="부록--전체-40문항">부록 — 전체 40문항<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#부록--전체-40문항" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="기존-30문항">기존 30문항<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#기존-30문항" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>#</th><th>유형</th><th>질문</th><th>정답</th><th>상태</th></tr></thead><tbody><tr><td>1</td><td>단일세부</td><td>한영대 트랙운영 학사정보시스템 고도화 — 사업기간</td><td>1</td><td>✅</td></tr><tr><td>2</td><td>단일세부</td><td>봉화군 재난통합관리 — GIS로 관리할 정보</td><td>2</td><td>✅</td></tr><tr><td>3</td><td>단일세부</td><td>전기안전 관제 보안모듈 — 도입 암호모듈</td><td>3</td><td>✅</td></tr><tr><td>4</td><td>단일세부</td><td>GIS/통계 재난안전데이터 — 연계 표준화 작업</td><td>3</td><td>✅</td></tr><tr><td>5</td><td>단일세부</td><td>KUSF 경기기록 — 개인정보 관련 지원 사항</td><td>2</td><td>✅</td></tr><tr><td>6</td><td>단일세부</td><td>한영대 트랙운영 — 구축 목표</td><td>2</td><td>✅</td></tr><tr><td>7</td><td>단일세부</td><td>봉화군 — 통합연계시스템 기능</td><td>6</td><td>✅</td></tr><tr><td>8</td><td>단일세부</td><td>전기안전 관제 — 원격점검장치 제조사 지원</td><td>2</td><td>✅</td></tr><tr><td>9</td><td>단일세부</td><td>GIS/통계 재난안전데이터 — 품질 관리 방법</td><td>2</td><td>✅</td></tr><tr><td>10</td><td>단일세부</td><td>한국한의학연구원 — 신규 구축 업무 영역</td><td>0</td><td>❌ 미검출</td></tr><tr><td>11</td><td>단일세부</td><td>건설통합시스템(CMS) — 위원회 운영 개선</td><td>2</td><td>✅</td></tr><tr><td>12</td><td>단일세부</td><td>울산 버스정보시스템 — 현장 단말기·SW 적용 내용</td><td>3</td><td>✅</td></tr><tr><td>13</td><td>단일세부</td><td>한영대 트랙운영 — 기존 시스템 연계 방식</td><td>5</td><td>✅</td></tr><tr><td>14</td><td>단일세부</td><td>봉화군 — 통합상황전파 경보 기능</td><td>3</td><td>✅</td></tr><tr><td>15</td><td>단일세부</td><td>KUSF 경기기록 — 기대 효과</td><td>2</td><td>✅</td></tr><tr><td>16</td><td>후속</td><td>한영대 사업기간 → 안정화기간</td><td>2</td><td>✅</td></tr><tr><td>17</td><td>후속</td><td>전기안전 추진배경 → 통신 보안 표준</td><td>2</td><td>✅</td></tr><tr><td>18</td><td>후속</td><td>봉화군 GIS 구축내용 → 관리 시설 정보</td><td>3</td><td>✅</td></tr><tr><td>19</td><td>후속</td><td>재난안전데이터 요구사항 → 표준화 목적</td><td>3</td><td>✅</td></tr><tr><td>20</td><td>직답</td><td>한영대 트랙운영 — 공고상 사업금액</td><td>1</td><td>✅</td></tr><tr><td>21</td><td>직답</td><td>UICC 기능개선 — 입찰 참여 마감일</td><td>0</td><td>➖ 대상 아님</td></tr><tr><td>22</td><td>직답</td><td>EIP3.0 고압가스 — 공고상 사업금액</td><td>1</td><td>✅</td></tr><tr><td>23</td><td>직답</td><td>도시계획위원회 통합관리 — 발주 기관</td><td>2</td><td>✅</td></tr><tr><td>24</td><td>직답</td><td>고려대 차세대 포털·학사 — 공고상 사업금액</td><td>1</td><td>✅</td></tr><tr><td>25</td><td>단일세부</td><td>울산 — BIT 유형별 수량</td><td>0</td><td>❌ 미검출</td></tr><tr><td>26</td><td>단일세부</td><td>울산 BIT — 제어부 최소사양</td><td>1</td><td>✅</td></tr><tr><td>27</td><td>단일세부</td><td>울산 — 중형 B타입 표출부·외형 최소사양</td><td>2</td><td>✅</td></tr><tr><td>28</td><td>단일세부</td><td>울산 — 요구사항 분류별 항목 수·총합</td><td>1</td><td>✅</td></tr><tr><td>29</td><td>단일세부</td><td>울산 — 기능 요구사항(SFR) 세부 항목</td><td>2</td><td>✅</td></tr><tr><td>30</td><td>단일세부</td><td>울산 — 소형 BIT 전원부·보호안내 최소사양</td><td>2</td><td>✅</td></tr></tbody></table></div>
+<h3 id="어휘형-10문항">어휘형 10문항<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#어휘형-10문항" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>#</th><th>유형</th><th>질문</th><th>정답</th><th>상태</th></tr></thead><tbody><tr><td>31</td><td>단일세부</td><td>나노종합기술원 — ENDURA-5500은 어떤 공정 설비</td><td>0</td><td>❌ 미검출</td></tr><tr><td>32</td><td>직답</td><td>RFID 국가자격 — 리더 지원 프로토콜 표준</td><td>0</td><td>❌ 미검출</td></tr><tr><td>33</td><td>직답</td><td>네팔 수자원 — 수문 관측 기자재 ISO 표준</td><td>1</td><td>✅</td></tr><tr><td>34</td><td>직답</td><td>고려대 차세대 — 기록관리 KS 규격</td><td>1</td><td>✅</td></tr><tr><td>35</td><td>직답</td><td>봉화군 — ‘사회적 책임·성실성’ 배점</td><td>1</td><td>✅</td></tr><tr><td>36</td><td>단일세부</td><td>통합사회정보시스템 — ‘비상 대책’ 배점·평가내용</td><td>1</td><td>✅</td></tr><tr><td>37</td><td>직답</td><td>실손보험 청구 전산화 — CDR-003 요구사항 명칭</td><td>2</td><td>✅</td></tr><tr><td>38</td><td>직답</td><td>KUSF — 구축·운영 지침 행안부고시 번호</td><td>1</td><td>✅</td></tr><tr><td>39</td><td>직답</td><td>HDIMS 재구축 — 공공데이터 개방표준 고시 번호</td><td>1</td><td>✅</td></tr><tr><td>40</td><td>직답</td><td>산단 안전정보 — DDoS 장비 CC인증 등급</td><td>3</td><td>✅</td></tr></tbody></table></div>
+<h2 id="관련">관련<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#관련" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><a href="../../메모/김범진(데이터-처리)/_archive/검색-실험-구도" class="internal alias" data-slug="메모/김범진(데이터-처리)/_archive/검색-실험-구도">검색 실험 구도</a> · <a href="../../메모/김범진(데이터-처리)/인덱스-데이터-손상-진단" class="internal alias" data-slug="메모/김범진(데이터-처리)/인덱스-데이터-손상-진단">인덱스 데이터 손상 진단</a> · <a href="../../검색-품질-개선-(BM25·리랭커)" class="internal alias" data-slug="검색-품질-개선-(BM25·리랭커)">검색 품질 개선 (BM25·리랭커)</a> · <a href="../../메모/김범진(데이터-처리)/_archive/검색-개선" class="internal alias" data-slug="메모/김범진(데이터-처리)/_archive/검색-개선">검색 개선</a> · <a href="../../메모/김범진(데이터-처리)/_archive/쿼리-파이프라인-개선안" class="internal alias" data-slug="메모/김범진(데이터-처리)/_archive/쿼리-파이프라인-개선안">쿼리 파이프라인 개선안</a></p></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>그래프 뷰</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-43" aria-expanded="true"><h3>목차</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#검색-실험-골든셋-40문항" data-for="검색-실험-골든셋-40문항">검색 실험 골든셋 40문항</a></li><li class="depth-1"><a href="#라벨링-결과" data-for="라벨링-결과">라벨링 결과</a></li><li class="depth-1"><a href="#실패-4건--무엇을-답했어야-했고-왜-못-했나" data-for="실패-4건--무엇을-답했어야-했고-왜-못-했나">실패 4건 — 무엇을 답했어야 했고 왜 못 했나</a></li><li class="depth-2"><a href="#1-endura-5500은-어떤-공정-설비인가" data-for="1-endura-5500은-어떤-공정-설비인가">1. ENDURA-5500은 어떤 공정 설비인가</a></li><li class="depth-2"><a href="#2-rfid-리더가-지원해야-하는-프로토콜-표준" data-for="2-rfid-리더가-지원해야-하는-프로토콜-표준">2. RFID 리더가 지원해야 하는 프로토콜 표준</a></li><li class="depth-2"><a href="#3-bit-유형별-수량" data-for="3-bit-유형별-수량">3. BIT 유형별 수량</a></li><li class="depth-2"><a href="#4-한의학연구원이-새로-구축해야-하는-업무-영역" data-for="4-한의학연구원이-새로-구축해야-하는-업무-영역">4. 한의학연구원이 새로 구축해야 하는 업무 영역</a></li><li class="depth-1"><a href="#교훈-a--검색에-대해" data-for="교훈-a--검색에-대해">교훈 A — 검색에 대해</a></li><li class="depth-2"><a href="#-주범은-토크나이저가-아니라-긴-질문이다" data-for="-주범은-토크나이저가-아니라-긴-질문이다">① 주범은 토크나이저가 아니라 긴 질문이다</a></li><li class="depth-2"><a href="#-후보-깊이top-20가-병목이다--가장-싸게-고칠-수-있다" data-for="-후보-깊이top-20가-병목이다--가장-싸게-고칠-수-있다">② 후보 깊이(top-20)가 병목이다 — 가장 싸게 고칠 수 있다</a></li><li class="depth-2"><a href="#-표에서는-dense가-약하고-bm25가-강하다" data-for="-표에서는-dense가-약하고-bm25가-강하다">③ 표에서는 dense가 약하고 BM25가 강하다</a></li><li class="depth-2"><a href="#-어휘-불일치는-검색으로-못-푼다" data-for="-어휘-불일치는-검색으로-못-푼다">④ 어휘 불일치는 검색으로 못 푼다</a></li><li class="depth-2"><a href="#-원인-추정은-반드시-실측으로-검증할-것" data-for="-원인-추정은-반드시-실측으로-검증할-것">⑤ 원인 추정은 반드시 실측으로 검증할 것</a></li><li class="depth-1"><a href="#교훈-b--평가-데이터를-만드는-일에-대해" data-for="교훈-b--평가-데이터를-만드는-일에-대해">교훈 B — 평가 데이터를 만드는 일에 대해</a></li><li class="depth-2"><a href="#-라벨은-사람도-기계도-틀린다" data-for="-라벨은-사람도-기계도-틀린다">① 라벨은 사람도 기계도 틀린다</a></li><li class="depth-2"><a href="#-도구에-문서명이-없으면-타-문서-청크가-섞인다" data-for="-도구에-문서명이-없으면-타-문서-청크가-섞인다">② 도구에 문서명이 없으면 타 문서 청크가 섞인다</a></li><li class="depth-2"><a href="#-검색으로-답할-수-없는-문항이-섞인다" data-for="-검색으로-답할-수-없는-문항이-섞인다">③ 검색으로 답할 수 없는 문항이 섞인다</a></li><li class="depth-2"><a href="#-구분-불가능한-중복-청크--지금은-안-터졌지만-감시-대상" data-for="-구분-불가능한-중복-청크--지금은-안-터졌지만-감시-대상">④ 구분 불가능한 중복 청크 — 지금은 안 터졌지만 감시 대상</a></li><li class="depth-2"><a href="#-문제의-뿌리-상당수가-인제스트에-있다" data-for="-문제의-뿌리-상당수가-인제스트에-있다">⑤ 문제의 뿌리 상당수가 인제스트에 있다</a></li><li class="depth-1"><a href="#감사에서-잡은-오류" data-for="감사에서-잡은-오류">감사에서 잡은 오류</a></li><li class="depth-1"><a href="#측정-방법상의-성질" data-for="측정-방법상의-성질">측정 방법상의 성질</a></li><li class="depth-1"><a href="#부록--전체-40문항" data-for="부록--전체-40문항">부록 — 전체 40문항</a></li><li class="depth-2"><a href="#기존-30문항" data-for="기존-30문항">기존 30문항</a></li><li class="depth-2"><a href="#어휘형-10문항" data-for="어휘형-10문항">어휘형 10문항</a></li><li class="depth-1"><a href="#관련" data-for="관련">관련</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>백링크</h3><ul id="list-2" class="overflow"><li><a href="../../메모/김범진(데이터-처리)/_archive/검색-개선" class="internal">검색 개선</a></li><li><a href="../../메모/김범진(데이터-처리)/_archive/검색-실험-계획-(164문항)" class="internal">검색 실험 계획 (164문항)</a></li><li><a href="../../메모/김범진(데이터-처리)/_archive/검색-실험-구도" class="internal">검색 실험 구도</a></li><li><a href="../../메모/김범진(데이터-처리)/" class="internal">index</a></li><li><a href="../../메모/김범진(데이터-처리)/골든셋-200문항-제작" class="internal">골든셋 200문항 제작</a></li><li><a href="../../메모/김범진(데이터-처리)/골든셋" class="internal">골든셋</a></li><li><a href="../../메모/김범진(데이터-처리)/인덱스-데이터-손상-진단" class="internal">인덱스 데이터 손상 진단</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../postscript.js" type="module" data-persist="true"></script></html>

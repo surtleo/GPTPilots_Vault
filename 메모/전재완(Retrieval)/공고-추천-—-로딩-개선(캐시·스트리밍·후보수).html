@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"><head><title>공고 추천 — 로딩 개선(캐시·스트리밍·후보수)</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Sprint First Project"/><meta property="og:title" content="공고 추천 — 로딩 개선(캐시·스트리밍·후보수)"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="공고 추천 — 로딩 개선(캐시·스트리밍·후보수)"/><meta name="twitter:description" content="공고 추천 — 로딩 개선(캐시·스트리밍·후보수) 2026-07-29 · 웹으로 실제 써보면서 나온 피드백 3건을 순서대로 고침 + 실전에서 터진 4번째 문제(연결이 조용히 끊기는 것)까지 추가로 해결."/><meta property="og:description" content="공고 추천 — 로딩 개선(캐시·스트리밍·후보수) 2026-07-29 · 웹으로 실제 써보면서 나온 피드백 3건을 순서대로 고침 + 실전에서 터진 4번째 문제(연결이 조용히 끊기는 것)까지 추가로 해결."/><meta property="og:image:alt" content="공고 추천 — 로딩 개선(캐시·스트리밍·후보수) 2026-07-29 · 웹으로 실제 써보면서 나온 피드백 3건을 순서대로 고침 + 실전에서 터진 4번째 문제(연결이 조용히 끊기는 것)까지 추가로 해결."/><meta property="og:image" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta property="og:image:url" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta name="twitter:image" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME"/><meta property="og:url" content="https://your_github_id.github.io/YOUR_REPO_NAME/메모/전재완(Retrieval)/공고-추천-—-로딩-개선(캐시·스트리밍·후보수)"/><meta property="twitter:url" content="https://your_github_id.github.io/YOUR_REPO_NAME/메모/전재완(Retrieval)/공고-추천-—-로딩-개선(캐시·스트리밍·후보수)"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="공고 추천 — 로딩 개선(캐시·스트리밍·후보수) 2026-07-29 · 웹으로 실제 써보면서 나온 피드백 3건을 순서대로 고침 + 실전에서 터진 4번째 문제(연결이 조용히 끊기는 것)까지 추가로 해결."/><meta name="generator" content="Quartz"/><link href="../../index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL3RtcC9xdWFydHovcXVhcnR6L2NvbXBvbmVudHMvc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/index.xml"/></head><body data-slug="메모/전재완(Retrieval)/공고-추천-—-로딩-개선(캐시·스트리밍·후보수)"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">Sprint First Project</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>검색</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="검색어를 입력하세요" placeholder="검색어를 입력하세요"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="다크 모드"><title>다크 모드</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="라이트 모드"><title>라이트 모드</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="리더 모드"><title>리더 모드</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-155"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>탐색기</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-155" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../메모/">메모</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../메모/전재완(Retrieval)/">전재완(Retrieval)</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>공고 추천 — 로딩 개선(캐시·스트리밍·후보수)</a></div></nav><h1 class="article-title">공고 추천 — 로딩 개선(캐시·스트리밍·후보수)</h1><p show-comma="true" class="content-meta"><time datetime="2026-08-03T13:39:02.725Z">2026년 8월 03일</time><span>12 min read</span></p></div></div><article class="popover-hint"><h1 id="공고-추천--로딩-개선캐시스트리밍후보수">공고 추천 — 로딩 개선(캐시·스트리밍·후보수)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#공고-추천--로딩-개선캐시스트리밍후보수" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>2026-07-29 · 웹으로 실제 써보면서 나온 피드백 3건을 순서대로 고침 + 실전에서 터진
+4번째 문제(연결이 조용히 끊기는 것)까지 추가로 해결.
+브랜치: 백엔드 <code>fix/recommendations-streaming</code>(push 완료) · 프론트 <code>feat/sidebar-chat-ui</code>(push 완료).</p>
+<h2 id="문제--사이드바-탭-옮길-때마다-재요청됨">문제 ① 사이드바 탭 옮길 때마다 재요청됨<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#문제--사이드바-탭-옮길-때마다-재요청됨" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>증상</strong>: 공고 추천을 한 번 받고 대화 탭 갔다가 돌아오면 또 처음부터 로딩.</p>
+<p><strong>원인</strong>: 추천 상태가 <code>RecommendationsPage</code> 컴포넌트 안에만 있었음. 사이드바로 다른
+화면 가면 라우트가 바뀌어 이 컴포넌트가 언마운트→리마운트되고, <code>useEffect</code>가 다시
+돌면서 프로필이 그대로여도 API를 새로 부름.</p>
+<p><strong>수정</strong>: <code>lib/recommendations-context.tsx</code> 신설 — 상태를 <strong>앱 셸 레벨</strong>로 끌어올림
+(profile-context·active-docs-context와 같은 패턴). 캐시 키는 profileText 자체 —
+같으면 재요청 안 하고, 바뀌면 자동으로 새로 부름. sessionStorage에도 저장해서
+새로고침(F5)해도 유지(탭 닫으면 사라짐 — 영구 저장 아님).</p>
+<h2 id="문제--로딩-중-프로필을-다시-만지면-꼬임">문제 ② 로딩 중 프로필을 다시 만지면 꼬임<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#문제--로딩-중-프로필을-다시-만지면-꼬임" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>원인</strong>: “이미 요청 중이면 또 안 보낸다”는 가드를 <strong>state</strong>(<code>loading</code>)로 체크했는데,
+React가 개발 모드에서 컴포넌트를 일부러 두 번 실행하는 StrictMode 때문에, state
+반영이 늦어지는 찰나에 두 번째 실행이 “아직 요청 안 나갔네?”로 착각 → <strong>요청이
+두 번 나가고 첫 번째가 취소되면서 화면이 영원히 로딩 상태로 남는 레이스</strong>가 생김.</p>
+<p><strong>수정</strong>: state 대신 <strong>ref</strong>(<code>inFlightForRef</code>, 즉시 반영됨)로 가드 교체. 이 타이밍
+문제 자체가 원천적으로 안 생기게 함.</p>
+<blockquote>
+<p>교훈: “지금 요청 중인가?”처럼 <strong>동기적으로 정확해야 하는 판단</strong>은 state가 아니라
+ref로 해야 한다. state는 배치·비동기라 “지금 이 순간의 진실”을 못 보장한다.</p>
+</blockquote>
+<h2 id="문제--로딩-중-진행상황이-전혀-안-보임">문제 ③ 로딩 중 진행상황이 전혀 안 보임<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#문제--로딩-중-진행상황이-전혀-안-보임" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>회원님 피드백: <em>“클로드나 제미나이처럼 ~하는 중으로 계속 진행상황을 보고해야 할
+것 같다”</em> — 지어낸 퍼센트가 아니라 <strong>진짜 지금 뭘 하고 있는지</strong>를 보여달라는 요청.</p>
+<p><strong>백엔드</strong>: <code>recommend()</code>가 최종 결과만 반환하던 걸, <code>recommend_progress()</code> 제너레이터로
+바꿔서 단계마다 이벤트를 낸다.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">{</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;type&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;candidates&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;count&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: N}         </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 적합도 후보 추림 완료</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">{</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;type&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;matching&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;done&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: i, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;total&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: G} </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 배치 그룹 i/G 완료 (실시간, 그룹 끝날 때마다)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">{</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;type&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;result&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;items&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]}          </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 최종 결과</span></span></code></pre></figure>
+<p><code>pool.map()</code> 대신 <code>as_completed()</code>를 쓴 게 핵심 — map은 다 끝나야 결과를 주지만,
+as_completed는 그룹이 끝나는 순서대로 즉시 이벤트를 낼 수 있다.</p>
+<p>API 계층(<code>src/api/eligibility.py</code>)에 <code>get_recommendations_progress()</code> 추가 —
+“result” 이벤트를 받으면 카드·키워드칩 보강까지 마치고 “done”으로 바꿔 냄
+(<code>enriching</code> 이벤트로 그 사이도 신호를 줌). 도중 예외는 <code>{&quot;type&quot;: &quot;error&quot;, ...}</code>로
+흘림 — 스트리밍 응답은 이미 200 헤더가 나간 뒤라 HTTP 상태코드로 못 바꾼다.</p>
+<p>새 엔드포인트: <strong><code>POST /recommendations/stream</code></strong> — NDJSON(줄바꿈 구분 JSON)으로 응답.
+기존 <code>POST /recommendations</code>(한 번에 반환)는 그대로 유지 — 진행상황 필요없는
+호출부(스크립트 등)를 위해 남겨둠, 내부적으로 <code>recommend()</code>가
+<code>recommend_progress()</code>를 소진해서 마지막 값만 리턴하게 재구성.</p>
+<p><strong>프론트</strong>: <code>fetch</code> + <code>ReadableStream</code>으로 직접 읽어서 줄 단위 파싱
+(<code>streamRecommendations()</code>, <code>src/lib/api.ts</code>). SSE(EventSource) 대신 이 방식을 쓴
+이유 — EventSource는 GET만 지원해서 프로필 텍스트(POST 바디)를 못 보낸다.</p>
+<p>화면엔 3단계 체크리스트로 표시:</p>
+<pre><code>✓ 적합도 높은 공고 8건을 후보로 선별했어요
+⟳ 참가자격을 하나씩 대조하는 중 (1/2)
+· 결과 정리 중
+</code></pre>
+<p>완료=체크, 진행중=스피너, 대기=점.</p>
+<p><strong>검증</strong>: curl로 실시간 도착 확인 — <code>candidates</code>(1초) → <code>matching 1/2</code>(79초 뒤) →
+<code>matching 2/2</code>(12초 뒤) → <code>done</code>(4초 뒤). <strong>cloudflared 터널을 거쳐도 버퍼링 없이
+그대로 전달</strong>되는 것까지 확인함(프록시가 스트림을 통째로 모았다 보내면 스트리밍
+의미가 없어지는데, 그런 문제 없음).</p>
+<h2 id="겸사겸사--후보-개수-15--8">겸사겸사 — 후보 개수 15 → 8<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#겸사겸사--후보-개수-15--8" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>의도</strong>: 시간 단축. <code>RECOMMEND_CANDIDATE_K</code> 8로 변경.</p>
+<p><strong>실측 결과가 예상과 달랐음</strong>: 배치 그룹들이 <strong>병렬로 도는 구조</strong>라, 전체 소요시간은
+“그룹 개수의 합”이 아니라 **“제일 느린 그룹 하나”**로 결정됨.</p>
+<pre><code>15건 → 그룹 4개 (병렬)   전체시간 = 4개 중 가장 느린 것
+8건  → 그룹 2개 (병렬)   전체시간 = 2개 중 가장 느린 것
+</code></pre>
+<p>문서마다 참가자격 요건 개수 편차가 커서(5개~40개), 요건 많은 문서 하나가 그룹에
+끼면 그 그룹이 오래 걸림. <strong>그룹이 4개일 땐 “느린 놈 하나 있어도 나머지 3개가
+빠르게 끝나줄” 여유가 있었는데, 그룹이 2개뿐이면 그 여유가 없어짐</strong> — 이론상으로는
+표본(그룹)이 적을수록 최댓값의 기댓값도 낮아져야 정상이지만, 실측 시 매번 <strong>다른
+프로필 텍스트</strong>로 테스트해서 뽑히는 문서 자체가 매번 달랐던 게 커서, “8건이 15건
+보다 느렸다”는 건 구조적 문제라기보다 <strong>어쩌다 무거운 문서가 걸렸는지의 운</strong> 쪽에
+더 가까움. 공정 비교(같은 프로필로 8 vs 15)는 아직 안 해봄.</p>
+<p><strong>확실히 좋아진 건 비용</strong> — 처리하는 문서 자체가 줄어서 총 토큰 사용량(=비용)은
+확실히 감소. 체감 속도는 케이스마다 다를 수 있지만, 이제 진행상황이 보이니 “멈춘
+건지 도는 건지 모르는” 답답함 자체는 해결됨.</p>
+<h2 id="문제--실전-발생--연결이-조용히-끊겨서-20분-넘게-멈춤">문제 ④ (실전 발생) — 연결이 조용히 끊겨서 20분 넘게 멈춤<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#문제--실전-발생--연결이-조용히-끊겨서-20분-넘게-멈춤" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>스트리밍까지 다 붙이고 실제로 써보니, 화면이 “적합도 높은 공고 8건을 후보로
+선별했어요”에서 그대로 20분 넘게 멈춘 사례 발생. 회원님이 “존나 불안정하다”고
+직접 겪음.</p>
+<p><strong>진단</strong>: 그 순간 서버가 살아있는지부터 확인 — 완전히 새 요청을 즉시 날려보니
+1초 만에 정상 응답. <strong>서버는 멀쩡했다.</strong> 즉 문제는 그 특정 요청의 연결 자체.</p>
+<p><strong>원인 추정</strong>: 배치 그룹 하나가 reasoning 예산 재시도까지 겹치면 몇 분씩 걸릴 수
+있는데, 그 사이 아무 이벤트도 안 나가면 cloudflared 같은 터널이 “죽은 연결”로
+보고 조용히 끊어버림. <code>fetch</code>의 <code>ReadableStream</code>은 이런 상황을 에러로 알려주지
+않아서, 화면은 마지막으로 받은 이벤트 상태 그대로 영원히 멈춰있게 됨.</p>
+<p><strong>곁들여 발견한 별개 문제</strong>: 이 진단 도중 백엔드를 재시작하려다 GPU 메모리 부족
+(CUDA OOM)으로 못 뜨는 것도 발견 — 공유 VM이라 팀원이 GPU 19GB를 쓰고 있었고,
+제 예전 좀비 프로세스도 안 죽고 GPU를 물고 있었음. 이건 코드 문제가 아니라 VM
+자원 경합 문제라 별개로 처리(좀비 프로세스 정리로 임시 해결, 근본 해결은 팀
+차원의 GPU 사용 조율 필요).</p>
+<p><strong>수정</strong>:</p>
+<ul>
+<li>백엔드: 8초마다 <code>{&quot;type&quot;: &quot;heartbeat&quot;}</code> 이벤트를 내보냄. <code>as_completed()</code> 대신
+<code>wait(timeout=8, return_when=FIRST_COMPLETED)</code>로 폴링하며, 아무것도 안 끝났으면
+heartbeat를 끼워 넣고 계속 기다림 — 연결이 오래 조용해지는 걸 원천 차단.</li>
+<li>프론트: 이벤트(heartbeat 포함)가 30초 넘게 하나도 안 오면 <strong>스스로 포기</strong>하고
+“서버 응답이 끊긴 것 같아요. 다시 시도해주세요” 에러로 전환. 최악의 경우에도
+30초 안에 재시도 버튼이 뜨게 됨 — 예전처럼 무한정 멈춰있는 일은 없어짐.</li>
+</ul>
+<blockquote>
+<p>교훈: 오래 걸리는 스트리밍 응답은 “진행 이벤트가 온다”만으로는 부족하다.
+<strong>주기적으로 뭔가 나가야 한다</strong>(내용이 없어도) — 그래야 중간의 프록시·터널이
+죽은 연결로 오판하지 않는다. 그리고 클라이언트도 “마지막으로 뭔가 받은 지
+얼마나 됐는지”를 스스로 감시해야, 서버 없이도 무한 대기를 끊어낼 수 있다.</p>
+</blockquote>
+<h2 id="관련">관련<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#관련" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>참가자격 매칭 자체의 설계는 <a href="../../메모/전재완(Retrieval)/참가자격-매칭-—-기능-설계" class="internal alias" data-slug="메모/전재완(Retrieval)/참가자격-매칭-—-기능-설계">참가자격 매칭 — 기능 설계</a></li>
+<li>배치 매칭(4건씩 묶기)의 등장 배경은 그 노트의 “비용·속도 설계” 절 참고</li>
+<li>대화 자체의 히스토리 기능은 <a href="../../메모/전재완(Retrieval)/대화-히스토리-—-세션-목록·삭제" class="internal alias" data-slug="메모/전재완(Retrieval)/대화-히스토리-—-세션-목록·삭제">대화 히스토리 — 세션 목록·삭제</a></li>
+</ul></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>그래프 뷰</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-52" aria-expanded="true"><h3>목차</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#공고-추천--로딩-개선캐시스트리밍후보수" data-for="공고-추천--로딩-개선캐시스트리밍후보수">공고 추천 — 로딩 개선(캐시·스트리밍·후보수)</a></li><li class="depth-1"><a href="#문제--사이드바-탭-옮길-때마다-재요청됨" data-for="문제--사이드바-탭-옮길-때마다-재요청됨">문제 ① 사이드바 탭 옮길 때마다 재요청됨</a></li><li class="depth-1"><a href="#문제--로딩-중-프로필을-다시-만지면-꼬임" data-for="문제--로딩-중-프로필을-다시-만지면-꼬임">문제 ② 로딩 중 프로필을 다시 만지면 꼬임</a></li><li class="depth-1"><a href="#문제--로딩-중-진행상황이-전혀-안-보임" data-for="문제--로딩-중-진행상황이-전혀-안-보임">문제 ③ 로딩 중 진행상황이 전혀 안 보임</a></li><li class="depth-1"><a href="#겸사겸사--후보-개수-15--8" data-for="겸사겸사--후보-개수-15--8">겸사겸사 — 후보 개수 15 → 8</a></li><li class="depth-1"><a href="#문제--실전-발생--연결이-조용히-끊겨서-20분-넘게-멈춤" data-for="문제--실전-발생--연결이-조용히-끊겨서-20분-넘게-멈춤">문제 ④ (실전 발생) — 연결이 조용히 끊겨서 20분 넘게 멈춤</a></li><li class="depth-1"><a href="#관련" data-for="관련">관련</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>백링크</h3><ul id="list-2" class="overflow"><li><a href="../../메모/전재완(Retrieval)/대화-히스토리-—-세션-목록·삭제" class="internal">대화 히스토리 — 세션 목록·삭제</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../postscript.js" type="module" data-persist="true"></script></html>

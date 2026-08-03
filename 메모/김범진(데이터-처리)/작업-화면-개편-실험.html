@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"><head><title>작업 화면 개편 실험</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Sprint First Project"/><meta property="og:title" content="작업 화면 개편 실험"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="작업 화면 개편 실험"/><meta name="twitter:description" content="작업 화면 개편 실험 공고 목록과 채팅을 한 화면(WorkspacePage)으로 합친 개편이 의도대로 도는지 실측하고, 그 과정에서 드러난 백엔드 동작을 확인한 기록."/><meta property="og:description" content="작업 화면 개편 실험 공고 목록과 채팅을 한 화면(WorkspacePage)으로 합친 개편이 의도대로 도는지 실측하고, 그 과정에서 드러난 백엔드 동작을 확인한 기록."/><meta property="og:image:alt" content="작업 화면 개편 실험 공고 목록과 채팅을 한 화면(WorkspacePage)으로 합친 개편이 의도대로 도는지 실측하고, 그 과정에서 드러난 백엔드 동작을 확인한 기록."/><meta property="og:image" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta property="og:image:url" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta name="twitter:image" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME"/><meta property="og:url" content="https://your_github_id.github.io/YOUR_REPO_NAME/메모/김범진(데이터-처리)/작업-화면-개편-실험"/><meta property="twitter:url" content="https://your_github_id.github.io/YOUR_REPO_NAME/메모/김범진(데이터-처리)/작업-화면-개편-실험"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="작업 화면 개편 실험 공고 목록과 채팅을 한 화면(WorkspacePage)으로 합친 개편이 의도대로 도는지 실측하고, 그 과정에서 드러난 백엔드 동작을 확인한 기록."/><meta name="generator" content="Quartz"/><link href="../../index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL3RtcC9xdWFydHovcXVhcnR6L2NvbXBvbmVudHMvc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/index.xml"/></head><body data-slug="메모/김범진(데이터-처리)/작업-화면-개편-실험"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">Sprint First Project</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>검색</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="검색어를 입력하세요" placeholder="검색어를 입력하세요"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="다크 모드"><title>다크 모드</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="라이트 모드"><title>라이트 모드</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="리더 모드"><title>리더 모드</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-147"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>탐색기</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-147" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../메모/">메모</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../메모/김범진(데이터-처리)/">김범진(데이터 처리)</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>작업 화면 개편 실험</a></div></nav><h1 class="article-title">작업 화면 개편 실험</h1><p show-comma="true" class="content-meta"><time datetime="2026-07-29T00:00:00.000Z">2026년 7월 29일</time><span>49 min read</span></p><ul class="tags"><li><a href="../../tags/bidmate" class="internal tag-link">bidmate</a></li><li><a href="../../tags/frontend" class="internal tag-link">frontend</a></li><li><a href="../../tags/experiment" class="internal tag-link">experiment</a></li><li><a href="../../tags/rag" class="internal tag-link">rag</a></li><li><a href="../../tags/router" class="internal tag-link">router</a></li></ul></div></div><article class="popover-hint"><h1 id="작업-화면-개편-실험">작업 화면 개편 실험<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#작업-화면-개편-실험" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>공고 목록과 채팅을 한 화면(WorkspacePage)으로 합친 개편이 의도대로 도는지 실측하고,
+그 과정에서 드러난 백엔드 동작을 확인한 기록. 화면 자체는 <a href="../../BidMate-실제-웹-플로우" class="internal alias" data-slug="BidMate-실제-웹-플로우">BidMate 실제 웹 플로우</a>,
+연동 상태는 <a href="../../메모/김범진(데이터-처리)/BidMate-웹-연동-현황" class="internal alias" data-slug="메모/김범진(데이터-처리)/BidMate-웹-연동-현황">BidMate 웹 연동 현황</a>, 라우터 분기는 <a href="../../라우터-5분기-판정-흐름" class="internal alias" data-slug="라우터-5분기-판정-흐름">라우터 5분기 판정 흐름</a> 참고.</p>
+<p>한 줄 요약: <strong>화면은 의도대로 돌지만, “왼쪽에서 고른 공고”는 강제가 아니라 폴백 힌트다 —
+질문에 다른 공고를 연상시키는 단어가 섞이면 문서가 조용히 바뀌고 대화도 함께 버려진다.</strong></p>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>이 문서는 심사를 거친 판이다 </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>초안의 결론 중 <strong>네 개가 뒤집혔다.</strong> 활성 문서 고정이 강제라는 전제, 맥락 유출이
+없다는 결론, 고정이 비용을 0으로 만든다는 서술, 검색을 못 쓴다는 판단이 전부 자료와
+어긋났다. 뒤집힌 경위는 각 절에 남겨 뒀다 — 같은 실수를 반복하지 않으려고 지우지 않았다.</p>
+</div>
+</blockquote>
+<p>한눈에 보려면 → <a href="../../작업-화면-개편-실험-(요약)" class="internal alias" data-slug="작업-화면-개편-실험-(요약)">작업 화면 개편 실험 (요약)</a> 🖼</p>
+<hr/>
+<h2 id="0-배경과-목적">0. 배경과 목적<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#0-배경과-목적" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>공고 목록과 채팅이 별도 화면이라 공고를 바꿔 물어보려면 매번 화면을 오가야 했다.
+목록·상세를 한 화면(WorkspacePage)으로 합치고, 좌측에서 고른 공고를 채팅의 활성 문서로
+넘기도록 바꿨다. 이 보고는 <strong>바꾼 화면이 의도대로 도는가</strong>와, 그 과정에서 드러난
+<strong>기존 백엔드 동작에 대한 사실 확인</strong> 두 가지를 다룬다.</p>
+<h2 id="1-환경">1. 환경<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-환경" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>항목</th><th>값</th></tr></thead><tbody><tr><td>프론트</td><td>bidmate-web <code>4850fb3-dirty</code> (미커밋 작업본), Vite dev :5173</td></tr><tr><td>백엔드</td><td>GPTPilots_Project <code>feat/goldenset-200</code> @ <code>1406222</code> (워킹트리 dirty), uvicorn :8000</td></tr><tr><td>생성 모델</td><td><code>gpt-5-mini</code> (단가 in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0.25/1</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">o</span><span class="mord mathnormal">u</span><span class="mord mathnormal">t</span></span></span></span>2.00/1M — <code>src/config.py</code>)</td></tr><tr><td>검색</td><td><code>RETRIEVAL_TOP_K = 5</code>, doc_id 필터 시 BM25 생략</td></tr><tr><td>코퍼스</td><td>meta.json 100건 (doc_cards와 동일 모집단), 청크 28,293개</td></tr><tr><td>브라우저</td><td>HeadlessChrome 150.0.7871.187, 1440×900</td></tr><tr><td>실행 시각</td><td>1차 2026-07-28T18:43Z (<code>api.json</code>·<code>ui.json</code>) / 2차 2026-07-28T18:58Z (<code>api2.json</code>·<code>ui2.json</code>) / 3차 2026-07-28T19:14Z (<code>api3.json</code>)·19:16Z (<code>recall.json</code>) / 4차 2026-07-28T19:29Z (<code>api4.json</code> — meta 미기록, 파일 mtime)</td></tr><tr><td>대상 문서 A</td><td>수협중앙회_강릉어선안전조업국 상황관제시스템 구축</td></tr><tr><td>대상 문서 B</td><td>국방과학연구소_기록관리시스템 통합 활용 및 보안 환경 구축</td></tr><tr><td>대상 문서 C</td><td>한국사회보장정보원_라오스 보건의료정보화 협력을 위한 사전타당성 조</td></tr></tbody></table></div>
+<p>측정은 두 층으로 나눴다. 응답의 성질(분기·인용·비용)은 <code>/ask</code>·<code>/rfps</code> 를 직접 호출했고
+(<code>run_api.mjs</code>·<code>run_api2.mjs</code>), 화면 동작은 CDP로 실제 브라우저를 조작해 확인했다
+(<code>run_ui.mjs</code>·<code>run_ui_u8.mjs</code>·<code>run_ui2.mjs</code>). 코퍼스 청크 인구조사는 <code>check_chunks.py</code>
+(LLM 무호출).</p>
+<p><strong>반복 횟수는 항목마다 다르다</strong> — E1·E2·E3 는 n=3, <strong>E5·E6·E7·E8·U10·U11 은 조건당
+n=1</strong>, E4·청크 조사·E9 리콜은 결정적이라 n=1. 전체 <code>/ask</code> 예산이 제한돼 있어 새 항목을
+반복하지 못했다(§8).</p>
+<p><strong>분기 판정 규칙을 고쳤다.</strong> v1 의 <code>run_api.mjs</code> 는 <code>CLARIFY_PREFIXES = ['어느 사업','다음 중','아래 후보']</code> 로 판정했는데, 프론트 <code>src/lib/api.ts</code> 의 실제 상수는
+<code>CLARIFY_PREFIX = '어느 문서에 대한 질문인지 특정하지'</code> / <code>EXPLORE_PREFIX = '관련해 다음 사업 문서들이 검색되었습니다'</code> 다 — <strong>셋 다 접두사가 일치하지 않는다.</strong> v1 의 clarify 3건은
+접두사가 아니라 폴백 조건(<code>active_doc_id === null &amp;&amp; citations === 0</code>)에 우연히 걸린
+것이었다. 실제 상수로 18행 전부 재분류한 결과 <strong>라벨이 뒤집힌 행은 0건</strong>이고 <code>explore</code>
+응답은 한 건도 관측되지 않았다(<code>results/reclassify.json</code>). 결과는 같지만 v1 의 “같은 규칙을
+재현했다”는 문장은 사실이 아니었다.</p>
+<p><strong>v3 에서 한 번 더 고쳤다.</strong> v2 의 <code>reclassify.mjs</code>·<code>run_api2.mjs</code> 는 프론트
+<code>classifyAnswer()</code> 의 <strong>세 번째 규칙</strong>(<code>api.ts:202</code> — <code>active_doc_id === null &amp;&amp; citations.length === 0 → clarify</code>)을 옮기지 않은 채 “src/lib/api.ts 규칙”이라고
+라벨했다. 세 규칙 전부를 넣고 재실행했다(비용 0): <strong>18행 중 라벨 변경 0행, 세 번째
+규칙에만 걸린 행 0건</strong>(<code>reclassify.json.front_rule_fallback_only_rows</code> 길이 0) — 이번
+데이터에서 결과는 같지만 규칙 자체는 이제 프론트와 동일하다. <code>run_api2.mjs</code> 의
+<code>classify()</code> 도 같은 규칙으로 고쳤다(E6 두 행은 <code>active_doc_id</code> 가 non-null 이라
+재실행 없이 결과가 동일함을 확인).</p>
+<h2 id="2-화면-동작-u1u11">2. 화면 동작 (U1–U11)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-화면-동작-u1u11" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>#</th><th>확인 항목</th><th>결과</th></tr></thead><tbody><tr><td>U1</td><td>미선택 진입 시 목록 100건, 입력창 활성</td><td>100행, 활성 ✓</td></tr><tr><td>U2</td><td>공고 클릭 → 활성 문서 전환 + 주소 동기화</td><td>칩 갱신, <code>/rfp/…</code> ✓</td></tr><tr><td>U3</td><td>”공고 자세히” 펼침</td><td><code>aria-expanded=true</code> ✓</td></tr><tr><td>U4</td><td>다른 공고로 전환</td><td>선택 강조 1건만 유지 ✓</td></tr><tr><td>U5</td><td>질문 → 답변</td><td>16초, 인용 4건 ✓ — <strong>v1 지표로 측정, 재측정 안 함</strong>. 새 지표 재측정본은 U10-② (12초, 인용헤더 1, 인용 4건 전부 A)</td></tr><tr><td>U6</td><td>답변 후 공고 전환 시 대화 보존</td><td><strong>U10-③으로 대체 재측정</strong> (아래)</td></tr><tr><td>U7</td><td><code>/rfp/:id</code> 딥링크 진입</td><td>칩·요약·선택 강조 ✓</td></tr><tr><td>U8</td><td>doc_id 특수문자</td><td><code>&amp;</code>·<code>(</code> 실공고 + <code>%</code> 합성 id 모두 화면 생존 ✓</td></tr><tr><td>U9</td><td>검색이 목록을 좁히는가</td><td>2 / 96 / 0건 (§6)</td></tr><tr><td>U10</td><td><strong>목표 왕복 전체</strong>: 질문→답변→공고 전환→재질문</td><td>검색·인용이 새 문서로 갈리는 데까지 확인 ✓ (전환 후 <em>일반</em> 질문의 정상 답변은 미측정 — 아래)</td></tr><tr><td>U11</td><td><strong>미선택 상태로 전송</strong></td><td>반문 카드 렌더 ✓, 비용 $0.0000 (0→0 tok)</td></tr></tbody></table></div>
+<h3 id="u6-의-대화-유지-지표는-무효였다--교체했다">U6 의 ‘대화 유지’ 지표는 무효였다 — 교체했다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#u6-의-대화-유지-지표는-무효였다--교체했다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>v1 의 <code>run_ui.mjs</code> 는 <code>hasCitations = document.body.textContent.includes('출처')</code> 로
+‘이전 대화 유지’를 판정했다. 그런데 이 문자열은 <strong>대화가 0턴인 빈 화면에도 존재한다</strong> —
+<code>chat-view.tsx</code> EmptyState 의 안내 문구가 “markdown 표 · 출처(doc_id·인용)와 함께 생성”
+이기 때문이다. 실제로 <code>ui.json</code> U1 은 <code>userTurns=0</code> 인데 <code>hasCitations=true</code> 였고,
+재측정에서도 전송 전 상태가 <strong>말풍선 0/0 · <code>출처</code> 문자열 true</strong> 로 재현됐다
+(<code>ui2.json</code> U11.pre). 즉 v1 의 U6 판정은 아무것도 증명하지 못했다.</p>
+<p>v2 는 채팅 루트의 <strong>말풍선 개수</strong>(user = <code>div.flex.justify-end</code>, assistant =
+<code>div.flex.gap-3</code> 직계 자식), <strong><code>출처 N건</code> 헤더 노드 수</strong>, <strong>직전 답변 본문 문자열의 DOM
+잔존</strong> 세 가지로 바꿨다. ‘답변 도착’ 판정도 <code>출처</code> 폴링에서 <strong>로딩 버블 소멸 + 말풍선 수
+도달</strong>로 바꿨다 — 다만 <strong>이 새 판정은 U10·U11 에만 적용했다.</strong> U5 는 재측정하지 않았으므로
+표의 16초는 여전히 폐기한 v1 지표로 잰 값이다(U10-② 가 사실상 같은 시행의 새 지표
+재측정본이다: 12초).</p>
+<p>또 v1 <code>run_ui.mjs</code> 의 비용줄 셀렉터(<code>.font-mono:last-of-type</code>)는 비용 줄이 아니라
+<code>출처 4건</code> 텍스트를 잡았다(<code>ui.json</code> U5 <code>cost_line = &quot;출처 4건&quot;</code>). <strong>U5 호출의 비용·토큰은
+회수되지 않았다</strong> — §3 의 비용 범위 집계에서 이 호출은 빠져 있다.</p>
+<h3 id="u10--개편-목표의-왕복을-끝까지-밟았다-n1">U10 — 개편 목표의 왕복을 끝까지 밟았다 (n=1)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#u10--개편-목표의-왕복을-끝까지-밟았다-n1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>단계</th><th>관측</th></tr></thead><tbody><tr><td>① A 선택</td><td>칩=<code>수협중앙회_강릉어선…</code>, 말풍선 0/0</td></tr><tr><td>② “주요 과업 내용은?“</td><td>12초, 말풍선 1/1, 인용헤더 1, 인용 사업명 전부 A, <code>$0.0025 · 1735→1041 tok</code></td></tr><tr><td>③ B 로 전환(클릭)</td><td>칩=<code>국방과학연구소_기록관리…</code>, <strong>말풍선 1/1 유지</strong>, <strong>인용헤더 1 유지</strong>, <strong>직전 답변 본문 문자열 DOM 잔존 = true</strong></td></tr><tr><td>④ “방금 답변에서 네가 나열한 과업 항목을 그대로 다시 열거해줘”</td><td>8초, 말풍선 2/2, 인용헤더 2, <strong>새 인용 3건 전부 B</strong>, <code>$0.0015 · 2593→440 tok</code></td></tr></tbody></table></div>
+<p><strong>전환 후 재질문의 검색·인용이 새 문서(B)로 갈린다는 것이 UI 층에서 처음 확인됐다.</strong>
+v1 은 전환 직후 상태만 읽고 끝났고, 이 왕복은 API 층 E2 로 대체돼 있었다(요청 형태가
+프론트와 다름).</p>
+<p><strong>다만 이 한 시행에 목적 두 개를 겹쳐 실었다.</strong> ④ 의 질문(“방금 답변에서 …그대로 다시
+열거해줘”)은 맥락 유출을 탐지하려고 <em>새 문서로는 답할 수 없게</em> 설계한 적대적 질문이고,
+실제 응답도 “재열거할 수 없습니다 + 어느 쪽으로 진행할까요?”라는 되물음이었다. 따라서
+확인된 것은 <strong>검색·인용이 B 로 갈렸다</strong>까지이고, <strong>전환 후 평범한 후속 질문이 새 문서
+근거로 정상 답변되는지는 UI 에서 측정하지 않았다.</strong> (API 층에서는 E8 이 문서 B·빈 history
+로 같은 질문을 던져 B 근거 답변 3인용을 받았다 — §3.) ④ 의 답변 본문 문제는 §3 을 보라.</p>
+<h3 id="u11--공고를-안-고르고-물으면-화면은-반문-카드를-그린다-n1">U11 — 공고를 안 고르고 물으면 화면은 반문 카드를 그린다 (n=1)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#u11--공고를-안-고르고-물으면-화면은-반문-카드를-그린다-n1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><code>/recommendations</code> 에서 공고 미선택 상태로 “참가 자격 요건은?” 을 전송하면 2초 만에
+<strong>반문 카드(<code>반문 · 문서 특정 필요</code>) 1건</strong>이 뜨고, 후보 3건이 번호로 나열되며,
+비용 줄은 <code>$0.0000 · 0→0 tok</code> 이다. 인용 헤더는 0건. E1 의 API 관측(clarify ×3, $0)이
+화면에서도 그대로 렌더된다.</p>
+<p><strong>남은 미검증 시나리오</strong>: (a) 검색으로 좁힌 뒤 그 결과에서 선택 → 질문 경로,
+(b) 답변 대기 중 다른 공고를 클릭했을 때의 경합. 둘 다 측정하지 않았다(§8).</p>
+<h2 id="3-맥락-절삭은-사용자-클릭-전환이-아니라-라우터-덮어쓰기에서-발동한다">3. 맥락 절삭은 “사용자 클릭 전환”이 아니라 “라우터 덮어쓰기”에서 발동한다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-맥락-절삭은-사용자-클릭-전환이-아니라-라우터-덮어쓰기에서-발동한다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>절삭 조건은 <strong>프론트가 무엇을 보내는가</strong>가 아니라 <strong>라우터가 요청 <code>doc_id</code> 를 덮어쓰는가</strong>로
+결정된다. 그래서 국면이 둘로 갈린다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>국면</th><th>무슨 일이</th><th><code>switched</code></th><th>history</th><th>관측</th></tr></thead><tbody><tr><td>(a) 사용자가 좌측에서 공고를 클릭해 전환</td><td>프론트가 새 <code>doc_id</code> 를 활성 문서로 보냄 → 라우터도 그 문서를 고름</td><td><code>False</code></td><td><strong>전량 전달</strong></td><td>U10-④(n=1), E7 통제군(n=1)</td></tr><tr><td>(b) 질문 문자열이 활성 문서를 덮어씀(§4)</td><td>요청 <code>doc_id</code>=A 인데 라우터가 B/C 를 고름</td><td><strong><code>True</code></strong></td><td><strong>절삭</strong></td><td>E5[0]·E6×2(파생), <strong>E7R(입력 토큰으로 확인, n=1)</strong></td></tr></tbody></table></div>
+<p>즉 절삭 분기는 죽은 코드가 아니다. <strong>하필 사용자가 원하지 않은 문서 전환이 일어나는 바로
+그 순간에만 발동해, 문서 교체와 대화 폐기가 안내 없이 동시에 일어난다</strong>(결론 3·4 통합).</p>
+<h3 id="v1-의-e2-는-a-국면만-밟았다">v1 의 E2 는 (a) 국면만 밟았다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v1-의-e2-는-a-국면만-밟았다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><code>src/api/core.py</code> <code>run_turn()</code> 의 절삭 조건은 다음 두 줄이다.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">switched </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> active_doc_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">is</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> not</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> None</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> and</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> doc_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">!=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> active_doc_id</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">effective_history </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> switched </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">else</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> list</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(history)   </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 전환 시 이전 맥락 절삭</span></span></code></pre></figure>
+<p><code>server.py</code> 는 요청의 <code>doc_id</code> 를 그대로 <code>active_doc_id</code> 로 넘긴다
+(<code>turn_fn(question, req.history, req.doc_id, ...)</code>). v1 의 E2 턴2는 <code>doc_id=B</code> 를 실어
+보냈고 라우터도 B를 골랐으므로 <code>decision.doc_id == active_doc_id</code> → <strong><code>switched=False</code>
+→ history 전량 전달</strong>이다. 절삭은 실행되지 않았다.</p>
+<p>원자료가 이를 뒷받침한다. <code>api.json</code> E2 의 턴2 <code>input_tokens</code> 가 턴1 답변 길이와
+순서까지 대응해 증가한다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>run</th><th>턴1 <code>answer_len</code></th><th>턴2 <code>input_tokens</code></th></tr></thead><tbody><tr><td>0</td><td>989</td><td>2210</td></tr><tr><td>2</td><td>1339</td><td>2436</td></tr><tr><td>1</td><td>1704</td><td>2636</td></tr></tbody></table></div>
+<p>history 가 잘렸다면 턴1 답변 길이와 무관해야 한다.</p>
+<p>또한 v1 의 판정 지표(<code>leaked = 턴2 cited_docs 에 A 포함</code>)는 <strong>반증 불가능</strong>했다.
+<code>core.py</code> 는 <code>retrieve_fn(question, doc_id=decision.doc_id)</code> 로 검색을 문서 단위로
+스코프하므로, 라우터가 B를 고른 이상 인용에 A가 섞이는 것은 구조적으로 불가능하다.
+<code>leaked=false</code> 는 실험 결과가 아니라 코드의 항등식이었다.</p>
+<h3 id="a-국면--e2r-지표를-답변-본문으로-바꾸니-유출이-나왔다-u10--n1">(a) 국면 — E2R: 지표를 답변 본문으로 바꾸니 유출이 나왔다 (U10-④, n=1)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#a-국면--e2r-지표를-답변-본문으로-바꾸니-유출이-나왔다-u10--n1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><code>use-chat.ts</code> 는 문서를 갈아탈 때 <code>selectDoc(docId)</code> 로 <code>activeDocId</code> 를 새 문서로 바꾸고
+다음 요청에 그 값을 보낸다. 라우터가 그 문서를 그대로 고르면 <code>decision.doc_id == active_doc_id</code> → <strong><code>switched=False</code> → history 전량 전달</strong>이다. U10-④ 는 그 상태에서
+<em>직전 답변 내용으로만</em> 답할 수 있는 질문을 던진 것이다.</p>
+<p>관측된 답변(전문은 <code>ui2.json</code> <code>U10.answer2_full</code>):</p>
+<blockquote>
+<p>…현재 제공된 컨텍스트(기록관리시스템 통합 활용 및 보안 환경 구축 문서)에서 확인되는
+내용이 아닙니다. … <strong>이전 대화에서 사용된 강릉어선안전조업국 문서</strong>(또는 그 목록)를
+다시 불러와 그 항목을 그대로 재열거해 드리기 …</p>
+</blockquote>
+<ul>
+<li>A측 고유 어휘 <code>강릉</code>·<code>어선</code> 이 답변 본문에 출현했다(<code>수협</code> 은 미출현).</li>
+<li>반면 <strong>인용 3건은 전부 B</strong> 이고, 화면 칩·선택 강조도 B 단독이다.</li>
+</ul>
+<p><strong>E8 — 진짜 기준선을 실측했다 (문서 B · <code>history=[]</code> · U10-④ 와 같은 질문, n=1).</strong>
+v2 는 “<code>input_tokens = 2593</code> 은 같은 문서·빈 history 기준선 1735 보다 858 크다”고 썼는데,
+1735 는 <strong>문서 A</strong> 의 값이라 통제된 비교가 아니었다. 문서 B 에 빈 history 로 <strong>같은 질문
+문자열</strong>을 던져 기준선을 다시 잡았다(<code>results/api3.json</code> E8).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>조건</th><th>문서</th><th>history</th><th><code>input_tokens</code></th></tr></thead><tbody><tr><td>E8 (기준선)</td><td>B</td><td><code>[]</code></td><td><strong>1736</strong></td></tr><tr><td>U10-④</td><td>B</td><td>1턴 전달</td><td><strong>2593</strong></td></tr><tr><td>차이</td><td>—</td><td>—</td><td><strong>+857</strong></td></tr></tbody></table></div>
+<p>문서·질문 문자열이 같으므로 이 <strong>+857 토큰은 history 전달분으로 귀속할 수 있다.</strong>
+덧붙여 E8 답변에는 <code>강릉</code>·<code>어선</code>·<code>수협</code> 이 <strong>한 번도 나오지 않았다</strong> — 유출은 문서 B 의
+청크에서 온 것이 아니라 history 에서 온 것이다.</p>
+<p>즉 <strong>인용은 새 문서로 깨끗하게 갈리지만 대화 맥락은 그대로 넘어간다.</strong> 이전 문서의
+사업명이 새 문서 화면의 답변에 등장한다. v1 의 “맥락 유출은 관측되지 않았다”는 지표를
+바꾸자마자 무너진다.</p>
+<p>한 가지 유보: 모델이 “재열거할 수 없다”고 거절했으므로 <strong>본문 사실이 통째로 유출되는지는
+확인되지 않았다.</strong> 확인된 것은 “이전 문서의 식별 정보가 넘어간다”까지다.</p>
+<h3 id="b-국면--절삭은-e7-이-아니라-e7r-로-확인됐다-조건당-n1">(b) 국면 — 절삭은 E7 이 아니라 E7R 로 확인됐다 (조건당 n=1)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#b-국면--절삭은-e7-이-아니라-e7r-로-확인됐다-조건당-n1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>v2 는 “제품 경로에서 <code>switched</code> 는 상시 <code>False</code>, 절삭 분기는 영영 발동하지 않는다”고
+썼다. <strong>이 문장은 거짓이다</strong> — 같은 보고서 §4 가 반증한다. <code>core.py</code> 의 판정은</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">switched </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> active_doc_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">is</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> not</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> None</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> and</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> doc_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">!=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> active_doc_id   </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># doc_id = 라우터 결정</span></span></code></pre></figure>
+<p>이므로, 요청 <code>doc_id</code> 를 라우터가 덮어쓰는 §4 의 3건(E5[0]·E6×2)은 <strong>정의상
+<code>switched=True</code></strong> 이고 <code>api2.json</code> 도 <code>derived_doc_switched</code> 를 2/2 <code>True</code> 로 기록한다.
+다만 그 3건은 <code>history=[]</code> 로 보냈기 때문에 절삭의 <strong>관측 가능한 효과</strong>는 확인되지 않았다.
+E7 이 그 공백을 메운다.</p>
+<p><strong>설계</strong>: history 에 확인 코드 <code>ZULU-7391</code> 을 심고(프론트 <code>use-chat.ts</code> 와 같은
+<code>[{role, content}]</code> 형태), 요청 <code>doc_id</code> 는 양쪽 다 A 로 고정한 뒤 질문에만 타 사업명을
+넣었다. 지표는 <strong>답변 본문에 코드가 재현되는가</strong> — 절삭이 걸리면 모델은 코드를 알 방법이 없다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>조건</th><th>질문</th><th>요청 doc_id</th><th>응답 active_doc_id</th><th>판정</th><th><code>switched</code></th><th><strong>코드 재현</strong></th><th>in→out tok</th><th>비용</th></tr></thead><tbody><tr><td>통제군</td><td>”방금 대화에서 내가 알려준 확인 코드를 그대로 다시 말해줘.”</td><td>A</td><td>A</td><td>kept</td><td><code>False</code></td><td><strong>예</strong> (<code>확인 코드: ZULU-7391 입니다.</code>)</td><td>1689→277</td><td>$0.00098</td></tr><tr><td>처리군</td><td>앞에 “라오스 보건의료정보화 …사업 관련해서, ” 를 붙인 같은 질문</td><td>A</td><td><strong>C(라오스…)</strong></td><td>overridden</td><td><strong><code>True</code></strong></td><td><strong>아니오</strong> (<code>제공된 문서에서 확인되지 않습니다</code>)</td><td>710→180</td><td>$0.00054</td></tr></tbody></table></div>
+<p>그러나 <strong>이 표만으로는 절삭을 주장할 수 없다.</strong> 두 조건은 절삭 발동 여부와 함께 라우팅되는
+문서(A→C)·질문 앞머리가 같이 바뀐다. 코드 미재현이 절삭 때문인지, 문서·문구가 바뀐
+탓인지 구분되지 않는다.</p>
+<h3 id="e7r--문서를-고정한-채-절삭만-바꿨다-조건당-n1-resultsapi4json">E7R — 문서를 고정한 채 절삭만 바꿨다 (조건당 n=1, <code>results/api4.json</code>)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#e7r--문서를-고정한-채-절삭만-바꿨다-조건당-n1-resultsapi4json" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>라우팅되는 문서를 <strong>C 로 고정</strong>하고 <code>switched</code> 만 갈랐다. 세 조건의 질문 문자열은 완전히
+같다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>조건</th><th>요청 doc_id</th><th>history</th><th>라우팅 문서</th><th><code>switched</code></th><th><strong><code>in_tok</code></strong></th><th>코드 재현</th></tr></thead><tbody><tr><td>X1</td><td><strong>C</strong></td><td>전량 전송</td><td>C</td><td><code>False</code></td><td><strong>758</strong></td><td>아니오</td></tr><tr><td>X2</td><td>A</td><td>전량 전송</td><td>C</td><td><strong><code>True</code></strong></td><td><strong>710</strong></td><td>아니오</td></tr><tr><td>X0</td><td><strong>C</strong></td><td><strong>빈 배열</strong></td><td>C</td><td><code>False</code></td><td><strong>710</strong></td><td>아니오</td></tr></tbody></table></div>
+<p>두 가지가 동시에 드러난다.</p>
+<p><strong>① 절삭은 실제로 발동한다.</strong> X2 의 입력 토큰이 history 를 아예 보내지 않은 X0 과
+<strong>정확히 같고</strong>(710 = 710), history 를 실은 X1 보다 48 적다. 48 은 심어둔 2턴
+(<code>이 대화의 확인 코드는 ZULU-7391 이다…</code> + 응답)의 크기와 맞는다. 질문·문서·청크가 모두
+동일한 조건에서 입력 토큰이 “history 없음”과 완전히 일치했다는 것은, 프롬프트에서 history
+가 빠졌다는 직접 증거다.</p>
+<p><strong>② 코드 재현 지표는 무효다.</strong> history 가 온전한 X1 에서도 코드가 재현되지 않았다.
+재현 여부는 문서·질문 문구에 따라 갈리며(E7 통제군은 문서 A·앞머리 없는 질문에서 재현했다),
+<strong>왜 갈리는지는 규명하지 못했다.</strong> 확실한 것은 하나다 — 절삭이 걸리지 않은 조건에서도
+미재현이 나오므로, 이 지표로는 절삭을 판별할 수 없다.</p>
+<p><strong>따라서 절삭 분기는 죽은 코드가 아니다.</strong> 다만 그 근거는 코드 재현이 아니라 <strong>입력 토큰
+동일성(X2 = X0 ≠ X1)</strong> 이다. 사용자가 A 로 대화하던 중 질문에 다른 공고를 연상시키는
+토큰(§4 는 <code>&quot;서울&quot;</code> 한 단어로도 걸린 사례를 보인다)이 섞이면, <strong>문서가 바뀌는 동시에
+이전 대화가 통째로 버려진다.</strong> 두 사건은 독립 사실이 아니라 같은 사건의 양면이다.</p>
+<h3 id="e1--문서를-고정하면-반문이-사라진다-질문-1종-n3">E1 — 문서를 고정하면 반문이 사라진다 (질문 1종, n=3)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#e1--문서를-고정하면-반문이-사라진다-질문-1종-n3" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>같은 질문(“참가 자격 요건은?“)을 문서 지정 없이/있이 3회씩.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>조건</th><th>분기</th><th>인용</th><th>비용(USD)</th></tr></thead><tbody><tr><td>doc_id 미지정</td><td>clarify ×3</td><td>0</td><td>0, 0, 0</td></tr><tr><td>doc_id 지정</td><td>answer ×3</td><td>3, 3, 3</td><td>0.00248, 0.00192, 0.00204</td></tr></tbody></table></div>
+<p>3/3 확정적으로 갈렸다. <strong>비용의 방향에 주의하라</strong> — 반문은 LLM을 안 타서 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mord hangul_fallback">이고</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord hangul_fallback">근거답변이</span></span></span></span>0.002 다. 고정은 비용을 0으로 만드는 게 아니라 <strong>0에서 $0.002 로 올린다.</strong>
+그 대가로 사용자가 후보를 다시 고르는 왕복이 사라진다.</p>
+<p>이 결과는 <strong>문서를 지목하는 어휘가 없는 중립 질문 1종에서만</strong> 관측됐다. §4 가 보이듯
+질문에 다른 공고를 연상시키는 어휘가 들어가면 결과가 달라진다.</p>
+<h3 id="비용은-단일-대표값으로-쓸-수-없다">비용은 단일 대표값으로 쓸 수 없다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#비용은-단일-대표값으로-쓸-수-없다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><code>results/*.json</code> 에서 <strong>비용을 회수한 생성 호출 22건 전량</strong>(E7R 3건 포함. API 층 clarify 3건·
+direct_meta 1건은 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord hangul_fallback">이라제외</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord hangul_fallback">경유</span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mord">5</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mord">10</span><span class="mord hangul_fallback">은화면표기만있어제외</span><span class="mclose">)</span><span class="mord hangul_fallback">의턴당비용은</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">∗</span></span></span></span>0.00054 ~ $0.00289** 다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th></th><th>값</th><th>어디</th></tr></thead><tbody><tr><td>최소</td><td>$0.00054 (710→180 tok)</td><td>E7 처리군 — 문서·질문 앞머리가 함께 바뀐 조건이라 감소분을 절삭에 귀속할 수 없다(§8)</td></tr><tr><td>최대</td><td>$0.00289 (1735→1228 tok)</td><td>E2 턴1 — 가장 긴 답변</td></tr></tbody></table></div>
+<p>출력 토큰이 비용을 지배해 답변 길이에 따라 5배 폭이 있다. **“<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0.002/</span><span class="mord hangul_fallback">질문</span><span class="mord">&quot;</span><span class="mord hangul_fallback">은</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord">1</span><span class="mopen">(</span><span class="mord hangul_fallback">참가자격요건</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mclose">)</span><span class="mord hangul_fallback">한정</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">∗</span><span class="mord hangul_fallback">수치이지대푯값이아니다</span><span class="mord">.</span><span class="mord hangul_fallback">모델은</span><span class="mord">‘</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">pt</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">mini</span><span class="mord">‘</span><span class="mopen">(</span><span class="mord mathnormal">in</span></span></span></span>0.25/1M, out $2.00/1M).</p>
+<p>범위 밖에 있는 것들: <strong>U5 의 생성 호출은 비용이 회수되지 않았다</strong>(§2 셀렉터 결함) —
+“관측 전체”가 아니라 “회수된 22건”의 범위다. LLM 을 타지 않아 $0 인 호출은
+<strong>clarify 4건(E1 ×3 + U11) + direct_meta 1건(E6)</strong> 이다.</p>
+<h2 id="4-활성-문서-고정은-강제가-아니다--질문-문자열이-덮어쓴다">4. 활성 문서 고정은 강제가 아니다 — 질문 문자열이 덮어쓴다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-활성-문서-고정은-강제가-아니다--질문-문자열이-덮어쓴다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>v1 이 놓친 가장 큰 사실이다. <code>api.json</code> E5 첫 행은 <code>doc_id=A(수협중앙회_강릉어선…)</code> 로
+호출했는데 응답 <code>active_doc_id</code> 가 <strong><code>서울특별시_2024년 지도정보 플랫폼 및 전문활용 연계 시스템 고도화 용</code></strong> 이고 인용도 그 문서였다. v1 은 이 행을 “무관한 질문에도 인용이 1건
+붙는다”로만 축소했다.</p>
+<p>원인은 <code>src/query/router.py</code> <code>route_question()</code> 의 판정 순서다.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">doc_id, tie_candidates, match_reason, via_token </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> _match(question, meta, org_dict)   </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># ① 질문 문자열 우선</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">...</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> doc_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">is</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> None</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> and</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> active_doc_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">is</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> not</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> None</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:                                      </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># ② 실패했을 때만 활성 doc 유지</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    doc_id, match_reason </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> active_doc_id, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">...</span></span></code></pre></figure>
+<p>즉 프론트가 보내는 <code>doc_id</code> 는 <strong>강제가 아니라 폴백 힌트</strong>다. 그리고 <code>use-chat.ts</code> 는
+응답의 <code>res.active_doc_id</code> 를 <code>setActiveDocId</code> 로 그대로 반영하므로, <strong>사용자가 아무것도
+누르지 않았는데 화면 좌측 선택과 상단 칩이 다른 공고로 바뀐다.</strong></p>
+<h3 id="e6--의도적으로-재현했다-조건당-n1">E6 — 의도적으로 재현했다 (조건당 n=1)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#e6--의도적으로-재현했다-조건당-n1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>요청 <code>doc_id</code> 는 A로 고정하고 질문에만 다른 공고를 지목하는 어휘를 넣었다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>질문</th><th>요청 doc_id</th><th>응답 active_doc_id</th><th>판정</th><th>분기</th><th>인용</th><th>비용</th></tr></thead><tbody><tr><td>국방과학연구소 기록관리시스템 사업의 계약금액은?</td><td>A</td><td><strong>B(국방과학연구소_기록관리…)</strong></td><td>overridden</td><td>answer(direct_meta)</td><td>0</td><td>$0</td></tr><tr><td>라오스 보건의료정보화 협력을 위한 사전타당성 조사 사업의 주요 과업은?</td><td>A</td><td><strong>C(한국사회보장정보원_라오스…)</strong></td><td>overridden</td><td>answer</td><td>5</td><td>$0.00114</td></tr></tbody></table></div>
+<p>2/2 덮어쓰기. 파생 계산한 <code>doc_switched</code> 도 2/2 <code>True</code> 다(<code>/ask</code> 응답에 <code>doc_switched</code>
+필드가 없어 <code>core.py</code> 의 정의 그대로 요청·응답 값에서 재구성했다 — §8).
+<strong>이 <code>True</code> 가 곧 §3 (b) 국면의 history 절삭이다</strong> — E7R 이 입력 토큰으로 그 효과를 확인했다.</p>
+<h3 id="지금까지-관측된-전체-집계">지금까지 관측된 전체 집계<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#지금까지-관측된-전체-집계" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><code>doc_id</code> 를 지정한 <code>/ask</code> 요청 <strong>25건</strong>(E7 2건 + E7R 3건 포함) 중:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>결과</th><th>건수</th><th><code>doc_switched</code></th><th>history 취급</th><th>출처</th></tr></thead><tbody><tr><td>kept (요청 문서 유지)</td><td>20</td><td><code>False</code></td><td>절삭 없음</td><td>E1 withDoc ×3, E2 턴1 ×3 · 턴2 ×3, E3 ×3, E5[1][2], U10 ②④, E7 통제군, E8, <strong>E7R X1·X0</strong>(X0 는 history 자체를 안 보낸 모사 조건)</td></tr><tr><td><strong>overridden (다른 문서로 전환)</strong></td><td><strong>5</strong></td><td><strong><code>True</code></strong></td><td><strong>절삭</strong></td><td>E5[0] “서울 오늘 날씨”, E6 ×2, <strong>E7 처리군</strong>, <strong>E7R X2</strong></td></tr><tr><td>clarify (활성 문서 없음)</td><td>0</td><td>—</td><td>—</td><td>—</td></tr></tbody></table></div>
+<p>독립 질문 수로 세면 덮어쓰기는 <strong>4종</strong>이다 — E7R X2 는 E7 처리군과 같은 질문 문자열의
+재실행이다.</p>
+<p>덮어쓰기는 <strong>질문에 다른 공고의 기관명·사업명·지명 토큰이 들어갔을 때</strong> 일어났다.
+중립 질문 20건에서는 한 번도 일어나지 않았다. 다만 <strong>“서울”</strong> 한 단어로 전환된 사례가
+있다는 점이 중요하다 — 사용자가 다른 공고를 지목할 의도가 전혀 없어도 걸린다.
+그리고 E7R 이 보이듯 <strong>걸리는 순간 진행 중이던 대화도 함께 버려진다.</strong></p>
+<p>이 전환이 일어날 때 <strong>화면이 무엇을 보여주는지는 UI 로 확인하지 못했다</strong>(§8). 코드상
+<code>use-chat.ts</code> → <code>useRfp(chat.activeDocId)</code> 경로로 칩·요약·좌측 강조가 모두 새 문서로
+따라가지만, 사용자에게 “문서가 바뀌었다”는 안내는 없다.</p>
+<h2 id="5-no_evidence-고정-응답은-ask-에서-도달-불가능하다">5. NO_EVIDENCE 고정 응답은 <code>/ask</code> 에서 도달 불가능하다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-no_evidence-고정-응답은-ask-에서-도달-불가능하다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>화면은 응답을 세 갈래로 안내한다 — 근거 기반 답변 / 반문(CLARIFY) / NO_EVIDENCE.
+세 번째는 “거의” 가 아니라 <strong>구조적으로</strong> 나오지 않는다.</p>
+<p><strong>E3 — 문서에 없을 질문(“담당자 휴대폰 번호와 개인 이메일”, n=3)</strong>: 3회 모두 <code>answer</code>,
+인용 5건. 답변 본문은 “제공된 문서에서 확인되지 않습니다 (출처: …)” 였다.</p>
+<p><strong>E5 — 범위를 더 벗어난 질문 (질문당 n=1)</strong>:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>질문</th><th>요청 doc_id</th><th>응답 active_doc_id</th><th>분기</th><th>인용</th></tr></thead><tbody><tr><td>서울 오늘 날씨 알려줘</td><td>A</td><td><strong>서울특별시_2024년 지도정보 플랫폼…</strong></td><td>answer</td><td>1</td></tr><tr><td>이 사업 계약 담당자가 좋아하는 음식은?</td><td>A</td><td>A (유지)</td><td>answer</td><td>4</td></tr><tr><td>2030년 이 기관의 예산 계획을 알려줘</td><td>A</td><td>A (유지)</td><td>answer</td><td>4</td></tr></tbody></table></div>
+<h3 id="v1-의-코드-지목은-틀렸다">v1 의 코드 지목은 틀렸다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v1-의-코드-지목은-틀렸다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>v1 은 <code>src/query/generate.py:147</code> 을 원인으로 짚었다. 그 줄(<code>if not context.strip():</code>)은
+존재하지만 <strong><code>/ask</code> 경로에서는 도달하지 않는다.</strong> NO_EVIDENCE 를 낼 수 있는 지점은 셋이고,
+순서는 이렇다.</p>
+<ol>
+<li><strong><code>src/query/router.py</code></strong> — doc 확정 후 <code>if chunk_count(doc_id) == 0:</code> →
+NO_EVIDENCE 가 아니라 <strong><code>meta_only</code> 고정 응답</strong>으로 빠진다.</li>
+<li><strong><code>src/api/core.py</code></strong> — retrieval 분기의 <code>if not hits: answer = NO_EVIDENCE_ANSWER</code>.
+<strong><code>doc_id</code> 를 지정한 요청이 실제로 밟는 지배적 경로는 여기다.</strong></li>
+<li><code>src/query/generate.py</code> — <code>if not context.strip():</code>. <code>core.py</code> 는 <code>hits</code> 가 있을 때만
+<code>generate_answer</code> 를 호출하고 <code>format_context(hits)</code> 는 비지 않으므로 이 가드는
+<code>/ask</code> 경로에서 항상 거짓이다(부차적 방어선).</li>
+</ol>
+<h3 id="도달-불가능함을-결정적으로-확인했다-llm-무호출-비용-0">도달 불가능함을 결정적으로 확인했다 (LLM 무호출, 비용 0)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#도달-불가능함을-결정적으로-확인했다-llm-무호출-비용-0" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>v1 의 “doc_id를 지정하면 그 문서에서 청크가 반드시 잡히므로”는 검증되지 않은 가정이었다.
+코퍼스 100건 전부를 세었다(<code>check_chunks.py</code> → <code>results/chunks.json</code>).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>항목</th><th>값</th></tr></thead><tbody><tr><td>문서 수</td><td>100</td></tr><tr><td><strong>청크 0개 문서</strong></td><td><strong>1건</strong> (<code>케빈랩 주식회사_평택시 강소형 스마트시티 AI 기반의 영상감시 시스템 </code>)</td></tr><tr><td>청크 수 min / median / max</td><td>0 / 269 / 697</td></tr><tr><td>컬렉션 총 청크</td><td>28,293</td></tr></tbody></table></div>
+<p>즉 “반드시 잡힌다”는 <strong>거짓</strong>이다(99/100). 그런데 결론은 오히려 더 강해진다:</p>
+<ul>
+<li>유일한 0청크 문서는 <code>core.py</code> 에 닿기 전에 <strong>router 의 선조회 가드가 <code>meta_only</code> 로
+가로챈다</strong> → NO_EVIDENCE 가 아니다.</li>
+<li>나머지 99건은 <code>chunk_count > 0</code> 이고, <code>src/query/retrieve.py</code> 의 <code>retrieve()</code> 는
+<strong>점수 임계값 없이 top-k 를 돌려준다</strong>(<code>hits</code> 가 비는 조건은 컬렉션에 해당 doc 청크가
+0개일 때뿐). 따라서 <code>if not hits:</code> 는 참이 될 수 없다.</li>
+<li>라우터가 <code>retrieval</code> 을 반환할 때 <code>decision.doc_id</code> 는 항상 non-None 이므로 필터
+해제 경로도 없다.</li>
+</ul>
+<p><strong>결론: 현재 코퍼스·현재 코드에서 <code>NO_EVIDENCE_ANSWER</code> 고정 문자열은 <code>/ask</code> 응답으로
+나올 수 없다.</strong> 프론트 <code>classifyAnswer()</code> 는 그 문자열과 정확히 일치할 때만
+<code>no_evidence</code> 로 분류하므로, <strong>화면이 광고하는 세 갈래 중 하나는 사용자가 볼 일이 없다.</strong>
+“문서에 답이 없다”는 판단은 전부 LLM 이 산문으로 하고 <code>answer</code> 로 렌더된다.</p>
+<p>부수 문제도 있다. “서울 날씨”처럼 완전히 무관한 질문에도 인용이 1건 붙는다. 근거 없는
+답에 출처 표기가 따라붙으면 사용자는 그것을 근거 있는 답으로 읽는다. E6 의 direct_meta
+사례처럼 <strong>인용 0건인데 단정적으로 답하는</strong> 경우도 있다.</p>
+<h2 id="6-검색--짧은-키워드는-되고-자연어-질의는-안-된다">6. 검색 — 짧은 키워드는 되고, 자연어 질의는 안 된다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-검색--짧은-키워드는-되고-자연어-질의는-안-된다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>E4/U9 — <code>q</code> 는 사업명·발주기관 문자열 부분일치다</strong> (<code>src/api/cards.py</code>).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>질의</th><th>성격</th><th>결과</th></tr></thead><tbody><tr><td>관제</td><td>키워드</td><td><strong>2건</strong></td></tr><tr><td>재난</td><td>키워드</td><td><strong>2건</strong></td></tr><tr><td>시스템</td><td>키워드</td><td>96건 (100건 중)</td></tr><tr><td>관제·모니터링 시스템</td><td>질문지 보기 원문</td><td>0건</td></tr><tr><td>데이터·AI 분석 솔루션</td><td>질문지 보기 원문</td><td>0건</td></tr><tr><td>CCTV 영상분석 관련 사업</td><td>자연어</td><td>0건</td></tr><tr><td>재난 대응 시스템 구축</td><td>자연어</td><td>0건</td></tr></tbody></table></div>
+<p>짧은 키워드는 <strong>건수 기준으로는</strong> 100건을 2건까지 떨어뜨린다.
+(v1 의 “검색은 목록을 좁히는 수단이 못 된다”는 같은 표와 모순됐다. 정정한다.)</p>
+<p><strong>E9 — 그런데 건수만으로는 ‘잘 좁혔다’와 ‘놓쳤다’를 구분하지 못한다</strong> (LLM 무호출, 비용 0).
+정답셋을 <em>그 단어가 문서 본문 청크에 실제로 등장하는 공고</em>로 두고 리콜을 셌다
+(<code>recall_check.py</code> → <code>results/recall.json</code>).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>질의</th><th><code>q</code> 결과</th><th>본문에 등장하는 문서</th><th>리콜</th><th>놓친 문서</th></tr></thead><tbody><tr><td>관제</td><td>2</td><td>24</td><td><strong>0.083</strong></td><td>22</td></tr><tr><td>재난</td><td>2</td><td>27</td><td><strong>0.074</strong></td><td>25</td></tr><tr><td>CCTV</td><td>0</td><td>41</td><td><strong>0.000</strong></td><td>41</td></tr><tr><td>영상감시</td><td>1</td><td>0</td><td>—</td><td>0</td></tr></tbody></table></div>
+<p>즉 “100건 → 2건”은 <strong>잘 좁힌 것이 아니라 92~100% 를 놓친 것</strong>이다. <code>q</code> 는 사업명·발주기관
+문자열만 보므로 본문에서만 관제·CCTV 를 다루는 공고는 원리상 잡히지 않는다.
+<code>영상감시</code> 행은 그 대칭 사례다 — 유일한 히트가 §5 의 <strong>0청크 문서</strong>(케빈랩_평택시…
+영상감시 시스템)로, 제목만 맞고 본문은 색인조차 안 된 공고다.</p>
+<p>이 정답셋은 ‘문자열이 본문에 등장’이라는 대리 지표이지 사람이 매긴 적합성 판정이 아니므로
+<strong>리콜의 상한을 보여줄 뿐 정밀도(적합성)는 여전히 미측정</strong>이다(§8).</p>
+<p>특히 못 쓰는 것은 <strong>자연어·문장 단위 질의</strong>다. 질문지에서 제시하는 보기 문구를 그대로 넣으면
+0건이고, 흔한 단어 하나로는 96건이 남는다 — <strong>질문지 답변을 검색어로 넘기는 방안은 지금
+백엔드(문자열 부분일치)로는 성립하지 않는다.</strong></p>
+<h2 id="7-결론">7. 결론<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-결론" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ol>
+<li><strong>사용자가 직접 공고를 클릭해 갈아타는 경로에 한해, 화면은 의도대로 동작한다(n=1).</strong>
+질문 → 답변 → 공고 전환 → 재질문에서 <strong>검색·인용이 새 문서로 갈리는 것까지</strong> U10 에서
+확인됐다. 전환 후에도 이전 말풍선·인용 헤더가 보존되고, 미선택 상태 전송은 반문 카드로
+안내된다(U11). 다만 두 가지가 이 평결의 밖에 있다 — (i) <strong>전환 후 평범한 후속 질문이
+새 문서 근거로 정상 답변되는지는 UI 에서 미측정</strong>(U10-④ 는 유출 탐지용 적대적 질문이라
+되물음으로 끝났다), (ii) <strong>질문 문자열이 활성 문서를 덮어쓰는 경로의 화면 표시는 UI
+미검증</strong>(결론 3).</li>
+<li><strong>문서 고정은 반문을 없애지만 비용을 올린다.</strong> 문서를 지목하는 어휘가 없는 중립 질문
+1종·n=3 에 한해, <code>doc_id</code> 고정이 clarify(3/3)를 answer(3/3)로 바꿨다. 대신 비용은
+<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord hangul_fallback">약</span></span></span></span>0.002 로 올라간다. 비용을 회수한 생성 호출 22건의 범위는
+<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.00054</span><span class="mspace nobreak"> </span></span></span></span>0.00289(gpt-5-mini) — 단일 대푯값으로 쓰지 말 것(§3).</li>
+<li><strong>덮어쓰기 = 원치 않은 문서 전환 + 대화 절삭이 안내 없이 동시에 일어난다.</strong>
+좌측에서 고른 공고는 강제가 아니라 폴백 힌트다. <code>doc_id</code> 지정 요청 25건 중 <strong>5건</strong>(독립 질문 4종)에서
+활성 문서가 사용자가 고르지 않은 공고로 조용히 전환됐다(“서울” 한 단어로도 걸린다).
+그리고 이 5건은 정의상 <code>switched=True</code> 이므로 <strong>같은 순간 이전 대화가 통째로 버려진다</strong> —
+E7R 에서 문서를 고정한 채 절삭만 갈랐을 때 입력 토큰이 “history 없음”과 정확히 일치했다
+(X2 710 = X0 710 ≠ X1 758). 화면은 둘 중 어느 것도 안내하지 않고 칩·요약·선택
+강조만 조용히 갈아탄다. <strong>개편의 핵심 전제가 여기서 깨진다.</strong></li>
+<li><strong>맥락은 (a) 사용자 클릭 전환에서는 절삭되지 않고, (b) 덮어쓰기에서만 절삭된다.</strong>
+(a) 프론트가 새 <code>doc_id</code> 를 활성 문서로 보내는 경로에서는 <code>switched=False</code> 라 history 가
+전량 전달되고, 실제로 전환 후 재질문의 답변 본문에 이전 문서명(“강릉어선안전조업국”)이
+등장했다(U10-④). 통제된 기준선(E8: 문서 B·빈 history 1736 tok) 대비 <strong>+857 토큰</strong>이
+history 전달분이다. 인용은 새 문서로 깨끗하게 갈린다. v1 의 “유출 없음” 결론은 철회한다.
+(b) 반면 §4 의 덮어쓰기에서는 절삭이 실제로 발동한다 — v2 의 “제품 경로에서 절삭 분기는
+영영 발동하지 않는다”는 <strong>철회한다.</strong> 절삭은 죽은 코드가 아니라, 하필 가장 위험한
+순간(사용자가 의도하지 않은 문서 전환)에만 도는 코드다.</li>
+<li><strong>NO_EVIDENCE 안내는 현재 구현과 맞지 않는다.</strong> 코퍼스 전수 조사 결과 고정 문자열은
+<code>/ask</code> 로 나올 수 없다(0청크 1건은 <code>meta_only</code> 로 가로채이고, 나머지 99건은 검색이
+임계값 없이 top-k 를 돌려준다). 화면 문구를 실제 동작에 맞추거나, 백엔드가
+“근거 불충분”을 별도 신호로 내려주도록 계약을 넓혀야 한다.</li>
+<li><strong>검색은 건수를 좁히기는 하지만 리콜이 매우 낮다.</strong> 짧은 키워드로 100건 → 2건까지
+좁혀지되, 본문 등장 기준 리콜은 <code>관제</code> 0.083 · <code>재난</code> 0.074 · <code>CCTV</code> 0.000 이다(E9).
+문자열 부분일치라 자연어·질문지 보기 원문은 0건이 된다. 질문지 답변을 검색어로 넘기는
+방안은 의미검색이 백엔드에 들어오기 전까지 보류해야 한다. (정밀도·적합성은 미측정.)</li>
+</ol>
+<h3 id="후속으로-넘길-것">후속으로 넘길 것<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#후속으로-넘길-것" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>덮어쓰기 = 전환 + 절삭(결론 3·4 통합)</strong>: 프론트가 <code>doc_id</code> 를 강제하도록 백엔드 계약을
+넓히거나, 최소한 <code>active_doc_id</code> 가 요청과 다를 때 화면이 <strong>“문서가 바뀌었고 이전 대화는
+이 답변에 반영되지 않았다”</strong> 를 명시적으로 알리게 해야 한다. 절삭 분기 자체를 없앨지가
+아니라(발동한다), <strong>절삭이 사용자에게 어떻게 보이는가</strong>가 결정 대상이다.</li>
+<li><strong>덮어쓰기 순간의 화면 표시 측정</strong>: 좌측 선택 강조·상단 칩·말풍선이 그 순간 어떻게
+변하는지, 사용자가 알아챌 수 있는지 UI 로 확인해야 한다(현재 미검증).</li>
+<li><strong>전환 후 일반 질문의 정상 답변 측정</strong>: U10 을 왕복 검증용 중립 질문과 유출 탐침으로
+분리해 각각 1회씩 다시 돌려야 한다.</li>
+</ul>
+<h2 id="8-한계--해소하지-못한-것">8. 한계 — 해소하지 못한 것<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-한계--해소하지-못한-것" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>반복 횟수 부족.</strong> E5·E6·E7·<strong>E7R</strong>·E8·U10·U11 은 <strong>조건당 n=1</strong> 이다. <code>/ask</code> 호출
+예산을 새 항목에 다 썼다. 결론 3(덮어쓰기)의 근거는 서로 다른 질문 각 1회이고,
+<strong>결론 4(b) 절삭의 근거는 E7R 세 조건 각 1회가 전부다.</strong> 확률적 뒤집힘을 배제하지
+못한다. E1·E2·E3 만 n=3.</li>
+<li><strong>E1 은 질문 1종.</strong> “문서 고정이 반문을 없앤다”를 질문 유형 전반으로 일반화하지
+못한다. E6 가 반례에 가깝다(문서를 지목하는 질문에서는 고정이 무시된다).</li>
+<li><strong>E7 은 무효였고, 그 지표도 폐기했다.</strong> E7 의 두 조건은 절삭 여부와 함께 라우팅 문서
+(A→C)·질문 앞머리가 같이 바뀌어, 입력 토큰 차이(1689→710)도 코드 미재현도 절삭에
+귀속할 수 없었다. 더구나 <strong>확인 코드 재현 지표 자체가 반증됐다</strong> — E7R 의 X1
+(문서 C 고정·history 전량·<code>switched=False</code>)에서도 코드가 재현되지 않았다
+(<code>api4.json</code> <code>rows[0].marker_in_answer=false</code>). 절삭의 근거는 <strong>E7R 의 입력 토큰
+동일성(X2 710 = X0 710 ≠ X1 758) 하나뿐</strong>이며 조건당 n=1 이다.</li>
+<li><strong>U5 의 비용·토큰은 회수되지 않았다.</strong> <code>run_ui.mjs</code> 의 셀렉터 결함으로 비용 줄 대신
+“출처 4건”이 기록됐다(§2). 이 생성 호출은 §3 비용 범위 집계에서 빠져 있다.</li>
+<li><strong>맥락 유출의 본문 사실 여부는 미확인.</strong> 모델이 재열거를 거절했으므로 확인된 것은
+이전 문서의 식별 정보(사업명)가 넘어간다는 것까지다. <strong>절삭 상태에서 본문 사실이
+유출되는지는 유효한 음성 대조군이 없어 확인하지 못했다</strong> — 시스템 프롬프트가 문서 밖
+정보의 되읊기를 억제하므로(E7R ②), 답변 본문만으로는 절삭 여부를 가릴 수 없다.</li>
+<li><strong>활성 문서 덮어쓰기의 화면 표시 미검증.</strong> E6·E5[0] 은 API 층 관측이다. 그 전환이
+일어나는 순간 좌측 선택 강조·상단 칩·요약이 어떻게 보이는지, 사용자가 알아챌 수
+있는지는 UI 로 확인하지 않았다.</li>
+<li><strong><code>doc_switched</code> 를 직접 회수하지 못했다.</strong> <code>run_turn</code> 은 이 필드를 반환하지만
+<code>server.py</code> 의 <code>AskResponse</code> 계약(<code>answer</code>·<code>active_doc_id</code>·<code>citations</code>·<code>cost</code>)이
+버린다. <code>core.py</code> 의 정의대로 요청·응답 값에서 파생 계산했다 — 코드 독해에 의존한다.</li>
+<li><strong>미검증 UI 시나리오</strong>: 검색으로 좁힌 뒤 결과에서 선택 → 질문, 답변 대기 중 다른 공고
+클릭 시의 경합, <strong>전환 후 중립 질문의 정상 답변</strong>, <strong>덮어쓰기 순간의 화면 표시</strong>.</li>
+<li><strong>검색의 정밀도(적합성)는 미측정.</strong> E9 가 잰 것은 ‘본문에 문자열이 등장하는 문서’ 대비
+리콜이다. 그 단어가 등장한다고 사용자에게 적합한 공고라는 뜻은 아니며, 반대로 동의어로만
+다루는 공고는 이 정답셋에도 안 들어간다. 사람이 매긴 소규모 정답셋이 필요하다.</li>
+<li><strong>환경이 고정돼 있지 않다.</strong> 백엔드 워킹트리와 프론트 모두 미커밋 변경이 있는 상태
+(<code>1406222</code>+dirty / <code>4850fb3-dirty</code>)에서 측정했다. <code>results/api.json</code>·<code>ui.json</code>(1차)에는
+커밋 SHA·모델·브라우저 정보가 기록돼 있지 않다 — 2차(<code>api2.json</code>·<code>ui2.json</code>)부터
+meta 에 기록한다.</li>
+<li>코퍼스 100건 단일 스냅숏, 단일 모델(<code>gpt-5-mini</code>)·단일 시점.</li>
+<li><code>%</code> 가 든 doc_id는 현재 코퍼스에 0건이라 합성 id로만 검증했다(U8).</li>
+</ul>
+<hr/>
+<h3 id="산출물">산출물<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#산출물" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>파일</th><th>내용</th></tr></thead><tbody><tr><td><code>run_api.mjs</code> / <code>results/api.json</code></td><td>1차 API 실험 E1–E5 (분기 판정 규칙에 결함 있음 — §1)</td></tr><tr><td><code>run_api2.mjs</code> / <code>results/api2.json</code></td><td>E6 활성 문서 덮어쓰기 + 환경 meta</td></tr><tr><td><code>reclassify.mjs</code> / <code>results/reclassify.json</code></td><td>1차 결과를 프론트 <code>classifyAnswer()</code> 3규칙 전부로 재분류 (변경 0행, 폴백 전용 행 0건)</td></tr><tr><td><code>run_api3.mjs</code> / <code>results/api3.json</code></td><td><strong>E7</strong> 덮어쓰기 시 history 절삭 통제군/처리군 · <strong>E8</strong> 문서 B 빈-history 기준선</td></tr><tr><td><code>run_api4.mjs</code> / <code>results/api4.json</code></td><td><strong>E7R</strong> 라우팅 문서를 C 로 고정하고 <code>switched</code> 만 가른 절삭 식별 (결론 4(b)의 유일한 근거)</td></tr><tr><td><code>recall_check.py</code> / <code>results/recall.json</code></td><td><strong>E9</strong> <code>/rfps?q=</code> 리콜 기준선 (LLM 무호출)</td></tr><tr><td><code>run_ui.mjs</code> / <code>run_ui_u8.mjs</code> / <code>results/ui.json</code></td><td>1차 UI 실험 U1–U9 (U5·U6 지표에 결함 — §2)</td></tr><tr><td><code>run_ui2.mjs</code> / <code>results/ui2.json</code></td><td>U10 목표 왕복 · U11 미선택 전송 · 지표 교체</td></tr><tr><td><code>check_chunks.py</code> / <code>results/chunks.json</code></td><td>코퍼스 100건 청크 인구조사 (LLM 무호출)</td></tr></tbody></table></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>그래프 뷰</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-48" aria-expanded="true"><h3>목차</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#작업-화면-개편-실험" data-for="작업-화면-개편-실험">작업 화면 개편 실험</a></li><li class="depth-1"><a href="#0-배경과-목적" data-for="0-배경과-목적">0. 배경과 목적</a></li><li class="depth-1"><a href="#1-환경" data-for="1-환경">1. 환경</a></li><li class="depth-1"><a href="#2-화면-동작-u1u11" data-for="2-화면-동작-u1u11">2. 화면 동작 (U1–U11)</a></li><li class="depth-2"><a href="#u6-의-대화-유지-지표는-무효였다--교체했다" data-for="u6-의-대화-유지-지표는-무효였다--교체했다">U6 의 ‘대화 유지’ 지표는 무효였다 — 교체했다</a></li><li class="depth-2"><a href="#u10--개편-목표의-왕복을-끝까지-밟았다-n1" data-for="u10--개편-목표의-왕복을-끝까지-밟았다-n1">U10 — 개편 목표의 왕복을 끝까지 밟았다 (n=1)</a></li><li class="depth-2"><a href="#u11--공고를-안-고르고-물으면-화면은-반문-카드를-그린다-n1" data-for="u11--공고를-안-고르고-물으면-화면은-반문-카드를-그린다-n1">U11 — 공고를 안 고르고 물으면 화면은 반문 카드를 그린다 (n=1)</a></li><li class="depth-1"><a href="#3-맥락-절삭은-사용자-클릭-전환이-아니라-라우터-덮어쓰기에서-발동한다" data-for="3-맥락-절삭은-사용자-클릭-전환이-아니라-라우터-덮어쓰기에서-발동한다">3. 맥락 절삭은 “사용자 클릭 전환”이 아니라 “라우터 덮어쓰기”에서 발동한다</a></li><li class="depth-2"><a href="#v1-의-e2-는-a-국면만-밟았다" data-for="v1-의-e2-는-a-국면만-밟았다">v1 의 E2 는 (a) 국면만 밟았다</a></li><li class="depth-2"><a href="#a-국면--e2r-지표를-답변-본문으로-바꾸니-유출이-나왔다-u10--n1" data-for="a-국면--e2r-지표를-답변-본문으로-바꾸니-유출이-나왔다-u10--n1">(a) 국면 — E2R: 지표를 답변 본문으로 바꾸니 유출이 나왔다 (U10-④, n=1)</a></li><li class="depth-2"><a href="#b-국면--절삭은-e7-이-아니라-e7r-로-확인됐다-조건당-n1" data-for="b-국면--절삭은-e7-이-아니라-e7r-로-확인됐다-조건당-n1">(b) 국면 — 절삭은 E7 이 아니라 E7R 로 확인됐다 (조건당 n=1)</a></li><li class="depth-2"><a href="#e7r--문서를-고정한-채-절삭만-바꿨다-조건당-n1-resultsapi4json" data-for="e7r--문서를-고정한-채-절삭만-바꿨다-조건당-n1-resultsapi4json">E7R — 문서를 고정한 채 절삭만 바꿨다 (조건당 n=1, results/api4.json)</a></li><li class="depth-2"><a href="#e1--문서를-고정하면-반문이-사라진다-질문-1종-n3" data-for="e1--문서를-고정하면-반문이-사라진다-질문-1종-n3">E1 — 문서를 고정하면 반문이 사라진다 (질문 1종, n=3)</a></li><li class="depth-2"><a href="#비용은-단일-대표값으로-쓸-수-없다" data-for="비용은-단일-대표값으로-쓸-수-없다">비용은 단일 대표값으로 쓸 수 없다</a></li><li class="depth-1"><a href="#4-활성-문서-고정은-강제가-아니다--질문-문자열이-덮어쓴다" data-for="4-활성-문서-고정은-강제가-아니다--질문-문자열이-덮어쓴다">4. 활성 문서 고정은 강제가 아니다 — 질문 문자열이 덮어쓴다</a></li><li class="depth-2"><a href="#e6--의도적으로-재현했다-조건당-n1" data-for="e6--의도적으로-재현했다-조건당-n1">E6 — 의도적으로 재현했다 (조건당 n=1)</a></li><li class="depth-2"><a href="#지금까지-관측된-전체-집계" data-for="지금까지-관측된-전체-집계">지금까지 관측된 전체 집계</a></li><li class="depth-1"><a href="#5-no_evidence-고정-응답은-ask-에서-도달-불가능하다" data-for="5-no_evidence-고정-응답은-ask-에서-도달-불가능하다">5. NO_EVIDENCE 고정 응답은 /ask 에서 도달 불가능하다</a></li><li class="depth-2"><a href="#v1-의-코드-지목은-틀렸다" data-for="v1-의-코드-지목은-틀렸다">v1 의 코드 지목은 틀렸다</a></li><li class="depth-2"><a href="#도달-불가능함을-결정적으로-확인했다-llm-무호출-비용-0" data-for="도달-불가능함을-결정적으로-확인했다-llm-무호출-비용-0">도달 불가능함을 결정적으로 확인했다 (LLM 무호출, 비용 0)</a></li><li class="depth-1"><a href="#6-검색--짧은-키워드는-되고-자연어-질의는-안-된다" data-for="6-검색--짧은-키워드는-되고-자연어-질의는-안-된다">6. 검색 — 짧은 키워드는 되고, 자연어 질의는 안 된다</a></li><li class="depth-1"><a href="#7-결론" data-for="7-결론">7. 결론</a></li><li class="depth-2"><a href="#후속으로-넘길-것" data-for="후속으로-넘길-것">후속으로 넘길 것</a></li><li class="depth-1"><a href="#8-한계--해소하지-못한-것" data-for="8-한계--해소하지-못한-것">8. 한계 — 해소하지 못한 것</a></li><li class="depth-2"><a href="#산출물" data-for="산출물">산출물</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>백링크</h3><ul id="list-2" class="overflow"><li><a href="../../메모/김범진(데이터-처리)/BidMate-웹-연동-현황" class="internal">BidMate 웹 연동 현황</a></li><li><a href="../../메모/김범진(데이터-처리)/" class="internal">index</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../postscript.js" type="module" data-persist="true"></script></html>

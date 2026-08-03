@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"><head><title>입찰메이트 RFP RAG — 시장·문제·솔루션 의사결정 보고 (report-v2)</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Sprint First Project"/><meta property="og:title" content="입찰메이트 RFP RAG — 시장·문제·솔루션 의사결정 보고 (report-v2)"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="입찰메이트 RFP RAG — 시장·문제·솔루션 의사결정 보고 (report-v2)"/><meta name="twitter:description" content="입찰메이트 RFP RAG — 시장·문제·솔루션 의사결정 보고서 (report-v2) 폼: docs/research/deep-research-prompt-v2.md (플러그인 연동판, 의사결정 3부 구성) 근거: results/*.json 41개 항목 (deep-research 수집, 검증 완료) + _digest/ 작성: 원자료 재조직·후처리 (새 웹서치 없음)."/><meta property="og:description" content="입찰메이트 RFP RAG — 시장·문제·솔루션 의사결정 보고서 (report-v2) 폼: docs/research/deep-research-prompt-v2.md (플러그인 연동판, 의사결정 3부 구성) 근거: results/*.json 41개 항목 (deep-research 수집, 검증 완료) + _digest/ 작성: 원자료 재조직·후처리 (새 웹서치 없음)."/><meta property="og:image:alt" content="입찰메이트 RFP RAG — 시장·문제·솔루션 의사결정 보고서 (report-v2) 폼: docs/research/deep-research-prompt-v2.md (플러그인 연동판, 의사결정 3부 구성) 근거: results/*.json 41개 항목 (deep-research 수집, 검증 완료) + _digest/ 작성: 원자료 재조직·후처리 (새 웹서치 없음)."/><meta property="og:image" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta property="og:image:url" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta name="twitter:image" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME"/><meta property="og:url" content="https://your_github_id.github.io/YOUR_REPO_NAME/보고서/2026-07-21-입찰메이트-RFP-RAG-시장·문제·솔루션-의사결정-보고-(report-v2)"/><meta property="twitter:url" content="https://your_github_id.github.io/YOUR_REPO_NAME/보고서/2026-07-21-입찰메이트-RFP-RAG-시장·문제·솔루션-의사결정-보고-(report-v2)"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="입찰메이트 RFP RAG — 시장·문제·솔루션 의사결정 보고서 (report-v2) 폼: docs/research/deep-research-prompt-v2.md (플러그인 연동판, 의사결정 3부 구성) 근거: results/*.json 41개 항목 (deep-research 수집, 검증 완료) + _digest/ 작성: 원자료 재조직·후처리 (새 웹서치 없음)."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL3RtcC9xdWFydHovcXVhcnR6L2NvbXBvbmVudHMvc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/index.xml"/></head><body data-slug="보고서/2026-07-21-입찰메이트-RFP-RAG-시장·문제·솔루션-의사결정-보고-(report-v2)"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">Sprint First Project</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>검색</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="검색어를 입력하세요" placeholder="검색어를 입력하세요"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="다크 모드"><title>다크 모드</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="라이트 모드"><title>라이트 모드</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="리더 모드"><title>리더 모드</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-172"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>탐색기</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-172" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../보고서/">보고서</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>입찰메이트 RFP RAG — 시장·문제·솔루션 의사결정 보고 (report v2)</a></div></nav><h1 class="article-title">입찰메이트 RFP RAG — 시장·문제·솔루션 의사결정 보고 (report-v2)</h1><p show-comma="true" class="content-meta"><time datetime="2026-07-21T00:00:00.000Z">2026년 7월 21일</time><span>38 min read</span></p><ul class="tags"><li><a href="../tags/보고서" class="internal tag-link">보고서</a></li><li><a href="../tags/시장조사" class="internal tag-link">시장조사</a></li><li><a href="../tags/의사결정" class="internal tag-link">의사결정</a></li><li><a href="../tags/RAG" class="internal tag-link">RAG</a></li><li><a href="../tags/RFP" class="internal tag-link">RFP</a></li></ul></div></div><article class="popover-hint"><h1 id="입찰메이트-rfp-rag--시장문제솔루션-의사결정-보고서-report-v2">입찰메이트 RFP RAG — 시장·문제·솔루션 의사결정 보고서 (report-v2)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#입찰메이트-rfp-rag--시장문제솔루션-의사결정-보고서-report-v2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>폼: <code>docs/research/deep-research-prompt-v2.md</code> (플러그인 연동판, 의사결정 3부 구성)
+근거: <code>results/*.json</code> 41개 항목 (deep-research 수집, 검증 완료) + <code>_digest/</code>
+작성: 원자료 재조직·후처리 (새 웹서치 없음). 모든 표 셀·문장은 III부 근거로 역추적.
+접근확인 표기: ✓ verified · △ partial · ◐ snippet-only · ✗ blocked · [벤더]=벤더 콘텐츠</p>
+<p><strong>이 문서 하나로 (1) 시장·문제 파악 → (2) 후보 솔루션 비교 → (3) 무엇을 만들지 결정이 가능하도록 작성.</strong></p>
+</blockquote>
+<hr/>
+<h1 id="part-0--한눈-요약--의사결정">PART 0 — 한눈 요약 / 의사결정<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#part-0--한눈-요약--의사결정" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p><strong>시장 (한 줄).</strong> 한국 공공조달은 <strong>225.1조원(2024, GDP의 ~9%, +7.9% 최고치)</strong> 규모이고 그중 <strong>중소기업 몫이 63.1%(142.1조)</strong>, 거래의 64.5%(145.1조)가 나라장터(KONEPS) 한 곳을 지난다 — <strong>연 49만 건의 입찰공고</strong>가 쏟아지지만 개별 중소기업은 이를 걸러 읽을 도구가 없다. 정부는 AI 전환 중이나(ppsai.kr, 2027 통합 플랫폼) <strong>전부 발주기관(buyer) 편</strong> — 입찰기업(bidder) 편 RFP 이해 도구는 비어 있다.</p>
+<p><strong>핵심 문제 (3줄).</strong></p>
+<ol>
+<li><strong>RFP를 읽을 수가 없다.</strong> 공공문서 <strong>91.1%가 AI-불가독 HWP/이미지</strong>이고, RFP 한 건에 평가항목·가점·필수첨부·형식요구가 <strong>수십 개 흩어져</strong> 있어 제안서 1건에 <strong>평균 30시간</strong>이 든다. 그런데 중소기업엔 <strong>제안팀이 없다</strong>(대기업 삼성SDS는 제안지원팀 33명).</li>
+<li><strong>규칙을 못 읽어 탈락한다.</strong> PC 조달 표본 <strong>부적격율 53.3%</strong>(그중 89.4%가 가격 하한 미달), 대형건설 <strong>유찰 ~71%</strong>, 간이종심제 <strong>동일가격 투찰 68.96%</strong>(2020년 0.9%→2026년) — 낙찰하한·배점·자격 계산 실패가 곧 탈락.</li>
+<li><strong>정보비대칭이 브로커·컨설팅 의존을 낳는다.</strong> 조달 브로커는 낙찰액의 <strong>3~5% 수수료</strong>로 회원 4,000명을 굴리는데 적발은 <strong>0건</strong>. 컨설팅은 “<strong>돈은 냈는데 성과가 없다</strong>”(월 수백만원). 정부 무료 상담(공공조달길잡이)은 <strong>상담원 36명</strong> 병목(2,000상담→시장진입 260개).</li>
+</ol>
+<p><strong>후보 솔루션 요약표 (자세히는 I-2).</strong> 평가 4기준: 독창성 / 임팩트 / 부서급 잠재력 / 데모매력. ●상 ◐중 ○하.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>#</th><th>후보 솔루션</th><th style="text-align:center;">독창성</th><th style="text-align:center;">임팩트</th><th style="text-align:center;">부서급</th><th style="text-align:center;">데모</th><th style="text-align:center;">종합</th></tr></thead><tbody><tr><td><strong>1</strong></td><td><strong>배점표·자격·제출요건 자동 추출 + 부적격 자가진단</strong></td><td style="text-align:center;">●</td><td style="text-align:center;">●</td><td style="text-align:center;">●</td><td style="text-align:center;">●</td><td style="text-align:center;"><strong>★ 1순위</strong></td></tr><tr><td>2</td><td>독소조항·과업불명확 리스크 탐지</td><td style="text-align:center;">◐</td><td style="text-align:center;">●</td><td style="text-align:center;">◐</td><td style="text-align:center;">◐</td><td style="text-align:center;">2순위</td></tr><tr><td>3</td><td>RFP Q&amp;A·요약 어시스턴트 (인용근거)</td><td style="text-align:center;">○</td><td style="text-align:center;">◐</td><td style="text-align:center;">◐</td><td style="text-align:center;">●</td><td style="text-align:center;">3순위</td></tr><tr><td>4</td><td>제안서 초안 + 컴플라이언스 매트릭스 생성</td><td style="text-align:center;">◐</td><td style="text-align:center;">●</td><td style="text-align:center;">●</td><td style="text-align:center;">○</td><td style="text-align:center;">보류</td></tr><tr><td>5</td><td>유사 RFP·낙찰사례 검색 + 배점 벤치마크</td><td style="text-align:center;">○</td><td style="text-align:center;">◐</td><td style="text-align:center;">○</td><td style="text-align:center;">◐</td><td style="text-align:center;">보류</td></tr></tbody></table></div>
+<p><strong>추천 1순위 (+이유 3줄).</strong> <strong>후보 1 — “배점표·자격·제출요건 자동 추출 + 부적격 자가진단”</strong>.</p>
+<ul>
+<li>(독창성) 국내 discovery 경쟁사(Info21C·KBID·G2B Plus·DeepBID·JodAL)는 전부 <strong>메타데이터·검색까지만</strong>이고 RFP 문서의 배점표·자격을 추출하지 않는다. 가장 근접한 CLIWANT조차 범용 + <strong>미국 GovCon으로 피벗 중</strong>. 해외 GovDash·Brainial은 배점추출을 하지만 <strong>FAR·EU·PDF 대상</strong> — 한국 HWP·국가계약법·협상계약 세부기준은 미커버.</li>
+<li>(임팩트·부서급) 부적격율 53.3%·가격미달 89.4%를 <strong>사전 진단</strong>으로 막고, 중소기업에 없는 <strong>제안·컴플라이언스 부서를 대체</strong>한다(department-in-a-box).</li>
+<li>(데모) <strong>보유 RFP 100건</strong>으로 “이 공고의 기술/가격 배점·자격요건·제출서류·낙찰하한”을 추출·자가진단하는 화면을 바로 시연 — 정답이 문서에 명시돼 <strong>검증 가능</strong>.</li>
+</ul>
+<p><strong>최대 리스크 (1줄).</strong> 정부 플랫폼(ppsai.kr) 또는 CLIWANT가 bidder-side 배점추출로 확장 시 잠식 — 다만 현재 정부는 buyer-side, CLIWANT는 미국 피벗이라 **국내 SW/IT 수직 특화 + 인용근거(환각 가드)**로 창이 열려 있다.</p>
+<hr/>
+<h1 id="part-i--문제-정의--후보-솔루션--추천">PART I — 문제 정의 → 후보 솔루션 → 추천<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#part-i--문제-정의--후보-솔루션--추천" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<h2 id="i-1-문제-정의-페인포인트">I-1. 문제 정의 (페인포인트)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#i-1-문제-정의-페인포인트" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote>
+<p>지표·VoC에서 도출. 국내·해외가 같은 고통을 말하면 “국내외 공통”으로 강도 표시. 근거는 수치 링크 + 인용 링크 1:1.</p>
+</blockquote>
+<p><strong>P1. RFP를 다 읽을 수 없다 — 문서량 × 길이의 triage 붕괴.</strong> (국내외 공통, 강)
+누가/상황: 나라장터에 <strong>연 49만 건</strong>(<a href="https://www.pps.go.kr/kor/content.do?key=01230" class="external">조달청 연혁<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓)·일 3,000건(<a href="https://blog.google/intl/ko-kr/company-news/outreach-initiatives/gfs-yearbook-cliwant/" class="external">Google for Startups<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓)의 수십~수백 페이지 RFP. “하루 수천 건의 RFP를 전부 읽는 것은 거의 불가능”(<a href="https://blog.cliwant.com/rfp/" class="external">CLIWANT<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> [벤더] ✓). 해외도 동일: <em>“a required document buried on page 34 of the solicitation… we leave money on the table by not responding to every RFP”</em>(<a href="https://www.reddit.com/r/govcon/comments/1tkdst3/we_didnt_respond_to_every_rfp_because_it_took_too/" class="external">Reddit r/govcon<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓).</p>
+<p><strong>P2. RFP 한 건 안에 요구가 수십 개 흩어져 있다 — task-0가 ‘뭘 해야 하는지 정리’.</strong> (국내외 공통, 강)
+“RFP 한 건 안에 평가 항목, 가점 조건, 필수 첨부, 형식 요구가 <strong>수십 개 흩어져</strong> 있어 첫 작업이 ‘뭘 해야 하는지 정리하는 것’부터… 한 건당 평균 <strong>30시간</strong>”(<a href="https://blog.cliwant.com/ibcal-damdangjaga-jaggu-toesahaeyo-iyureul-alryeodeurilggayo/" class="external">CLIWANT<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> [벤더] ✓). 해외: Section L(지시)↔M(평가) 충돌이 **자동 실격(auto-DQ)**을 부르는 게 “the real nightmare”(<a href="https://www.reddit.com/r/govcon/comments/1tkdst3/we_didnt_respond_to_every_rfp_because_it_took_too/" class="external">Reddit<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓).</p>
+<p><strong>P3. 규칙(배점·자격·낙찰하한)을 못 읽어 탈락한다.</strong> (국내, 최상)
+PC 조달 표본 <strong>부적격율 53.3%</strong>(6,406/12,052), 그중 <strong>89.4%가 가격 하한 미달</strong>(<a href="https://www.jodaleconomy.com/news/articleView.html?idxno=2169" class="external">조달경제신문<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). “투찰 업체 2곳 중 1곳은 심사 문턱조차 넘지 못하고 탈락”(同). 대형건설(300억+) 유찰 <strong>~71%</strong>(2024)(<a href="https://www.news1.kr/realestate/general/5810087" class="external">대한건설협회/News1<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓).</p>
+<p><strong>P4. HWP/HWPX 파싱 장벽 — RAG의 최대 기술 리스크이자 해자.</strong> (국내 고유, 최상)
+공공 행정문서 <strong>91.1%가 AI-불가독</strong>(HWP/이미지/스캔PDF)(<a href="https://v.daum.net/v/20251013175850275" class="external">위성곤 의원실 국감<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). 오픈소스는 사실상 HWP 5.x부터, 3.x는 라이브러리 자체가 없고 표·읽기순서·차트가 깨진다(<a href="https://www.polarisoffice.com/business-blog/claude-skill-for-hwp-parsing" class="external">Polaris<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> [벤더] ◐). “<strong>파서 단계에서 80%가 결정</strong>”(<a href="https://www.koreadeep.com/blog/hwp-parser-ai" class="external">KoreaDeep<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> [벤더] ◐), 벤치마크 천장도 <strong>84.9%</strong>(<a href="https://www.llamaindex.ai/blog/parsebench" class="external">LlamaIndex ParseBench<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓)로 미해결. 실무자: “<strong>HWP는 Word보다 체감상 열 배 어려웠다… 이건 진짜 헬</strong>”(<a href="https://brunch.co.kr/@1212ac31a500435/329" class="external">Brunch<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> [벤더] ✓).</p>
+<p><strong>P5. 중소기업엔 제안·컴플라이언스 부서가 없다 — department gap.</strong> (국내외 공통, 최상)
+대기업엔 상설 부서: 삼성SDS <strong>제안지원팀 33명</strong>, 제안서 1건당 <strong>10~50명</strong>(<a href="http://www.inews24.com/view/95674" class="external">아이뉴스24<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓), 제안비가 매출의 <strong>1~2%</strong>(同). 중소기업 현실: “<strong>제안서를 전담하는 팀이 있는 기업도 있지만, 대부분은 PM이나 기획자가 겸업</strong>”(<a href="https://blog.cliwant.com/what-is-apmp-proposal-management/" class="external">CLIWANT/APMP<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> [벤더] ◐), 개발자가 홀로 “기존 문서를 보고 전부 짜내야”(<a href="https://www.teamblind.com/kr/post/%EA%B0%9C%EB%B0%9C%EC%9E%90%EA%B0%80-%EC%A0%9C%EC%95%88%EC%84%9C-%EC%9E%91%EC%84%B1%ED%95%98%EB%8A%94-%ED%9A%8C%EC%82%AC-aFRJV56N" class="external">Blind<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). 해외 동일: <em>“how small shops are handling this without a compliance department… Nobody LOL”</em>(<a href="https://www.reddit.com/r/govcon/comments/1uphsvk/small_shops_with_itar_flowdowns_and_no_compliance/" class="external">Reddit<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓).</p>
+<p><strong>P6. RFP 자체가 불명확 → 무상 재작업·과업변경 비용 전가.</strong> (국내, 강)
+공공SW 수행 111개사 중 <strong>50%가 불명확한 RFP로 무상 재작업·과업추가</strong>를 경험(<a href="https://spri.kr/download/5378" class="external">KOSA 2012/SPRi<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). 과업변경 대가지급률은 중앙행정기관 <strong>4.4%</strong>, 지자체 15.3%(同 ✓) — 사실상 발주자가 비용을 안 준다.</p>
+<p><strong>P7. 정보비대칭이 브로커·컨설팅 의존을 낳는다 — 회색시장 WTP.</strong> (국내, 강)
+조달 브로커는 낙찰액의 **3~5%**를 떼고 회원 <strong>~4,000명</strong>을 운용하지만 적발 <strong>0건</strong>(<a href="https://v.daum.net/v/KnTAM81mhw?f=p" class="external">언론 단독<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). 브로커 의존이 “간이종심제가 더 이상 정상 작동 안 한다”는 지경(<a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202601081433098030893" class="external">대한경제<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓)으로 <strong>동일가격 투찰 68.96%</strong>(<a href="https://www.newspim.com/news/view/20260721000301" class="external">기재부/뉴스핌<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). 전통 컨설팅엔 “<strong>돈은 냈는데 성과가 없다</strong>”(월 수백만원)(<a href="https://blog.cliwant.com/bidding-consulting-comparison-ai-vs-traditional/" class="external">CLIWANT<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> [벤더] ✓).</p>
+<p><strong>P8. 무료·자력 상담은 인간 병목으로 확장 불가.</strong> (국내, 중)
+공공조달길잡이는 <strong>상담원 36명</strong>·11개 지방청으로 2,000여 상담을 했지만 실제 시장진입은 <strong>~260개사</strong>, 초기 1,049상담→쇼핑몰 등록 74개(<a href="https://www.mt.co.kr/policy/2025/10/28/2025102813262913576" class="external">머니투데이<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓, <a href="https://m.boannews.com/html/detail.html?idx=133962" class="external">보안뉴스<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). 정부 스스로 “<strong>정보 부족으로 공공조달에 참여하지 못하는 기업</strong>”을 사각지대로 규정(<a href="https://biz.heraldcorp.com/article/10814594" class="external">헤럴드경제<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓) — 자동화가 닿아야 할 수요.</p>
+<p><strong>P9. 신뢰(grounding) 없는 AI는 안 쓴다 — 인용·거절 가드가 전제.</strong> (국내외 공통, 강)
+실무자: “<em>If the tool says a form is required, I’d want it to show the exact page/section… Otherwise it’s hard to trust on a live bid</em>”(<a href="https://www.reddit.com/r/govcon/comments/1tkdst3/we_didnt_respond_to_every_rfp_because_it_took_too/" class="external">Reddit<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). 근거: 법률 RAG조차 환각율 <strong>17~34%</strong>(<a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" class="external">Stanford RegLab<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓); 한국어 법률 RAG는 과목별로 +22.5%~**-15%**로 오히려 해가 되기도(<a href="https://arxiv.org/html/2504.01840v1" class="external">LRAGE<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). 답변-근거 1:1 인용과 저신뢰 시 거절이 필수.</p>
+<p><strong>P10. discovery는 이미 무료·커모디티 — 차별화는 문서 이해층뿐.</strong> (국내, 전략)
+KONEPS OpenAPI 무료(<a href="https://www.data.go.kr/data/15129394/openapi.do" class="external">data.go.kr<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓), G2B Plus 무료+월 9,900원(<a href="https://www.g2bplus.kr/service_goods_list.php" class="external">g2bplus<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓), DeepBID 무료(<a href="https://deepbid.com/" class="external">deepbid<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). 공고 검색으로는 못 이긴다 → <strong>RFP 문서 내부(배점·자격·요건) 이해</strong>로 올라가야 한다.</p>
+<h2 id="i-2-후보-솔루션-비교표-이-표-보고-결정">I-2. 후보 솔루션 비교표 (이 표 보고 결정)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#i-2-후보-솔루션-비교표-이-표-보고-결정" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote>
+<p>고정 제약: RAG + 정부문서(RFP) 임베딩으로 풀 수 있고, 보유 RFP 100건(hwp/pdf)+메타데이터로 데모 가능한 것만. 4기준 ●상 ◐중 ○하.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>#</th><th>후보 솔루션</th><th>겨냥 문제</th><th>RAG+RFP로 푸는 법</th><th>핵심 근거(링크 2)</th><th>데모</th><th style="text-align:center;">독창성</th><th style="text-align:center;">임팩트</th><th style="text-align:center;">부서급</th><th style="text-align:center;">데모매력</th><th style="text-align:center;">종합</th></tr></thead><tbody><tr><td><strong>1</strong></td><td><strong>배점표·자격·제출요건 추출 + 부적격 자가진단</strong></td><td>P3·P5·P2</td><td>HWP 파싱→평가배점표(기술/가격)·자격요건·제출서류·낙찰하한 구조 추출→투찰 전 부적격 경고</td><td>부적격 <a href="https://www.jodaleconomy.com/news/articleView.html?idxno=2169" class="external">53.3%/89.4%<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>✓ · 협상계약 배점 <a href="https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000086294" class="external">기술90/가격10<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>△</td><td>가능(강)</td><td style="text-align:center;">●</td><td style="text-align:center;">●</td><td style="text-align:center;">●</td><td style="text-align:center;">●</td><td style="text-align:center;"><strong>★</strong></td></tr><tr><td>2</td><td>독소조항·과업불명확 리스크 탐지</td><td>P6</td><td>RFP에서 과업변경 무보상·지체상금·과도요구 등 불리조항 탐지·경고</td><td>불명확RFP 무상재작업 <a href="https://spri.kr/download/5378" class="external">50%<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>✓ · 대가지급 <a href="https://spri.kr/download/5378" class="external">4.4%<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>✓</td><td>가능(중)</td><td style="text-align:center;">◐</td><td style="text-align:center;">●</td><td style="text-align:center;">◐</td><td style="text-align:center;">◐</td><td style="text-align:center;">2위</td></tr><tr><td>3</td><td>RFP Q&amp;A·요약 (인용근거)</td><td>P1·P9</td><td>공고 hwp/pdf 임베딩→“과업범위/자격/일정” 자연어 Q&amp;A, 답변마다 페이지 인용</td><td>”수백페이지 못 읽음”<a href="https://blog.cliwant.com/rfp/" class="external">CLIWANT<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>✓ · 인용요구<a href="https://www.reddit.com/r/govcon/comments/1tkdst3/we_didnt_respond_to_every_rfp_because_it_took_too/" class="external">Reddit<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>✓</td><td>쉬움(강)</td><td style="text-align:center;">○</td><td style="text-align:center;">◐</td><td style="text-align:center;">◐</td><td style="text-align:center;">●</td><td style="text-align:center;">3위</td></tr><tr><td>4</td><td>제안서 초안 + 컴플라이언스 매트릭스</td><td>P5·P2</td><td>요구→응답 매트릭스 자동생성 + 섹션 초안(HWP 출력)</td><td>GovDash <a href="https://siliconangle.com/2026/01/15/govdash-secures-30m-expand-ai-driven-government-contracting-software/" class="external">$40M<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>✓ · 제안 <a href="https://blog.cliwant.com/ibcal-damdangjaga-jaggu-toesahaeyo-iyureul-alryeodeurilggayo/" class="external">30h<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>✓</td><td>부분</td><td style="text-align:center;">◐</td><td style="text-align:center;">●</td><td style="text-align:center;">●</td><td style="text-align:center;">○</td><td style="text-align:center;">보류</td></tr><tr><td>5</td><td>유사 RFP·낙찰사례 검색 + 배점 벤치마크</td><td>P1·P3</td><td>공고↔계약 API 조인, 유사 과거 RFP·낙찰가·배점 검색</td><td>계약 API <a href="https://www.data.go.kr/data/15129427/openapi.do" class="external">공고↔계약키<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>✓ · 브로커가 대신하는 일<a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202601081433098030893" class="external">대한경제<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>✓</td><td>가능(중)</td><td style="text-align:center;">○</td><td style="text-align:center;">◐</td><td style="text-align:center;">○</td><td style="text-align:center;">◐</td><td style="text-align:center;">보류</td></tr></tbody></table></div>
+<p><strong>후보 1 보충.</strong> 문제: 투찰 전에 “내가 이 공고에 적격인가, 배점은 어디서 갈리나”를 못 봐서 절반이 탈락. 근거: 부적격 <a href="https://www.jodaleconomy.com/news/articleView.html?idxno=2169" class="external">53.3%·가격미달 89.4%<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>✓ + 협상계약 <a href="https://www.law.go.kr/admRulLsInfoP.do?admRulSeq=2100000028030" class="external">기술85% 이상=협상적격<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>△. 방향: HWP 배점표·자격표·제출서류표는 <strong>정형 스키마</strong>라 RFP-구조 인지 파싱으로 추출 정확도를 올릴 수 있다. 데모: 100건으로 “배점·자격·제출·하한 체크리스트” 출력 — 정답이 문서에 있어 검증 쉬움. 리스크: CLIWANT/ppsai.kr 확장.</p>
+<p><strong>후보 4 보류 사유.</strong> 임팩트·부서급은 최고지만 (a) 생성은 이미 레드오션(MyBidWise “제안서 90% 단축” <a href="https://mybidwise.com/" class="external">자칭<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>, SK AX Proposal AI, 해외 GovDash/AutogenAI/Vultron), (b) <strong>HWP 생성</strong>은 파싱보다 어렵고(“표는 처음부터 다 만들어야”<a href="https://brunch.co.kr/@1212ac31a500435/329" class="external">Brunch<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>✓), (c) 생성물 품질은 데모에서 정답 검증이 어렵다. → 후보 1 성공 후 확장 모듈로 적합.</p>
+<h2 id="i-3-추천-1순위와-이유--후보-1">I-3. 추천 1순위와 이유 — 후보 1<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#i-3-추천-1순위와-이유--후보-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>uniqueness (경쟁 공백).</strong></p>
+<ul>
+<li>국내 discovery(Info21C 330K원/년·회원 10만, KBID·G2B Plus·DeepBID·JodAL)는 <strong>문서 내부를 추출하지 않는다</strong> — 메타데이터·검색·통계까지(II-2, III-4). JodAL이 “첨부파일 검색”을 자랑하지만 <strong>검색까지</strong>지 배점 추출·자가진단은 아님(<a href="https://jodal.ai/" class="external">jodal.ai<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ◐).</li>
+<li>국내 가장 근접한 CLIWANT는 RAG-on-RFP를 검증(독소조항·자격·가격, Pre-A 20억)했지만 <strong>범용 + 2025년부터 미국 GovCon 피벗</strong>(<a href="https://zdnet.co.kr/view/?no=20240819004849" class="external">더벨/ZDNet<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓) → 국내 SW/IT RFP의 <strong>배점표 정밀 추출 수직 특화</strong>가 공백.</li>
+<li>해외 GovDash·Brainial은 컴플라이언스 매트릭스·배점 추출을 하지만 <strong>FAR/EU·PDF</strong> 대상 — 한국 <strong>HWP + 국가계약법/SW진흥법/협상계약 세부기준</strong>은 미커버(III-4·III-6). 시장 겹침 0.</li>
+</ul>
+<p><strong>business impact (정량).</strong></p>
+<ul>
+<li>방지 가능 손실: PC 표본에서 투찰 12,052건 중 <strong>6,406건(53.3%)이 부적격</strong>, 그중 <strong>89.4%가 가격 하한 미달</strong>(<a href="https://www.jodaleconomy.com/news/articleView.html?idxno=2169" class="external">조달경제<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓) — 낙찰하한 자동계산·경고로 상당수는 사전 회피 가능한 무효투찰.</li>
+<li>시간 회수: 제안 task-0(요구·배점 정리)는 30h 중 초반 상당부분(<a href="https://blog.cliwant.com/ibcal-damdangjaga-jaggu-toesahaeyo-iyureul-alryeodeurilggayo/" class="external">CLIWANT<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). 가정: 겸업 담당 1인이 건당 2~3h를 요구정리에 쓴다면(P2·P5), 자동 체크리스트가 이를 압축.</li>
+<li>WTP 증거: 브로커에 낙찰액 <strong>3~5%</strong>(<a href="https://v.daum.net/v/KnTAM81mhw?f=p" class="external">언론<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓), 컨설팅에 월 수백만원(<a href="https://blog.cliwant.com/bidding-consulting-comparison-ai-vs-traditional/" class="external">CLIWANT<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓)을 이미 지불 — 저비용 자가진단으로 흡수 가능.</li>
+</ul>
+<p><strong>부서급 잠재력.</strong> 중소기업이 **없는 부서(제안·컴플라이언스)**를 대체. 대기업엔 그 조직이 실재: 삼성SDS 제안지원팀 33명·제안비 매출 1~2%(<a href="http://www.inews24.com/view/95674" class="external">아이뉴스24<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓), 잡코리아 ‘제안서작성’ 채용 <strong>~2,829건</strong>(<a href="https://www.jobkorea.co.kr/Search?stext=%EC%A0%9C%EC%95%88%EC%84%9C%EC%9E%91%EC%84%B1" class="external">JobKorea<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). 이 부서를 못 가진 곳이 시장의 다수(등록기업 57.2만, SME 63.1%).</p>
+<p><strong>visually appealing 데모 (RFP 100건으로).</strong></p>
+<ul>
+<li>화면1 — <strong>공고 진단 카드</strong>: RFP 업로드 → “기술 90 / 가격 10 배점, 협상적격 기준 기술 85%↑, 자격: OOO 실적/면허, 제출서류 12종, 낙찰하한 OO%” + 각 항목에 <strong>원문 페이지 인용</strong>.</li>
+<li>화면2 — <strong>부적격 자가진단 신호등</strong>: 우리 회사 프로필 입력 → 자격 충족/미달·가격 하한 위험을 🟢🟡🔴로. (정답이 RFP·법령에 명시돼 검증 가능)</li>
+</ul>
+<p><strong>왜 2·3순위가 아닌가.</strong> ②독소조항은 CLIWANT가 선점·차별성 약(◐). ③Q&amp;A는 범용이라 범용 LLM/CLIWANT와 겹쳐 독창성 낮음(○). ④생성은 레드오션+HWP생성 난이도+데모 검증난(보류). ⑤유사검색은 discovery와 겹치고 부서급 약(보류).</p>
+<p><strong>최대 리스크와 헤지.</strong></p>
+<ul>
+<li>리스크A: 정부 ppsai.kr이 bidder-side로 확장 → 현재는 <strong>발주기관용 RFP 생성·예정가격</strong>(17.8억, 30~40% 시간↓)로 <strong>buyer-side 전용</strong>(<a href="https://www.etnews.com/20260522000281" class="external">etnews<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓), 입찰기업용 자가진단은 안 만듦. 헤지: bidder-side·SW/IT 수직에 먼저 깊게.</li>
+<li>리스크B: CLIWANT가 국내 배점추출 심화 → 미국 피벗 중이 창. 헤지: **인용근거 + 평가지표(LangSmith)**로 신뢰 차별화(P9, <a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" class="external">Stanford 17~34%<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓).</li>
+<li>리스크C: HWP 파싱 실패 → 파싱이 80% 좌우(<a href="https://www.koreadeep.com/blog/hwp-parser-ai" class="external">KoreaDeep<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ◐). 헤지: HWPX 우선 + 배점표 등 <strong>알려진 RFP 표 스키마</strong> 후처리 + 필요시 유료 파싱 API(<a href="https://www.upstage.ai/products/document-parse" class="external">Upstage $0.01/page<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓) baseline.</li>
+</ul>
+<hr/>
+<h1 id="part-ii--시장-개요">PART II — 시장 개요<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#part-ii--시장-개요" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<h2 id="ii-1-정부공공조달-개요">II-1. 정부/공공조달 개요<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#ii-1-정부공공조달-개요" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>규모·구조 (조달청 2024 공공조달통계연보, 전부 ✓ <a href="https://www.pps.go.kr/kor/bbs/view.do?key=00634&amp;bbsSn=2506270010" class="external">PPS<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>).</strong></p>
+<ul>
+<li>총 계약 <strong>225.1조원</strong>(+7.9%, 최고치), GDP의 ~9%. 추세: 175.8조(2020)→184.2(2021)→196(2022)→208.6(2023)→225.1(2024).</li>
+<li>기업규모별: <strong>중소기업 142.1조(63.1%)</strong> / 중견 34.8조(15.5%) / 대기업 31.5조(14.0%) / 기타 16.7조(7.4%).</li>
+<li>기관별: 지자체 94.1조(41.8%) / 공공기관 80.5조(35.8%) / 국가기관 50.5조(22.4%).</li>
+<li>업종별: 공사 85.7조(38.1%) / 물품 84.3조(37.4%) / 용역 55.1조(24.5%).</li>
+<li><strong>KONEPS(나라장터)</strong>: 거래 145.1조=64.5%(비중 상승 60.8%→64.5%, 2021→24). 연 <strong>전자입찰공고 49만건</strong>, 등록기업 <strong>57.2만</strong>, 이용기관 6.9만, 전자계약 127만건/년(<a href="https://www.pps.go.kr/kor/content.do?key=01230" class="external">연혁<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓).</li>
+</ul>
+<p><strong>발주 프로세스·규칙.</strong> 협상에 의한 계약 기본 배점 기술 80/가격 20, SW·정보시스템은 <strong>기술 90/가격 10</strong>(<a href="https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000086294" class="external">기재부 계약예규 제721호<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> △); 협상적격자=기술배점 <strong>85% 이상</strong>(<a href="https://www.law.go.kr/admRulLsInfoP.do?admRulSeq=2100000028030" class="external">기재부<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> △); 섹션별 배점 ±10 가감. SW진흥법 제안보상: 예산 <strong>20억 이상</strong> 사업에 총액 13/1000(~1.3%)(<a href="https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000061732" class="external">미래부 고시 2016-108<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> △).</p>
+<p><strong>정부 AI 전환 (변곡점, 전부 buyer-side).</strong></p>
+<ul>
+<li><strong>공공SW AI 책임형 발주관리 플랫폼</strong>(ppsai.kr) 구축 17.8억, RFP 생성/검토 <strong>30~40%↓</strong>, 행정비용 20~25%↓(<a href="https://www.etnews.com/20260522000281" class="external">etnews<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓, <a href="https://www.ddaily.co.kr/page/view/2026052614231514644" class="external">ddaily<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓).</li>
+<li><strong>지능형 예정가격 작성지원시스템</strong> 2026-04-30 개시(발주기관 연 8,000건 물품계약용)(<a href="https://v.daum.net/v/20260430111751320" class="external">Daum/파이낸셜<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓).</li>
+<li><strong>차세대 나라장터</strong> 955억, <strong>2027년 지능형 공공조달 플랫폼</strong> 통합 목표(<a href="https://www.etnews.com/20260522000281" class="external">etnews<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). → 전부 발주기관 편, 입찰기업용 RFP 이해는 미개척.</li>
+</ul>
+<p><strong>해외 대조.</strong> EU <strong>~€2조/년(GDP 14%)</strong>, 단일입찰 23.5%→41.8%·입찰자 5.7→3.2명으로 경쟁 붕괴(<a href="https://www.eca.europa.eu/ECAPublications/SR-2023-28/SR-2023-28_EN.pdf" class="external">ECA SR28/2023<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓); UK 입찰 1건 준비비 <strong>£5,800</strong>(<a href="https://smallbusiness.co.uk/small-businesses-hit-hard-by-costly-public-sector-tender-process-2383643/" class="external">SmallBusiness UK<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> △); 미국 연방 <strong>$773.7B</strong>(FY24), 중소기업 몫 23.3%, 그러나 중소 공급자 수 <strong>43% 감소</strong>(148,778→85,013)(<a href="https://govspend.com/blog/federal-contract-awards-hit-773-68b-in-fy24-small-businesses-see-4b-increase/" class="external">GovSpend<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓, <a href="https://smallgovcon.com/reports/number-of-small-businesses-awarded-federal-government-contracts-has-dropped-12-7-in-four-years/" class="external">SBA/SmallGovCon<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> △). 공통 신호: 문서·절차 장벽이 SME를 밀어냄 → 도구 수요.</p>
+<h2 id="ii-2-경쟁-맵-공급측">II-2. 경쟁 맵 (공급측)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#ii-2-경쟁-맵-공급측" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote>
+<p>레이어: 발견(discovery) → 분석(analysis) → 제안생성(proposal_gen) → 데이터/마켓인텔. <strong>빈 칸 = 분석/제안층의 국내 SME 대상.</strong></p>
+</blockquote>
+<p><strong>국내 (B).</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>서비스</th><th>레이어</th><th>기능</th><th>가격</th><th>규모</th></tr></thead><tbody><tr><td>Info21C</td><td>discovery</td><td>공고+낙찰통계+사정율(특허)</td><td>33K/월~330K/년</td><td>since 2000, 회원 ~10만 ◐</td></tr><tr><td>KBID</td><td>discovery</td><td>공고+통계+Kport 투찰분석</td><td>유료(비공개)</td><td>매출 35.7억, 31명 ✓</td></tr><tr><td>G2B Plus</td><td>discovery(무료)</td><td>25개 자체조달기관 통합검색</td><td>무료+9,900/월</td><td>3,456만 레코드 ✓</td></tr><tr><td>DeepBID</td><td>discovery(무료)</td><td>공고+기업/기관분석+투찰추천</td><td>무료</td><td>(주)지에이시스템 ✓</td></tr><tr><td>JodAL.AI</td><td>discovery</td><td><strong>첨부파일 검색</strong>+10분갱신</td><td>미공개</td><td>운영 지란지교(매출 156억) ◐</td></tr><tr><td>BidPro</td><td>discovery+예측</td><td>맥 예측엔진+입찰대행</td><td>77만~1,320만 / 대행 2.2%</td><td>매출 7.6억, 6명(2002~) ✓</td></tr><tr><td>BidTokTok</td><td>market_intel</td><td>모바일 투찰가 분석</td><td>건당 유료</td><td>앱스토어 delisted ◐</td></tr><tr><td>GOBID</td><td>market_intel</td><td>사정률 예측(성공보수)</td><td><strong>낙찰 시 2.0%</strong></td><td>2021~, 자칭 낙찰률 0.76% ◐</td></tr><tr><td><strong>CLIWANT</strong></td><td><strong>analysis</strong></td><td><strong>HWP RAG·독소조항·자격·가격</strong></td><td>300만~1,000만/년</td><td><strong>Pre-A 20억, 고객 60~70, 미국 피벗</strong> ✓</td></tr><tr><td>한국조달AI연구소</td><td>analysis(<strong>buyer</strong>)</td><td>RAG+TAG 기술평가·RFP생성</td><td>PoC</td><td>그린다AI 등 컨소시엄(2025~) ✓</td></tr><tr><td>MyBidWise</td><td>proposal_gen</td><td>제안서 자동생성</td><td>자칭</td><td>47개사 사용(자칭) ✓</td></tr><tr><td>SK AX Proposal AI</td><td>proposal_gen</td><td>RFP↔제안서 cross-check</td><td>엔터프라이즈</td><td>SK C&amp;C 매출 2.6조 ✓</td></tr></tbody></table></div>
+<p><strong>해외 (C) — 레퍼런스.</strong> AutogenAI <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">65.3</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">270</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord hangul_fallback">고객</span><span class="mopen">(</span><span class="mord hangul_fallback">생성</span><span class="mclose">)</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">G</span><span class="mord">24.4</span><span class="mord amsrm">✓</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">G</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal">a</span><span class="mord mathnormal">s</span><span class="mord mathnormal">h</span></span></span></span>40M·컴플라이언스매트릭스+인용(생성) ✓; Procurement Sciences <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">40</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">h</span><span class="mord mathnormal" style="margin-right:0.02778em;">er</span><span class="mord mathnormal">G</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord hangul_fallback">인수</span><span class="mord amsrm">✓</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord mathnormal">u</span><span class="mord mathnormal">lt</span><span class="mord mathnormal">ro</span><span class="mord mathnormal">n</span></span></span></span>22M→<strong>pWin에 흡수</strong>(consolidation) ✓; GovWin IQ(Deltek) <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">12</span><span class="mspace nobreak"> </span><span class="mord">42</span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">/</span><span class="mord hangul_fallback">년</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">&quot;</span><span class="mord mathnormal">in</span><span class="mord mathnormal">s</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">an</span><span class="mord mathnormal">ce</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal" style="margin-right:0.02778em;">or</span><span class="mord mathnormal">bi</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">ors</span><span class="mord mathnormal">ma</span><span class="mord mathnormal" style="margin-right:0.01968em;">ll</span><span class="mord">&quot;</span><span class="mopen">(</span><span class="mord hangul_fallback">마켓인텔</span><span class="mclose">)</span><span class="mord amsrm">✓</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">L</span><span class="mord mathnormal">oo</span><span class="mord mathnormal">p</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mopen">(</span><span class="mspace nobreak"> </span></span></span></span>200M)·Responsive(~<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">27</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mclose">)</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">&quot;</span><span class="mord mathnormal">an</span><span class="mord mathnormal">s</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">ers</span><span class="mord mathnormal">a</span><span class="mord mathnormal">re</span><span class="mord mathnormal">u</span><span class="mord mathnormal">s</span><span class="mord mathnormal">u</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">ll</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">ro</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord">&quot;</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord hangul_fallback">라이브러리유지부담</span><span class="mopen">(</span><span class="mord hangul_fallback">제안응답</span><span class="mclose">)</span><span class="mord amsrm">✓</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord hangul_fallback">유럽</span><span class="mord mathnormal">A</span><span class="mord mathnormal">lt</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">a</span><span class="mopen">(</span><span class="mord">€11</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mclose">)</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">ainia</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mopen">(</span><span class="mord">∗</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord hangul_fallback">배점추출</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∗</span><span class="mclose">)</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">d</span><span class="mord mathnormal">i</span><span class="mord mathnormal">u</span><span class="mord mathnormal">m</span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">395</span><span class="mord hangul_fallback">고객</span><span class="mclose">)</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">St</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.01968em;">tl</span><span class="mord mathnormal">es</span><span class="mopen">(</span></span></span></span>21.6M)·Tussell(데이터) ✓.</p>
+<p><strong>빈 칸(공백).</strong> 국내에서 <strong>RFP 문서 분석층</strong>을 파는 곳은 CLIWANT(범용·미국 피벗)와 한국조달AI연구소(발주기관용)뿐. <strong>입찰기업용, 국내 SW/IT RFP 배점·자격 정밀 추출 + 부적격 자가진단</strong>은 비어 있다 = 추천 1순위의 근거.</p>
+<hr/>
+<h1 id="part-iii--근거-데이터-카탈로그">PART III — 근거 데이터 카탈로그<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#part-iii--근거-데이터-카탈로그" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<h2 id="iii-1-핵심-숫자표-항목--숫자--해석--출처">III-1. 핵심 숫자표 (항목 / 숫자 / 해석 / 출처)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#iii-1-핵심-숫자표-항목--숫자--해석--출처" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote>
+<p>해석 열은 후처리 작성(현 41개 JSON엔 interpretation 필드 없음 — 다음 리서치부터 필드 수집). 접근확인: ✓/△/◐/✗.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>항목</th><th>숫자</th><th>해석</th><th>출처</th></tr></thead><tbody><tr><td>공공조달 총액</td><td>225.1조 (2024, +7.9%)</td><td>국가경제급 수요, 최고치 갱신</td><td><a href="https://www.pps.go.kr/kor/bbs/view.do?key=00634&amp;bbsSn=2506270010" class="external">조달청<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>GDP 대비</td><td>~9% (2024)</td><td>시장 자체가 거시급</td><td><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156718224" class="external">korea.kr<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>중소기업 몫</td><td>142.1조=63.1% (2024)</td><td>타깃 사용자=시장 다수</td><td><a href="https://www.pps.go.kr/kor/bbs/view.do?key=00634&amp;bbsSn=2506270010" class="external">조달청<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>KONEPS 거래</td><td>145.1조=64.5% (2024)</td><td>구조화 데이터 한 곳 집중</td><td><a href="https://www.pps.go.kr/kor/bbs/view.do?key=00634&amp;bbsSn=2506270010" class="external">조달청<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>전자입찰공고</td><td>49만건/년 (2023)</td><td>개인이 triage 불가한 firehose</td><td><a href="https://www.pps.go.kr/kor/content.do?key=01230" class="external">연혁<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>등록기업</td><td>57.2만 (2023)</td><td>대부분 SME, 도구 부재</td><td><a href="https://www.pps.go.kr/kor/content.do?key=01230" class="external">연혁<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>일 분석 RFP</td><td>~3,000/일 (2024)</td><td>사람이 다 못 읽음</td><td><a href="https://blog.google/intl/ko-kr/company-news/outreach-initiatives/gfs-yearbook-cliwant/" class="external">Google for Startups<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td><strong>부적격율(PC 표본)</strong></td><td><strong>53.3%</strong> (2025-26)</td><td>투찰 절반이 심사문턱도 못 넘음→사전진단 수요</td><td><a href="https://www.jodaleconomy.com/news/articleView.html?idxno=2169" class="external">조달경제<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>부적격 중 가격미달</td><td>89.4% (2025-26)</td><td>낙찰하한 계산실패가 탈락 주원인</td><td><a href="https://www.jodaleconomy.com/news/articleView.html?idxno=2169" class="external">조달경제<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>유찰율(PC 물품)</td><td>44.9% (2025-26)</td><td>발주자도 재공고 부담</td><td><a href="https://www.jodaleconomy.com/news/articleView.html?idxno=2169" class="external">조달경제<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>대형건설 유찰</td><td>~71% (2024)</td><td>고액 사업조차 반복 실패</td><td><a href="https://www.news1.kr/realestate/general/5810087" class="external">대한건설협회<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>동일가격 투찰</td><td>68.96% (2026-03, 0.9%→)</td><td>규칙 못 읽어 브로커 lottery 폭증</td><td><a href="https://www.newspim.com/news/view/20260721000301" class="external">기재부/뉴스핌<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td><strong>행정문서 AI-불가독</strong></td><td><strong>91.1%</strong> (2025)</td><td>RAG 최대 기술장벽=HWP 파싱</td><td><a href="https://v.daum.net/v/20251013175850275" class="external">위성곤 의원실<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>파싱이 RAG품질 좌우</td><td>”80% 파서서 결정” (2025)</td><td>파싱=해자</td><td><a href="https://www.koreadeep.com/blog/hwp-parser-ai" class="external">KoreaDeep<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ◐[벤더]</td></tr><tr><td>ParseBench 천장</td><td>84.9% (2026)</td><td>파싱 미해결=진입장벽이자 기회</td><td><a href="https://www.llamaindex.ai/blog/parsebench" class="external">LlamaIndex<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>Upstage 파싱 단가</td><td>$0.01/page (2025)</td><td>buy 옵션·비용 관리가능</td><td><a href="https://www.upstage.ai/products/document-parse" class="external">Upstage<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓[벤더]</td></tr><tr><td>제안서 1건 소요</td><td>평균 30h (2025)</td><td>반주 묶임, task-0=요구정리</td><td><a href="https://blog.cliwant.com/ibcal-damdangjaga-jaggu-toesahaeyo-iyureul-alryeodeurilggayo/" class="external">CLIWANT<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓[벤더]</td></tr><tr><td>RFP 내 요구 산재</td><td>수십 개/건 (2025)</td><td>첫 작업이 ‘뭘 해야하나 정리’</td><td><a href="https://blog.cliwant.com/ibcal-damdangjaga-jaggu-toesahaeyo-iyureul-alryeodeurilggayo/" class="external">CLIWANT<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓[벤더]</td></tr><tr><td>삼성SDS 제안팀</td><td>33명, 1건 10~50명 (2003)</td><td>대기업엔 부서, SME엔 0</td><td><a href="http://www.inews24.com/view/95674" class="external">아이뉴스24<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>제안비 매출비중</td><td>1~2% (대기업)</td><td>부서급 비용 라인</td><td><a href="http://www.inews24.com/view/95674" class="external">아이뉴스24<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>‘제안서작성’ 채용</td><td>~2,829건 (2026)</td><td>제안 역량이 상시 수요</td><td><a href="https://www.jobkorea.co.kr/Search?stext=%EC%A0%9C%EC%95%88%EC%84%9C%EC%9E%91%EC%84%B1" class="external">JobKorea<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>불명확 RFP 무상재작업</td><td>50% of 111사 (2012)</td><td>RFP 부실→리스크 탐지 수요</td><td><a href="https://spri.kr/download/5378" class="external">KOSA/SPRi<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>과업변경 대가지급률</td><td>4.4% 중앙 (2011)</td><td>과업변경 비용 전가</td><td><a href="https://spri.kr/download/5378" class="external">SPRi<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>브로커 수수료</td><td>낙찰액 3~5% (2026)</td><td>WTP 정량, 정보독점 대행</td><td><a href="https://v.daum.net/v/KnTAM81mhw?f=p" class="external">언론 단독<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>브로커 회원</td><td>~4,000명 (2026)</td><td>자력 불가 SME 규모</td><td><a href="https://v.daum.net/v/KnTAM81mhw?f=p" class="external">언론 단독<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>브로커 적발</td><td>0건 (2026)</td><td>회색시장→합법 대체 여지</td><td><a href="https://v.daum.net/v/KnTAM81mhw?f=p" class="external">언론 단독<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>컨설팅 비용</td><td>월 수백만원~AI 1천만원대</td><td>고비용 불만 “돈 냈는데 성과 없다”</td><td><a href="https://blog.cliwant.com/bidding-consulting-comparison-ai-vs-traditional/" class="external">CLIWANT<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓[벤더]</td></tr><tr><td>공공조달길잡이</td><td>36명→2,000상담→260진입</td><td>인간 병목, 자동화 여지</td><td><a href="https://www.mt.co.kr/policy/2025/10/28/2025102813262913576" class="external">머니투데이<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>CLIWANT Pre-A</td><td>20억(2024), 고객60~70, 매출5억</td><td>국내 RAG-on-RFP 검증+WTP</td><td><a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202412111328413360107617&amp;lcode=00" class="external">더벨<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> △</td></tr><tr><td>AutogenAI</td><td>$65.3M, 270+고객 (2026)</td><td>글로벌 생성층 수요 검증</td><td><a href="https://venturebeat.com/ai/automated-proposal-writing-startup-autogenai-raises-39-5m-from-salesforce-ventures-and-others" class="external">VentureBeat<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> △</td></tr><tr><td>GovDash</td><td>$40M, 매트릭스+인용 (2026)</td><td>배점/컴플 추출=핵심기능 검증</td><td><a href="https://siliconangle.com/2026/01/15/govdash-secures-30m-expand-ai-driven-government-contracting-software/" class="external">SiliconANGLE<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>GovWin 가격</td><td>$12~42K+/년 (2026)</td><td>SME 배제, 상위층 창</td><td><a href="https://fed-spend.com/blog/govwin-iq-pricing-2026-deltek-cost-alternatives" class="external">Fed-Spend<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>협상계약 배점</td><td>기술90/가격10 (SW, 2024)</td><td>추출 대상=명확한 규칙 스키마</td><td><a href="https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000086294" class="external">법령<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> △</td></tr><tr><td>협상적격 기준</td><td>기술배점 85%↑ (2024)</td><td>자가진단 임계값 명확</td><td><a href="https://www.law.go.kr/admRulLsInfoP.do?admRulSeq=2100000028030" class="external">법령<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> △</td></tr><tr><td>legal RAG 환각율</td><td>17~34% (2024)</td><td>인용·거절 가드 필수</td><td><a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" class="external">Stanford<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>ppsai.kr</td><td>17.8억, RFP생성 30~40%↓ (2026)</td><td>정부는 buyer-side→bidder 창 열림</td><td><a href="https://www.etnews.com/20260522000281" class="external">etnews<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr><tr><td>미 연방조달</td><td>$773.7B, 중소 43%↓ (FY24)</td><td>문서장벽이 SME 밀어냄=도구수요</td><td><a href="https://govspend.com/blog/federal-contract-awards-hit-773-68b-in-fy24-small-businesses-see-4b-increase/" class="external">GovSpend<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</td></tr></tbody></table></div>
+<h2 id="iii-2-링크-라이브러리-태그별-대표-전체-488개는-_digestlinksmd">III-2. 링크 라이브러리 (태그별 대표; 전체 488개는 <code>_digest/links.md</code>)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#iii-2-링크-라이브러리-태그별-대표-전체-488개는-_digestlinksmd" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>[정부/통계]</strong> 조달청 <a href="https://www.pps.go.kr/kor/bbs/view.do?key=00634&amp;bbsSn=2506270010" class="external">2024 통계연보<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.pps.go.kr/kor/content.do?key=01230" class="external">나라장터 연혁<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.index.go.kr/unity/potal/main/EachDtlPageDetail.do?idx_cd=1374" class="external">e-나라지표<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.data.go.kr/data/15129394/openapi.do" class="external">KONEPS OpenAPI<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.data.go.kr/data/15129427/openapi.do" class="external">계약정보 API<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · 위성곤 국감 <a href="https://v.daum.net/v/20251013175850275" class="external">91.1%<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · 부적격 <a href="https://www.jodaleconomy.com/news/articleView.html?idxno=2169" class="external">조달경제<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · 동일가격 <a href="https://www.newspim.com/news/view/20260721000301" class="external">뉴스핌<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · SPRi <a href="https://spri.kr/download/5378" class="external">공공SW/RFP<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.etnews.com/20260522000281" class="external">ppsai.kr etnews<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://v.daum.net/v/20260430111751320" class="external">지능형 예정가격<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<strong>[규제/법령]</strong> <a href="https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000247066" class="external">협상계약체결기준(계약예규 721호)<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000086294" class="external">협상·제안서평가 세부기준<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000061732" class="external">SW 제안서 보상 운영규정<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<strong>[기업-국내]</strong> <a href="https://blog.cliwant.com/" class="external">CLIWANT 블로그<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://zdnet.co.kr/view/?no=20240819004849" class="external">ZDNet CLIWANT<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.info21c.net/" class="external">Info21C<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.etnews.com/20260413000149" class="external">KBID/Kport ETNews<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.g2bplus.kr/service_goods_list.php" class="external">G2B Plus<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://deepbid.com/" class="external">DeepBID<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://jodal.ai/" class="external">JodAL.AI<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.tech42.co.kr/" class="external">GOBID/Tech42<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://govt.ai.kr/" class="external">한국조달AI연구소<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://mybidwise.com/" class="external">MyBidWise<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.skax.co.kr/ax-services/proposal-ai" class="external">SK AX Proposal AI<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<strong>[기업-해외]</strong> <a href="https://autogenai.com/" class="external">AutogenAI<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://siliconangle.com/2026/01/15/govdash-secures-30m-expand-ai-driven-government-contracting-software/" class="external">GovDash Series B<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://fed-spend.com/blog/govwin-iq-pricing-2026-deltek-cost-alternatives" class="external">GovWin 가격<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.procurementsciences.com/blog/series-b" class="external">Procurement Sciences<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.pwin.ai/resource/pwin-ai-acquires-vultrons-customer-portfolio/" class="external">Vultron→pWin<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://altura.io/en/blog/series-a-announcement" class="external">Altura Series A<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://siliconcanals.com/brainial-raises-fresh-funding/" class="external">Brainial<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.actoncapital.com/news/stotles-raises-13-million-series-a-to-help-suppliers-succeed-in-the-new-age-of-government-efficiency" class="external">Stotles<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<strong>[기술/파싱]</strong> <a href="https://www.llamaindex.ai/blog/parsebench" class="external">ParseBench(LlamaIndex)<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.upstage.ai/products/document-parse" class="external">Upstage Document Parse<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.koreadeep.com/blog/hwp-parser-ai" class="external">KoreaDeep HWP<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.polarisoffice.com/business-blog/claude-skill-for-hwp-parsing" class="external">Polaris HWP 파싱<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://velog.io/@pjg9606/%ED%95%9C%EA%B5%AD-%EA%B3%B5%EB%AC%B8%EC%84%9C-RAG%EC%9D%98-%EC%B2%AB-%EB%B2%88%EC%A7%B8-%EB%B2%BD-HWP-%ED%8C%8C%EC%8B%B1-%ED%95%B4%EA%B2%B0%EB%B2%95" class="external">Velog 공문서 RAG<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" class="external">Stanford 법률RAG 환각<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://arxiv.org/html/2504.01840v1" class="external">LRAGE(한국어 법률)<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://arxiv.org/abs/2408.10343" class="external">LegalBench-RAG<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<strong>[리뷰/VoC]</strong> <a href="https://www.reddit.com/r/govcon/comments/1tkdst3/we_didnt_respond_to_every_rfp_because_it_took_too/" class="external">Reddit r/govcon<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.capterra.com/p/154858/GovWin-IQ/reviews/" class="external">Capterra GovWin<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.capterra.com/p/133042/Loopio/reviews/" class="external">Capterra Loopio<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.teamblind.com/kr/post/%EC%A0%9C%EC%95%88%EC%84%9C%EB%A5%BC-%EB%A7%8C%EB%93%9C%EB%8A%94-%EA%B1%B4-%EC%96%B4%EB%A0%A4%EC%9B%8C-uTWiwpNz" class="external">Blind 제안서<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://community.rememberapp.co.kr/post/90771" class="external">Remember 제안노하우<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.jungi.net/consulting/review" class="external">전기넷 낙찰코칭<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<strong>[기사/사건]</strong> 브로커 <a href="https://v.daum.net/v/KnTAM81mhw?f=p" class="external">언론 단독<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202601081433098030893" class="external">대한경제 종심제 붕괴<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202510081144531420108" class="external">공공발주 AI시대<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> · <a href="https://www.jodaleconomy.com/news/articleView.html?idxno=2169" class="external">KMA 슈퍼컴 4회 유찰<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+<h2 id="iii-3-기사보도자료-사건-중심">III-3. 기사/보도자료 (사건 중심)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#iii-3-기사보도자료-사건-중심" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>종심제 붕괴/브로커</strong> — 동일가격 투찰 0.9%(2020)→68.96%(2026-03), 업평예가율 조작 정황(<a href="https://www.newspim.com/news/view/20260721000301" class="external">뉴스핌<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓, <a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202601081433098030893" class="external">대한경제<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓); 브로커 3~5% 수수료·회원 4,000·적발 0건(<a href="https://v.daum.net/v/KnTAM81mhw?f=p" class="external">언론 단독<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓).</li>
+<li><strong>유찰/부적격 급증</strong> — PC조달 부적격 53.3%(DRAM 쇼크로 단가 +47.4%), KMA 슈퍼컴 4회 연속 유찰(<a href="https://www.jodaleconomy.com/news/articleView.html?idxno=2169" class="external">조달경제<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓); 대형건설 유찰 ~71%(<a href="https://www.news1.kr/realestate/general/5810087" class="external">News1<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓).</li>
+<li><strong>공공발주 AI 시대</strong> — 대기업/중견 임원 “AI가 비용 분석하니 데이터로 강점 입증해야, 제안서 작성법 완전히 바꿔야”(<a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202510081144531420108" class="external">대한경제<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓).</li>
+<li><strong>정부 정책</strong> — ppsai.kr(17.8억), 지능형 예정가격(2026-04), 차세대 나라장터(955억), 2027 통합 플랫폼(<a href="https://www.etnews.com/20260522000281" class="external">etnews<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓).</li>
+<li><strong>해외 M&amp;A/자금</strong> — GovDash $30M Series B, Procurement Sciences+HigherGov 인수, Vultron→pWin 흡수, Altura+Tendara 인수 — GovCon AI 급속 통합.</li>
+</ul>
+<h2 id="iii-4-기술채용api">III-4. 기술/채용/API<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#iii-4-기술채용api" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>문서포맷 현실</strong>: HWP=독자 OLE2 바이너리(HWPX=XML/ZIP, KS X 6101). 중첩표·병합셀·다단·차트로 파서가 깨짐; 오픈소스 5.x부터, 3.x 없음(<a href="https://www.polarisoffice.com/business-blog/claude-skill-for-hwp-parsing" class="external">Polaris<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ◐). 벤더: Upstage($0.01/page, TEDS 93.48), KoreaDeep(정확도 97.3% 자칭·ParseBench VLM 1위 76.4), Hancom, Polaris.</li>
+<li><strong>공공 API/데이터</strong>: KONEPS 입찰공고/낙찰/계약 OpenAPI 무료(1,000~10,000콜/일, 20년 계약이력, 공고↔계약 조인키)(<a href="https://www.data.go.kr/data/15129394/openapi.do" class="external">data.go.kr<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓). 개방데이터로 ~80개사 연 500억 부가가치(2017 조달청 ✓) — 다운스트림 유료 제품 성립 근거.</li>
+<li><strong>경쟁 기술스택</strong>: AutogenAI=멀티LLM+커스텀 언어엔진(고객 코퍼스 RAG)+Gamma Review 컴플라이언스; GovDash=Sections L/M/C 문장단위 shredding+인용 grounding+FedRAMP; 한국조달AI연구소=RAG+TAG 하이브리드+멀티에이전트(HWP/PDF, <strong>발주기관용</strong>). → 우리 스택(local e5 + Chroma + gpt-5-mini)과 정합.</li>
+<li><strong>채용=부서 실증</strong>: 잡코리아 ‘제안서작성’ ~2,829건·‘SI 제안서’ 284건(<a href="https://www.jobkorea.co.kr/Search?stext=%EC%A0%9C%EC%95%88%EC%84%9C%EC%9E%91%EC%84%B1" class="external">JobKorea<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓); 쉬플리코리아(제안컨설팅) 45명·매출 36억(<a href="https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/RDhpdmdsTndIM3VPcTVYblN4OFlHUT09/company_nm/%EC%89%AC%ED%94%8C%EB%A6%AC%EC%BD%94%EB%A6%AC%EC%95%84(%EC%A3%BC)" class="external">Saramin<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓); APMP 회원 12,900+·한국챕터(<a href="https://blog.cliwant.com/what-is-apmp-proposal-management/" class="external">CLIWANT<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ◐).</li>
+<li><strong>RAG 함정(설계 경고)</strong>: dense retriever가 법률 도메인서 BM25에 밀림(도메인 적응 필수), 시맨틱 청킹 이득 미미(&lt;2%), 한국어 법률 RAG는 과목별 -15%도(<a href="https://arxiv.org/html/2504.01840v1" class="external">LRAGE<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓) → 도메인 적응 + 하이브리드 검색 + 평가지표 필수.</li>
+</ul>
+<h2 id="iii-5-리뷰voc-원문-인용--국내외">III-5. 리뷰/VoC (원문 인용 — 국내외)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#iii-5-리뷰voc-원문-인용--국내외" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>국내.</strong></p>
+<ul>
+<li>“적절한 근거자료를 검색하느라 <strong>2시간 이상</strong>… 제안서 진짜 머리 터져” — <a href="https://www.teamblind.com/kr/post/%EC%A0%9C%EC%95%88%EC%84%9C%EB%A5%BC-%EB%A7%8C%EB%93%9C%EB%8A%94-%EA%B1%B4-%EC%96%B4%EB%A0%A4%EC%9B%8C-uTWiwpNz" class="external">Blind<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</li>
+<li>“물어볼 기획 팀도 없고 저 혼자 기존 문서를 보고 전부 짜내야… 개발 업무를 다른 개발자에게 넘긴 적도” — <a href="https://www.teamblind.com/kr/post/%EA%B0%9C%EB%B0%9C%EC%9E%90%EA%B0%80-%EC%A0%9C%EC%95%88%EC%84%9C-%EC%9E%91%EC%84%B1%ED%95%98%EB%8A%94-%ED%9A%8C%EC%82%AC-aFRJV56N" class="external">Blind<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</li>
+<li>“10여명 제안팀으로 <strong>2-3주 밤새며</strong>… 야근·주말 어쩔 수 없었다” — <a href="https://community.rememberapp.co.kr/post/90771" class="external">Remember<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</li>
+<li>“올 한해 용역 나왔음에도 <strong>한건도 안 되어</strong> 정말 힘들었다” / “낙찰 못하니 입찰대행업체도 우습게 본다” — <a href="https://www.jungi.net/consulting/review" class="external">전기넷<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓, <a href="https://www.jungi.net/community/board/review_detail?code=69608" class="external">jungi.net<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</li>
+<li>“HWP는 Word보다 <strong>열 배 어려웠다… 진짜 헬</strong>, 표는 처음부터 다 만들어야” — <a href="https://brunch.co.kr/@1212ac31a500435/329" class="external">Brunch/inline AI<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> [벤더] ✓</li>
+<li>“나라장터 검색이 매우 부정확… 공고 검색에 업무시간 낭비” — <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002883147" class="external">KCI 정보화연구<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓ (비벤더 학술)</li>
+</ul>
+<p><strong>해외.</strong></p>
+<ul>
+<li>“a required document <strong>buried on page 34</strong>… we leave money on the table by not responding” — <a href="https://www.reddit.com/r/govcon/comments/1tkdst3/we_didnt_respond_to_every_rfp_because_it_took_too/" class="external">Reddit<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</li>
+<li>“the real nightmare… conflicting clauses between <strong>section L and M</strong> that lead to an automatic DQ” — <a href="https://www.reddit.com/r/govcon/comments/1tkdst3/we_didnt_respond_to_every_rfp_because_it_took_too/" class="external">Reddit<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</li>
+<li>“I’d want it to <strong>show the exact page/section</strong>… Otherwise it’s hard to trust on a live bid” — <a href="https://www.reddit.com/r/govcon/comments/1tkdst3/we_didnt_respond_to_every_rfp_because_it_took_too/" class="external">Reddit<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</li>
+<li>“buried in <strong>80 pages nobody reads till the night before bid day. By then it’s too late</strong>” — <a href="https://www.reddit.com/r/govcon/comments/1umr5zf/i_built_a_tool_that_reads_publicworks_rfps_and/" class="external">Reddit<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</li>
+<li>“how small shops handle this <strong>without a compliance department</strong>… Nobody LOL” — <a href="https://www.reddit.com/r/govcon/comments/1uphsvk/small_shops_with_itar_flowdowns_and_no_compliance/" class="external">Reddit<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</li>
+<li>“<strong>The answers are usually wrong</strong>” (Loopio Magic) / “not smarter because of prior outcomes” — <a href="https://autorfp.ai/blog/loopio-reviews" class="external">Capterra/AutoRFP<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ◐, <a href="https://tribble.ai/blog/responsive-rfpio-review-pricing-features-limitations-2026/" class="external">Tribble<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ◐</li>
+<li>“The price makes it very hard for small companies to use GovWin” — <a href="https://www.capterra.com/p/154858/GovWin-IQ/reviews/" class="external">Capterra<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓</li>
+</ul>
+<h2 id="iii-6-산업규제시장구조">III-6. 산업/규제/시장구조<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#iii-6-산업규제시장구조" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>밸류체인</strong>: 발주기관(연 225조) → 입찰기업(57.2만·SME 63%) ← 정보서비스(Info21C/KBID/G2B Plus/DeepBID/JodAL) · 예측(GOBID/BidTokTok/BidPro) · 분석(CLIWANT) · 브로커/컨설팅(3~5% 수수료·월 수백만원) · 대기업 제안팀/쉬플리(수주율 87%). RFP <strong>문서 이해</strong>층은 국내 공백.</li>
+<li><strong>규제(추출 대상 스키마)</strong>: 협상계약 기술80/가격20·SW 90/10, 협상적격 기술 85%↑, 배점 ±10 가감(<a href="https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000247066" class="external">법령<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> △); SW진흥법 제안보상 20억↑·13/1000(<a href="https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000061732" class="external">고시<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> △); 국가계약법 부적격(가격 하한 미달)·과업변경 규정. → 제품이 RFP에서 추출·검증해야 할 대상.</li>
+<li><strong>변곡점</strong>: 정부 AI 전환(ppsai.kr 등, buyer-side, 2027 통합), 공공발주 AI 평가로 “제안서 작성법을 바꿔야”(<a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202510081144531420108" class="external">대한경제<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> ✓); 해외 GovCon AI 급속 통합(Vultron→pWin).</li>
+</ul>
+<h2 id="iii-7-접속실패사용제외-메모-정직성">III-7. 접속실패/사용제외 메모 (정직성)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#iii-7-접속실패사용제외-메모-정직성" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>✗ blocked</strong>: 중기부 2024 판로지원 실적(.hwpx 첨부 안 파싱), THE VC CLIWANT 재무(Pro 게이트), BidTokTok 앱스토어 평점(404), KBID 구독 가격(로그인/견적), 나라장터 전국 유찰율(동적조회만), 개방데이터 갱신 경제효과.</li>
+<li><strong>◐ snippet-only (재확인 필요)</strong>: GOBID 낙찰률 0.76%(벤더 자칭), Info21C 회원 10만·낙찰 4만건(자칭), pyhwp 62x 느림(오픈소스 자칭), UK £5,800(1차 PDF 차단).</li>
+<li><strong>[벤더] 주의</strong>: CLIWANT/GOBID/MyBidWise/AutogenAI/GovDash 성과수치는 자사 마케팅 — 독립감사 없음. VoC의 비벤더(Reddit·Capterra·Blind·KCI)를 신뢰 우선.</li>
+<li><strong>오래됨 주의</strong>: 삼성SDS 제안팀(2003)·과업변경 대가지급률(2011)·KOSA 50%(2012) — 구조적 사실이나 최신치 아님.</li>
+</ul>
+<hr/>
+<p><em>원본 데이터: <code>results/*.json</code> (41). 이 보고서는 그 위의 후처리 산출물. 원자료 전량 카탈로그가 필요하면 <code>/research-report</code>로 <code>report.md</code> 재생성 가능.</em></p></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>그래프 뷰</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-64" aria-expanded="true"><h3>목차</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#입찰메이트-rfp-rag--시장문제솔루션-의사결정-보고서-report-v2" data-for="입찰메이트-rfp-rag--시장문제솔루션-의사결정-보고서-report-v2">입찰메이트 RFP RAG — 시장·문제·솔루션 의사결정 보고서 (report-v2)</a></li><li class="depth-0"><a href="#part-0--한눈-요약--의사결정" data-for="part-0--한눈-요약--의사결정">PART 0 — 한눈 요약 / 의사결정</a></li><li class="depth-0"><a href="#part-i--문제-정의--후보-솔루션--추천" data-for="part-i--문제-정의--후보-솔루션--추천">PART I — 문제 정의 → 후보 솔루션 → 추천</a></li><li class="depth-1"><a href="#i-1-문제-정의-페인포인트" data-for="i-1-문제-정의-페인포인트">I-1. 문제 정의 (페인포인트)</a></li><li class="depth-1"><a href="#i-2-후보-솔루션-비교표-이-표-보고-결정" data-for="i-2-후보-솔루션-비교표-이-표-보고-결정">I-2. 후보 솔루션 비교표 (이 표 보고 결정)</a></li><li class="depth-1"><a href="#i-3-추천-1순위와-이유--후보-1" data-for="i-3-추천-1순위와-이유--후보-1">I-3. 추천 1순위와 이유 — 후보 1</a></li><li class="depth-0"><a href="#part-ii--시장-개요" data-for="part-ii--시장-개요">PART II — 시장 개요</a></li><li class="depth-1"><a href="#ii-1-정부공공조달-개요" data-for="ii-1-정부공공조달-개요">II-1. 정부/공공조달 개요</a></li><li class="depth-1"><a href="#ii-2-경쟁-맵-공급측" data-for="ii-2-경쟁-맵-공급측">II-2. 경쟁 맵 (공급측)</a></li><li class="depth-0"><a href="#part-iii--근거-데이터-카탈로그" data-for="part-iii--근거-데이터-카탈로그">PART III — 근거 데이터 카탈로그</a></li><li class="depth-1"><a href="#iii-1-핵심-숫자표-항목--숫자--해석--출처" data-for="iii-1-핵심-숫자표-항목--숫자--해석--출처">III-1. 핵심 숫자표 (항목 / 숫자 / 해석 / 출처)</a></li><li class="depth-1"><a href="#iii-2-링크-라이브러리-태그별-대표-전체-488개는-_digestlinksmd" data-for="iii-2-링크-라이브러리-태그별-대표-전체-488개는-_digestlinksmd">III-2. 링크 라이브러리 (태그별 대표; 전체 488개는 _digest/links.md)</a></li><li class="depth-1"><a href="#iii-3-기사보도자료-사건-중심" data-for="iii-3-기사보도자료-사건-중심">III-3. 기사/보도자료 (사건 중심)</a></li><li class="depth-1"><a href="#iii-4-기술채용api" data-for="iii-4-기술채용api">III-4. 기술/채용/API</a></li><li class="depth-1"><a href="#iii-5-리뷰voc-원문-인용--국내외" data-for="iii-5-리뷰voc-원문-인용--국내외">III-5. 리뷰/VoC (원문 인용 — 국내외)</a></li><li class="depth-1"><a href="#iii-6-산업규제시장구조" data-for="iii-6-산업규제시장구조">III-6. 산업/규제/시장구조</a></li><li class="depth-1"><a href="#iii-7-접속실패사용제외-메모-정직성" data-for="iii-7-접속실패사용제외-메모-정직성">III-7. 접속실패/사용제외 메모 (정직성)</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../postscript.js" type="module" data-persist="true"></script></html>

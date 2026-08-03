@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"><head><title>검색 실험 결과 (v5 164문항)</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Sprint First Project"/><meta property="og:title" content="검색 실험 결과 (v5 164문항)"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="검색 실험 결과 (v5 164문항)"/><meta name="twitter:description" content="검색 실험 결과 그래서 무엇을 쓰기로 했나. 측정 조건은 검색 실험 설계가 정본이다."/><meta property="og:description" content="검색 실험 결과 그래서 무엇을 쓰기로 했나. 측정 조건은 검색 실험 설계가 정본이다."/><meta property="og:image:alt" content="검색 실험 결과 그래서 무엇을 쓰기로 했나. 측정 조건은 검색 실험 설계가 정본이다."/><meta property="og:image" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta property="og:image:url" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta name="twitter:image" content="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME"/><meta property="og:url" content="https://your_github_id.github.io/YOUR_REPO_NAME/메모/김범진(데이터-처리)/_archive/검색-실험-결과-(v5-164문항)"/><meta property="twitter:url" content="https://your_github_id.github.io/YOUR_REPO_NAME/메모/김범진(데이터-처리)/_archive/검색-실험-결과-(v5-164문항)"/><link rel="icon" href="../../../static/icon.png"/><meta name="description" content="검색 실험 결과 그래서 무엇을 쓰기로 했나. 측정 조건은 검색 실험 설계가 정본이다."/><meta name="generator" content="Quartz"/><link href="../../../index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL3RtcC9xdWFydHovcXVhcnR6L2NvbXBvbmVudHMvc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../../prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://YOUR_GITHUB_ID.github.io/YOUR_REPO_NAME/index.xml"/></head><body data-slug="메모/김범진(데이터-처리)/_archive/검색-실험-결과-(v5-164문항)"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../../..">Sprint First Project</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>검색</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="검색어를 입력하세요" placeholder="검색어를 입력하세요"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="다크 모드"><title>다크 모드</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="라이트 모드"><title>라이트 모드</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="리더 모드"><title>리더 모드</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-122"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>탐색기</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-122" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../메모/">메모</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../메모/김범진(데이터-처리)/">김범진(데이터 처리)</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../메모/김범진(데이터-처리)/_archive/">_archive</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>검색 실험 결과 (v5 164문항)</a></div></nav><h1 class="article-title">검색 실험 결과 (v5 164문항)</h1><p show-comma="true" class="content-meta"><time datetime="2026-07-29T00:00:00.000Z">2026년 7월 29일</time><span>56 min read</span></p><ul class="tags"><li><a href="../../../tags/rag" class="internal tag-link">rag</a></li><li><a href="../../../tags/retrieval" class="internal tag-link">retrieval</a></li><li><a href="../../../tags/experiment" class="internal tag-link">experiment</a></li><li><a href="../../../tags/result" class="internal tag-link">result</a></li><li><a href="../../../tags/embedding" class="internal tag-link">embedding</a></li><li><a href="../../../tags/reranker" class="internal tag-link">reranker</a></li><li><a href="../../../tags/bm25" class="internal tag-link">bm25</a></li><li><a href="../../../tags/goldenset200" class="internal tag-link">goldenset200</a></li></ul></div></div><article class="popover-hint"><h1 id="검색-실험-결과">검색 실험 결과<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#검색-실험-결과" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p><strong>그래서 무엇을 쓰기로 했나.</strong> 측정 조건은 <a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a>가 정본이다.
+용어가 막히면 → <a href="../../../개념/개념-색인" class="internal alias" data-slug="개념/개념-색인">개념 색인</a></p>
+</blockquote>
+<blockquote class="callout success" data-callout="success">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>최종 판정표 — <strong>아무것도 바꾸지 않는다</strong> (2026-07-29 · 측정 완료)</p></div>
+                  
+                </div>
+<div class="callout-content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>축</th><th>판정</th><th>근거</th></tr></thead><tbody><tr><td><strong>후보 구성</strong></td><td><strong>C (BM25 없음) 유지</strong></td><td>E·F·G 어느 것도 유의하지 않음 → §2</td></tr><tr><td><strong>BM25</strong></td><td><strong>미채택</strong></td><td>문서 스코프로 고쳐 재측정해도 세 임베딩 전부 CI가 0을 품는다 → §2</td></tr><tr><td><strong>리랭커</strong></td><td><strong>R1 <code>bge-reranker-v2-m3</code> 유지</strong></td><td>켠 것 자체가 <strong>+0.104</strong>. R2는 세 임베딩 전부 <strong>−0.06~−0.07로 유의하게</strong> 패배 → §3</td></tr><tr><td><strong>임베딩</strong></td><td><strong>e5-small 유지</strong></td><td>KURE <strong>+0.0297</strong>, CI <strong>[−0.0042, +0.0654]</strong> — 유의성 미달 → §4</td></tr></tbody></table></div>
+<p>프로덕션은 <strong><code>RETRIEVAL_USE_RERANKER = True</code> · <code>RETRIEVAL_USE_BM25 = False</code></strong> → §5</p>
+<p><strong>3단계 순서는 여기서 끝난다</strong> — 1단계에서 후보가 <strong>C로 확정</strong>돼 리랭커·임베딩 판정의 전제가 그대로다.
+즉 §3·§4는 <strong>재판정 없이 확정</strong>이다 → <a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a> §8-1 · 재판정 조건은 §4-1</p>
+</div>
+</blockquote>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>성적표 옆에 붙여 읽을 한계 </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>C·D는 후보 집합이 동일한데 상위10 순서가 다른 문항이 <strong>e5 18건 / bge 2건 / KURE 0건</strong>이었다.
+원인은 <strong>리랭커 점수 동점 시 입력 순서가 결과를 바꾸는 것</strong>이고, MRR 영향은 <strong>±0.007</strong>이다.
+재려는 효과(+0.022)와 같은 자릿수라 <strong>e5 수치는 셋째 자리를 신뢰할 수 없다</strong>. → §11-1</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="0-세-줄-요약">0. 세 줄 요약<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#0-세-줄-요약" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ol>
+<li><strong>리랭커가 이 실험의 유일한 승자다.</strong> dense 단독 0.6402 → 0.7443(<strong>+0.104</strong>), 손해 본 문항 유형이 하나도 없다.</li>
+<li><strong>임베딩을 키워도 그 이득이 리랭커에 흡수된다.</strong> dense 단독으로는 +0.10 차이가 나지만 종단에서는 +0.0297로 줄고, 신뢰구간이 0을 품는다. **“차이가 없다”가 아니라 “이득이 증명되지 않는다”**다.</li>
+<li><strong>BM25도 미채택</strong> — 설계 결함 2건을 고쳐 다시 재도 유의하지 않다. 다만 <strong>가설의 방향은 맞았다</strong>(약한 임베딩에서만 +) → §2. 그 결함을 안 잡았으면 <strong>틀린 근거로 같은 결론</strong>을 낼 뻔했다 → §10.</li>
+</ol>
+<p><strong>그리고 MRR@10 하나만 봤다면 BM25 판정이 뒤집힐 뻔했다.</strong> MRR로는 “유의차 없음”인데
+nDCG@10·Recall@5로는 <strong>유의하게 나쁘다</strong> — BM25 후보가 상위 5개를 잠식해 LLM에 넘어가는
+컨텍스트를 떨어뜨린다 → §2-1-2. 판정 지표를 하나만 두면 반대 방향의 손해가 안 보인다.</p>
+<h2 id="0-1-이-숫자의-범위--라우팅까지-잰-값이-아니다">0-1. 이 숫자의 범위 — 라우팅까지 잰 값이 아니다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#0-1-이-숫자의-범위--라우팅까지-잰-값이-아니다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>MRR 0.7443의 전제 </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>이 실험은 **“올바른 공고가 이미 정해진 상태”**에서의 청크 검색만 잰다.</p>
+</div>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>순서</th><th>무슨 일이 일어나나</th><th>이 실험이 재나</th></tr></thead><tbody><tr><td><strong>①</strong></td><td>어느 공고 얘기인지 정해진다</td><td>❌ <strong>안 잼</strong></td></tr><tr><td><strong>②</strong></td><td>그 공고 안에서 정답 문단을 찾는다</td><td>✅ <strong>이것만 잰다</strong> (<code>C_doc</code> MRR@10)</td></tr></tbody></table></div>
+<p><strong>①은 두 가지 방식으로 일어난다</strong></p>
+<ul>
+<li><strong>웹</strong> — 사용자가 목록에서 공고를 클릭 (<code>doc_id</code>가 화면에서 정해진다)</li>
+<li><strong>챗 / CLI</strong> — 라우터가 질문 문장에서 추정</li>
+</ul>
+<p>라우터가 못 잡으면 <strong>전체 검색으로 넘어가지 않고 되묻는다</strong> (<code>spec §12-3</code> 폴백 금지).
+①의 정확도는 <strong>0.769 / 표본 13건</strong> — 사실상 미측정이다.</p>
+<hr/>
+<h2 id="목차">목차<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#목차" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th></th><th>절</th><th>무엇이 있나</th></tr></thead><tbody><tr><td></td><td><strong>§1</strong> <a href="#1.%20%EC%84%B1%EC%A0%81%ED%91%9C%20%E2%98%85%20%EA%B0%92%20%EC%A0%95%EB%B3%B8" class="internal alias">성적표</a></td><td>6조합 × MRR × CI × 판정 — <strong>값 정본</strong></td></tr><tr><td><strong>1부 · 판정</strong><br/><small>실험이 돈 순서</small></td><td><strong>§2</strong> <a href="#2.%20BM25%20%ED%95%98%EC%9D%B4%EB%B8%8C%EB%A6%AC%EB%93%9C%20%E2%80%94%20%EB%AF%B8%EC%B1%84%ED%83%9D%20(%EC%9E%AC%EC%B8%A1%EC%A0%95%20%EC%99%84%EB%A3%8C)" class="internal alias">BM25 하이브리드</a></td><td>1단계 — 후보에 BM25를 더할까 → <strong>미채택</strong></td></tr><tr><td></td><td><strong>§3</strong> <a href="#3.%20%EB%A6%AC%EB%9E%AD%EC%BB%A4%EB%8A%94%20R1%20%E2%80%94%20R2%EB%8A%94%20%EC%A0%90%EC%88%98%EA%B0%80%20%ED%8F%AC%ED%99%94%ED%95%9C%EB%8B%A4" class="internal alias">리랭커</a></td><td>2단계 — 어느 리랭커가 줄세울까 → <strong>R1 유지</strong></td></tr><tr><td></td><td><strong>§4</strong> <a href="#4.%20%EC%9E%84%EB%B2%A0%EB%94%A9%EC%9D%84%20%EC%99%9C%20%EC%95%88%20%EB%B0%94%EA%BE%B8%EB%82%98%20%E2%80%94%20%22%EC%B0%A8%EC%9D%B4%EA%B0%80%20%EC%97%86%EB%8B%A4%22%EA%B0%80%20%EC%95%84%EB%8B%88%EB%8B%A4" class="internal alias">임베딩</a></td><td>3단계 — 어느 임베딩이 뽑을까 → <strong>e5 유지</strong></td></tr><tr><td></td><td><strong>§5</strong> <a href="#5.%20%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%20%EB%B0%98%EC%98%81%20%EC%83%81%ED%83%9C" class="internal alias">프로덕션 반영</a></td><td>코드에 뭐가 켜져 있나</td></tr><tr><td><strong>2부 · 바로잡은 것</strong></td><td>§6~§10</td><td>인덱스 오용 · 질문 파일 불일치 · 정답지 편향 · 철회한 판단 · 설계 결함 2건</td></tr><tr><td><strong>3부 · 남은 것</strong></td><td>§11~§13</td><td>조용히 틀리는 실패 · 미해결 · 산출물</td></tr></tbody></table></div>
+<hr/>
+<h1 id="1부--판정">1부 · 판정<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1부--판정" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>이 부의 순서 = <strong>실험이 돌아간 순서</strong></p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>아래층부터 확정했다. 후보 구성이 바뀌면 그 위의 판정이 전부 다시 열리기 때문이다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>단계</th><th>절</th><th>무엇을 정했나</th><th>결과</th></tr></thead><tbody><tr><td>1단계</td><td><strong>§2</strong></td><td>후보에 BM25를 더할까</td><td><strong>C 유지</strong> (BM25 미채택)</td></tr><tr><td>2단계</td><td><strong>§3</strong></td><td>그 후보를 어느 리랭커가 줄세울까</td><td><strong>R1 유지</strong></td></tr><tr><td>3단계</td><td><strong>§4</strong></td><td>그 후보를 어느 임베딩이 뽑을까</td><td><strong>e5 유지</strong></td></tr></tbody></table></div>
+<p>1단계가 **C(현행)**로 끝나서 2·3단계의 전제가 안 바뀌었다 → <a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a> §8-1</p>
+</div>
+</blockquote>
+<h2 id="1-성적표--값-정본">1. 성적표 ★ 값 정본<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-성적표--값-정본" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>164문항 · <code>C_doc</code> · <a href="../../../개념/MRR" class="internal" data-slug="개념/MRR">MRR</a>@10 · <strong>골든셋 v5</strong> · <a href="../../../개념/paired-bootstrap" class="internal alias" data-slug="개념/paired-bootstrap">paired bootstrap</a> 1만 회.
+기준선은 <strong>e5-small + R1</strong>. 승격 기준은 측정 전에 정해둔 <strong>CI 하한 > 0</strong>(<a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a> §5).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>조합</th><th>MRR@10</th><th>기준선 대비</th><th>95% CI</th><th>판정</th></tr></thead><tbody><tr><td><strong>e5-small + R1 (현행)</strong></td><td><strong>0.7443</strong></td><td>기준선</td><td>—</td><td>✅ <strong>유지</strong></td></tr><tr><td>bge-m3 + R1</td><td>0.7640</td><td>+0.0197</td><td>[−0.0151, +0.0578]</td><td>❌</td></tr><tr><td><strong>KURE-v1 + R1</strong></td><td><strong>0.7740</strong></td><td><strong>+0.0297</strong></td><td><strong>[−0.0042, +0.0654]</strong></td><td>❌ <strong>아슬아슬하게 기각</strong></td></tr><tr><td>e5-small + R2</td><td>0.6805</td><td>−0.0638</td><td>[−0.1005, −0.0275] ✱</td><td>❌</td></tr><tr><td>bge-m3 + R2</td><td>0.6736</td><td>−0.0707</td><td>[−0.1169, −0.0243] ✱</td><td>❌</td></tr><tr><td>KURE-v1 + R2</td><td>0.6856</td><td>−0.0587</td><td>[−0.1035, −0.0140] ✱</td><td>❌</td></tr></tbody></table></div>
+<p><small>✱ = 95% 구간이 0을 포함하지 않음</small></p>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>e5의 셋째 자리는 과해석하지 않는다 </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>C·D 동점 노이즈로 e5에서 MRR <strong>±0.007</strong>이 움직인다.
+<code>C_doc</code> 0.7443과 새 실행 0.7373의 불일치도 이 동점 처리 문제가 원인으로 밝혀졌다.
+판정은 바뀌지 않지만, e5 관련 숫자는 소수점 둘째 자리까지만 근거로 쓴다.</p>
+</div>
+</blockquote>
+<h3 id="1-0-변형-코드-읽는-법--c_doc이-뭔가">1-0. 변형 코드 읽는 법 — <code>C_doc</code>이 뭔가<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-0-변형-코드-읽는-법--c_doc이-뭔가" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><code>C_doc</code> = <strong>문서 안에서 dense로 찾고 리랭커로 재정렬</strong> = 지금 서비스가 도는 방식.</p>
+<pre><code>C _ doc          C   = 어떤 조합인가
+↑    ↑           doc = 어디서 찾았나
+변형  스코프        임베딩은 여기 안 담긴다 → `m0 C_doc`처럼 앞에 붙인다
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>축</th><th>값</th></tr></thead><tbody><tr><td>조합</td><td><strong>A</strong> dense만 · <strong>C</strong> dense+리랭커 · <strong>G</strong> dense+BM25 전부+리랭커</td></tr><tr><td>스코프</td><td><code>_doc</code> 문서 안(<strong>프로덕션</strong>) · <code>_full</code> 3만 청크 전체(실험용)</td></tr><tr><td>임베딩</td><td><strong>M0</strong> e5-small · <strong>M1</strong> bge-m3 · <strong>M2</strong> KURE-v1</td></tr></tbody></table></div>
+<details>
+<summary>조합 7종 전체 · dense와 e5의 차이</summary>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>코드</th><th>구성</th></tr></thead><tbody><tr><td><strong>A</strong></td><td>dense만</td></tr><tr><td><strong>B</strong></td><td>dense + BM25</td></tr><tr><td><strong>C</strong></td><td>dense + 리랭커</td></tr><tr><td><strong>D</strong></td><td>dense + BM25 + 리랭커</td></tr><tr><td>E</td><td>dense ∪ BM25 융합 상위 20 + 리랭커</td></tr><tr><td>F</td><td>같은 융합 상위 30 + 리랭커</td></tr><tr><td><strong>G</strong></td><td>dense ∪ BM25 전부(35.2개) + 리랭커</td></tr></tbody></table></div>
+<ul>
+<li><strong>dense</strong> = “뜻으로 찾기”라는 <strong>방식</strong></li>
+<li><strong>e5</strong> = 그 벡터를 만드는 <strong>모델 이름</strong></li>
+</ul>
+<p><code>A_doc</code>은 방식만 말하고 임베딩은 안 담는다. <strong>0.6402는 정확히는 <code>m0 A_doc</code></strong> — e5로, dense만, 문서 안에서, 리랭커 없이.</p>
+<p>같은 표가 <a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a> §0 「실험 코드 읽는 법」에도 있다.</p>
+</details>
+<h2 id="2-bm25-하이브리드--미채택-재측정-완료">2. BM25 하이브리드 — 미채택 (재측정 완료)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-bm25-하이브리드--미채택-재측정-완료" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>설계 결함 둘(§10)을 고치고 **문서 스코프 BM25(<code>bm25_doc</code>)**로 다시 쟀다.
+<code>C_doc</code> · MRR@10 · 164문항 · 골든셋 v5 · 리랭커 R1.</p>
+<blockquote class="callout note" data-callout="note">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>이번 재측정이 새로 잰 것 </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>예전 구현은 BM25 전용 청크의 본문을 가져오지 않아 후보를 넓히지 못했다.
+이번에는 <code>bm25_doc</code>을 신설하고 변형 <strong>G</strong>로 BM25 전용 청크를 실제 후보에 더했다.
+그 결과 e5에서만 소폭 이득, bge-m3·KURE에서는 손해로 최종 미채택됐다.</p>
+</div>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>임베딩</th><th>C (BM25 없음)</th><th><strong>G (dense + BM25 전부)</strong></th><th>Δ</th><th>95% CI</th></tr></thead><tbody><tr><td><strong>e5-small (현행)</strong></td><td>0.7373</td><td>0.7595</td><td><strong>+0.0222</strong></td><td>[−0.0184, +0.0642]</td></tr><tr><td>bge-m3</td><td>0.7640</td><td>0.7606</td><td>−0.0035</td><td>[−0.0231, +0.0178]</td></tr><tr><td>KURE-v1</td><td>0.7740</td><td>0.7613</td><td>−0.0127</td><td>[−0.0339, +0.0087]</td></tr></tbody></table></div>
+<p>E(융합 상위 20)·F(상위 30)도 함께 쟀으나 <strong>어느 것도 유의하지 않았다.</strong></p>
+<blockquote>
+<p><strong>세 임베딩 전부 구간이 0을 품는다 → 미채택.</strong> <code>RETRIEVAL_USE_BM25 = False</code> 유지.</p>
+<p>e5의 <code>C_doc</code> 0.7373은 정본 0.7443과 다르지만, 원인은 미상이 아니라 <strong>동점 처리와 입력 순서 노이즈</strong>다.
+이 노이즈가 있어도 CI가 0을 걸치므로 판정은 바뀌지 않는다.</p>
+</blockquote>
+<h3 id="2-1-가설은-방향이-맞았다--크기가-모자랐을-뿐">2-1. 가설은 <strong>방향이 맞았다</strong> — 크기가 모자랐을 뿐<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-1-가설은-방향이-맞았다--크기가-모자랐을-뿐" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>가설은 *“약한 임베딩일수록 어휘 검색이 메울 게 많다”*였다(<a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a> §0-④).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th></th><th>dense가 정답을 <strong>하나도</strong> 못 찾은 문항</th><th>그중 BM25 보유</th><th>G의 Δ</th></tr></thead><tbody><tr><td><strong>e5-small</strong></td><td>17</td><td><strong>11</strong></td><td><strong>+0.0222</strong></td></tr><tr><td>bge-m3</td><td>10</td><td>3</td><td>−0.0035</td></tr><tr><td>KURE-v1</td><td>9</td><td>3</td><td>−0.0127</td></tr></tbody></table></div>
+<p><strong>메울 게 많은 e5에서만 +로 나왔고, 강한 임베딩에서는 음수다.</strong> 근거 숫자와 정확히 부합한다.
+<strong>다만 크기가 유의성에 못 미친다</strong> — 가설이 틀린 게 아니라 <strong>효과가 작다</strong>는 것이 답이다.</p>
+<h3 id="2-1-1-bm25는-정답을-후보에-넣어주긴-한다--상위로-못-올릴-뿐-">2-1-1. BM25는 정답을 <strong>후보에 넣어주긴 한다</strong> — 상위로 못 올릴 뿐 ★<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-1-1-bm25는-정답을-후보에-넣어주긴-한다--상위로-못-올릴-뿐-" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>가설의 앞부분은 예측치까지 맞았다. 후보에 정답이 <strong>하나도 없던</strong> 문항 수:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th></th><th>C_doc</th><th>E_doc</th><th>F_doc</th><th><strong>G_doc</strong></th><th>줄어든 수</th></tr></thead><tbody><tr><td><strong>e5-small</strong></td><td><strong>17</strong></td><td>10</td><td>7</td><td><strong>6</strong></td><td><strong>−11</strong></td></tr><tr><td>bge-m3</td><td>10</td><td>7</td><td>7</td><td>7</td><td>−3</td></tr><tr><td>KURE-v1</td><td>9</td><td>9</td><td>6</td><td>6</td><td>−3</td></tr></tbody></table></div>
+<p><strong>e5의 17문항 중 정확히 11문항이 구제됐다.</strong> 예측치(§2-1의 “BM25 보유 11”)와 한 건도 어긋나지 않는다.</p>
+<p>그런데 <strong>MRR은 유의하게 안 오른다.</strong> 즉 —</p>
+<blockquote>
+<p><strong>후보에 넣는 것과 상위에 올리는 것은 다른 문제다.</strong>
+BM25가 정답을 데려와도 리랭커가 그것을 상위 10위 안으로 올리지 못한다.
+리랭커는 <a href="../../../개념/크로스인코더-리랭커" class="internal alias" data-slug="개념/크로스인코더-리랭커">후보를 재정렬</a>할 뿐, 어휘적으로만 맞는 청크의
+의미적 관련성을 새로 만들어내지는 못한다.</p>
+</blockquote>
+<p><a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a>가 말하는 *“리랭커로 도달 불가능한 상한”*은 <strong>후보 확장으로 낮출 수 있지만,
+그것이 지표 개선으로 이어지지는 않는다</strong>는 것이 이번 실측의 답이다.</p>
+<h3 id="2-1-2-mrr만-보면-놓친다--다른-지표는-유의하게-나쁘다-">2-1-2. MRR만 보면 놓친다 — 다른 지표는 <strong>유의하게 나쁘다</strong> ★<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-1-2-mrr만-보면-놓친다--다른-지표는-유의하게-나쁘다-" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>MRR@10은 <strong>첫 정답의 순위</strong>만 본다. <a href="../../../개념/nDCG" class="internal" data-slug="개념/nDCG">nDCG</a>@10과 <a href="../../../개념/Recall과-hit-rate" class="internal alias" data-slug="개념/Recall과-hit-rate">Recall</a>@5는
+<strong>상위권 전체의 질</strong>을 본다. 둘을 함께 보면 그림이 달라진다.</p>
+<p>KURE-v1 기준, <code>C_doc</code> 대비:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>지표</th><th>G_doc Δ</th><th>95% CI</th><th></th></tr></thead><tbody><tr><td>MRR@10</td><td>−0.0127</td><td>[−0.0339, +0.0087]</td><td>미달</td></tr><tr><td><strong>nDCG@10</strong></td><td><strong>−0.0364</strong></td><td><strong>[−0.0622, −0.0101]</strong></td><td><strong>유의</strong></td></tr><tr><td><strong>Recall@5</strong></td><td><strong>−0.0492</strong></td><td><strong>[−0.0869, −0.0126]</strong></td><td><strong>유의</strong></td></tr></tbody></table></div>
+<p>E·F도 같은 방향으로 유의하게 나쁘다.</p>
+<p><strong>BM25 후보가 상위 5개를 잠식해 LLM에 넘어가는 컨텍스트를 떨어뜨린다.</strong> MRR만 봤을 때는
+“유의차 없음”이었는데, 실제 답변 품질에 직결되는 지표로는 <strong>명확한 손해</strong>다.</p>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>판정 지표를 하나만 두면 반대 방향 손해를 못 본다 </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>MRR@10을 판정 지표로 삼은 것은 “LLM에 넘길 컨텍스트 맨 앞이 중요하다”는 이유였다.
+하지만 컨텍스트는 상위 5개 전체다. <strong>MRR이 안 움직여도 nDCG·Recall이 무너질 수 있다.</strong>
+이번엔 결론이 같은 방향이라 판정이 안 바뀌었지만, 반대였다면 잘못 채택했을 것이다.</p>
+</div>
+</blockquote>
+<h3 id="2-1-3-하이브리드를-켜면-임베딩-격차가-사라진다-">2-1-3. 하이브리드를 켜면 임베딩 격차가 사라진다 ★<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-1-3-하이브리드를-켜면-임베딩-격차가-사라진다-" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>KURE-v1 − e5-small 격차를 <strong>후보 구성별로</strong> 보면:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>후보 구성</th><th>격차 (MRR@10)</th><th>95% CI</th><th></th></tr></thead><tbody><tr><td><strong>C_doc</strong> (BM25 없음 = 기준선)</td><td><strong>+0.0367</strong></td><td>[−0.0018, +0.0763]</td><td>미달</td></tr><tr><td>D_doc (집합은 C와 동일)</td><td>+0.0297</td><td>[−0.0042, +0.0654]</td><td>미달</td></tr><tr><td>E_doc</td><td>+0.0271</td><td>[+0.0070, +0.0515]</td><td>유의</td></tr><tr><td>F_doc</td><td>+0.0073</td><td>[−0.0007, +0.0185]</td><td>미달</td></tr><tr><td><strong>G_doc</strong> (하이브리드)</td><td><strong>+0.0018</strong></td><td>[−0.0006, +0.0050]</td><td>미달</td></tr></tbody></table></div>
+<p><strong>하이브리드에서는 격차가 20분의 1로 줄어든다.</strong> BM25가 약한 임베딩의 구멍을 메우니
+어느 임베딩을 쓰든 비슷해지는 것이다 — §2-1의 가설과 같은 원리다.</p>
+<p>즉 *“임베딩을 바꿀 돈으로 BM25를 켜라”*는 선택지가 성립할 뻔했다. 실제 답은
+<strong>둘 다 안 켜는 것</strong>이다 — BM25는 §2-1-2대로 nDCG·Recall을 유의하게 떨어뜨리고,
+임베딩 교체는 §4대로 유의하지 않다.</p>
+<blockquote>
+<p><strong>C_doc 격차 +0.0367과 D_doc 격차 +0.0297의 차이에 주의하라.</strong> 두 변형은 후보
+<strong>집합이 완전히 같다.</strong> 동점 순서 하나로 헤드라인 숫자가 0.007 움직인 것이다 → §11-1</p>
+</blockquote>
+<h3 id="2-2-죽은-코드가-아니라-근거-있는-분기였다">2-2. 죽은 코드가 아니라 근거 있는 분기였다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-2-죽은-코드가-아니라-근거-있는-분기였다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># src/query/retrieve.py:39</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">use_bm25 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> config.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">RETRIEVAL_USE_BM25</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> and</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> doc_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">is</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> None</span></span></code></pre></figure>
+<p><strong>문서가 특정되면 BM25를 끈다.</strong> 오래 *“왜 죽은 코드인지 모르고 지나치면 안 되는 자리”*로 남겨뒀는데, <strong>이제 답이 나왔다 — 이 분기가 옳았음이 실증됐다.</strong></p>
+<p>문서를 좁힌 상태에서 BM25를 더해봐야 세 임베딩 어디서도 유의한 이득이 없다. 죽은 코드가 아니라 <strong>근거 있는 분기</strong>다.</p>
+<h2 id="3-리랭커는-r1--r2는-점수가-포화한다">3. 리랭커는 R1 — R2는 점수가 포화한다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-리랭커는-r1--r2는-점수가-포화한다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>결론: R1 유지, R2 기각.</strong> R2는 임베딩 3종 어디에 붙여도 R1 대비 <strong>−0.06~−0.07</strong>로 크게 졌고, CI가 0을 안 걸친다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>코드</th><th>모델명</th><th>성격</th></tr></thead><tbody><tr><td><strong>R1</strong></td><td><code>bge-reranker-v2-m3</code></td><td>현행 리랭커</td></tr><tr><td><strong>R2</strong></td><td><code>dragonkue/bge-reranker-v2-m3-ko</code></td><td>R1의 한국어 튜닝판</td></tr></tbody></table></div>
+<p>골든셋 <strong>v5</strong> · <code>C_doc</code> · MRR@10 기준이다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>임베딩</th><th>R2의 R1 대비 Δ</th><th>95% CI</th><th>유의 여부</th></tr></thead><tbody><tr><td>e5-small</td><td>−0.0638</td><td>[−0.1005, −0.0275]</td><td><strong>유의 패배</strong></td></tr><tr><td>bge-m3</td><td>−0.0707</td><td>[−0.1169, −0.0243]</td><td><strong>유의 패배</strong></td></tr><tr><td>KURE-v1</td><td>−0.0587</td><td>[−0.1035, −0.0140]</td><td><strong>유의 패배</strong></td></tr></tbody></table></div>
+<p><strong>CI 상한까지 전부 음수다.</strong> “운이 나빴을 수도 있다”가 아니라 확실히 진 것이다.</p>
+<p><small>R2 기각은 v5 라벨링 <strong>전에</strong> 이미 확정됐다 — 정답지를 어떻게 채점해도 졌기 때문이다. 그 경위는 <a href="#8-2-%EB%A8%BC%EC%A0%80-%EA%B5%AC%EA%B0%84%EC%97%90-%EA%B0%80%EB%92%80%EB%8B%A4" class="internal alias">§8-2</a>.</small></p>
+<h3 id="3-0-리랭커를-켠-것-자체가-이-실험-최대-이득">3-0. 리랭커를 켠 것 자체가 이 실험 최대 이득<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-0-리랭커를-켠-것-자체가-이-실험-최대-이득" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>구성</th><th>MRR@10</th><th>기준선 대비</th></tr></thead><tbody><tr><td>dense 단독 (<code>A_doc</code>)</td><td>0.6402</td><td>—</td></tr><tr><td>+ BM25 (전역 스코프·RRF 순서)</td><td>0.6096</td><td>−0.031 ❌</td></tr><tr><td><strong>+ 리랭커</strong> (<code>C_doc</code>)</td><td><strong>0.7443</strong></td><td><strong>+0.104 ✅</strong></td></tr></tbody></table></div>
+<p><strong>+0.104가 얼마나 큰가</strong>: 164문항 총점으로 17점이다. 정답이 6등에 있던 문항 20개가 1등으로 올라온 것과 같은 크기다.</p>
+<p>유형별로도 <strong>손해 본 유형이 하나도 없다.</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>유형</th><th>문항</th><th>dense 단독</th><th>+리랭커</th><th>차이</th></tr></thead><tbody><tr><td>단일세부</td><td>90</td><td>0.6956</td><td>0.8322</td><td><strong>+0.137</strong></td></tr><tr><td>직답</td><td>20</td><td>0.5260</td><td>0.7146</td><td><strong>+0.189</strong></td></tr><tr><td>탐색비교</td><td>25</td><td>0.5267</td><td>0.5611</td><td>+0.034</td></tr><tr><td>후속</td><td>29</td><td>0.6449</td><td>0.6498</td><td>+0.005</td></tr></tbody></table></div>
+<p><strong>탐색비교·후속은 개선폭이 작다.</strong> 둘 다 문서를 여러 개 걸치거나 앞 대화에 의존하는 유형이라, 후보를 잘 정렬하는 것만으로는 한계가 있다 → §12</p>
+<h3 id="3-1-왜-졌나--점수-포화">3-1. 왜 졌나 — 점수 포화<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-1-왜-졌나--점수-포화" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>리랭커는 후보 20개에 각각 점수를 매기고, 그 점수 순서로 후보를 다시 줄세운다. <strong>점수 포화</strong>는 여러 후보가 같은 최고점 근처에 몰려 순서를 가를 정보가 사라지는 상태다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>관찰한 것</th><th>R2 실측</th><th>뜻</th></tr></thead><tbody><tr><td>후보 20개 중 고유 점수</td><td><strong>10개뿐</strong></td><td>같은 점수를 받은 후보가 많다</td></tr><tr><td>상위 3개 점수</td><td><strong>전부 정확히 1.0</strong></td><td>1~3위를 점수로 구분하지 못한다</td></tr></tbody></table></div>
+<p>점수가 같으면 순서를 못 정한다. R2는 후보를 다시 줄세우는 역할에서 <strong>변별 실패</strong>를 낸 것이다 → <a href="../../../개념/지표-포화" class="internal alias" data-slug="개념/지표-포화">지표 포화</a></p>
+<h3 id="3-2-한국어-튜닝은-양쪽에서-이득이-없었다">3-2. 한국어 튜닝은 양쪽에서 이득이 없었다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-2-한국어-튜닝은-양쪽에서-이득이-없었다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>임베딩 쪽도 한국어 튜닝판이 이기지 못했고, 리랭커 쪽은 크게 졌다. 한쪽이면 우연일 수 있지만 둘 다면 패턴이다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>축</th><th>원본</th><th>한국어 튜닝판</th><th>조건</th><th>결과</th></tr></thead><tbody><tr><td>임베딩</td><td>M1 bge-m3 <strong>0.7417</strong></td><td>M2 KURE-v1 <strong>0.7416</strong></td><td>dense 단독 · 리랭커 없음</td><td>무승부</td></tr><tr><td>리랭커</td><td>R1 <code>bge-reranker-v2-m3</code></td><td>R2 <code>dragonkue/bge-reranker-v2-m3-ko</code></td><td>임베딩 3종 전부</td><td>R2가 <strong>−0.06~−0.07</strong>로 유의 패배</td></tr></tbody></table></div>
+<h2 id="4-임베딩을-왜-안-바꾸나--차이가-없다가-아니다">4. 임베딩을 왜 안 바꾸나 — “차이가 없다”가 아니다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-임베딩을-왜-안-바꾸나--차이가-없다가-아니다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>결론: M0 <code>e5-small</code> 유지.</strong> KURE-v1은 점추정으로는 앞섰지만, 종단 MRR +0.0297의 95% CI가 0을 걸쳐 <strong>이득이 증명되지 않았다</strong>.</p>
+<blockquote>
+<p>후보 구성이 <strong>C로 확정</strong>됐으므로(§2) 이 판정은 <strong>전제가 그대로다 — 재판정 없이 확정.</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>코드</th><th>이 절에서 뜻하는 것</th></tr></thead><tbody><tr><td><strong>M0</strong></td><td><code>e5-small</code> — 현행 임베딩</td></tr><tr><td><strong>M1</strong></td><td><code>bge-m3</code> — 큰 원본 임베딩</td></tr><tr><td><strong>M2</strong></td><td><code>KURE-v1</code> — bge-m3의 한국어 튜닝 임베딩</td></tr><tr><td><strong>R1</strong></td><td><code>bge-reranker-v2-m3</code> — 현행 리랭커</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>값의 조건</th><th>뜻</th></tr></thead><tbody><tr><td>dense 단독</td><td>임베딩만으로 후보를 뽑고 리랭커는 켜지 않은 진단값</td></tr><tr><td>+ 리랭커 R1</td><td>현행 리랭커까지 켠 종단값. <strong>승격 판정은 이 조건</strong>으로 한다</td></tr><tr><td>CI가 0을 걸침</td><td>같은 164문항을 다시 뽑아 재면 이득이 0 이하일 수 있다는 뜻</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>임베딩</th><th>dense 단독 (<code>A_doc</code>)</th><th>+ 리랭커 R1 (<code>C_doc</code>)</th><th>기준선 대비</th><th>95% CI</th><th>판정</th></tr></thead><tbody><tr><td><strong>M0</strong> e5-small (현행)</td><td>0.6402</td><td><strong>0.7443</strong></td><td>기준선</td><td>—</td><td>✅ 유지</td></tr><tr><td>M1 bge-m3</td><td>0.7417</td><td>0.7640</td><td>+0.0197</td><td>[−0.0151, +0.0578]</td><td>❌</td></tr><tr><td><strong>M2</strong> KURE-v1</td><td>0.7416</td><td><strong>0.7740</strong></td><td><strong>+0.0297</strong></td><td>[−0.0042, +0.0654]</td><td>❌</td></tr></tbody></table></div>
+<p>이 표에서 셋이 한 번에 보인다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>보이는 것</th><th></th></tr></thead><tbody><tr><td><strong>dense 단독 격차는 크다</strong></td><td>M0 0.6402 vs M1·M2 약 0.7417 → <strong>+0.10</strong></td></tr><tr><td><strong>리랭커를 켜면 3분의 1 이하로 줄어든다</strong></td><td>+0.10 → <strong>+0.0297</strong></td></tr><tr><td><strong>M1 ≈ M2</strong></td><td>0.7417 vs 0.7416 — 한국어 튜닝이 dense 단계에서 무효</td></tr></tbody></table></div>
+<p><strong>리랭커가 이미 그 몫을 하고 있다.</strong> 임베딩을 키워 얻는 것은 두 가지인데, 하나는 리랭커가 대신 못 하고 하나는 이미 하고 있다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>임베딩을 바꿔 얻는 것</th><th>리랭커가 대신해주나</th><th>실측</th></tr></thead><tbody><tr><td>정답을 후보 안에 <strong>넣는</strong> 능력</td><td>❌ 못 함</td><td>Recall@20 0.8163 → 0.8631, 후보 밖 17 → 13</td></tr><tr><td>후보 안에서 <strong>위로 올리는</strong> 능력</td><td>✅ 이미 함</td><td>종단 +0.0297에 그침</td></tr></tbody></table></div>
+<p>KURE는 최소 폭(+0.03)에 사실상 닿았지만 95% 구간 하한이 <strong>−0.0042</strong>다. <strong>164문항으로는 이 크기를 우연과 구분할 수 없다.</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>치러야 하는 것 (확실)</th><th>얻는 것 (불확실)</th></tr></thead><tbody><tr><td>재인덱싱 <strong>28.5분</strong></td><td>MRR <strong>+0.0297</strong> — 구간이 0을 품는다</td></tr><tr><td>모델 <strong>5배</strong> (118M → 0.6B)</td><td></td></tr><tr><td>HF 캐시 <strong>4.3GB</strong> (VM 여유 7GB)</td><td></td></tr></tbody></table></div>
+<blockquote>
+<p><strong>정직하게 쓰면 “교체해도 손해는 없지만 이득이 증명되지 않는다”</strong> 이다.
+점추정은 계속 KURE가 앞섰고, 정답지 편향을 걷어낼수록 격차가 벌어졌다(§8).</p>
+</blockquote>
+<h3 id="4-0-dense-단독-성적--임베딩-자체의-실력-진단용-골든셋-v4-기준">4-0. dense 단독 성적 — 임베딩 자체의 실력 (진단용, 골든셋 v4 기준)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-0-dense-단독-성적--임베딩-자체의-실력-진단용-골든셋-v4-기준" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>임베딩 자체의 실력. <strong>판정용이 아니다</strong>(<a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a> §3).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th></th><th>임베딩</th><th>MRR@10</th><th><a href="../../../개념/nDCG" class="internal" data-slug="개념/nDCG">nDCG</a>@10</th><th><a href="../../../개념/Recall과-hit-rate" class="internal alias" data-slug="개념/Recall과-hit-rate">Recall</a>@5</th><th>Recall@20</th><th>정답이 후보에 아예 없음</th></tr></thead><tbody><tr><td><strong>M0</strong></td><td>e5-small</td><td>0.6402</td><td>0.6061</td><td>0.6188</td><td>0.8163</td><td><strong>17</strong></td></tr><tr><td><strong>M1</strong></td><td>bge-m3</td><td>0.7417</td><td>0.6973</td><td>0.7132</td><td>0.8557</td><td>14</td></tr><tr><td><strong>M2</strong></td><td>KURE-v1</td><td>0.7416</td><td>0.7082</td><td>0.7335</td><td><strong>0.8631</strong></td><td><strong>13</strong></td></tr></tbody></table></div>
+<p><strong>M1 ≈ M2</strong> — dense 단계에서 한국어 튜닝의 이득은 없다. <a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a> §6의 판정표대로 읽으면 **“계열이 관건”**이다.</p>
+<h3 id="4-1-재판정-조건--이-셋-중-하나면-다시-본다">4-1. 재판정 조건 — 이 셋 중 하나면 다시 본다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-1-재판정-조건--이-셋-중-하나면-다시-본다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>골든셋이 300문항 이상으로 늘어난다</strong> — 구간이 좁아져 +0.03이 유의해질 수 있다</li>
+<li><strong>다른 이유로 재인덱싱이 필요해진다</strong> — 교체 비용이 사라지면 교환 조건이 바뀐다</li>
+<li><strong>Recall@20이 병목인 기능이 생긴다</strong> — e5 0.8163 vs KURE 0.8631</li>
+</ol>
+<h2 id="5-프로덕션-반영-상태">5. 프로덕션 반영 상태<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-프로덕션-반영-상태" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>결론: 프로덕션은 리랭커만 켜고 BM25는 끈다.</strong> GPU가 없으면 리랭커를 포기하고 dense 단독으로 강등한다.</p>
+<p><strong><code>RETRIEVAL_USE_RERANKER = True</code></strong> · <code>RETRIEVAL_USE_BM25 = False</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>설정</th><th>값</th><th>의미</th></tr></thead><tbody><tr><td><code>RETRIEVAL_USE_RERANKER</code></td><td><code>True</code></td><td>dense 후보 20개를 R1 리랭커로 다시 줄세운다</td></tr><tr><td><code>RETRIEVAL_USE_BM25</code></td><td><code>False</code></td><td>문서 안 검색에서는 BM25 후보 확장을 쓰지 않는다</td></tr><tr><td><code>RERANKER_REQUIRE_GPU</code></td><td><code>True</code></td><td>GPU가 없으면 리랭커를 켜지 않고 dense 단독으로 강등한다</td></tr></tbody></table></div>
+<pre><code>지금:   질문 → 문서 좁히기 → 뜻으로 20개 찾기 → 리랭커가 재정렬 → 상위 5개 → LLM
+                                                  ↑ 이것만 추가됐다
+</code></pre>
+<p>켜기 전 선결 과제 둘을 이렇게 해소했다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>과제</th><th>상태</th><th>무엇을 했나</th></tr></thead><tbody><tr><td><strong>동시성 락</strong></td><td>✅</td><td><code>ask()</code>가 동기 함수라 FastAPI 스레드풀에서 568M 모델이 중복 로드될 수 있었다(→ L4 OOM). <strong>이중검사 락</strong>(모델·코퍼스 지문별 key)으로 로더를 1회만 태우고 <code>MODEL_LOAD_TIMEOUT_S=300</code>으로 유한 대기를 둬 초과 시 폴백 강등한다. 8스레드 Barrier 테스트로 로더 1회 호출 확인</td></tr><tr><td><strong>지연시간</strong></td><td>✅</td><td>아래</td></tr><tr><td><strong>거짓양성 검사</strong></td><td>⬜ <strong>남음</strong></td><td>모른다·반문 30문항에서 없는 근거를 지어내지 않는지</td></tr></tbody></table></div>
+<p><strong>“맥은 MPS로 돈다”는 전제가 틀렸다.</strong> <code>_load_cross_encoder</code>가 <code>device=&quot;cuda&quot; if use_cuda else &quot;cpu&quot;</code>로 되어 있고 MPS 경로는 불안정해 일부러 배제한다. <strong>맥에서는 CPU로 돈다.</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>환경</th><th>문항당</th><th>배수</th></tr></thead><tbody><tr><td>VM L4 (GPU)</td><td><strong>0.27초</strong></td><td>1×</td></tr><tr><td><strong>맥 CPU</strong></td><td><strong>13.27초</strong></td><td><strong>49×</strong></td></tr></tbody></table></div>
+<p>문항당 13초는 대화형으로 쓸 수 없다. 그래서 <strong><code>RERANKER_REQUIRE_GPU=True</code> 가드</strong>로 <strong>GPU가 없으면 dense 단독으로 자동 강등</strong>한다. 프로덕션은 VM(GPU 있음)이라 이 가드를 안 타지만, <strong>맥에서 백엔드를 띄우는 워크플로가 실재</strong>해서 넣었다 — 가드가 없으면 그 경로에서 조용히 49배 느려진다.</p>
+<hr/>
+<h1 id="2부--실험하며-바로잡은-것">2부 · 실험하며 바로잡은 것<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2부--실험하며-바로잡은-것" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>여기부터는 <strong>결론이 아니라 경위</strong>다. 결론만 필요하면 1부에서 멈춰도 된다.
+다만 아래 넷은 <strong>수치보다 오래 남을 기록</strong>이다 — 전부 “에러 없이 조용히 틀리는” 종류였다.</p>
+</blockquote>
+<h2 id="6-인덱스를-잘못-쓰고-있었다">6. 인덱스를 잘못 쓰고 있었다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-인덱스를-잘못-쓰고-있었다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>결론: 초기 측정은 틀린 인덱스를 봤고, 전부 <code>chroma_v2</code>로 통일했다.</strong> 정답 청크 2개가 빠진 상태라 조용히 성적이 왜곡될 수 있었다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>이름</th><th>이 절에서 뜻하는 것</th></tr></thead><tbody><tr><td><code>data/chroma</code></td><td>초기 측정이 잘못 사용한 인덱스</td></tr><tr><td><code>chroma_v2</code></td><td>골든셋 정답지가 기준으로 삼은 인덱스</td></tr><tr><td><code>chunk_id</code></td><td>정답 청크를 식별하는 키. 양쪽 인덱스에 같은 값이 있어도 내용 완전성은 다를 수 있다</td></tr></tbody></table></div>
+<p>초기 측정은 <code>data/chroma</code>를 썼는데, 정답 청크 253개 중 <strong>251개만</strong> 들어 있었다. 정답지는 <code>chroma_v2</code> 기준으로 만들어진 것이었다.</p>
+<p>chunk_id가 양쪽 다 존재해서 <strong>에러 없이 조용히 2문항이 빠진다.</strong> 전부 <code>chroma_v2</code>로 통일했다.</p>
+<h2 id="7-검색과-재정렬이-서로-다른-질문을-보고-있었다-">7. 검색과 재정렬이 서로 다른 질문을 보고 있었다 ★<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-검색과-재정렬이-서로-다른-질문을-보고-있었다-" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>결론: 0.7747은 가짜 상승이었다.</strong> 후보를 뽑은 질문 파일과 리랭커가 본 질문 파일이 달라, 같은 문항을 같은 조건으로 잰 비교가 아니었다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>파일</th><th>이 절에서 뜻하는 것</th></tr></thead><tbody><tr><td><code>qid_query_200.jsonl</code></td><td>후속 질문 29문항에 선행 턴을 붙인 검색·리랭킹용 병합본</td></tr><tr><td><code>goldenset_200.jsonl</code></td><td>골든셋 원본. 정답 정보와 원문 질문을 담지만, 이 실행의 리랭킹 입력으로 쓰면 안 됐다</td></tr></tbody></table></div>
+<p>리랭킹을 처음 돌렸을 때 <strong>0.7747</strong>이 나왔다. 기준선 대비 +0.03을 훌쩍 넘어 승격처럼 보였는데 <strong>가짜 상승이었다.</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>단계</th><th>무엇을 봤나</th></tr></thead><tbody><tr><td>1단계 — dense 후보 캐시</td><td><code>qid_query_200.jsonl</code> (<strong>병합본</strong>)</td></tr><tr><td>2단계 — 리랭킹</td><td><code>goldenset_200.jsonl</code> (<strong>원본</strong>) ← 여기가 틀렸다</td></tr></tbody></table></div>
+<p>두 파일은 <strong>후속 질문 29문항의 텍스트가 다르다</strong>(<a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a> §2-1).</p>
+<pre><code>원본:    &quot;그 사업의 안정화기간은?&quot;
+병합본:  &quot;한영대학교 …사업기간은 어떻게 되나요? 그 사업의 안정화기간은?&quot;
+</code></pre>
+<p><strong>검색은 맥락이 붙은 질문으로 후보를 뽑았는데, 리랭커는 “그 사업”이 뭔지 모르는 채로</strong> 그 29문항의 순서를 매겼다. 골든셋·정답지·채점 기준에는 문제가 없었다 — 잘못은 전적으로 실행 인자 쪽이다.</p>
+<blockquote class="callout danger" data-callout="danger">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>교훈 — 1단계(후보 캐시)와 2단계(리랭킹)는 반드시 <strong>같은 질문 파일</strong>을 봐야 한다</p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>파일 이름이 둘 다 그럴듯하고, 문항 수도 맞고, 에러도 안 난다. <strong>성적이 올라서 발견됐다.</strong>
+내려갔으면 “새 임베딩이 별로네”로 넘어갔을 수도 있다.</p>
+</div>
+</blockquote>
+<h2 id="8-정답지가-새-모델에-불리했다--풀링으로-제거했다-">8. 정답지가 새 모델에 불리했다 — 풀링으로 제거했다 ★<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-정답지가-새-모델에-불리했다--풀링으로-제거했다-" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>결론: v4 정답지는 e5 후보 중심이라 새 임베딩에 불리했고, v5 풀링으로 편향을 제거했다.</strong> 편향 제거 뒤에도 최종 판정은 현행 유지다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>용어</th><th>이 절에서 뜻하는 것</th></tr></thead><tbody><tr><td>v4</td><td>e5 후보 위주로 만들어져 새 모델 후보의 미판정 비율이 높던 정답지</td></tr><tr><td>v5</td><td>세 임베딩 후보를 합쳐 추가 판정한 뒤 만든 정답지</td></tr><tr><td>풀링</td><td>여러 모델이 가져온 후보를 합집합으로 묶어 같은 정답지로 판정하는 방식</td></tr><tr><td>미판정 후보</td><td>사람이 아직 정답/오답을 읽어보지 않은 후보. 그대로 두면 보통 오답처럼 세어진다</td></tr></tbody></table></div>
+<h3 id="8-1-무엇이-문제였나">8-1. 무엇이 문제였나<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-1-무엇이-문제였나" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>정답 라벨은 <strong>e5가 뽑아온 후보만 사람이 판정</strong>해서 만들어졌다. 새 모델이 그 풀 밖에서 진짜 정답을 찾아오면 라벨이 없어 <strong>자동으로 오답</strong>이 된다.</p>
+<p>리랭킹 <strong>상위 10개</strong> 기준 미판정 비율:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>조합</th><th>상위 10개 중 미판정</th></tr></thead><tbody><tr><td>e5 + R1 (현행)</td><td><strong>0.7%</strong></td></tr><tr><td>bge-m3 + R1</td><td><strong>26.0%</strong></td></tr><tr><td>KURE + R1</td><td><strong>32.0%</strong></td></tr></tbody></table></div>
+<p><strong>새 모델이 사용자에게 보여줄 10개 중 3분의 1을 아무도 읽어본 적이 없었다.</strong> 잘할수록 손해를 보는 구조다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>v4 문제</th><th>v5에서 바뀐 것</th></tr></thead><tbody><tr><td>e5 상위10 미판정률 0.7%</td><td>전 조합 <strong>0.0%</strong></td></tr><tr><td>bge-m3 상위10 미판정률 26.0%</td><td>전 조합 <strong>0.0%</strong></td></tr><tr><td>KURE 상위10 미판정률 32.0%</td><td>전 조합 <strong>0.0%</strong></td></tr></tbody></table></div>
+<h3 id="8-2-먼저-구간에-가뒀다">8-2. 먼저 구간에 가뒀다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-2-먼저-구간에-가뒀다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>결론: R2는 바로 기각할 수 있었지만, M1·M2는 정답지를 더 읽어야 했다.</strong> 미판정 후보 처리 방식에 따라 새 임베딩 점수가 크게 움직였기 때문이다.</p>
+<p>전부 라벨링하기 전에 <a href="../../../개념/상·하한-채점" class="internal alias" data-slug="개념/상·하한-채점">상·하한 채점</a>으로 <strong>판정이 갈리는지부터</strong> 봤다.</p>
+<p>정답지를 e5 후보로만 만들어서, 새 임베딩이 가져온 후보 중 <strong>아무도 O/X를 안 매긴 청크</strong>가 최대 32%였다(e5는 0.7%). 정답인지 모르는데 점수는 내야 하므로 <strong>셋 다 계산했다.</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>가정</th><th>안 본 청크를</th><th></th></tr></thead><tbody><tr><td><strong>하한</strong></td><td>오답으로 침</td><td>제일 짜게</td></tr><tr><td><strong>응축</strong></td><td>순위에서 빼버림</td><td>본 것끼리만 등수</td></tr><tr><td><strong>상한</strong></td><td>정답으로 쳐줌</td><td>제일 후하게</td></tr></tbody></table></div>
+<p><strong>어느 가정으로 계산해도 결론이 같으면 라벨링이 필요 없고, 갈리면 라벨링을 해야 한다.</strong> 점수를 확정하는 장치가 아니라 *“정답지를 더 읽어야 하나”*를 가리는 장치다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>조합</th><th>하한</th><th>응축</th><th>상한</th><th>폭</th></tr></thead><tbody><tr><td>e5 + R1</td><td>0.7443</td><td>0.7446</td><td>0.7461</td><td><strong>0.0018</strong></td></tr><tr><td>bge-m3 + R1</td><td>0.7412</td><td>0.7546</td><td>0.7916</td><td>0.0504</td></tr><tr><td>KURE + R1</td><td>0.7511</td><td>0.7639</td><td>0.8002</td><td><strong>0.0491</strong></td></tr></tbody></table></div>
+<p><strong>e5의 폭이 0.0018로 사실상 없다.</strong> 정답지가 e5에 맞춰져 있다는 직접 증거이자, <strong>기존 수치는 그대로 신뢰해도 된다</strong>는 뜻이다.</p>
+<p>세 갈래 검정 결과 <strong>R2 조합은 어떤 가정으로도 져서 확정 기각</strong>됐고, M1·M2는 **“채택도 기각도 못 한다”**가 됐다. 그래서 읽기로 했다.</p>
+<h3 id="8-3-전수-풀링-라벨링">8-3. 전수 풀링 라벨링<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-3-전수-풀링-라벨링" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>결론: 세 임베딩 후보를 한 정답지로 합쳐 읽었다.</strong> 모델별 정답지를 따로 만들면 비교 기준이 달라지므로, 하나의 v5 판정 풀로 묶었다.</p>
+<p><strong>정답지는 하나로 둔다.</strong> 모델별로 만들면 서로 다른 시험이 되어 비교가 불가능해진다. 그래서 <strong>세 임베딩의 <code>dense_doc</code> 후보를 합집합</strong>으로 묶어 판정 풀을 넓히고, 기존 판정분은 재사용하고 <strong>증분만</strong> 판정했다(문항당 합집합 36.0개, 신규 대상 <strong>2,105개</strong>).</p>
+<p><strong>기존 파이프라인을 그대로 썼다</strong> — 라벨러 <code>rounds/r8/SKILL.md</code>(v8) → 독립 검증자 <code>VERIFY_SPEC.md</code>. 200문항 골든셋이 만들어진 바로 그 흐름이다.</p>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>여기서는 <strong>절대 정확도보다 일관성</strong>이 중요하다</p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>증분을 더 엄격한 방법으로 라벨링하면 기존 정답과 잣대가 갈려,
+e5(기존 라벨 위주)와 KURE(신규 라벨 위주)가 <strong>서로 다른 기준으로 채점</strong>된다.
+<strong>지금 고치려는 편향을 다른 편향으로 바꾸는 꼴</strong>이다.</p>
+</div>
+</blockquote>
+<details open>
+<summary>샤드별 전수 풀링 라벨링 결과</summary>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>샤드</th><th>문항</th><th>라벨러 정답/판정</th><th>검증 verdict</th><th>추가</th><th>제거</th><th>보류</th></tr></thead><tbody><tr><td>shard1</td><td>43</td><td>7 / 530 (1.3%)</td><td>통과 40 · 수정 3</td><td>0</td><td>0</td><td>3</td></tr><tr><td>shard2</td><td>42</td><td>13 / 525 (2.5%)</td><td>통과 42</td><td>0</td><td>0</td><td>0</td></tr><tr><td>shard3</td><td>37</td><td>13 / 525 (2.5%)</td><td>통과 36 · 수정 1</td><td><strong>1</strong></td><td>0</td><td>1</td></tr><tr><td>shard4</td><td>42</td><td>9 / 525 (1.7%)</td><td>통과 41 · 수정 1</td><td>0</td><td>0</td><td>1</td></tr><tr><td><strong>계</strong></td><td><strong>164</strong></td><td><strong>42 / 2,105 (2.0%)</strong></td><td>재작업 <strong>0</strong></td><td><strong>1</strong></td><td><strong>0</strong></td><td><strong>5</strong></td></tr></tbody></table></div>
+</details>
+<p><strong>독립 검증자 4명이 2,105개를 전부 재독해 추가 1건 · 제거 0건.</strong> 지어낸 chunk_id 0건.</p>
+<p><small>shard1의 1.3%가 기존 판정 풀(4.6%)의 1/3.5라 “덜 고른 것 아닌가”를 의심했다 — R8(쪼개진 표 묶기) 적용 0건, 기존 정답과 번호가 인접한 후보 25개 중 정답 2개뿐. 그래서 재독시켰고 <strong>추가 0건</strong>으로 돌아왔다. 배제 사유 23개가 원문 인용과 함께 남아 있었다. <strong>낮은 정답률은 태만이 아니라 실제 분포였다.</strong></small></p>
+<h3 id="8-4-편향이-사라졌다">8-4. 편향이 사라졌다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-4-편향이-사라졌다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>결론: v5에서는 전 조합 상위10 미판정률이 0.0%가 됐다.</strong> 보정할 구간이 사라졌고, KURE 이득은 커졌지만 승격 기준은 넘지 못했다.</p>
+<pre><code>정답 청크    310 → 353     판정 풀   6,751 → 8,856 (문항당 41.2 → 54.0)
+상위10 미판정률   전 조합 0.0%      하한 = 응축 = 상한   완전 일치
+</code></pre>
+<p><strong>상·하한 구간이 한 점으로 붕괴했다.</strong> 보정할 여지 자체가 사라졌다 — 풀링이 성공했다는 증거다.
+<strong>편향 제거 후 KURE의 실제 이득은 +0.0068 → +0.0297로 4배 커졌다.</strong> 그런데도 §1의 판정은 바뀌지 않았다.</p>
+<p><small>보류 5건은 <strong>미반영</strong> — 정답으로 치지 않는다. <strong>오염보다 누락이 덜 해롭기 때문이다.</strong> 쟁점은 표기 정규화로, 가장 날카로운 건 <code>g200:15de45f1</code>(“계약일로부터 3개월”과 기준답변 “90일”을 같은 값으로 볼지).</small></p>
+<h2 id="9-미채택-판단을-한-번-철회했다-">9. “미채택” 판단을 한 번 철회했다 ★<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#9-미채택-판단을-한-번-철회했다-" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>결론: 정답률만 보고 임베딩 교체를 기각한 판단은 철회했다.</strong> 중요한 것은 추가 정답의 개수 비율이 아니라 MRR에 실제로 얼마나 반영되는지였다.</p>
+<p>shard1 결과를 받고 이렇게 적었다.</p>
+<blockquote>
+<p><del>실측 정답률이 1.3%뿐이니 <strong>하한이 거의 참값</strong>이고, 하한 기준 구간이 0을 품으니
+<strong>임베딩 교체는 승격 근거가 없다.</strong></del></p>
+</blockquote>
+<p><strong>틀렸다.</strong> 정답률만 보고 <strong>그 정답이 점수를 얼마나 움직이는지는 재지 않은</strong> 판단이었다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>조합</th><th>반영 전</th><th>7개 반영 후</th><th>Δ</th></tr></thead><tbody><tr><td>e5 + R1</td><td>0.7443</td><td>0.7443</td><td><strong>+0.0000</strong></td></tr><tr><td>bge-m3 + R1</td><td>0.7412</td><td>0.7473</td><td>+0.0061</td></tr><tr><td><strong>KURE + R1</strong></td><td>0.7511</td><td>0.7590</td><td><strong>+0.0078</strong></td></tr></tbody></table></div>
+<p><strong>7개뿐인데 KURE가 +0.0078 올랐다.</strong> 그 7개가 6문항에 붙었고, <a href="../../../개념/MRR" class="internal" data-slug="개념/MRR">MRR</a>은 정답 하나가 한 문항 점수를 0 → 0.5로 바꾼다. e5가 꿈쩍 안 한 건 예상대로다 — 기존 라벨이 애초에 e5 후보에서 나왔으니 더 얻을 게 없다.</p>
+<blockquote class="callout danger" data-callout="danger">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>교훈 — <strong>정답률이 낮은 것과 지표에 영향이 없는 것은 다른 얘기다</strong></p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>2,105개 중 42개(2.0%)라는 <strong>개수 비율</strong>은 무시해도 될 크기처럼 보이지만,
+그게 어느 문항 몇 등에 꽂히느냐에 따라 지표는 크게 움직인다.
+<strong>판정은 개수 비율이 아니라 지표에 반영해서 봐야 한다.</strong></p>
+</div>
+</blockquote>
+<p><small>덧붙여, 이때 표본으로 전수를 외삽해 <strong>약 +0.0297</strong>을 예측했는데 <strong>전수 결과가 정확히 그 값</strong>이었다. 예측 셋 중 둘(상승폭·경계에 걸림)은 맞았고 하나(경계를 넘음)는 틀렸다.</small></p>
+<h2 id="10-bm25-하이브리드-설계-결함-2건-">10. BM25 하이브리드 설계 결함 2건 ★<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10-bm25-하이브리드-설계-결함-2건-" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>결론: 예전 BM25 하이브리드 측정은 두 결함 때문에 무효다.</strong> 하나는 후보 집합을 넓히지 못한 변형 D였고, 다른 하나는 dense와 BM25의 검색 범위가 달랐던 것이다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>코드</th><th>이 절에서 뜻하는 것</th></tr></thead><tbody><tr><td><code>dense_doc</code></td><td>대상 문서 안에서 dense로 찾은 후보 20개</td></tr><tr><td><code>bm25</code> (구)</td><td>30,002청크 전체에서 찾던 옛 BM25 후보</td></tr><tr><td><code>bm25_doc</code></td><td>대상 문서 안에서만 다시 계산한 BM25 후보</td></tr><tr><td>D</td><td>옛 구현에서는 BM25 전용 청크를 버려 C와 같은 집합이 된 변형</td></tr></tbody></table></div>
+<h3 id="10-1-유일한-하이브리드-변형이-아무것도-재지-못했다">10-1. 유일한 하이브리드 변형이 아무것도 재지 못했다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10-1-유일한-하이브리드-변형이-아무것도-재지-못했다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>핵심 사실 하나에서 다 따라온다.</p>
+<blockquote>
+<p><strong>리랭커가 뒤에서 후보 전체를 다시 정렬한다.</strong>
+따라서 앞단의 <a href="../../../개념/RRF" class="internal" data-slug="개념/RRF">RRF</a>는 <strong>순서</strong>가 아니라 **누가 후보에 들어오나(집합)**만 결정한다.</p>
+</blockquote>
+<p>변형 D는 dense 후보 20개를 RRF로 <strong>재정렬만</strong> 하고 집합은 그대로 뒀다(<code>if c in seen</code>으로 BM25 전용 청크를 버린다). 리랭커가 어차피 다시 정렬하므로 <strong>D는 C와 수학적으로 같다.</strong></p>
+<details open>
+<summary>C와 D가 왜 리랭커 뒤에서 같아지는가</summary>
+<pre><code>C:  [dense 20개] ───────────────────→ 리랭커 재정렬 → 결과
+D:  [dense 20개] → RRF로 순서만 바꿈 → 리랭커 재정렬 → 결과
+                     ↑ 여기서 바꾼 순서를   ↑ 여기서 지운다
+</code></pre>
+</details>
+<p>개념적으로도 틀렸다 — D는 BM25를 <strong>후보 공급자가 아니라 리랭커로 쓰는 셈</strong>이라 <a href="../../../개념/하이브리드-검색" class="internal alias" data-slug="개념/하이브리드-검색">하이브리드 검색</a>이 아니다.</p>
+<p>버린 근거였던 *“BM25 전용 청크는 본문이 없어 추가 Chroma 왕복이 필요하다”*도 <strong>실측으로 무너졌다: 20개 일괄 조회 0.6ms</strong>, dense 검색 2.05초의 <strong>0.03%도 안 된다.</strong></p>
+<blockquote>
+<p><strong>이 자리에서 더 큰 결함을 놓쳤다.</strong> <code>C ≡ D</code>를 관찰하고도 **“R2 점수 동점 때문에 생긴 안정정렬 부작용”**으로
+설명이 끝나버려, 그 아래의 **“D는 애초에 C와 같다”**는 사실에 도달하지 못했다.
+<strong>증상에 맞는 설명을 찾으면 탐색을 멈추게 된다.</strong></p>
+</blockquote>
+<h3 id="10-2-dense와-bm25의-검색-범위가-달랐다">10-2. dense와 BM25의 검색 범위가 달랐다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10-2-dense와-bm25의-검색-범위가-달랐다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>두 번째 결함이 더 크다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th></th><th>검색 범위</th><th>대상 문서 <strong>밖</strong> 후보</th></tr></thead><tbody><tr><td><code>dense_doc</code></td><td>대상 문서 안에서만 20개</td><td><strong>0%</strong></td></tr><tr><td><code>bm25</code> (구)</td><td><strong>30,002청크 전체</strong>에서 20개</td><td><strong>32.6%</strong></td></tr></tbody></table></div>
+<p>라벨링 규칙상 <strong>대상 문서가 아니면 무조건 배제</strong>다. 즉 BM25 후보 20개 중 <strong>평균 6.5개는 정답일 수가 없는 청크</strong>였고, 그걸 그대로 리랭커에 먹이고 있었다.</p>
+<blockquote>
+<p><strong>그래서 그 측정은 하이브리드를 잰 게 아니라
+“엉뚱한 문서의 청크를 섞으면 나빠지나”를 잰 것이다.</strong></p>
+</blockquote>
+<p>수정: BM25도 대상 문서 안에서만 돌도록 <strong><code>bm25_doc</code>을 새로 계산</strong>해 세 캐시에 넣었다(<a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a> §8).</p>
+<blockquote class="callout danger" data-callout="danger">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>교훈 — 두 검색기를 합칠 때는 <strong>검색 범위가 같은지 먼저 확인한다</strong></p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>dense는 문서 스코프인데 BM25는 전역이면, 합친 결과는 하이브리드가 아니라 <strong>잡음 주입</strong>이다.
+그 상태로 <strong>“BM25는 손해”라는 결론이 두 번 나올 뻔했다.</strong></p>
+</div>
+</blockquote>
+<h3 id="10-3-그래서-무효-처리한-것">10-3. 그래서 무효 처리한 것<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10-3-그래서-무효-처리한-것" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>E·F의 옛 값(M0 E 0.7277 / F 0.7321, M1 E 0.7257 / F 0.7173)은 <strong>범위 불일치 상태에서 나온 값이라 인용할 수 없다 — 무효.</strong>
+채점에 쓰이던 캐시 <code>gold</code> 필드도 v4(310개)로 박혀 있어 <strong>v5(353개)로 갱신</strong>했다. 이전 로그 수치는 전부 v4 기준이었다.</p>
+<hr/>
+<h1 id="3부--남은-것">3부 · 남은 것<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3부--남은-것" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<h2 id="11-조용히-틀리는-실패가-반복된다">11. 조용히 틀리는 실패가 반복된다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-조용히-틀리는-실패가-반복된다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>결론: 이 실험의 주요 실패는 에러가 아니라 그럴듯한 숫자로 나타났다.</strong> 그래서 검색 조건·질문 파일·정답지·후보 순서 같은 입력 전제를 게이트로 잠가야 한다.</p>
+<p>이 실험에서 잡은 사고를 늘어놓으면 <strong>전부 같은 종류</strong>다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>사고</th><th>왜 안 보였나</th></tr></thead><tbody><tr><td>틀린 인덱스(§6)</td><td>양쪽에 같은 chunk_id가 있어 에러가 안 난다</td></tr><tr><td>질문 파일 어긋남(§7)</td><td>파일 이름이 그럴듯하고 문항 수도 맞다</td></tr><tr><td>정답지 편향(§8)</td><td>라벨이 없으면 그냥 오답으로 세어진다</td></tr><tr><td>BM25 스코프 불일치(§10-2)</td><td>후보 개수는 정확히 20개다</td></tr></tbody></table></div>
+<p><strong>공통점: 실패가 예외를 던지지 않고 숫자로만 나타난다.</strong> 그래서 이 실험은 조건 하나하나에 <strong>게이트</strong>를 붙였다(<a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a> §9~§12).</p>
+<h3 id="11-1-동점-노이즈--재려는-효과와-같은-크기다--조치함">11-1. 동점 노이즈 — 재려는 효과와 같은 크기다 ✅ 조치함<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-1-동점-노이즈--재려는-효과와-같은-크기다--조치함" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>결론: 측정 코드의 후보 입력 순서를 통일해 동점 노이즈 원인을 제거했다.</strong> 기존 e5 수치는 재측정하지 않았으므로 소수점 둘째 자리까지만 근거로 쓴다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>용어</th><th>이 절에서 뜻하는 것</th></tr></thead><tbody><tr><td><code>C_doc</code></td><td>문서 안에서 dense 후보 20개를 뽑고 리랭커로 재정렬한 현행 기준선</td></tr><tr><td><code>D_doc</code></td><td>옛 구현에서 C와 후보 집합이 같았던 하이브리드 변형</td></tr><tr><td>동점 노이즈</td><td>리랭커 점수가 같을 때 입력 순서가 최종 순위를 바꾸는 현상</td></tr><tr><td>MRR@10 차이 +0.0070</td><td>C와 D의 후보 집합은 같았는데 순서만 달라져 생긴 e5 측정 잔차</td></tr></tbody></table></div>
+<p><code>C_doc</code>과 <code>D_doc</code>은 후보 <strong>집합이 완전히 같다</strong>(164/164 확인). 리랭커가 전부 재정렬하므로
+결과도 같아야 한다. 그런데 상위 10위 순서가 다른 문항이 나왔다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>임베딩</th><th>상위10 순서가 다른 문항</th><th>MRR@10 차이</th></tr></thead><tbody><tr><td><strong>e5-small</strong></td><td><strong>18</strong></td><td><strong>+0.0070</strong></td></tr><tr><td>bge-m3</td><td>2</td><td>0.0000</td></tr><tr><td>KURE-v1</td><td>0</td><td>0.0000</td></tr></tbody></table></div>
+<p>원인은 <strong>크로스인코더 점수의 동점</strong>이다. 점수가 같으면 안정 정렬이 입력 순서를 보존하므로,
+같은 집합이라도 넣는 순서가 다르면 결과가 갈린다. e5 후보에서 특히 심한 것은 유사한 청크를
+많이 물어와 점수가 자주 겹치기 때문으로 보인다.</p>
+<p>같은 조건의 서로 다른 실행에서 <code>C_doc</code>이 <strong>0.7443과 0.7373으로 갈린 것</strong>도 이 때문이다 —
+GPU 실행 간 미세한 부동소수점 차이가 동점 순서를 뒤집는다.</p>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p> <strong>이 노이즈(±0.007)는 이번 실험에서 재려던 효과와 같은 크기다.</strong></p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>KURE의 임베딩 이득이 +0.0297, e5의 하이브리드 이득이 +0.0222였다.
+판정은 안 바뀐다(어느 조합도 유의하지 않다). 하지만 <strong>e5 관련 수치의 유효 정밀도는
+소수점 둘째 자리까지</strong>로 봐야 한다. 셋째 자리를 근거로 쓰면 안 된다.</p>
+</div>
+</blockquote>
+<p><strong>§3에서 “R2는 점수가 포화한다”고 한 것의 확장판이다.</strong> 처음엔 R2만의 문제로 봤는데,
+<strong>R1에서도 e5 후보에서는 18문항이나 발생한다.</strong> 정도의 차이일 뿐 같은 현상이다.</p>
+<h4 id="조치--순서-규약을-하나로-통일했다-d1ad855-pr-29">조치 — 순서 규약을 하나로 통일했다 (<code>d1ad855</code>, PR #29)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#조치--순서-규약을-하나로-통일했다-d1ad855-pr-29" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>문제의 정체는 “리랭커가 비결정적”이 아니라 <strong>변형마다 후보를 넣는 순서가 달랐다</strong>는 것이다.
+<code>C</code>는 dense 순서, <code>D</code>·<code>E</code>·<code>F</code>는 RRF 순서로 넣고 있었다. RRF 순서는 리랭커가 덮어쓰므로
+<strong>의미가 없는데도</strong>, 동점이 나는 순간 그 순서가 등수로 살아났다.</p>
+<p>그래서 모든 변형을 <strong><code>dense 순서 → BM25 전용 청크는 BM25 순서</code></strong> 하나로 통일했다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th></th><th>이전</th><th>지금</th></tr></thead><tbody><tr><td>변형 간 차이의 원인</td><td>집합 + <strong>순서</strong></td><td><strong>집합 하나뿐</strong></td></tr><tr><td><code>C</code> vs <code>D</code></td><td>리랭커 뒤에서 대체로 수렴 (잔차 0.0070)</td><td><strong>리랭커 전에 이미 동일</strong> — 구조적으로 보장</td></tr></tbody></table></div>
+<blockquote>
+<p><strong><code>chunk_id</code> 오름차순을 쓰지 않았다.</strong> 동점일 때 되돌아갈 자리는 <strong>dense 순위</strong>가 맞다 —
+알파벳순보다 나은 사전 정보이고, 프로덕션의 입력 순서(dense 거리순)와도 같다.
+<code>src/query/hybrid.py</code>의 <code>rerank()</code>는 건드리지 않았다. 프로덕션은 입력 순서가 이미
+결정적이라 이 문제가 없다 — <strong>측정 쪽 결함이었다.</strong></p>
+</blockquote>
+<p><code>tests/test_rerank_candidates.py</code> 9건으로 규약을 잠갔다.</p>
+<blockquote class="callout note" data-callout="note">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>기존 수치는 다시 안 잰다 </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>판정이 노이즈에 좌우되지 않았고(어느 조합도 유의하지 않다), 재측정에 GPU 시간이 든다.
+<strong>e5 관련 수치의 유효 정밀도가 소수점 둘째 자리라는 단서는 그대로 유효하다.</strong></p>
+</div>
+</blockquote>
+<h3 id="11-2-승격-기준이-측정-해상도보다-낮다--003은-164문항으로-판정할-수-없다">11-2. 승격 기준이 측정 해상도보다 낮다 — +0.03은 164문항으로 판정할 수 없다<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-2-승격-기준이-측정-해상도보다-낮다--003은-164문항으로-판정할-수-없다" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>paired bootstrap 95% CI의 <strong>반폭이 전 조합에서 ±0.035~0.046</strong>으로 거의 일정하다. 164문항이라는 표본이 만드는 고정 해상도다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>조합</th><th>점추정</th><th>CI</th><th>반폭</th></tr></thead><tbody><tr><td>bge + R1</td><td>+0.0197</td><td>[−0.0151, +0.0578]</td><td>±0.036</td></tr><tr><td>KURE + R1</td><td>+0.0297</td><td>[−0.0042, +0.0654]</td><td>±0.035</td></tr><tr><td>e5 R2</td><td>−0.0638</td><td>[−0.1005, −0.0275]</td><td>±0.037</td></tr><tr><td>bge R2</td><td>−0.0707</td><td>[−0.1169, −0.0243]</td><td>±0.046</td></tr><tr><td>KURE R2</td><td>−0.0587</td><td>[−0.1035, −0.0140]</td><td>±0.045</td></tr></tbody></table></div>
+<p>승격 기준 두 개가 서로 충돌한다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>기준</th><th>실제 요구</th></tr></thead><tbody><tr><td>① CI 하한 > 0</td><td>점추정 <strong>+0.036 이상</strong></td></tr><tr><td>② 점추정 +0.03 이상</td><td>①보다 느슨</td></tr></tbody></table></div>
+<p><strong>②를 통과해도 ①에서 막히는 구간(+0.030~+0.036)이 생긴다.</strong> 이번에 KURE가 +0.0297로 정확히 그 구간에 떨어졌다.</p>
+<p>즉 <strong>측정 전에 기준을 정한 것은 옳았으나, 그 기준을 이 표본으로 판정할 수 있는지는 확인하지 않았다.</strong> 사전에 계산했다면 **“+0.03은 164문항으로 판정 불가”**가 나왔을 것이다.</p>
+<p>단, 결론 자체가 틀린 것은 아니다. bge +0.0197은 해상도 안에서도 미달이고, R2는 −0.06으로 크게 벗어나 확실히 기각이다. <strong>애매한 것은 KURE 하나뿐이다.</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>잡고 싶은 차이</th><th>필요한 채점 문항</th></tr></thead><tbody><tr><td><strong>+0.03</strong></td><td>약 <strong>236</strong> (지금 164)</td></tr><tr><td>+0.02</td><td>약 531</td></tr></tbody></table></div>
+<p>재판정 조건의 **“골든셋 300문항↑“**은 이 숫자가 근거다. 200문항으로 늘렸을 때 채점 성립이 164였으므로, <strong>300문항이면 240 안팎</strong>이 되어 +0.03을 판정할 수 있다. 즉 **“300이면 좋겠다”가 아니라 “+0.03을 판정하려면 236이 필요하다”**가 정확한 설명이다.</p>
+<h2 id="12-미해결">12. 미해결<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-미해결" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>결론: 남은 일은 성능 채택 문제가 아니라 운영 검증·데이터 반영·라벨 확인이다.</strong> 현행 유지 판정은 바뀌지 않는다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>남은 항목</th><th>현재 상태</th><th>다시 봐야 하는 조건</th></tr></thead><tbody><tr><td>동점 노이즈 ±0.007</td><td>조치함. 기존 e5 수치는 소수점 둘째 자리까지만 사용</td><td>GPU 재측정 예산을 쓰기로 할 때</td></tr><tr><td>거짓양성 검사</td><td>모른다·반문 30문항 미검사</td><td>출시 전 답변 안전성 확인</td></tr><tr><td>탐색비교·후속</td><td>리랭커 개선폭이 작음(+0.034 / +0.005)</td><td>여러 문서를 걸치는 검색을 별도 설계할 때</td></tr><tr><td>후보 밖 정답</td><td>dense만으로 e5 17 / KURE 9</td><td>Recall@20이 병목인 기능이 생길 때</td></tr><tr><td>라벨링 보류 5건</td><td>정답으로 반영하지 않음</td><td>사람이 표기 정규화를 결정할 때</td></tr><tr><td>v5 VM 반영</td><td>VM <code>current</code>가 아직 <code>v4_20260729</code></td><td>운영 데이터 교체 작업 때</td></tr></tbody></table></div>
+<ul>
+<li><del><strong>동점 노이즈 ±0.007</strong></del> → <strong>조치함</strong>. 변형 순서 규약을 통일해 차이의 원인을 후보 집합 하나로 좁혔다 (<code>d1ad855</code>) → §11-1. 단 <strong>기존 수치는 재측정하지 않았다</strong> — e5 수치는 여전히 소수점 둘째 자리까지만 유효</li>
+<li><strong>거짓양성 미검사</strong> — 모른다·반문 30문항에서 없는 근거를 지어내지 않는지 아직 안 봤다</li>
+<li><strong>탐색비교·후속이 안 오른다</strong> — 리랭커로 +0.034 / +0.005뿐. 여러 문서를 걸치는 검색은 별도 접근이 필요하다</li>
+<li><strong>정답이 후보에 아예 없는 문항</strong> — dense만으로는 e5 17 / KURE 9. <strong>BM25를 더하면 e5 17→6까지 줄지만 MRR로는 안 이어진다</strong>(§2-1-1). 후보에 넣는 것과 상위로 올리는 것은 다른 문제다</li>
+<li><strong>라벨링 보류 5건</strong> — 사람 확인 대상 (§8-4)</li>
+<li><strong>v5가 아직 VM에 안 올라갔다</strong> — <code>current</code>는 <code>v4_20260729</code>를 가리킨다</li>
+</ul>
+<h2 id="12-1-산출물">12-1. 산출물<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-1-산출물" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>산출물</th><th>역할</th></tr></thead><tbody><tr><td><code>data/promote_decision_v5.md</code></td><td>골든셋 v5 기준 최종 승격/미승격 판단 기록</td></tr><tr><td><code>scripts/add_bm25_doc.py</code></td><td>전역 BM25가 아니라 문서 스코프 <code>bm25_doc</code> 후보를 추가하는 스크립트</td></tr><tr><td><code>scripts/merge_pooled_labels.py</code></td><td>풀링 라벨을 병합해 v5 판정 풀을 만드는 스크립트</td></tr><tr><td>ADR-010</td><td><strong>미신설</strong>. 현행 유지라 기존 결정 재확인으로 충분</td></tr></tbody></table></div>
+<h2 id="13-관련-문서">13. 관련 문서<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13-관련-문서" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>문서</th><th>무엇을 보러</th></tr></thead><tbody><tr><td><strong><a href="../../../검색-실험-설계" class="internal alias" data-slug="검색-실험-설계">검색 실험 설계</a></strong></td><td><strong>측정 조건 정본</strong> — 파이프라인·정답지·지표·실험 대상·통제</td></tr><tr><td><a href="../../../골든셋" class="internal alias" data-slug="골든셋">골든셋</a> · <a href="../../../메모/김범진(데이터-처리)/골든셋-200문항-제작" class="internal alias" data-slug="메모/김범진(데이터-처리)/골든셋-200문항-제작">골든셋 200문항 제작</a></td><td>정답지가 어떻게 만들어졌나</td></tr><tr><td><a href="../../../메모/김범진(데이터-처리)/쿼리-파이프라인" class="internal alias" data-slug="메모/김범진(데이터-처리)/쿼리-파이프라인">쿼리 파이프라인</a></td><td>검색이 전체 흐름에서 어디인가</td></tr><tr><td><a href="../../../개념/상·하한-채점" class="internal alias" data-slug="개념/상·하한-채점">상·하한 채점</a> · <a href="../../../개념/paired-bootstrap" class="internal alias" data-slug="개념/paired-bootstrap">paired bootstrap</a> · <a href="../../../개념/후보-캐시" class="internal alias" data-slug="개념/후보-캐시">후보 캐시</a> · <a href="../../../개념/지표-포화" class="internal alias" data-slug="개념/지표-포화">지표 포화</a></td><td>이 실험이 쓴 방법</td></tr><tr><td><a href="../../../개념/개념-색인" class="internal alias" data-slug="개념/개념-색인">개념 색인</a></td><td>용어</td></tr></tbody></table></div>
+<p><strong>코드</strong>: <code>scripts/build_retrieval_cache.py</code> · <code>scripts/rerank_on_cache.py</code> · <code>scripts/rerank_bias_bounds.py</code> · <code>src/eval/label_bias.py</code> · <code>src/query/retrieve.py</code>
+<strong>정본</strong>: <code>Plans.md</code> 6.7~6.8 · <code>docs/ADR.md</code> ADR-009</p></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>그래프 뷰</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-36" aria-expanded="true"><h3>목차</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#검색-실험-결과" data-for="검색-실험-결과">검색 실험 결과</a></li><li class="depth-1"><a href="#0-세-줄-요약" data-for="0-세-줄-요약">0. 세 줄 요약</a></li><li class="depth-1"><a href="#0-1-이-숫자의-범위--라우팅까지-잰-값이-아니다" data-for="0-1-이-숫자의-범위--라우팅까지-잰-값이-아니다">0-1. 이 숫자의 범위 — 라우팅까지 잰 값이 아니다</a></li><li class="depth-1"><a href="#목차" data-for="목차">목차</a></li><li class="depth-0"><a href="#1부--판정" data-for="1부--판정">1부 · 판정</a></li><li class="depth-1"><a href="#1-성적표--값-정본" data-for="1-성적표--값-정본">1. 성적표 ★ 값 정본</a></li><li class="depth-2"><a href="#1-0-변형-코드-읽는-법--c_doc이-뭔가" data-for="1-0-변형-코드-읽는-법--c_doc이-뭔가">1-0. 변형 코드 읽는 법 — C_doc이 뭔가</a></li><li class="depth-1"><a href="#2-bm25-하이브리드--미채택-재측정-완료" data-for="2-bm25-하이브리드--미채택-재측정-완료">2. BM25 하이브리드 — 미채택 (재측정 완료)</a></li><li class="depth-2"><a href="#2-1-가설은-방향이-맞았다--크기가-모자랐을-뿐" data-for="2-1-가설은-방향이-맞았다--크기가-모자랐을-뿐">2-1. 가설은 방향이 맞았다 — 크기가 모자랐을 뿐</a></li><li class="depth-2"><a href="#2-1-1-bm25는-정답을-후보에-넣어주긴-한다--상위로-못-올릴-뿐-" data-for="2-1-1-bm25는-정답을-후보에-넣어주긴-한다--상위로-못-올릴-뿐-">2-1-1. BM25는 정답을 후보에 넣어주긴 한다 — 상위로 못 올릴 뿐 ★</a></li><li class="depth-2"><a href="#2-1-2-mrr만-보면-놓친다--다른-지표는-유의하게-나쁘다-" data-for="2-1-2-mrr만-보면-놓친다--다른-지표는-유의하게-나쁘다-">2-1-2. MRR만 보면 놓친다 — 다른 지표는 유의하게 나쁘다 ★</a></li><li class="depth-2"><a href="#2-1-3-하이브리드를-켜면-임베딩-격차가-사라진다-" data-for="2-1-3-하이브리드를-켜면-임베딩-격차가-사라진다-">2-1-3. 하이브리드를 켜면 임베딩 격차가 사라진다 ★</a></li><li class="depth-2"><a href="#2-2-죽은-코드가-아니라-근거-있는-분기였다" data-for="2-2-죽은-코드가-아니라-근거-있는-분기였다">2-2. 죽은 코드가 아니라 근거 있는 분기였다</a></li><li class="depth-1"><a href="#3-리랭커는-r1--r2는-점수가-포화한다" data-for="3-리랭커는-r1--r2는-점수가-포화한다">3. 리랭커는 R1 — R2는 점수가 포화한다</a></li><li class="depth-2"><a href="#3-0-리랭커를-켠-것-자체가-이-실험-최대-이득" data-for="3-0-리랭커를-켠-것-자체가-이-실험-최대-이득">3-0. 리랭커를 켠 것 자체가 이 실험 최대 이득</a></li><li class="depth-2"><a href="#3-1-왜-졌나--점수-포화" data-for="3-1-왜-졌나--점수-포화">3-1. 왜 졌나 — 점수 포화</a></li><li class="depth-2"><a href="#3-2-한국어-튜닝은-양쪽에서-이득이-없었다" data-for="3-2-한국어-튜닝은-양쪽에서-이득이-없었다">3-2. 한국어 튜닝은 양쪽에서 이득이 없었다</a></li><li class="depth-1"><a href="#4-임베딩을-왜-안-바꾸나--차이가-없다가-아니다" data-for="4-임베딩을-왜-안-바꾸나--차이가-없다가-아니다">4. 임베딩을 왜 안 바꾸나 — “차이가 없다”가 아니다</a></li><li class="depth-2"><a href="#4-0-dense-단독-성적--임베딩-자체의-실력-진단용-골든셋-v4-기준" data-for="4-0-dense-단독-성적--임베딩-자체의-실력-진단용-골든셋-v4-기준">4-0. dense 단독 성적 — 임베딩 자체의 실력 (진단용, 골든셋 v4 기준)</a></li><li class="depth-2"><a href="#4-1-재판정-조건--이-셋-중-하나면-다시-본다" data-for="4-1-재판정-조건--이-셋-중-하나면-다시-본다">4-1. 재판정 조건 — 이 셋 중 하나면 다시 본다</a></li><li class="depth-1"><a href="#5-프로덕션-반영-상태" data-for="5-프로덕션-반영-상태">5. 프로덕션 반영 상태</a></li><li class="depth-0"><a href="#2부--실험하며-바로잡은-것" data-for="2부--실험하며-바로잡은-것">2부 · 실험하며 바로잡은 것</a></li><li class="depth-1"><a href="#6-인덱스를-잘못-쓰고-있었다" data-for="6-인덱스를-잘못-쓰고-있었다">6. 인덱스를 잘못 쓰고 있었다</a></li><li class="depth-1"><a href="#7-검색과-재정렬이-서로-다른-질문을-보고-있었다-" data-for="7-검색과-재정렬이-서로-다른-질문을-보고-있었다-">7. 검색과 재정렬이 서로 다른 질문을 보고 있었다 ★</a></li><li class="depth-1"><a href="#8-정답지가-새-모델에-불리했다--풀링으로-제거했다-" data-for="8-정답지가-새-모델에-불리했다--풀링으로-제거했다-">8. 정답지가 새 모델에 불리했다 — 풀링으로 제거했다 ★</a></li><li class="depth-2"><a href="#8-1-무엇이-문제였나" data-for="8-1-무엇이-문제였나">8-1. 무엇이 문제였나</a></li><li class="depth-2"><a href="#8-2-먼저-구간에-가뒀다" data-for="8-2-먼저-구간에-가뒀다">8-2. 먼저 구간에 가뒀다</a></li><li class="depth-2"><a href="#8-3-전수-풀링-라벨링" data-for="8-3-전수-풀링-라벨링">8-3. 전수 풀링 라벨링</a></li><li class="depth-2"><a href="#8-4-편향이-사라졌다" data-for="8-4-편향이-사라졌다">8-4. 편향이 사라졌다</a></li><li class="depth-1"><a href="#9-미채택-판단을-한-번-철회했다-" data-for="9-미채택-판단을-한-번-철회했다-">9. “미채택” 판단을 한 번 철회했다 ★</a></li><li class="depth-1"><a href="#10-bm25-하이브리드-설계-결함-2건-" data-for="10-bm25-하이브리드-설계-결함-2건-">10. BM25 하이브리드 설계 결함 2건 ★</a></li><li class="depth-2"><a href="#10-1-유일한-하이브리드-변형이-아무것도-재지-못했다" data-for="10-1-유일한-하이브리드-변형이-아무것도-재지-못했다">10-1. 유일한 하이브리드 변형이 아무것도 재지 못했다</a></li><li class="depth-2"><a href="#10-2-dense와-bm25의-검색-범위가-달랐다" data-for="10-2-dense와-bm25의-검색-범위가-달랐다">10-2. dense와 BM25의 검색 범위가 달랐다</a></li><li class="depth-2"><a href="#10-3-그래서-무효-처리한-것" data-for="10-3-그래서-무효-처리한-것">10-3. 그래서 무효 처리한 것</a></li><li class="depth-0"><a href="#3부--남은-것" data-for="3부--남은-것">3부 · 남은 것</a></li><li class="depth-1"><a href="#11-조용히-틀리는-실패가-반복된다" data-for="11-조용히-틀리는-실패가-반복된다">11. 조용히 틀리는 실패가 반복된다</a></li><li class="depth-2"><a href="#11-1-동점-노이즈--재려는-효과와-같은-크기다--조치함" data-for="11-1-동점-노이즈--재려는-효과와-같은-크기다--조치함">11-1. 동점 노이즈 — 재려는 효과와 같은 크기다 ✅ 조치함</a></li><li class="depth-2"><a href="#11-2-승격-기준이-측정-해상도보다-낮다--003은-164문항으로-판정할-수-없다" data-for="11-2-승격-기준이-측정-해상도보다-낮다--003은-164문항으로-판정할-수-없다">11-2. 승격 기준이 측정 해상도보다 낮다 — +0.03은 164문항으로 판정할 수 없다</a></li><li class="depth-1"><a href="#12-미해결" data-for="12-미해결">12. 미해결</a></li><li class="depth-1"><a href="#12-1-산출물" data-for="12-1-산출물">12-1. 산출물</a></li><li class="depth-1"><a href="#13-관련-문서" data-for="13-관련-문서">13. 관련 문서</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../../postscript.js" type="module" data-persist="true"></script></html>
